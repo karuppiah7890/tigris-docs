@@ -183,6 +183,7 @@ const sidebars = {
             "cli/reference/ping",
             "cli/reference/read",
             "cli/reference/replace",
+            "cli/reference/search",
             "cli/reference/transact",
             "cli/reference/update",
             "cli/reference/version",
