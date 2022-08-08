@@ -121,6 +121,12 @@ tigris transact sampledb \
 ]'
 ```
 
+### Search for a product
+
+```shell
+tigris search sampledb products -q "vanilla"
+```
+
 ## Shutting down the local Tigris
 
 Shutting down the locally running Tigris is also as easy as requiring a

@@ -117,6 +117,21 @@ func main() {
         return nil
     })
 
+    // Search for users with `Name` like "bunny" and `Balance` greater than 500
+    searchRequest := search.NewRequestBuilder().
+                        WithQuery("bunny").
+                        WithSearchFields("Name").
+                        WithFilter(filter.Gt("Balance", 500)).
+                        Build()
+    iterator, err := users.Search(ctx, searchRequest)
+    if err != nil {
+        panic(err)
+    }
+    var result search.Result[User]
+    for iterator.Next(&result) {
+        fmt.Printf("%#v", result)
+    }
+
     // Delete - delete users with IDs 1 or 2
     users.Delete(ctx, filter.Or(filter.Eq("ID", userJ.ID), filter.Eq("ID", userB.ID)))
 
@@ -237,6 +252,19 @@ curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents
           "$set": {"balance": 2448.87}
         },
         "filter": {"id": 2}
+      }'
+```
+
+**Search for users with `name` like "bunny" and `balance` greater than 500**
+
+```shell
+curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/search \
+      -X POST \
+      -H "Content-Type: application/json" \
+      -d '{
+        "q": "bunny",
+        "search_fields": ["name"],
+        "filter": {"balance": {"$gt": 500}}
       }'
 ```
 
@@ -381,6 +409,17 @@ public class TigrisApp {
               }
           });
 
+        // Search for users with `name` like "bunny" and `balance` greater than 500
+        SearchRequest request = SearchRequest.newBuilder()
+                                    .withQuery("bunny")
+                                    .withSearchFields("name")
+                                    .withFilter(Filters.gt("balance", 500))
+                                    .build();
+        Iterator<SearchResult<User>> results = users.search(request);
+        while (results.hasNext()) {
+            SearchResult<User> result = results.next();
+        }
+
         // delete users
         users.delete(Filters.eq("userId", janiaId));
         users.delete(Filters.eq("userId", bunnyId));
@@ -473,19 +512,94 @@ Above code scaffolded the project with following directory structure.
 ├── src
 │   ├── app.ts
 │   ├── index.ts
-│   ├── lib
-│   │   └── config.ts
+│   ├── controllers
+│   │   └── user-controller.ts
 │   └── models
 │       └── user.ts
 └── tsconfig.json
 ```
 
 - `index.ts` is the entry-point for the generated application.
-- `app.ts` is the application class. `tigrisQuickstart` method
-  demonstrates the tigris operations.
-- `lib/config.ts` contains the tigris client initialization.
+- `app.ts` is the application class that initializes the Tigris client.
 - `models/user.ts` contains the data-container and schema for `users`
   collection.
+- `controllers/user-controller.ts` has CRUD routes to mane `users` collection.
+
+**Compile and start the application**
+
+```shell
+npm run build && npm run start
+```
+
+**Insert users**
+
+Run following commands to create two users: John and Jane
+
+```shell
+curl localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "John", "balance": 6045.7}'
+
+curl localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Jane", "balance": 2948.87}'
+```
+
+**Insert products**
+
+Run the following commands to insert products
+
+```shell
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Avocado", "price": 10, "quantity": 5}'
+
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Avocado Oil", "price": 80, "quantity": 15}'
+
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Gold", "price": 3000, "quantity": 1}'
+```
+
+**Check the balances and stock**
+
+Now go ahead and confirm that data has been persisted in DB
+
+```shell
+curl http://localhost:8080/users/1
+curl http://localhost:8080/products/1
+```
+
+**Search**
+
+Lets search for users
+
+```shell
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"q": "john"}'
+```
+
+Or search for products named "avocado" and price less than 50
+
+```shell
+curl localhost:8080/products/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "q": "avocado",
+        "searchFields": ["name"],
+        "filter": {"price": {"$lt": 50}}
+      }'
+```
 
 </TabItem>
 </Tabs>
