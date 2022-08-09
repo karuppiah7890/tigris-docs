@@ -1,0 +1,3 @@
+SearchRequest request = SearchRequest.newBuilder().withQuery("\"adventure park\"").build();
+
+SearchRequest request = SearchRequest.newBuilder().withQuery("kids \"adventure park\"").build();

@@ -56,30 +56,80 @@ Let's create a user and a product.
 ### Create a User
 
 ```shell
-curl -X 'POST' \
-  'http://localhost:8080/users/create' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Jania McGrory",
-  "balance": 6045.7
-}'
+curl http://localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "name": "Jania McGrory",
+        "balance": 6045.7
+      }'
 ```
 
-### Create a Product
+### Create Products
 
 ```shell
-curl -X 'POST' \
-  'http://localhost:8080/products/create' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "name": "Vanilla Beans",
-  "quantity": 6358,
-  "price": 4.39
-}'
+curl http://localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "name": "Vanilla Beans",
+        "quantity": 6358,
+        "price": 4.39
+      }'
+
+curl http://localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "name": "Avocado",
+        "quantity": 5,
+        "price": 10
+      }'
+
+curl http://localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "name": "Avocado Oil",
+        "quantity": 15,
+        "price": 80
+      }'
 ```
 
-These newly added User and Product documents were persisted in the Tigris
-backend.
+### Read from db
+
+Now go ahead and confirm that the data has been persisted in DB
+
+```shell
+curl http://localhost:8080/users/1
+curl http://localhost:8080/products/1
+curl http://localhost:8080/products/2
+curl http://localhost:8080/products/3
+```
+
+### Search
+
+Lets search for users
+
+```shell
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"q": "john"}'
+```
+
+Or search for products named "avocado" and price less than 50
+
+```shell
+curl localhost:8080/products/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "q": "avocado",
+        "searchFields": ["name"],
+        "filter": {"price": {"$lt": 50}}
+      }'
+```
 
 ## Extend the application
 

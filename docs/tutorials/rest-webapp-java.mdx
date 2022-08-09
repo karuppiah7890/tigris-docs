@@ -61,32 +61,65 @@ Let's create a user and a product.
 ### Create a User
 
 ```shell
-curl -X 'POST' \
-  'http://localhost:8080/users/create' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "id": 1,
-  "name": "Jania McGrory",
-  "balance": 6045.7
-}'
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "id": 1,
+        "name": "Jania McGrory",
+        "balance": 6045.7
+      }'
 ```
 
-### Create a Product
+### Create Products
 
 ```shell
-curl -X 'POST' \
-  'http://localhost:8080/products/create' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "id": 1,
-  "name": "Vanilla Beans",
-  "quantity": 6358,
-  "price": 4.39
-}'
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "id": 1,
+        "name": "Vanilla Beans",
+        "quantity": 6358,
+        "price": 4.39
+      }'
+```
+
+```shell
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "id": 2,
+        "name": "Avocado oil",
+        "quantity": 100,
+        "price": 45
+      }'
 ```
 
 These newly added User and Product documents were persisted in the Tigris
 backend.
+
+### Read from db
+
+```shell
+curl http://localhost:8080/users/1
+curl http://localhost:8080/products/1
+```
+
+### Search for products
+
+Search for products named "vanilla"
+
+```shell
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "q": "vanilla",
+        "searchFields": ["name"],
+      }'
+```
 
 ## Extend the application
 

@@ -1,0 +1,7 @@
+const request: SearchRequest<Catalog> = {
+  q: "\"adventure park\"",
+};
+
+const request: SearchRequest<Catalog> = {
+  q: "kids \"adventure park\"",
+};

@@ -1,0 +1,13 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/search' \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+    "q": "\"adventure park\""
+  }'
+
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/search' \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+    "q": "kids \"adventure park\""
+  }'

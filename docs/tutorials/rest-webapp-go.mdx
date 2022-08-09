@@ -41,13 +41,14 @@ First off let's create two new users: Jane and John
 
 ```shell
 curl http://localhost:8080/users/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"Name":"John","Balance":100}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"Name":"John","Balance":100}'
+
 curl http://localhost:8080/users/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"Name":"Jane","Balance":200}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"Name":"Jane","Balance":200}'
 ```
 
 ### Insert products
@@ -56,13 +57,14 @@ Next go ahead and create two products: Avocado and Gold
 
 ```shell
 curl http://localhost:8080/products/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"Name":"Avocado","Price":10,"Quantity":5}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"Name":"Avocado","Price":10,"Quantity":5}'
+
 curl http://localhost:8080/products/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"Name":"Gold","Price":3000,"Quantity":1}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"Name":"Gold","Price":3000,"Quantity":1}'
 ```
 
 ### Place a couple of orders
@@ -74,9 +76,9 @@ unit of Gold that costs $3000.00, while John's balance is $100.00.
 
 ```shell
 curl http://localhost:8080/orders/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"UserId":1,"Products":[{"id":2,"Quantity":1}]}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"UserId":1,"Products":[{"id":2,"Quantity":1}]}'
 ```
 
 #### Low stock
@@ -86,9 +88,9 @@ but there is only 5 in the stock.
 
 ```shell
 curl http://localhost:8080/orders/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"UserId":2,"Products":[{"id":1,"Quantity":10}]}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"UserId":2,"Products":[{"id":1,"Quantity":10}]}'
 ```
 
 #### Successful purchase
@@ -98,9 +100,9 @@ $50.00 and John's balance is $100.00, which is enough for the purchase.
 
 ```shell
 curl http://localhost:8080/orders/create \
-      -X POST \
-      -H 'Content-Type: application/json' \
-      -d '{"UserId":1,"Products":[{"id":1,"Quantity":5}]}'
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"UserId":1,"Products":[{"id":1,"Quantity":5}]}'
 ```
 
 ### Check the balances and stock
@@ -112,6 +114,29 @@ up-to-date.
 curl http://localhost:8080/users/read/1
 curl http://localhost:8080/products/read/1
 curl http://localhost:8080/orders/read/1
+```
+
+### Search
+
+Now, search for users
+
+```shell
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"q":"john"}'
+```
+
+Or search for products named "avocado"
+
+```shell
+curl localhost:8080/products/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "q": "avocado",
+        "searchFields": ["Name"]
+      }'
 ```
 
 ## Code walk through
@@ -146,7 +171,7 @@ setupCRUDRoutes[User](r, db, "users")
 setupCRUDRoutes[Product](r, db, "products")
 ```
 
-This sets up the `create`, `delete` and `read` routes. Note how we are using
+This sets up the `create`, `delete`, `read` and `search` routes. Note how we are using
 Go generics which reduces the code boilerplate and allows reusing the same
 function to set up HTTP routes for the three collections.
 
@@ -155,6 +180,7 @@ The code below demonstrates how the `/create` HTTP route is set up
 ```go
 func setupCRUDRoutes[T interface{}](r *gin.Engine, db *tigris.Database, name string) {
 	setupReadRoute[T](r, db, name)
+    setupSearchRoute[T](r, db, name)
 
 	r.POST(fmt.Sprintf("/%s/create", name), func(c *gin.Context) {
 		coll := tigris.GetCollection[T](db)
@@ -187,7 +213,7 @@ func setupCRUDRoutes[T interface{}](r *gin.Engine, db *tigris.Database, name str
 }
 ```
 
-A couple of important points to note about the `setupCRUDRoutese` function:
+A couple of important points to note about the `setupCRUDRoutes` function:
 
 - The code `coll := tigris.GetCollection[T](db)` is responsible for
   instantiating an object of the collection.

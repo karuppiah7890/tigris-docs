@@ -28,6 +28,37 @@ lookup any items matching "running".
 
 <CodeBlock language={props.codeLang}>{props.searchForDocuments}</CodeBlock>
 
+:::info
+Search is **case-insensitive** i.e. a search for term `"ruNninG"` would match all of `["Running", "running", "RUnnIng", "RUNNING"]` etc.
+:::
+
+### Phrase search query
+
+By default, search is performed over individual terms in the text. For example, search for a
+query string `adventure park` in a dataset would yield following results:
+
+1. "California's kids **adventure park** and Safari"
+2. "**Adventure** island and water **park**"
+3. "Long Island water **park** and **adventure** activities"
+4. "Six flags kids recreation and **adventure park**"
+5. "Hollywood **adventure park** and studios"
+6. "Seaworld **adventure** and theme **park**"
+
+The search phrase can be _escaped_ in query for exact match. In the above example, querying for exact
+phrase `\"adventure park\"` would return:
+
+1. "California's kids **adventure park** and Safari"
+2. "Six flags kids recreation and **adventure park**"
+3. "The Great America **adventure park** and Zoo"
+
+Phrases can still be combined with keywords for richer text search. Continuing above example,
+the query string `kids \"adventure park\"` would result in:
+
+1. "California's **kids adventure park** and Safari"
+2. "Six flags **kids** recreation and **adventure park**"
+
+<CodeBlock language={props.codeLang}>{props.phraseSearch}</CodeBlock>
+
 ### Match all search query
 
 When query string isn't specified or an empty string (`""`), a match all query is performed.
