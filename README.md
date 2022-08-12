@@ -54,10 +54,11 @@ served using any static contents hosting service.
 submodule. After updating the submodule to pull in new proto changes, the
 documentation can be updated using the following steps:
 
-```shell
-protoc --doc_out=./fixtures --doc_opt=json,proto_workspace.json --proto_path=external/tigris-api/ server/v1/api.proto
-npx docusaurus generate-proto-docs
 ```
+npm run generate
+```
+
+Move `Services` section before `Messages` section in protodocs/server/v1/api.proto.mdx
 
 # # Code Quality
 

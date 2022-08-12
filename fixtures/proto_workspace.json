@@ -116,6 +116,24 @@
               "description": "405"
             }
           ]
+        },
+        {
+          "name": "CollectionType",
+          "longName": "CollectionType",
+          "fullName": "tigrisdata.v1.CollectionType",
+          "description": "The type of this collection. Tigris supports Document based APIs for DOCUMENTS collection and Pub/Sub APIs for\nMESSAGES collection.",
+          "values": [
+            {
+              "name": "DOCUMENTS",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MESSAGES",
+              "number": "1",
+              "description": ""
+            }
+          ]
         }
       ],
       "extensions": [],
@@ -225,6 +243,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "size",
+              "description": "Collection size in bytes",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -270,10 +300,23 @@
           "fullName": "tigrisdata.v1.CollectionMetadata",
           "description": "",
           "hasExtensions": false,
-          "hasFields": false,
+          "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
-          "fields": []
+          "fields": [
+            {
+              "name": "type",
+              "description": "",
+              "label": "",
+              "type": "CollectionType",
+              "longType": "CollectionType",
+              "fullType": "tigrisdata.v1.CollectionType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         },
         {
           "name": "CollectionOptions",
@@ -454,7 +497,7 @@
             },
             {
               "name": "only_create",
-              "description": "",
+              "description": "If set to true then the update schema request to the collection will fail by returning a conflict with HTTP Status\ncode 409. The default is false.",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -471,6 +514,18 @@
               "type": "CollectionOptions",
               "longType": "CollectionOptions",
               "fullType": "tigrisdata.v1.CollectionOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "type",
+              "description": "Type of the collection.\n\u003cli\u003e DOCUMENTS: Support CRUD APIs.\n\u003cli\u003e MESSAGES: Supports Pub/Sub APIs.",
+              "label": "",
+              "type": "CollectionType",
+              "longType": "CollectionType",
+              "fullType": "tigrisdata.v1.CollectionType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -549,7 +604,7 @@
             },
             {
               "name": "metadata",
-              "description": "Metadata about the database. (ex. ...)",
+              "description": "Metadata about the database.",
               "label": "",
               "type": "DatabaseMetadata",
               "longType": "DatabaseMetadata",
@@ -755,7 +810,7 @@
           "name": "DescribeCollectionResponse",
           "longName": "DescribeCollectionResponse",
           "fullName": "tigrisdata.v1.DescribeCollectionResponse",
-          "description": "A detailed description about the collection.\nThe description returns collection metadata and the schema.",
+          "description": "A detailed description of the collection.\nThe description returns collection metadata and the schema.",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -787,11 +842,23 @@
             },
             {
               "name": "schema",
-              "description": "Collections schema",
+              "description": "Schema of this collection.",
               "label": "",
               "type": "bytes",
               "longType": "bytes",
               "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "size",
+              "description": "The size of this collection in bytes.",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -827,7 +894,7 @@
           "name": "DescribeDatabaseResponse",
           "longName": "DescribeDatabaseResponse",
           "fullName": "tigrisdata.v1.DescribeDatabaseResponse",
-          "description": "A detailed description about the database and all associated collections.\nDescription of the collection includes schema details as well.",
+          "description": "A detailed description of the database and all the associated collections.\nDescription of the collection includes schema details as well.",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -864,6 +931,18 @@
               "type": "CollectionDescription",
               "longType": "CollectionDescription",
               "fullType": "tigrisdata.v1.CollectionDescription",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "size",
+              "description": "Sum of all the collections sizes present in this database",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1237,55 +1316,55 @@
           "description": "Additional stats for faceted field",
           "hasExtensions": false,
           "hasFields": true,
-          "hasOneofs": false,
+          "hasOneofs": true,
           "extensions": [],
           "fields": [
             {
               "name": "avg",
               "description": "Average of all values in a field. Only available for numeric fields",
-              "label": "",
+              "label": "optional",
               "type": "double",
               "longType": "double",
               "fullType": "double",
               "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
+              "isoneof": true,
+              "oneofdecl": "_avg",
               "defaultValue": ""
             },
             {
               "name": "max",
               "description": "Maximum of all values in a field. Only available for numeric fields",
-              "label": "",
+              "label": "optional",
               "type": "double",
               "longType": "double",
               "fullType": "double",
               "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
+              "isoneof": true,
+              "oneofdecl": "_max",
               "defaultValue": ""
             },
             {
               "name": "min",
               "description": "Minimum of all values in a field. Only available for numeric fields",
-              "label": "",
+              "label": "optional",
               "type": "double",
               "longType": "double",
               "fullType": "double",
               "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
+              "isoneof": true,
+              "oneofdecl": "_min",
               "defaultValue": ""
             },
             {
               "name": "sum",
               "description": "Sum of all values in a field. Only available for numeric fields",
-              "label": "",
+              "label": "optional",
               "type": "double",
               "longType": "double",
               "fullType": "double",
               "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
+              "isoneof": true,
+              "oneofdecl": "_sum",
               "defaultValue": ""
             },
             {
@@ -1647,7 +1726,7 @@
               "defaultValue": ""
             },
             {
-              "name": "topic",
+              "name": "collection",
               "description": "",
               "label": "",
               "type": "string",
@@ -1659,9 +1738,9 @@
               "defaultValue": ""
             },
             {
-              "name": "message",
+              "name": "messages",
               "description": "",
-              "label": "",
+              "label": "repeated",
               "type": "bytes",
               "longType": "bytes",
               "fullType": "bytes",
@@ -1669,8 +1748,31 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "PublishRequestOptions",
+              "longType": "PublishRequestOptions",
+              "fullType": "tigrisdata.v1.PublishRequestOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "PublishRequestOptions",
+          "longName": "PublishRequestOptions",
+          "fullName": "tigrisdata.v1.PublishRequestOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
         },
         {
           "name": "PublishResponse",
@@ -1683,12 +1785,36 @@
           "extensions": [],
           "fields": [
             {
+              "name": "metadata",
+              "description": "",
+              "label": "",
+              "type": "ResponseMetadata",
+              "longType": "ResponseMetadata",
+              "fullType": "tigrisdata.v1.ResponseMetadata",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "status",
               "description": "",
               "label": "",
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "keys",
+              "description": "",
+              "label": "repeated",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1732,7 +1858,7 @@
             },
             {
               "name": "filter",
-              "description": "Returns documents matching this filter.\nA filter can simply be key, value where key\nis the field name and value would be the value for this field. Or a filter can be logical where\ntwo or more fields can be logically joined using $or and $and. A few examples of filter:\n\u003cli\u003e To read a user document where the id has a value 1: ```{\"id\": 1 }```\n\u003cli\u003e To read all the user documents where the key \"id\" has a value 1 or 2 or 3: `{\"$or\": [{\"id\": 1}, {\"id\": 2}, {\"id\": 3}]}`",
+              "description": "Returns documents matching this filter. A filter can simply be a key, value pair where a key is the field name and the value would be the value for this field.\nTigris also allows complex filtering by passing logical expressions. Logical filters are applied on two or more fields using `$or` and `$and`.\nA few examples of filters:\n\u003cli\u003e To read a user document where the id has a value 1: ```{\"id\": 1 }```\n\u003cli\u003e To read all the user documents where the key \"id\" has a value 1 or 2 or 3: `{\"$or\": [{\"id\": 1}, {\"id\": 2}, {\"id\": 3}]}`\nThe detailed documentation of the filter is \u003ca href=\"https://docs.tigrisdata.com/overview/query#specification-1\" title=\"here\"\u003ehere\u003c/a\u003e.",
               "label": "",
               "type": "bytes",
               "longType": "bytes",
@@ -1756,7 +1882,7 @@
             },
             {
               "name": "options",
-              "description": "Options that can be used to modify the results, for example \"limit\" to control the number of documents\nreturned by the server.",
+              "description": "Options that can be used to modify the results, for example `limit` to control the number of documents\nreturned by the server.",
               "label": "",
               "type": "ReadRequestOptions",
               "longType": "ReadRequestOptions",
@@ -2344,7 +2470,7 @@
             },
             {
               "name": "facet",
-              "description": "Facet query to aggregate results on given fields",
+              "description": "Facet query to aggregate results on given fields. The field name for the facet search can be passed like this `{\"brand\": { \"size\": 10 }}`\nwhere the size controls the total facets for this field.",
               "label": "",
               "type": "bytes",
               "longType": "bytes",
@@ -2631,7 +2757,7 @@
               "defaultValue": ""
             },
             {
-              "name": "topic",
+              "name": "collection",
               "description": "",
               "label": "",
               "type": "string",
@@ -2641,8 +2767,31 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "SubscribeRequestOptions",
+              "longType": "SubscribeRequestOptions",
+              "fullType": "tigrisdata.v1.SubscribeRequestOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "SubscribeRequestOptions",
+          "longName": "SubscribeRequestOptions",
+          "fullName": "tigrisdata.v1.SubscribeRequestOptions",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
         },
         {
           "name": "SubscribeResponse",
@@ -3041,7 +3190,7 @@
             },
             {
               "name": "Read",
-              "description": "Reads range of documents from the collection using the condition in the filter.",
+              "description": "Reads a range of documents from the collection. Tigris does not require you to\nindex any fields and automatically index all the fields which means you can filter by any field in the document.\nAn empty filter will trigger reading all the documents inside this collection. The API supports pagination that\ncan be used by passing `Limit/Skip` parameters. The `skip` parameter skips the number of documents from the start and\nthe `limit` parameter is used to specify the number of documents to read. You can find more detailed documentation\nof the Read API \u003ca href=\"https://docs.tigrisdata.com/overview/query\" title=\"here\"\u003ehere\u003c/a\u003e.",
               "requestType": "ReadRequest",
               "requestLongType": "ReadRequest",
               "requestFullType": "tigrisdata.v1.ReadRequest",
@@ -3064,7 +3213,7 @@
             },
             {
               "name": "Search",
-              "description": "Searches a collection for documents matching the query",
+              "description": "Searches a collection for the documents matching the query. A search can be a term search or a phrase search.\nSearch API allows filtering the result set using filters as documented \u003ca href=\"https://docs.tigrisdata.com/overview/query#specification-1\" title=\"here\"\u003ehere\u003c/a\u003e.\nYou can also perform a faceted search by passing the fields in the facet parameter.\nYou can find more detailed documentation of the Search API with multiple examples \u003ca href=\"https://docs.tigrisdata.com/overview/search\" title=\"here\"\u003ehere\u003c/a\u003e.",
               "requestType": "SearchRequest",
               "requestLongType": "SearchRequest",
               "requestFullType": "tigrisdata.v1.SearchRequest",
@@ -3087,7 +3236,7 @@
             },
             {
               "name": "CreateOrUpdateCollection",
-              "description": "Creates a new collection or atomically upgrades the collection to the new schema changes in the database\npassed in the request.",
+              "description": "Creates a new collection or atomically upgrades the collection to the new schema provided in the request.\nSchema changes are applied atomically and immediately without any downtime.\nThis endpoint allows the creation of a collection based on the type. \u003cp\u003e\u003c/p\u003e\nThere are two collection types supported by Tigris:\n   \u003cli\u003e DOCUMENTS: Support CRUD APIs.\n   \u003cli\u003e MESSAGES: Supports Pub/Sub APIs.",
               "requestType": "CreateOrUpdateCollectionRequest",
               "requestLongType": "CreateOrUpdateCollectionRequest",
               "requestFullType": "tigrisdata.v1.CreateOrUpdateCollectionRequest",
@@ -3110,7 +3259,7 @@
             },
             {
               "name": "DropCollection",
-              "description": "Drop the collection and all its documents in the database passed in the request.",
+              "description": "Drop the collection inside this database. This API deletes all of the documents inside this collection and any metadata associated with it.",
               "requestType": "DropCollectionRequest",
               "requestLongType": "DropCollectionRequest",
               "requestFullType": "tigrisdata.v1.DropCollectionRequest",
@@ -3155,7 +3304,7 @@
             },
             {
               "name": "ListCollections",
-              "description": "List all collections in the database passed in the request.",
+              "description": "List all the collections present in the database passed in the request.",
               "requestType": "ListCollectionsRequest",
               "requestLongType": "ListCollectionsRequest",
               "requestFullType": "tigrisdata.v1.ListCollectionsRequest",
@@ -3178,7 +3327,7 @@
             },
             {
               "name": "CreateDatabase",
-              "description": "Creates a new database and returns a AlreadyExists error if the database already exists.",
+              "description": "Creates a new database. Returns an AlreadyExists error with a status code 409 if the database already exists.",
               "requestType": "CreateDatabaseRequest",
               "requestLongType": "CreateDatabaseRequest",
               "requestFullType": "tigrisdata.v1.CreateDatabaseRequest",
@@ -3201,7 +3350,7 @@
             },
             {
               "name": "DropDatabase",
-              "description": "Drop database deletes all the collections in the database along with all it documents.",
+              "description": "Drop database deletes all the collections in this database along with all of the documents, and associated metadata for these collections.",
               "requestType": "DropDatabaseRequest",
               "requestLongType": "DropDatabaseRequest",
               "requestFullType": "tigrisdata.v1.DropDatabaseRequest",
@@ -3224,7 +3373,7 @@
             },
             {
               "name": "DescribeDatabase",
-              "description": "Describe database describes the information related to database along\nwith all the collections inside database.",
+              "description": "This API returns information related to the database along with all the collections inside the database.\nThis can be used to retrieve the size of the database or to retrieve schemas and the size of all the collections present in this database.",
               "requestType": "DescribeDatabaseRequest",
               "requestLongType": "DescribeDatabaseRequest",
               "requestFullType": "tigrisdata.v1.DescribeDatabaseRequest",
@@ -3247,7 +3396,7 @@
             },
             {
               "name": "DescribeCollection",
-              "description": "Describe collection describes the information related to collection.",
+              "description": "Returns the information related to the collection. This can be used to retrieve the schema or size of the collection.",
               "requestType": "DescribeCollectionRequest",
               "requestLongType": "DescribeCollectionRequest",
               "requestFullType": "tigrisdata.v1.DescribeCollectionRequest",
@@ -3270,7 +3419,7 @@
             },
             {
               "name": "Events",
-              "description": "Provides real time events for the changes made into the database. Streams by default publish all events for a database\nbut can be restricted to a specific collection. These events can be useful to build event-driven applications.",
+              "description": "Stream real-time events for mutations made to the collections in the database. Each stream will have a transaction\nidentifier attached to it and will have a boolean flag “last” set to the last event of the transaction which will be useful\nif a transaction performed more than one operation in the collection.",
               "requestType": "EventsRequest",
               "requestLongType": "EventsRequest",
               "requestFullType": "tigrisdata.v1.EventsRequest",
@@ -3315,7 +3464,7 @@
             },
             {
               "name": "Publish",
-              "description": "",
+              "description": "Publish API is use to publish messages to the collection.",
               "requestType": "PublishRequest",
               "requestLongType": "PublishRequest",
               "requestFullType": "tigrisdata.v1.PublishRequest",
@@ -3329,7 +3478,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/topic/{topic}/publish",
+                      "pattern": "/api/v1/databases/{db}/collections/{collection}/publish",
                       "body": "*"
                     }
                   ]
@@ -3338,7 +3487,7 @@
             },
             {
               "name": "Subscribe",
-              "description": "",
+              "description": "Subscribe is used to subscribe to the collection and receive messages from it.",
               "requestType": "SubscribeRequest",
               "requestLongType": "SubscribeRequest",
               "requestFullType": "tigrisdata.v1.SubscribeRequest",
@@ -3352,7 +3501,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/topic/{topic}/subscribe",
+                      "pattern": "/api/v1/databases/{db}/collections/{collection}/subscribe",
                       "body": "*"
                     }
                   ]

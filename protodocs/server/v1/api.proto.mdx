@@ -255,7 +255,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "Read",
     description:
-      "Reads range of documents from the collection using the condition in the filter.",
+      'Reads a range of documents from the collection. Tigris does not require you to\nindex any fields and automatically index all the fields which means you can filter by any field in the document.\nAn empty filter will trigger reading all the documents inside this collection. The API supports pagination that\ncan be used by passing `Limit/Skip` parameters. The `skip` parameter skips the number of documents from the start and\nthe `limit` parameter is used to specify the number of documents to read. You can find more detailed documentation\nof the Read API <a href="https://docs.tigrisdata.com/overview/query" title="here">here</a>.',
     requestType: "ReadRequest",
     requestLongType: "ReadRequest",
     requestFullType: "tigrisdata.v1.ReadRequest",
@@ -287,7 +287,8 @@ _**package** tigrisdata.v1_
   key={"Search-8"}
   method={{
     name: "Search",
-    description: "Searches a collection for documents matching the query",
+    description:
+      'Searches a collection for the documents matching the query. A search can be a term search or a phrase search.\nSearch API allows filtering the result set using filters as documented <a href="https://docs.tigrisdata.com/overview/query#specification-1" title="here">here</a>.\nYou can also perform a faceted search by passing the fields in the facet parameter.\nYou can find more detailed documentation of the Search API with multiple examples <a href="https://docs.tigrisdata.com/overview/search" title="here">here</a>.',
     requestType: "SearchRequest",
     requestLongType: "SearchRequest",
     requestFullType: "tigrisdata.v1.SearchRequest",
@@ -320,7 +321,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "CreateOrUpdateCollection",
     description:
-      "Creates a new collection or atomically upgrades the collection to the new schema changes in the database\npassed in the request.",
+      "Creates a new collection or atomically upgrades the collection to the new schema provided in the request.\nSchema changes are applied atomically and immediately without any downtime.\nThis endpoint allows the creation of a collection based on the type. <p></p>\nThere are two collection types supported by Tigris:\n   <li> DOCUMENTS: Support CRUD APIs.\n   <li> MESSAGES: Supports Pub/Sub APIs.",
     requestType: "CreateOrUpdateCollectionRequest",
     requestLongType: "CreateOrUpdateCollectionRequest",
     requestFullType: "tigrisdata.v1.CreateOrUpdateCollectionRequest",
@@ -355,7 +356,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "DropCollection",
     description:
-      "Drop the collection and all its documents in the database passed in the request.",
+      "Drop the collection inside this database. This API deletes all of the documents inside this collection and any metadata associated with it.",
     requestType: "DropCollectionRequest",
     requestLongType: "DropCollectionRequest",
     requestFullType: "tigrisdata.v1.DropCollectionRequest",
@@ -411,7 +412,8 @@ _**package** tigrisdata.v1_
   key={"ListCollections-12"}
   method={{
     name: "ListCollections",
-    description: "List all collections in the database passed in the request.",
+    description:
+      "List all the collections present in the database passed in the request.",
     requestType: "ListCollectionsRequest",
     requestLongType: "ListCollectionsRequest",
     requestFullType: "tigrisdata.v1.ListCollectionsRequest",
@@ -443,7 +445,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "CreateDatabase",
     description:
-      "Creates a new database and returns a AlreadyExists error if the database already exists.",
+      "Creates a new database. Returns an AlreadyExists error with a status code 409 if the database already exists.",
     requestType: "CreateDatabaseRequest",
     requestLongType: "CreateDatabaseRequest",
     requestFullType: "tigrisdata.v1.CreateDatabaseRequest",
@@ -475,7 +477,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "DropDatabase",
     description:
-      "Drop database deletes all the collections in the database along with all it documents.",
+      "Drop database deletes all the collections in this database along with all of the documents, and associated metadata for these collections.",
     requestType: "DropDatabaseRequest",
     requestLongType: "DropDatabaseRequest",
     requestFullType: "tigrisdata.v1.DropDatabaseRequest",
@@ -507,7 +509,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "DescribeDatabase",
     description:
-      "Describe database describes the information related to database along\nwith all the collections inside database.",
+      "This API returns information related to the database along with all the collections inside the database.\nThis can be used to retrieve the size of the database or to retrieve schemas and the size of all the collections present in this database.",
     requestType: "DescribeDatabaseRequest",
     requestLongType: "DescribeDatabaseRequest",
     requestFullType: "tigrisdata.v1.DescribeDatabaseRequest",
@@ -539,7 +541,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "DescribeCollection",
     description:
-      "Describe collection describes the information related to collection.",
+      "Returns the information related to the collection. This can be used to retrieve the schema or size of the collection.",
     requestType: "DescribeCollectionRequest",
     requestLongType: "DescribeCollectionRequest",
     requestFullType: "tigrisdata.v1.DescribeCollectionRequest",
@@ -572,7 +574,7 @@ _**package** tigrisdata.v1_
   method={{
     name: "Events",
     description:
-      "Provides real time events for the changes made into the database. Streams by default publish all events for a database\nbut can be restricted to a specific collection. These events can be useful to build event-driven applications.",
+      "Stream real-time events for mutations made to the collections in the database. Each stream will have a transaction\nidentifier attached to it and will have a boolean flag “last” set to the last event of the transaction which will be useful\nif a transaction performed more than one operation in the collection.",
     requestType: "EventsRequest",
     requestLongType: "EventsRequest",
     requestFullType: "tigrisdata.v1.EventsRequest",
@@ -629,7 +631,7 @@ _**package** tigrisdata.v1_
   key={"Publish-19"}
   method={{
     name: "Publish",
-    description: "",
+    description: "Publish API is use to publish messages to the collection.",
     requestType: "PublishRequest",
     requestLongType: "PublishRequest",
     requestFullType: "tigrisdata.v1.PublishRequest",
@@ -643,7 +645,7 @@ _**package** tigrisdata.v1_
         rules: [
           {
             method: "POST",
-            pattern: "/api/v1/databases/{db}/topic/{topic}/publish",
+            pattern: "/api/v1/databases/{db}/collections/{collection}/publish",
             body: "*",
           },
         ],
@@ -660,7 +662,8 @@ _**package** tigrisdata.v1_
   key={"Subscribe-20"}
   method={{
     name: "Subscribe",
-    description: "",
+    description:
+      "Subscribe is used to subscribe to the collection and receive messages from it.",
     requestType: "SubscribeRequest",
     requestLongType: "SubscribeRequest",
     requestFullType: "tigrisdata.v1.SubscribeRequest",
@@ -674,7 +677,8 @@ _**package** tigrisdata.v1_
         rules: [
           {
             method: "POST",
-            pattern: "/api/v1/databases/{db}/topic/{topic}/subscribe",
+            pattern:
+              "/api/v1/databases/{db}/collections/{collection}/subscribe",
             body: "*",
           },
         ],
@@ -816,6 +820,18 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
       },
+      {
+        name: "size",
+        description: "Collection size in bytes",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
     ],
   }}
 />
@@ -873,10 +889,24 @@ _**package** tigrisdata.v1_
     fullName: "tigrisdata.v1.CollectionMetadata",
     description: "",
     hasExtensions: false,
-    hasFields: false,
+    hasFields: true,
     hasOneofs: false,
     extensions: [],
-    fields: [],
+    fields: [
+      {
+        name: "type",
+        description: "",
+        label: "",
+        type: "CollectionType",
+        longType: "CollectionType",
+        fullType: "tigrisdata.v1.CollectionType",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/api.proto#collectiontype",
+      },
+    ],
   }}
 />
 
@@ -1095,7 +1125,8 @@ _**package** tigrisdata.v1_
       },
       {
         name: "only_create",
-        description: "",
+        description:
+          "If set to true then the update schema request to the collection will fail by returning a conflict with HTTP Status\ncode 409. The default is false.",
         label: "",
         type: "bool",
         longType: "bool",
@@ -1117,6 +1148,20 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
         typeLink: "/protodocs/server/v1/api.proto#collectionoptions",
+      },
+      {
+        name: "type",
+        description:
+          "Type of the collection.\n<li> DOCUMENTS: Support CRUD APIs.\n<li> MESSAGES: Supports Pub/Sub APIs.",
+        label: "",
+        type: "CollectionType",
+        longType: "CollectionType",
+        fullType: "tigrisdata.v1.CollectionType",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/api.proto#collectiontype",
       },
     ],
   }}
@@ -1209,7 +1254,7 @@ _**package** tigrisdata.v1_
       },
       {
         name: "metadata",
-        description: "Metadata about the database. (ex. ...)",
+        description: "Metadata about the database.",
         label: "",
         type: "DatabaseMetadata",
         longType: "DatabaseMetadata",
@@ -1464,7 +1509,7 @@ _**package** tigrisdata.v1_
     longName: "DescribeCollectionResponse",
     fullName: "tigrisdata.v1.DescribeCollectionResponse",
     description:
-      "A detailed description about the collection.\nThe description returns collection metadata and the schema.",
+      "A detailed description of the collection.\nThe description returns collection metadata and the schema.",
     hasExtensions: false,
     hasFields: true,
     hasOneofs: false,
@@ -1497,11 +1542,23 @@ _**package** tigrisdata.v1_
       },
       {
         name: "schema",
-        description: "Collections schema",
+        description: "Schema of this collection.",
         label: "",
         type: "bytes",
         longType: "bytes",
         fullType: "bytes",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "size",
+        description: "The size of this collection in bytes.",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
         ismap: false,
         isoneof: false,
         oneofdecl: "",
@@ -1550,7 +1607,7 @@ _**package** tigrisdata.v1_
     longName: "DescribeDatabaseResponse",
     fullName: "tigrisdata.v1.DescribeDatabaseResponse",
     description:
-      "A detailed description about the database and all associated collections.\nDescription of the collection includes schema details as well.",
+      "A detailed description of the database and all the associated collections.\nDescription of the collection includes schema details as well.",
     hasExtensions: false,
     hasFields: true,
     hasOneofs: false,
@@ -1594,6 +1651,19 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
         typeLink: "/protodocs/server/v1/api.proto#collectiondescription",
+      },
+      {
+        name: "size",
+        description:
+          "Sum of all the collections sizes present in this database",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
       },
     ],
   }}
@@ -2038,59 +2108,59 @@ _**package** tigrisdata.v1_
     description: "Additional stats for faceted field",
     hasExtensions: false,
     hasFields: true,
-    hasOneofs: false,
+    hasOneofs: true,
     extensions: [],
     fields: [
       {
         name: "avg",
         description:
           "Average of all values in a field. Only available for numeric fields",
-        label: "",
+        label: "optional",
         type: "double",
         longType: "double",
         fullType: "double",
         ismap: false,
-        isoneof: false,
-        oneofdecl: "",
+        isoneof: true,
+        oneofdecl: "_avg",
         defaultValue: "",
       },
       {
         name: "max",
         description:
           "Maximum of all values in a field. Only available for numeric fields",
-        label: "",
+        label: "optional",
         type: "double",
         longType: "double",
         fullType: "double",
         ismap: false,
-        isoneof: false,
-        oneofdecl: "",
+        isoneof: true,
+        oneofdecl: "_max",
         defaultValue: "",
       },
       {
         name: "min",
         description:
           "Minimum of all values in a field. Only available for numeric fields",
-        label: "",
+        label: "optional",
         type: "double",
         longType: "double",
         fullType: "double",
         ismap: false,
-        isoneof: false,
-        oneofdecl: "",
+        isoneof: true,
+        oneofdecl: "_min",
         defaultValue: "",
       },
       {
         name: "sum",
         description:
           "Sum of all values in a field. Only available for numeric fields",
-        label: "",
+        label: "optional",
         type: "double",
         longType: "double",
         fullType: "double",
         ismap: false,
-        isoneof: false,
-        oneofdecl: "",
+        isoneof: true,
+        oneofdecl: "_sum",
         defaultValue: "",
       },
       {
@@ -2527,7 +2597,7 @@ _**package** tigrisdata.v1_
         defaultValue: "",
       },
       {
-        name: "topic",
+        name: "collection",
         description: "",
         label: "",
         type: "string",
@@ -2539,9 +2609,9 @@ _**package** tigrisdata.v1_
         defaultValue: "",
       },
       {
-        name: "message",
+        name: "messages",
         description: "",
-        label: "",
+        label: "repeated",
         type: "bytes",
         longType: "bytes",
         fullType: "bytes",
@@ -2550,14 +2620,44 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
       },
+      {
+        name: "options",
+        description: "",
+        label: "",
+        type: "PublishRequestOptions",
+        longType: "PublishRequestOptions",
+        fullType: "tigrisdata.v1.PublishRequestOptions",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/api.proto#publishrequestoptions",
+      },
     ],
+  }}
+/>
+
+### `PublishRequestOptions`
+
+<ProtoMessage
+  key={45}
+  message={{
+    name: "PublishRequestOptions",
+    longName: "PublishRequestOptions",
+    fullName: "tigrisdata.v1.PublishRequestOptions",
+    description: "",
+    hasExtensions: false,
+    hasFields: false,
+    hasOneofs: false,
+    extensions: [],
+    fields: [],
   }}
 />
 
 ### `PublishResponse`
 
 <ProtoMessage
-  key={45}
+  key={46}
   message={{
     name: "PublishResponse",
     longName: "PublishResponse",
@@ -2568,6 +2668,19 @@ _**package** tigrisdata.v1_
     hasOneofs: false,
     extensions: [],
     fields: [
+      {
+        name: "metadata",
+        description: "",
+        label: "",
+        type: "ResponseMetadata",
+        longType: "ResponseMetadata",
+        fullType: "tigrisdata.v1.ResponseMetadata",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/api.proto#responsemetadata",
+      },
       {
         name: "status",
         description: "",
@@ -2580,6 +2693,18 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
       },
+      {
+        name: "keys",
+        description: "",
+        label: "repeated",
+        type: "bytes",
+        longType: "bytes",
+        fullType: "bytes",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
     ],
   }}
 />
@@ -2587,7 +2712,7 @@ _**package** tigrisdata.v1_
 ### `ReadRequest`
 
 <ProtoMessage
-  key={46}
+  key={47}
   message={{
     name: "ReadRequest",
     longName: "ReadRequest",
@@ -2625,7 +2750,7 @@ _**package** tigrisdata.v1_
       {
         name: "filter",
         description:
-          'Returns documents matching this filter.\nA filter can simply be key, value where key\nis the field name and value would be the value for this field. Or a filter can be logical where\ntwo or more fields can be logically joined using $or and $and. A few examples of filter:\n<li> To read a user document where the id has a value 1: ```{"id": 1 }```\n<li> To read all the user documents where the key "id" has a value 1 or 2 or 3: `{"$or": [{"id": 1}, {"id": 2}, {"id": 3}]}`',
+          'Returns documents matching this filter. A filter can simply be a key, value pair where a key is the field name and the value would be the value for this field.\nTigris also allows complex filtering by passing logical expressions. Logical filters are applied on two or more fields using `$or` and `$and`.\nA few examples of filters:\n<li> To read a user document where the id has a value 1: ```{"id": 1 }```\n<li> To read all the user documents where the key "id" has a value 1 or 2 or 3: `{"$or": [{"id": 1}, {"id": 2}, {"id": 3}]}`\nThe detailed documentation of the filter is <a href="https://docs.tigrisdata.com/overview/query#specification-1" title="here">here</a>.',
         label: "",
         type: "bytes",
         longType: "bytes",
@@ -2650,7 +2775,7 @@ _**package** tigrisdata.v1_
       {
         name: "options",
         description:
-          'Options that can be used to modify the results, for example "limit" to control the number of documents\nreturned by the server.',
+          "Options that can be used to modify the results, for example `limit` to control the number of documents\nreturned by the server.",
         label: "",
         type: "ReadRequestOptions",
         longType: "ReadRequestOptions",
@@ -2668,7 +2793,7 @@ _**package** tigrisdata.v1_
 ### `ReadRequestOptions`
 
 <ProtoMessage
-  key={47}
+  key={48}
   message={{
     name: "ReadRequestOptions",
     longName: "ReadRequestOptions",
@@ -2726,7 +2851,7 @@ _**package** tigrisdata.v1_
 ### `ReadResponse`
 
 <ProtoMessage
-  key={48}
+  key={49}
   message={{
     name: "ReadResponse",
     longName: "ReadResponse",
@@ -2781,7 +2906,7 @@ _**package** tigrisdata.v1_
 ### `ReplaceRequest`
 
 <ProtoMessage
-  key={49}
+  key={50}
   message={{
     name: "ReplaceRequest",
     longName: "ReplaceRequest",
@@ -2849,7 +2974,7 @@ _**package** tigrisdata.v1_
 ### `ReplaceRequestOptions`
 
 <ProtoMessage
-  key={50}
+  key={51}
   message={{
     name: "ReplaceRequestOptions",
     longName: "ReplaceRequestOptions",
@@ -2880,7 +3005,7 @@ _**package** tigrisdata.v1_
 ### `ReplaceResponse`
 
 <ProtoMessage
-  key={51}
+  key={52}
   message={{
     name: "ReplaceResponse",
     longName: "ReplaceResponse",
@@ -2935,7 +3060,7 @@ _**package** tigrisdata.v1_
 ### `ResponseMetadata`
 
 <ProtoMessage
-  key={52}
+  key={53}
   message={{
     name: "ResponseMetadata",
     longName: "ResponseMetadata",
@@ -2992,7 +3117,7 @@ _**package** tigrisdata.v1_
 ### `RetryInfo`
 
 <ProtoMessage
-  key={53}
+  key={54}
   message={{
     name: "RetryInfo",
     longName: "RetryInfo",
@@ -3022,7 +3147,7 @@ _**package** tigrisdata.v1_
 ### `RollbackTransactionRequest`
 
 <ProtoMessage
-  key={54}
+  key={55}
   message={{
     name: "RollbackTransactionRequest",
     longName: "RollbackTransactionRequest",
@@ -3052,7 +3177,7 @@ _**package** tigrisdata.v1_
 ### `RollbackTransactionResponse`
 
 <ProtoMessage
-  key={55}
+  key={56}
   message={{
     name: "RollbackTransactionResponse",
     longName: "RollbackTransactionResponse",
@@ -3082,7 +3207,7 @@ _**package** tigrisdata.v1_
 ### `SearchFacet`
 
 <ProtoMessage
-  key={56}
+  key={57}
   message={{
     name: "SearchFacet",
     longName: "SearchFacet",
@@ -3126,7 +3251,7 @@ _**package** tigrisdata.v1_
 ### `SearchHit`
 
 <ProtoMessage
-  key={57}
+  key={58}
   message={{
     name: "SearchHit",
     longName: "SearchHit",
@@ -3169,7 +3294,7 @@ _**package** tigrisdata.v1_
 ### `SearchHitMeta`
 
 <ProtoMessage
-  key={58}
+  key={59}
   message={{
     name: "SearchHitMeta",
     longName: "SearchHitMeta",
@@ -3214,7 +3339,7 @@ _**package** tigrisdata.v1_
 ### `SearchMetadata`
 
 <ProtoMessage
-  key={59}
+  key={60}
   message={{
     name: "SearchMetadata",
     longName: "SearchMetadata",
@@ -3269,7 +3394,7 @@ _**package** tigrisdata.v1_
 ### `SearchRequest`
 
 <ProtoMessage
-  key={60}
+  key={61}
   message={{
     name: "SearchRequest",
     longName: "SearchRequest",
@@ -3343,7 +3468,8 @@ _**package** tigrisdata.v1_
       },
       {
         name: "facet",
-        description: "Facet query to aggregate results on given fields",
+        description:
+          'Facet query to aggregate results on given fields. The field name for the facet search can be passed like this `{"brand": { "size": 10 }}`\nwhere the size controls the total facets for this field.',
         label: "",
         type: "bytes",
         longType: "bytes",
@@ -3425,7 +3551,7 @@ _**package** tigrisdata.v1_
 ### `SearchResponse`
 
 <ProtoMessage
-  key={61}
+  key={62}
   message={{
     name: "SearchResponse",
     longName: "SearchResponse",
@@ -3482,7 +3608,7 @@ _**package** tigrisdata.v1_
 ### `SearchResponse.FacetsEntry`
 
 <ProtoMessage
-  key={62}
+  key={63}
   message={{
     name: "FacetsEntry",
     longName: "SearchResponse.FacetsEntry",
@@ -3525,7 +3651,7 @@ _**package** tigrisdata.v1_
 ### `StreamEvent`
 
 <ProtoMessage
-  key={63}
+  key={64}
   message={{
     name: "StreamEvent",
     longName: "StreamEvent",
@@ -3639,7 +3765,7 @@ _**package** tigrisdata.v1_
 ### `SubscribeRequest`
 
 <ProtoMessage
-  key={64}
+  key={65}
   message={{
     name: "SubscribeRequest",
     longName: "SubscribeRequest",
@@ -3663,7 +3789,7 @@ _**package** tigrisdata.v1_
         defaultValue: "",
       },
       {
-        name: "topic",
+        name: "collection",
         description: "",
         label: "",
         type: "string",
@@ -3674,14 +3800,44 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
       },
+      {
+        name: "options",
+        description: "",
+        label: "",
+        type: "SubscribeRequestOptions",
+        longType: "SubscribeRequestOptions",
+        fullType: "tigrisdata.v1.SubscribeRequestOptions",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/api.proto#subscriberequestoptions",
+      },
     ],
+  }}
+/>
+
+### `SubscribeRequestOptions`
+
+<ProtoMessage
+  key={66}
+  message={{
+    name: "SubscribeRequestOptions",
+    longName: "SubscribeRequestOptions",
+    fullName: "tigrisdata.v1.SubscribeRequestOptions",
+    description: "",
+    hasExtensions: false,
+    hasFields: false,
+    hasOneofs: false,
+    extensions: [],
+    fields: [],
   }}
 />
 
 ### `SubscribeResponse`
 
 <ProtoMessage
-  key={65}
+  key={67}
   message={{
     name: "SubscribeResponse",
     longName: "SubscribeResponse",
@@ -3711,7 +3867,7 @@ _**package** tigrisdata.v1_
 ### `TransactionCtx`
 
 <ProtoMessage
-  key={66}
+  key={68}
   message={{
     name: "TransactionCtx",
     longName: "TransactionCtx",
@@ -3754,7 +3910,7 @@ _**package** tigrisdata.v1_
 ### `TransactionOptions`
 
 <ProtoMessage
-  key={67}
+  key={69}
   message={{
     name: "TransactionOptions",
     longName: "TransactionOptions",
@@ -3772,7 +3928,7 @@ _**package** tigrisdata.v1_
 ### `UpdateRequest`
 
 <ProtoMessage
-  key={68}
+  key={70}
   message={{
     name: "UpdateRequest",
     longName: "UpdateRequest",
@@ -3853,7 +4009,7 @@ _**package** tigrisdata.v1_
 ### `UpdateRequestOptions`
 
 <ProtoMessage
-  key={69}
+  key={71}
   message={{
     name: "UpdateRequestOptions",
     longName: "UpdateRequestOptions",
@@ -3884,7 +4040,7 @@ _**package** tigrisdata.v1_
 ### `UpdateResponse`
 
 <ProtoMessage
-  key={70}
+  key={72}
   message={{
     name: "UpdateResponse",
     longName: "UpdateResponse",
@@ -3939,7 +4095,7 @@ _**package** tigrisdata.v1_
 ### `WriteOptions`
 
 <ProtoMessage
-  key={71}
+  key={73}
   message={{
     name: "WriteOptions",
     longName: "WriteOptions",
@@ -3987,6 +4143,23 @@ _**package** tigrisdata.v1_
       { name: "CONFLICT", number: "17", description: "409" },
       { name: "BAD_GATEWAY", number: "18", description: "502" },
       { name: "METHOD_NOT_ALLOWED", number: "19", description: "405" },
+    ],
+  }}
+/>
+
+### `CollectionType`
+
+<ProtoEnum
+  key={1}
+  enumb={{
+    name: "CollectionType",
+    longName: "CollectionType",
+    fullName: "tigrisdata.v1.CollectionType",
+    description:
+      "The type of this collection. Tigris supports Document based APIs for DOCUMENTS collection and Pub/Sub APIs for\nMESSAGES collection.",
+    values: [
+      { name: "DOCUMENTS", number: "0", description: "" },
+      { name: "MESSAGES", number: "1", description: "" },
     ],
   }}
 />
