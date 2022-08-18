@@ -108,6 +108,25 @@ to narrow search results in real-time. Faceted search interface presents intuiti
 navigation to the end user.
 :::
 
+## Sorting the search results
+
+Tigris lets you specify an order to sort the search results. We can specify a ranking order in our
+search query to have results sorted with more popular items appearing first.
+
+<CodeBlock language={props.codeLang}>{props.sortedSearch}</CodeBlock>
+
+Many documents may have the same `popularity` score, we can specify additional user-defined sortable
+field to break the tie.
+
+<CodeBlock language={props.codeLang}>{props.multipleSortFields}</CodeBlock>
+
+The results will be first sorted by value of `popularity` field, `reviews.rating` will be used to
+decide ordering if two matching documents have same `popularity`.
+
+:::note
+Documents can only be sorted by `integer`, `number` and `date-time` type of collection fields.
+:::
+
 ## Specifying document fields to retrieve
 
 Search query can be programmed to return only specific fields in a document in search results. We

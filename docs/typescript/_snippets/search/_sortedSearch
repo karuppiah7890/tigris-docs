@@ -1,0 +1,10 @@
+const request: SearchRequest<Catalog> = {
+  q: "running",
+  searchFields: ["name", "labels"],
+  sort: [
+    {
+      field: "popularity",
+      order: SortOrder.DESC
+    }
+  ]
+};

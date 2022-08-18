@@ -20,5 +20,5 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/docum
     "facet": {
         "brand": { "size": 10 }, 
         "labels": { "size": 10 }
-        }
+    }
   }'
