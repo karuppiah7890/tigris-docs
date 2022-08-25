@@ -1,0 +1,5 @@
+it, err := catalog.ReadAll(ctx)
+if err != nil {
+    panic(err)
+}
+fmt.Println(iter)

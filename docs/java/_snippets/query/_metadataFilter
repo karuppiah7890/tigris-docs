@@ -1,0 +1,6 @@
+Iterator<Catalog> iterator = catalog.read(
+    Filters.and(
+        Filters.gte("created_at", "2022-01-01T17:29:28.000Z"),
+        Filters.lt("created_at", "2022-01-02T17:29:28.000Z")
+    )
+);

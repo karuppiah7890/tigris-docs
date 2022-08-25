@@ -1,0 +1,11 @@
+Iterator<Catalog> iterator = catalog.read(
+    Filters.and(
+        Filters.eq("brand", "adidas"),
+        Filters.lt("price", 50)
+    ),
+    ReadFields.newBuilder().includeField("name").includeField("price").includeField("brand").build()
+);
+while (iterator.hasNext()) {
+    Catalog product = iterator.next();
+    System.out.println(product);
+}

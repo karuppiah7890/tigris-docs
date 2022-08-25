@@ -1,0 +1,16 @@
+it, err := catalog.Read(ctx, filter.And(
+    filter.Or(
+        filter.Eq("brand", "adidas"),
+        filter.Eq("brand", "coach")),
+    filter.And(
+        filter.Lt("price", 50),
+        filter.Gte("popularity", 8)),
+    ),
+)
+if err != nil {
+    panic(err)
+}
+var product Catalog
+for it.Next(&product) {
+    fmt.Printf("%+v\n", product)
+}

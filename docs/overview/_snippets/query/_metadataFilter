@@ -1,0 +1,13 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/read'
+  -X POST
+  -H "Content-Type: application/json"
+  -d '{
+    "filter": {
+        "created_at": {
+            "$gte": "2022-01-01T17:29:28.000Z"
+        },
+        "created_at": {
+            "$lt": "2022-01-02T17:29:28.000Z"
+        }
+    }
+  }'

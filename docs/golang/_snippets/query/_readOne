@@ -1,0 +1,5 @@
+product, err := catalog.ReadOne(ctx, filter.Eq("brand", "adidas"))
+if err != nil {
+    panic(err)
+}
+fmt.Println(product)

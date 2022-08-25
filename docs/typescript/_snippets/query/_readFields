@@ -1,0 +1,21 @@
+catalog.findMany({
+    op: LogicalOperator.AND,
+    selectorFilters: [
+        {
+            brand: "adidas"
+        },
+        {
+            op: SelectorFilterOperator.LT,
+            fields: {
+                price: 50
+            }
+        }
+    ]
+}, {
+    include: ["name", "price", "brand"],
+}).then(value => {
+    const products: Catalog[] = <Catalog[]>value;
+    for (const i in products) {
+        console.log(products[i]);
+    }
+});

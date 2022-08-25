@@ -1,0 +1,22 @@
+catalog.findMany({
+    op: LogicalOperator.AND,
+    selectorFilters: [
+        {
+            op: SelectorFilterOperator.GTE,
+            fields: {
+                created_at: "2022-01-01T17:29:28.000Z"
+            }
+        },
+        {
+            op: SelectorFilterOperator.LT,
+            fields: {
+                created_at: "2022-01-02T17:29:28.000Z"
+            }
+        }
+    ]
+}).then(value => {
+    const products: Catalog[] = <Catalog[]>value;
+    for (const i in products) {
+        console.log(products[i]);
+    }
+});

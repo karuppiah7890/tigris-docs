@@ -1,0 +1,11 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/read'
+  -X POST
+  -H "Content-Type: application/json"
+  -d '{
+    "filter": {
+        "labels": "shoes",
+        "reviews.rating": {
+            "$gt": 7
+        }
+    }
+  }'

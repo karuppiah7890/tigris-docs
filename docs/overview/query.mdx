@@ -1,0 +1,45 @@
+---
+title: Querying
+---
+
+import QueryTemplate, {
+  toc as queryToc,
+} from "../templates/_querying-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!./_snippets/query/_createCollection";
+import readOneSource from "!!raw-loader!./_snippets/query/_readOne";
+import multipleFieldsSource from "!!raw-loader!./_snippets/query/_multipleFields";
+import readFieldsSource from "!!raw-loader!./_snippets/query/_readFields";
+import rangeReadSource from "!!raw-loader!./_snippets/query/_rangeRead";
+import metaFilterSource from "!!raw-loader!./_snippets/query/_metadataFilter";
+import logicalFiltersSource from "!!raw-loader!./_snippets/query/_logicalFilters";
+import nestedFieldsSources from "!!raw-loader!./_snippets/query/_nestedFields";
+import readAllSource from "!!raw-loader!./_snippets/query/_readAll";
+
+export const filterSyntax = {
+  eq: "$eq",
+  lt: "$lt",
+  lte: "$lte",
+  gt: "$gt",
+  gte: "$gte",
+  or: "$or",
+  and: "$and",
+};
+
+export const isOverview = true;
+
+<QueryTemplate
+  codeLang="shell"
+  loadOverview={isOverview}
+  filters={filterSyntax}
+  createCollection={createCollectionSource}
+  readOne={readOneSource}
+  multipleFields={multipleFieldsSource}
+  readFields={readFieldsSource}
+  rangeRead={rangeReadSource}
+  metadataFilter={metaFilterSource}
+  logicalFilters={logicalFiltersSource}
+  nestedFields={nestedFieldsSources}
+  readAll={readAllSource}
+/>
+
+export const toc = [...queryToc];

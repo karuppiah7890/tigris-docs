@@ -1,0 +1,5 @@
+Iterator<Catalog> iterator = catalog.readAll()
+while (iterator.hasNext()) {
+  Catalog product = iterator.next();
+  System.out.println(product);
+}

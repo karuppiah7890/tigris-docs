@@ -1,0 +1,47 @@
+## Specification
+
+```shell
+{
+  "fields": {
+    <field1>: 1|0,
+    <field2>: 1|0,
+  },
+  "filter": {
+    <field1>: number|string|boolean,
+    <field2>: {<$lt|$lte|$gt|$gte>: number},
+    <$and|$or>: [<field3>: number|string|boolean, expr1, expr2...]
+  },
+  "options": {
+    "limit": number
+  }
+}
+```
+
+Understanding the syntax:
+
+- The `fields` projection allows you to specify which field to include by setting it to 1 or exclude it by setting it to 0. By default, all the fields are returned in the response.
+- The `filter` syntax is documented in the following section.
+- The `options` allows you to paginate the result.
+
+### Filter specification
+
+Deep diving into the JSON representation of the filter
+
+```shell
+{
+  "filter": {
+    <field1>: number|string|boolean,
+    <field2>: {<$lt|$lte|$gt|$gte>: number},
+    <$and|$or>: [<field3>: number|string|boolean, expr1, expr2...]
+  }
+}
+```
+
+- On the left either you can have a field name or you can specify a logical operator. On the right, either you can have a value or an expression.
+- An `expr` inside logical operator can be a simple condition, or multiple conditions combined using nested logical operators.
+- For `$eq`: a matching value can be of type numeric, string or boolean.
+- For `$lt, $lte, $gt, $gte`: only numeric values are allowed.
+
+:::note
+Observe that when no comparison operator is passed then `$eq` is assumed. Similarly, unless explicitly provided `$and` is assumed on the top level conditions.
+:::
