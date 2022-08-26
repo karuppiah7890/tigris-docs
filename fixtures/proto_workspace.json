@@ -3511,6 +3511,1351 @@
           ]
         }
       ]
+    },
+    {
+      "name": "server/v1/admin.proto",
+      "description": "",
+      "package": "tigrisdata.admin.v1",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "CreateNamespaceRequest",
+          "longName": "CreateNamespaceRequest",
+          "fullName": "tigrisdata.admin.v1.CreateNamespaceRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "A unique namespace id.",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "A namespace name.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateNamespaceResponse",
+          "longName": "CreateNamespaceResponse",
+          "fullName": "tigrisdata.admin.v1.CreateNamespaceResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "A detailed response message.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "status",
+              "description": "An enum with value set as \"created\".",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListNamespacesRequest",
+          "longName": "ListNamespacesRequest",
+          "fullName": "tigrisdata.admin.v1.ListNamespacesRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "ListNamespacesResponse",
+          "longName": "ListNamespacesResponse",
+          "fullName": "tigrisdata.admin.v1.ListNamespacesResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "namespaces",
+              "description": "",
+              "label": "repeated",
+              "type": "NamespaceInfo",
+              "longType": "NamespaceInfo",
+              "fullType": "tigrisdata.admin.v1.NamespaceInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "NamespaceInfo",
+          "longName": "NamespaceInfo",
+          "fullName": "tigrisdata.admin.v1.NamespaceInfo",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "A unique namespace id.",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "A namespace name.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Admin",
+          "longName": "Admin",
+          "fullName": "tigrisdata.admin.v1.Admin",
+          "description": "",
+          "methods": [
+            {
+              "name": "createNamespace",
+              "description": "Creates a new namespace, if it does not exist",
+              "requestType": "CreateNamespaceRequest",
+              "requestLongType": "CreateNamespaceRequest",
+              "requestFullType": "tigrisdata.admin.v1.CreateNamespaceRequest",
+              "requestStreaming": false,
+              "responseType": "CreateNamespaceResponse",
+              "responseLongType": "CreateNamespaceResponse",
+              "responseFullType": "tigrisdata.admin.v1.CreateNamespaceResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/admin/v1/namespaces/{name}/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "listNamespaces",
+              "description": "List all namespace",
+              "requestType": "ListNamespacesRequest",
+              "requestLongType": "ListNamespacesRequest",
+              "requestFullType": "tigrisdata.admin.v1.ListNamespacesRequest",
+              "requestStreaming": false,
+              "responseType": "ListNamespacesResponse",
+              "responseLongType": "ListNamespacesResponse",
+              "responseFullType": "tigrisdata.admin.v1.ListNamespacesResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/admin/v1/namespaces/list"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "server/v1/health.proto",
+      "description": "",
+      "package": "",
+      "hasEnums": false,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "HealthCheckInput",
+          "longName": "HealthCheckInput",
+          "fullName": ".HealthCheckInput",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "HealthCheckResponse",
+          "longName": "HealthCheckResponse",
+          "fullName": ".HealthCheckResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "response",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "HealthAPI",
+          "longName": "HealthAPI",
+          "fullName": ".HealthAPI",
+          "description": "",
+          "methods": [
+            {
+              "name": "Health",
+              "description": "",
+              "requestType": "HealthCheckInput",
+              "requestLongType": ".HealthCheckInput",
+              "requestFullType": "HealthCheckInput",
+              "requestStreaming": false,
+              "responseType": "HealthCheckResponse",
+              "responseLongType": ".HealthCheckResponse",
+              "responseFullType": "HealthCheckResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/api/v1/health"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "server/v1/auth.proto",
+      "description": "",
+      "package": "tigrisdata.auth.v1",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "GrantType",
+          "longName": "GrantType",
+          "fullName": "tigrisdata.auth.v1.GrantType",
+          "description": "",
+          "values": [
+            {
+              "name": "REFRESH_TOKEN",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "CLIENT_CREDENTIALS",
+              "number": "1",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "Application",
+          "longName": "Application",
+          "fullName": "tigrisdata.auth.v1.Application",
+          "description": "An user application",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "Generated client id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "A human readable app name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "A human readable app description",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret",
+              "description": "Generated app secret",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "Created at",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_by",
+              "description": "Created by",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateApplicationRequest",
+          "longName": "CreateApplicationRequest",
+          "fullName": "tigrisdata.auth.v1.CreateApplicationRequest",
+          "description": "Request creation of user application",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "name",
+              "description": "A human readable app name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "A human readable app description",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateApplicationResponse",
+          "longName": "CreateApplicationResponse",
+          "fullName": "tigrisdata.auth.v1.CreateApplicationResponse",
+          "description": "CreateApplication returns created application",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "created_application",
+              "description": "",
+              "label": "",
+              "type": "Application",
+              "longType": "Application",
+              "fullType": "tigrisdata.auth.v1.Application",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteApplicationResponse",
+          "longName": "DeleteApplicationResponse",
+          "fullName": "tigrisdata.auth.v1.DeleteApplicationResponse",
+          "description": "DeleteApplication returns the flag to convey if application was deleted",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "deleted",
+              "description": "",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteApplicationsRequest",
+          "longName": "DeleteApplicationsRequest",
+          "fullName": "tigrisdata.auth.v1.DeleteApplicationsRequest",
+          "description": "Request deletion of an application",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetAccessTokenRequest",
+          "longName": "GetAccessTokenRequest",
+          "fullName": "tigrisdata.auth.v1.GetAccessTokenRequest",
+          "description": "Requests the access token by specifying\ngrant_type:refresh_token \u0026 refresh_token\nor\ngrant_type:client_credentials \u0026 [client_id, client_secret]",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "grant_type",
+              "description": "",
+              "label": "",
+              "type": "GrantType",
+              "longType": "GrantType",
+              "fullType": "tigrisdata.auth.v1.GrantType",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "refresh_token",
+              "description": "case: refresh_token: A valid refresh token",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "client_id",
+              "description": "case: client_credentials: A valid credentials (client_id, client_secret,\naudience)",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "client_secret",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetAccessTokenResponse",
+          "longName": "GetAccessTokenResponse",
+          "fullName": "tigrisdata.auth.v1.GetAccessTokenResponse",
+          "description": "GetAccessToken returns response containing access_token and optionally\nrefresh_token",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "access_token",
+              "description": "An access token.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "refresh_token",
+              "description": "Refresh token.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListApplicationsRequest",
+          "longName": "ListApplicationsRequest",
+          "fullName": "tigrisdata.auth.v1.ListApplicationsRequest",
+          "description": "Request listing of all the application those are visible to requesting actor",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "ListApplicationsResponse",
+          "longName": "ListApplicationsResponse",
+          "fullName": "tigrisdata.auth.v1.ListApplicationsResponse",
+          "description": "ListApplication returns one or more visible application to user",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "applications",
+              "description": "",
+              "label": "repeated",
+              "type": "Application",
+              "longType": "Application",
+              "fullType": "tigrisdata.auth.v1.Application",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RotateApplicationSecretRequest",
+          "longName": "RotateApplicationSecretRequest",
+          "fullName": "tigrisdata.auth.v1.RotateApplicationSecretRequest",
+          "description": "Request rotation of an application secret",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RotateApplicationSecretResponse",
+          "longName": "RotateApplicationSecretResponse",
+          "fullName": "tigrisdata.auth.v1.RotateApplicationSecretResponse",
+          "description": "RotateApplicationRequest returns the new application with rotated secret",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "application",
+              "description": "",
+              "label": "",
+              "type": "Application",
+              "longType": "Application",
+              "fullType": "tigrisdata.auth.v1.Application",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Auth",
+          "longName": "Auth",
+          "fullName": "tigrisdata.auth.v1.Auth",
+          "description": "",
+          "methods": [
+            {
+              "name": "getAccessToken",
+              "description": "Gets an access token.\nsupports two grant_type: [refresh_token, client_credentials]",
+              "requestType": "GetAccessTokenRequest",
+              "requestLongType": "GetAccessTokenRequest",
+              "requestFullType": "tigrisdata.auth.v1.GetAccessTokenRequest",
+              "requestStreaming": false,
+              "responseType": "GetAccessTokenResponse",
+              "responseLongType": "GetAccessTokenResponse",
+              "responseFullType": "tigrisdata.auth.v1.GetAccessTokenResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/auth/token",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "createApplication",
+              "description": "Create an application.",
+              "requestType": "CreateApplicationRequest",
+              "requestLongType": "CreateApplicationRequest",
+              "requestFullType": "tigrisdata.auth.v1.CreateApplicationRequest",
+              "requestStreaming": false,
+              "responseType": "CreateApplicationResponse",
+              "responseLongType": "CreateApplicationResponse",
+              "responseFullType": "tigrisdata.auth.v1.CreateApplicationResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/auth/applications/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "deleteApplication",
+              "description": "Delete an application.",
+              "requestType": "DeleteApplicationsRequest",
+              "requestLongType": "DeleteApplicationsRequest",
+              "requestFullType": "tigrisdata.auth.v1.DeleteApplicationsRequest",
+              "requestStreaming": false,
+              "responseType": "DeleteApplicationResponse",
+              "responseLongType": "DeleteApplicationResponse",
+              "responseFullType": "tigrisdata.auth.v1.DeleteApplicationResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/auth/applications/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "listApplications",
+              "description": "Lists all application visible to requesting actor.",
+              "requestType": "ListApplicationsRequest",
+              "requestLongType": "ListApplicationsRequest",
+              "requestFullType": "tigrisdata.auth.v1.ListApplicationsRequest",
+              "requestStreaming": false,
+              "responseType": "ListApplicationsResponse",
+              "responseLongType": "ListApplicationsResponse",
+              "responseFullType": "tigrisdata.auth.v1.ListApplicationsResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/auth/applications/list",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "rotateApplicationSecret",
+              "description": "RotateApplicationRequest returns the new application with rotated secret",
+              "requestType": "RotateApplicationSecretRequest",
+              "requestLongType": "RotateApplicationSecretRequest",
+              "requestFullType": "tigrisdata.auth.v1.RotateApplicationSecretRequest",
+              "requestStreaming": false,
+              "responseType": "RotateApplicationSecretResponse",
+              "responseLongType": "RotateApplicationSecretResponse",
+              "responseFullType": "tigrisdata.auth.v1.RotateApplicationSecretResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/auth/applications/rotate",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "server/v1/observability.proto",
+      "description": "",
+      "package": "tigrisdata.observability.v1",
+      "hasEnums": true,
+      "hasExtensions": false,
+      "hasMessages": true,
+      "hasServices": true,
+      "enums": [
+        {
+          "name": "MetricQueryFunction",
+          "longName": "MetricQueryFunction",
+          "fullName": "tigrisdata.observability.v1.MetricQueryFunction",
+          "description": "Function to apply on metrics query",
+          "values": [
+            {
+              "name": "RATE",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "COUNT",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "NONE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "MetricQuerySpaceAggregation",
+          "longName": "MetricQuerySpaceAggregation",
+          "fullName": "tigrisdata.observability.v1.MetricQuerySpaceAggregation",
+          "description": "Specifies how the metric should be aggregated for the time slices.",
+          "values": [
+            {
+              "name": "AVG",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "MIN",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "MAX",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "SUM",
+              "number": "3",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "RollupAggregator",
+          "longName": "RollupAggregator",
+          "fullName": "tigrisdata.observability.v1.RollupAggregator",
+          "description": "Specifies how the initial query's result buckets should be processed in\nnext stage.",
+          "values": [
+            {
+              "name": "ROLLUP_AGGREGATOR_SUM",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "ROLLUP_AGGREGATOR_COUNT",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "ROLLUP_AGGREGATOR_MIN",
+              "number": "2",
+              "description": ""
+            },
+            {
+              "name": "ROLLUP_AGGREGATOR_MAX",
+              "number": "3",
+              "description": ""
+            },
+            {
+              "name": "ROLLUP_AGGREGATOR_AVG",
+              "number": "4",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "TigrisOperation",
+          "longName": "TigrisOperation",
+          "fullName": "tigrisdata.observability.v1.TigrisOperation",
+          "description": "Represents Tigris operation category",
+          "values": [
+            {
+              "name": "ALL",
+              "number": "0",
+              "description": ""
+            },
+            {
+              "name": "READ",
+              "number": "1",
+              "description": ""
+            },
+            {
+              "name": "WRITE",
+              "number": "2",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "extensions": [],
+      "messages": [
+        {
+          "name": "AdditionalFunction",
+          "longName": "AdditionalFunction",
+          "fullName": "tigrisdata.observability.v1.AdditionalFunction",
+          "description": "Additional function to apply on metrics query",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "rollup",
+              "description": "",
+              "label": "optional",
+              "type": "RollupFunction",
+              "longType": "RollupFunction",
+              "fullType": "tigrisdata.observability.v1.RollupFunction",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_rollup",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DataPoint",
+          "longName": "DataPoint",
+          "fullName": "tigrisdata.observability.v1.DataPoint",
+          "description": "Represents the data point in timeseries.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "timestamp",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "value",
+              "description": "",
+              "label": "",
+              "type": "double",
+              "longType": "double",
+              "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "MetricSeries",
+          "longName": "MetricSeries",
+          "fullName": "tigrisdata.observability.v1.MetricSeries",
+          "description": "Represents series in timeseries based on input query.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "from",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "to",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metric",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "scope",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "dataPoints",
+              "description": "",
+              "label": "repeated",
+              "type": "DataPoint",
+              "longType": "DataPoint",
+              "fullType": "tigrisdata.observability.v1.DataPoint",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "QueryTimeSeriesMetricsRequest",
+          "longName": "QueryTimeSeriesMetricsRequest",
+          "fullName": "tigrisdata.observability.v1.QueryTimeSeriesMetricsRequest",
+          "description": "Requests the time series metrics",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "db",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collection",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "from",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "to",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "metric_name",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "tigris_operation",
+              "description": "",
+              "label": "",
+              "type": "TigrisOperation",
+              "longType": "TigrisOperation",
+              "fullType": "tigrisdata.observability.v1.TigrisOperation",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "space_aggregation",
+              "description": "",
+              "label": "",
+              "type": "MetricQuerySpaceAggregation",
+              "longType": "MetricQuerySpaceAggregation",
+              "fullType": "tigrisdata.observability.v1.MetricQuerySpaceAggregation",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "space_aggregated_by",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "function",
+              "description": "",
+              "label": "",
+              "type": "MetricQueryFunction",
+              "longType": "MetricQueryFunction",
+              "fullType": "tigrisdata.observability.v1.MetricQueryFunction",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "quantile",
+              "description": "",
+              "label": "",
+              "type": "float",
+              "longType": "float",
+              "fullType": "float",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "additionalFunctions",
+              "description": "",
+              "label": "repeated",
+              "type": "AdditionalFunction",
+              "longType": "AdditionalFunction",
+              "fullType": "tigrisdata.observability.v1.AdditionalFunction",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "QueryTimeSeriesMetricsResponse",
+          "longName": "QueryTimeSeriesMetricsResponse",
+          "fullName": "tigrisdata.observability.v1.QueryTimeSeriesMetricsResponse",
+          "description": "QueryTimeSeriesMetric responds with this type.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "from",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "to",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "query",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "series",
+              "description": "",
+              "label": "repeated",
+              "type": "MetricSeries",
+              "longType": "MetricSeries",
+              "fullType": "tigrisdata.observability.v1.MetricSeries",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RollupFunction",
+          "longName": "RollupFunction",
+          "fullName": "tigrisdata.observability.v1.RollupFunction",
+          "description": "Rollup function aggregates the slices of metrics returned by original query\nand lets you operate on the slices using aggregator and constructs the\nbigger slice of your choice of interval (specified in seconds).",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "aggregator",
+              "description": "",
+              "label": "",
+              "type": "RollupAggregator",
+              "longType": "RollupAggregator",
+              "fullType": "tigrisdata.observability.v1.RollupAggregator",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "interval",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        }
+      ],
+      "services": [
+        {
+          "name": "Observability",
+          "longName": "Observability",
+          "fullName": "tigrisdata.observability.v1.Observability",
+          "description": "",
+          "methods": [
+            {
+              "name": "QueryTimeSeriesMetrics",
+              "description": "Queries time series metrics",
+              "requestType": "QueryTimeSeriesMetricsRequest",
+              "requestLongType": "QueryTimeSeriesMetricsRequest",
+              "requestFullType": "tigrisdata.observability.v1.QueryTimeSeriesMetricsRequest",
+              "requestStreaming": false,
+              "responseType": "QueryTimeSeriesMetricsResponse",
+              "responseLongType": "QueryTimeSeriesMetricsResponse",
+              "responseFullType": "tigrisdata.observability.v1.QueryTimeSeriesMetricsResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/observability/v1/metrics/timeseries/query",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "scalarValueTypes": [

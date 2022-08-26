@@ -1,0 +1,255 @@
+---
+title: admin.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from "@theme/ProtoFile";
+
+## `admin.proto`
+
+_**path** server/v1/admin.proto_
+
+_**package** tigrisdata.admin.v1_
+
+---
+
+## Messages
+
+### `CreateNamespaceRequest`
+
+<ProtoMessage
+  key={0}
+  message={{
+    name: "CreateNamespaceRequest",
+    longName: "CreateNamespaceRequest",
+    fullName: "tigrisdata.admin.v1.CreateNamespaceRequest",
+    description: "",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "id",
+        description: "A unique namespace id.",
+        label: "",
+        type: "int32",
+        longType: "int32",
+        fullType: "int32",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "name",
+        description: "A namespace name.",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `CreateNamespaceResponse`
+
+<ProtoMessage
+  key={1}
+  message={{
+    name: "CreateNamespaceResponse",
+    longName: "CreateNamespaceResponse",
+    fullName: "tigrisdata.admin.v1.CreateNamespaceResponse",
+    description: "",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "message",
+        description: "A detailed response message.",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "status",
+        description: 'An enum with value set as "created".',
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `ListNamespacesRequest`
+
+<ProtoMessage
+  key={2}
+  message={{
+    name: "ListNamespacesRequest",
+    longName: "ListNamespacesRequest",
+    fullName: "tigrisdata.admin.v1.ListNamespacesRequest",
+    description: "",
+    hasExtensions: false,
+    hasFields: false,
+    hasOneofs: false,
+    extensions: [],
+    fields: [],
+  }}
+/>
+
+### `ListNamespacesResponse`
+
+<ProtoMessage
+  key={3}
+  message={{
+    name: "ListNamespacesResponse",
+    longName: "ListNamespacesResponse",
+    fullName: "tigrisdata.admin.v1.ListNamespacesResponse",
+    description: "",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "namespaces",
+        description: "",
+        label: "repeated",
+        type: "NamespaceInfo",
+        longType: "NamespaceInfo",
+        fullType: "tigrisdata.admin.v1.NamespaceInfo",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/admin.proto#namespaceinfo",
+      },
+    ],
+  }}
+/>
+
+### `NamespaceInfo`
+
+<ProtoMessage
+  key={4}
+  message={{
+    name: "NamespaceInfo",
+    longName: "NamespaceInfo",
+    fullName: "tigrisdata.admin.v1.NamespaceInfo",
+    description: "",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "id",
+        description: "A unique namespace id.",
+        label: "",
+        type: "int32",
+        longType: "int32",
+        fullType: "int32",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "name",
+        description: "A namespace name.",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+---
+
+## Services
+
+### `Admin`
+
+#### `createNamespace`
+
+<ProtoServiceMethod
+  key={"createNamespace-0"}
+  method={{
+    name: "createNamespace",
+    description: "Creates a new namespace, if it does not exist",
+    requestType: "CreateNamespaceRequest",
+    requestLongType: "CreateNamespaceRequest",
+    requestFullType: "tigrisdata.admin.v1.CreateNamespaceRequest",
+    requestStreaming: false,
+    responseType: "CreateNamespaceResponse",
+    responseLongType: "CreateNamespaceResponse",
+    responseFullType: "tigrisdata.admin.v1.CreateNamespaceResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          {
+            method: "POST",
+            pattern: "/admin/v1/namespaces/{name}/create",
+            body: "*",
+          },
+        ],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/admin.proto#createnamespacerequest",
+    responseTypeLink:
+      "/protodocs/server/v1/admin.proto#createnamespaceresponse",
+  }}
+/>
+
+#### `listNamespaces`
+
+<ProtoServiceMethod
+  key={"listNamespaces-1"}
+  method={{
+    name: "listNamespaces",
+    description: "List all namespace",
+    requestType: "ListNamespacesRequest",
+    requestLongType: "ListNamespacesRequest",
+    requestFullType: "tigrisdata.admin.v1.ListNamespacesRequest",
+    requestStreaming: false,
+    responseType: "ListNamespacesResponse",
+    responseLongType: "ListNamespacesResponse",
+    responseFullType: "tigrisdata.admin.v1.ListNamespacesResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [{ method: "POST", pattern: "/admin/v1/namespaces/list" }],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/admin.proto#listnamespacesrequest",
+    responseTypeLink: "/protodocs/server/v1/admin.proto#listnamespacesresponse",
+  }}
+/>
+
+---

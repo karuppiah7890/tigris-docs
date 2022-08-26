@@ -1,0 +1,633 @@
+---
+title: auth.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from "@theme/ProtoFile";
+
+## `auth.proto`
+
+_**path** server/v1/auth.proto_
+
+_**package** tigrisdata.auth.v1_
+
+---
+
+## Messages
+
+### `Application`
+
+<ProtoMessage
+  key={0}
+  message={{
+    name: "Application",
+    longName: "Application",
+    fullName: "tigrisdata.auth.v1.Application",
+    description: "An user application",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "id",
+        description: "Generated client id",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "name",
+        description: "A human readable app name",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "description",
+        description: "A human readable app description",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "secret",
+        description: "Generated app secret",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "created_at",
+        description: "Created at",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "created_by",
+        description: "Created by",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `CreateApplicationRequest`
+
+<ProtoMessage
+  key={1}
+  message={{
+    name: "CreateApplicationRequest",
+    longName: "CreateApplicationRequest",
+    fullName: "tigrisdata.auth.v1.CreateApplicationRequest",
+    description: "Request creation of user application",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "name",
+        description: "A human readable app name",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "description",
+        description: "A human readable app description",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `CreateApplicationResponse`
+
+<ProtoMessage
+  key={2}
+  message={{
+    name: "CreateApplicationResponse",
+    longName: "CreateApplicationResponse",
+    fullName: "tigrisdata.auth.v1.CreateApplicationResponse",
+    description: "CreateApplication returns created application",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "created_application",
+        description: "",
+        label: "",
+        type: "Application",
+        longType: "Application",
+        fullType: "tigrisdata.auth.v1.Application",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/auth.proto#application",
+      },
+    ],
+  }}
+/>
+
+### `DeleteApplicationResponse`
+
+<ProtoMessage
+  key={3}
+  message={{
+    name: "DeleteApplicationResponse",
+    longName: "DeleteApplicationResponse",
+    fullName: "tigrisdata.auth.v1.DeleteApplicationResponse",
+    description:
+      "DeleteApplication returns the flag to convey if application was deleted",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "deleted",
+        description: "",
+        label: "",
+        type: "bool",
+        longType: "bool",
+        fullType: "bool",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `DeleteApplicationsRequest`
+
+<ProtoMessage
+  key={4}
+  message={{
+    name: "DeleteApplicationsRequest",
+    longName: "DeleteApplicationsRequest",
+    fullName: "tigrisdata.auth.v1.DeleteApplicationsRequest",
+    description: "Request deletion of an application",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "id",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `GetAccessTokenRequest`
+
+<ProtoMessage
+  key={5}
+  message={{
+    name: "GetAccessTokenRequest",
+    longName: "GetAccessTokenRequest",
+    fullName: "tigrisdata.auth.v1.GetAccessTokenRequest",
+    description:
+      "Requests the access token by specifying\ngrant_type:refresh_token & refresh_token\nor\ngrant_type:client_credentials & [client_id, client_secret]",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "grant_type",
+        description: "",
+        label: "",
+        type: "GrantType",
+        longType: "GrantType",
+        fullType: "tigrisdata.auth.v1.GrantType",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/auth.proto#granttype",
+      },
+      {
+        name: "refresh_token",
+        description: "case: refresh_token: A valid refresh token",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "client_id",
+        description:
+          "case: client_credentials: A valid credentials (client_id, client_secret,\naudience)",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "client_secret",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `GetAccessTokenResponse`
+
+<ProtoMessage
+  key={6}
+  message={{
+    name: "GetAccessTokenResponse",
+    longName: "GetAccessTokenResponse",
+    fullName: "tigrisdata.auth.v1.GetAccessTokenResponse",
+    description:
+      "GetAccessToken returns response containing access_token and optionally\nrefresh_token",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "access_token",
+        description: "An access token.",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "refresh_token",
+        description: "Refresh token.",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `ListApplicationsRequest`
+
+<ProtoMessage
+  key={7}
+  message={{
+    name: "ListApplicationsRequest",
+    longName: "ListApplicationsRequest",
+    fullName: "tigrisdata.auth.v1.ListApplicationsRequest",
+    description:
+      "Request listing of all the application those are visible to requesting actor",
+    hasExtensions: false,
+    hasFields: false,
+    hasOneofs: false,
+    extensions: [],
+    fields: [],
+  }}
+/>
+
+### `ListApplicationsResponse`
+
+<ProtoMessage
+  key={8}
+  message={{
+    name: "ListApplicationsResponse",
+    longName: "ListApplicationsResponse",
+    fullName: "tigrisdata.auth.v1.ListApplicationsResponse",
+    description:
+      "ListApplication returns one or more visible application to user",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "applications",
+        description: "",
+        label: "repeated",
+        type: "Application",
+        longType: "Application",
+        fullType: "tigrisdata.auth.v1.Application",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/auth.proto#application",
+      },
+    ],
+  }}
+/>
+
+### `RotateApplicationSecretRequest`
+
+<ProtoMessage
+  key={9}
+  message={{
+    name: "RotateApplicationSecretRequest",
+    longName: "RotateApplicationSecretRequest",
+    fullName: "tigrisdata.auth.v1.RotateApplicationSecretRequest",
+    description: "Request rotation of an application secret",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "id",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `RotateApplicationSecretResponse`
+
+<ProtoMessage
+  key={10}
+  message={{
+    name: "RotateApplicationSecretResponse",
+    longName: "RotateApplicationSecretResponse",
+    fullName: "tigrisdata.auth.v1.RotateApplicationSecretResponse",
+    description:
+      "RotateApplicationRequest returns the new application with rotated secret",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "application",
+        description: "",
+        label: "",
+        type: "Application",
+        longType: "Application",
+        fullType: "tigrisdata.auth.v1.Application",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/auth.proto#application",
+      },
+    ],
+  }}
+/>
+
+---
+
+## Enums
+
+### `GrantType`
+
+<ProtoEnum
+  key={0}
+  enumb={{
+    name: "GrantType",
+    longName: "GrantType",
+    fullName: "tigrisdata.auth.v1.GrantType",
+    description: "",
+    values: [
+      { name: "REFRESH_TOKEN", number: "0", description: "" },
+      { name: "CLIENT_CREDENTIALS", number: "1", description: "" },
+    ],
+  }}
+/>
+
+---
+
+## Services
+
+### `Auth`
+
+#### `getAccessToken`
+
+<ProtoServiceMethod
+  key={"getAccessToken-0"}
+  method={{
+    name: "getAccessToken",
+    description:
+      "Gets an access token.\nsupports two grant_type: [refresh_token, client_credentials]",
+    requestType: "GetAccessTokenRequest",
+    requestLongType: "GetAccessTokenRequest",
+    requestFullType: "tigrisdata.auth.v1.GetAccessTokenRequest",
+    requestStreaming: false,
+    responseType: "GetAccessTokenResponse",
+    responseLongType: "GetAccessTokenResponse",
+    responseFullType: "tigrisdata.auth.v1.GetAccessTokenResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [{ method: "POST", pattern: "/auth/token", body: "*" }],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#getaccesstokenrequest",
+    responseTypeLink: "/protodocs/server/v1/auth.proto#getaccesstokenresponse",
+  }}
+/>
+
+#### `createApplication`
+
+<ProtoServiceMethod
+  key={"createApplication-1"}
+  method={{
+    name: "createApplication",
+    description: "Create an application.",
+    requestType: "CreateApplicationRequest",
+    requestLongType: "CreateApplicationRequest",
+    requestFullType: "tigrisdata.auth.v1.CreateApplicationRequest",
+    requestStreaming: false,
+    responseType: "CreateApplicationResponse",
+    responseLongType: "CreateApplicationResponse",
+    responseFullType: "tigrisdata.auth.v1.CreateApplicationResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/create", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#createapplicationrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#createapplicationresponse",
+  }}
+/>
+
+#### `deleteApplication`
+
+<ProtoServiceMethod
+  key={"deleteApplication-2"}
+  method={{
+    name: "deleteApplication",
+    description: "Delete an application.",
+    requestType: "DeleteApplicationsRequest",
+    requestLongType: "DeleteApplicationsRequest",
+    requestFullType: "tigrisdata.auth.v1.DeleteApplicationsRequest",
+    requestStreaming: false,
+    responseType: "DeleteApplicationResponse",
+    responseLongType: "DeleteApplicationResponse",
+    responseFullType: "tigrisdata.auth.v1.DeleteApplicationResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "DELETE", pattern: "/auth/applications/delete", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink:
+      "/protodocs/server/v1/auth.proto#deleteapplicationsrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#deleteapplicationresponse",
+  }}
+/>
+
+#### `listApplications`
+
+<ProtoServiceMethod
+  key={"listApplications-3"}
+  method={{
+    name: "listApplications",
+    description: "Lists all application visible to requesting actor.",
+    requestType: "ListApplicationsRequest",
+    requestLongType: "ListApplicationsRequest",
+    requestFullType: "tigrisdata.auth.v1.ListApplicationsRequest",
+    requestStreaming: false,
+    responseType: "ListApplicationsResponse",
+    responseLongType: "ListApplicationsResponse",
+    responseFullType: "tigrisdata.auth.v1.ListApplicationsResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/list", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#listapplicationsrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#listapplicationsresponse",
+  }}
+/>
+
+#### `rotateApplicationSecret`
+
+<ProtoServiceMethod
+  key={"rotateApplicationSecret-4"}
+  method={{
+    name: "rotateApplicationSecret",
+    description:
+      "RotateApplicationRequest returns the new application with rotated secret",
+    requestType: "RotateApplicationSecretRequest",
+    requestLongType: "RotateApplicationSecretRequest",
+    requestFullType: "tigrisdata.auth.v1.RotateApplicationSecretRequest",
+    requestStreaming: false,
+    responseType: "RotateApplicationSecretResponse",
+    responseLongType: "RotateApplicationSecretResponse",
+    responseFullType: "tigrisdata.auth.v1.RotateApplicationSecretResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/rotate", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink:
+      "/protodocs/server/v1/auth.proto#rotateapplicationsecretrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#rotateapplicationsecretresponse",
+  }}
+/>
+
+---

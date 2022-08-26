@@ -1,0 +1,555 @@
+---
+title: observability.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from "@theme/ProtoFile";
+
+## `observability.proto`
+
+_**path** server/v1/observability.proto_
+
+_**package** tigrisdata.observability.v1_
+
+---
+
+## Messages
+
+### `AdditionalFunction`
+
+<ProtoMessage
+  key={0}
+  message={{
+    name: "AdditionalFunction",
+    longName: "AdditionalFunction",
+    fullName: "tigrisdata.observability.v1.AdditionalFunction",
+    description: "Additional function to apply on metrics query",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: true,
+    extensions: [],
+    fields: [
+      {
+        name: "rollup",
+        description: "",
+        label: "optional",
+        type: "RollupFunction",
+        longType: "RollupFunction",
+        fullType: "tigrisdata.observability.v1.RollupFunction",
+        ismap: false,
+        isoneof: true,
+        oneofdecl: "_rollup",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/observability.proto#rollupfunction",
+      },
+    ],
+  }}
+/>
+
+### `DataPoint`
+
+<ProtoMessage
+  key={1}
+  message={{
+    name: "DataPoint",
+    longName: "DataPoint",
+    fullName: "tigrisdata.observability.v1.DataPoint",
+    description: "Represents the data point in timeseries.",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "timestamp",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "value",
+        description: "",
+        label: "",
+        type: "double",
+        longType: "double",
+        fullType: "double",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `MetricSeries`
+
+<ProtoMessage
+  key={2}
+  message={{
+    name: "MetricSeries",
+    longName: "MetricSeries",
+    fullName: "tigrisdata.observability.v1.MetricSeries",
+    description: "Represents series in timeseries based on input query.",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "from",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "to",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "metric",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "scope",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "dataPoints",
+        description: "",
+        label: "repeated",
+        type: "DataPoint",
+        longType: "DataPoint",
+        fullType: "tigrisdata.observability.v1.DataPoint",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/observability.proto#datapoint",
+      },
+    ],
+  }}
+/>
+
+### `QueryTimeSeriesMetricsRequest`
+
+<ProtoMessage
+  key={3}
+  message={{
+    name: "QueryTimeSeriesMetricsRequest",
+    longName: "QueryTimeSeriesMetricsRequest",
+    fullName: "tigrisdata.observability.v1.QueryTimeSeriesMetricsRequest",
+    description: "Requests the time series metrics",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "db",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "collection",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "from",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "to",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "metric_name",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "tigris_operation",
+        description: "",
+        label: "",
+        type: "TigrisOperation",
+        longType: "TigrisOperation",
+        fullType: "tigrisdata.observability.v1.TigrisOperation",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/observability.proto#tigrisoperation",
+      },
+      {
+        name: "space_aggregation",
+        description: "",
+        label: "",
+        type: "MetricQuerySpaceAggregation",
+        longType: "MetricQuerySpaceAggregation",
+        fullType: "tigrisdata.observability.v1.MetricQuerySpaceAggregation",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink:
+          "/protodocs/server/v1/observability.proto#metricqueryspaceaggregation",
+      },
+      {
+        name: "space_aggregated_by",
+        description: "",
+        label: "repeated",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "function",
+        description: "",
+        label: "",
+        type: "MetricQueryFunction",
+        longType: "MetricQueryFunction",
+        fullType: "tigrisdata.observability.v1.MetricQueryFunction",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink:
+          "/protodocs/server/v1/observability.proto#metricqueryfunction",
+      },
+      {
+        name: "quantile",
+        description: "",
+        label: "",
+        type: "float",
+        longType: "float",
+        fullType: "float",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "additionalFunctions",
+        description: "",
+        label: "repeated",
+        type: "AdditionalFunction",
+        longType: "AdditionalFunction",
+        fullType: "tigrisdata.observability.v1.AdditionalFunction",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/observability.proto#additionalfunction",
+      },
+    ],
+  }}
+/>
+
+### `QueryTimeSeriesMetricsResponse`
+
+<ProtoMessage
+  key={4}
+  message={{
+    name: "QueryTimeSeriesMetricsResponse",
+    longName: "QueryTimeSeriesMetricsResponse",
+    fullName: "tigrisdata.observability.v1.QueryTimeSeriesMetricsResponse",
+    description: "QueryTimeSeriesMetric responds with this type.",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "from",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "to",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "query",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "series",
+        description: "",
+        label: "repeated",
+        type: "MetricSeries",
+        longType: "MetricSeries",
+        fullType: "tigrisdata.observability.v1.MetricSeries",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/observability.proto#metricseries",
+      },
+    ],
+  }}
+/>
+
+### `RollupFunction`
+
+<ProtoMessage
+  key={5}
+  message={{
+    name: "RollupFunction",
+    longName: "RollupFunction",
+    fullName: "tigrisdata.observability.v1.RollupFunction",
+    description:
+      "Rollup function aggregates the slices of metrics returned by original query\nand lets you operate on the slices using aggregator and constructs the\nbigger slice of your choice of interval (specified in seconds).",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "aggregator",
+        description: "",
+        label: "",
+        type: "RollupAggregator",
+        longType: "RollupAggregator",
+        fullType: "tigrisdata.observability.v1.RollupAggregator",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/observability.proto#rollupaggregator",
+      },
+      {
+        name: "interval",
+        description: "",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+---
+
+## Enums
+
+### `MetricQueryFunction`
+
+<ProtoEnum
+  key={0}
+  enumb={{
+    name: "MetricQueryFunction",
+    longName: "MetricQueryFunction",
+    fullName: "tigrisdata.observability.v1.MetricQueryFunction",
+    description: "Function to apply on metrics query",
+    values: [
+      { name: "RATE", number: "0", description: "" },
+      { name: "COUNT", number: "1", description: "" },
+      { name: "NONE", number: "2", description: "" },
+    ],
+  }}
+/>
+
+### `MetricQuerySpaceAggregation`
+
+<ProtoEnum
+  key={1}
+  enumb={{
+    name: "MetricQuerySpaceAggregation",
+    longName: "MetricQuerySpaceAggregation",
+    fullName: "tigrisdata.observability.v1.MetricQuerySpaceAggregation",
+    description:
+      "Specifies how the metric should be aggregated for the time slices.",
+    values: [
+      { name: "AVG", number: "0", description: "" },
+      { name: "MIN", number: "1", description: "" },
+      { name: "MAX", number: "2", description: "" },
+      { name: "SUM", number: "3", description: "" },
+    ],
+  }}
+/>
+
+### `RollupAggregator`
+
+<ProtoEnum
+  key={2}
+  enumb={{
+    name: "RollupAggregator",
+    longName: "RollupAggregator",
+    fullName: "tigrisdata.observability.v1.RollupAggregator",
+    description:
+      "Specifies how the initial query's result buckets should be processed in\nnext stage.",
+    values: [
+      { name: "ROLLUP_AGGREGATOR_SUM", number: "0", description: "" },
+      { name: "ROLLUP_AGGREGATOR_COUNT", number: "1", description: "" },
+      { name: "ROLLUP_AGGREGATOR_MIN", number: "2", description: "" },
+      { name: "ROLLUP_AGGREGATOR_MAX", number: "3", description: "" },
+      { name: "ROLLUP_AGGREGATOR_AVG", number: "4", description: "" },
+    ],
+  }}
+/>
+
+### `TigrisOperation`
+
+<ProtoEnum
+  key={3}
+  enumb={{
+    name: "TigrisOperation",
+    longName: "TigrisOperation",
+    fullName: "tigrisdata.observability.v1.TigrisOperation",
+    description: "Represents Tigris operation category",
+    values: [
+      { name: "ALL", number: "0", description: "" },
+      { name: "READ", number: "1", description: "" },
+      { name: "WRITE", number: "2", description: "" },
+    ],
+  }}
+/>
+
+---
+
+## Services
+
+### `Observability`
+
+#### `QueryTimeSeriesMetrics`
+
+<ProtoServiceMethod
+  key={"QueryTimeSeriesMetrics-0"}
+  method={{
+    name: "QueryTimeSeriesMetrics",
+    description: "Queries time series metrics",
+    requestType: "QueryTimeSeriesMetricsRequest",
+    requestLongType: "QueryTimeSeriesMetricsRequest",
+    requestFullType:
+      "tigrisdata.observability.v1.QueryTimeSeriesMetricsRequest",
+    requestStreaming: false,
+    responseType: "QueryTimeSeriesMetricsResponse",
+    responseLongType: "QueryTimeSeriesMetricsResponse",
+    responseFullType:
+      "tigrisdata.observability.v1.QueryTimeSeriesMetricsResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          {
+            method: "POST",
+            pattern: "/observability/v1/metrics/timeseries/query",
+            body: "*",
+          },
+        ],
+      },
+    },
+    requestTypeLink:
+      "/protodocs/server/v1/observability.proto#querytimeseriesmetricsrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/observability.proto#querytimeseriesmetricsresponse",
+  }}
+/>
+
+---

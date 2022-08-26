@@ -1,0 +1,94 @@
+---
+title: health.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from "@theme/ProtoFile";
+
+## `health.proto`
+
+_**path** server/v1/health.proto_
+
+_**package** _
+
+---
+
+## Messages
+
+### `HealthCheckInput`
+
+<ProtoMessage
+  key={0}
+  message={{
+    name: "HealthCheckInput",
+    longName: "HealthCheckInput",
+    fullName: ".HealthCheckInput",
+    description: "",
+    hasExtensions: false,
+    hasFields: false,
+    hasOneofs: false,
+    extensions: [],
+    fields: [],
+  }}
+/>
+
+### `HealthCheckResponse`
+
+<ProtoMessage
+  key={1}
+  message={{
+    name: "HealthCheckResponse",
+    longName: "HealthCheckResponse",
+    fullName: ".HealthCheckResponse",
+    description: "",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "response",
+        description: "",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+---
+
+## Services
+
+### `HealthAPI`
+
+#### `Health`
+
+<ProtoServiceMethod
+  key={"Health-0"}
+  method={{
+    name: "Health",
+    description: "",
+    requestType: "HealthCheckInput",
+    requestLongType: ".HealthCheckInput",
+    requestFullType: "HealthCheckInput",
+    requestStreaming: false,
+    responseType: "HealthCheckResponse",
+    responseLongType: ".HealthCheckResponse",
+    responseFullType: "HealthCheckResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [{ method: "GET", pattern: "/api/v1/health" }],
+      },
+    },
+  }}
+/>
+
+---
