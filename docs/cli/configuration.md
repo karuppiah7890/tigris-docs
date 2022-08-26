@@ -13,8 +13,10 @@ Utility loads configuration from the following locations in the given order:
 
 ### Example configuration file
 
+Here is an example of tigris.yaml:
+
 ```yaml
-url: prod.tigrisdata.cloud:8081
+url: tigris.example.com:8081
 application_id: "your_app_id"
 application_secret: "you_app_secret"
 timeout: 2s
@@ -23,7 +25,20 @@ timeout: 2s
 ## Environment variables
 
 Environment variables should have prefix `TIGRIS_` followed by the configuration variable name.
-Nested variables delimited by underscore.
+Nested variables delimited by underscore, meaning that variable which in the config file looks like the following:
+
+```yaml
+one:
+  two: value
+```
+
+Can be set like:
+
+```shell
+TIGRIS_ONE_TWO=value
+```
+
+by the environment variable.
 
 Environment variables have precedence over configuration files.
 
@@ -32,7 +47,7 @@ Environment variables have precedence over configuration files.
 ```shell
 export TIGRIS_APPLICATION_ID="your_app_id"
 export TIGRIS_APPLICATION_SECRET="your_app_secret"
-export TIGRIS_URL="prod.tigrisdata.cloud:8081
+export TIGRIS_URL="tigris.example.com:8081"
 ```
 
 ## Available configuration variables

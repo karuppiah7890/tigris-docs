@@ -159,6 +159,7 @@ const sidebars = {
       },
       collapsed: false,
       items: [
+        "cli/configuration",
         "cli/working-locally",
         {
           type: "category",
