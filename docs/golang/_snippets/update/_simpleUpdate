@@ -1,0 +1,4 @@
+_, err := users.Update(ctx, filter.Eq("Id", "1"), fields.Set("Balance", 200))
+if err != nil {
+    // handle error
+}

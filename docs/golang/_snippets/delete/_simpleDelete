@@ -1,0 +1,4 @@
+_, err := users.Delete(ctx, filter.Eq("Id", "1"))
+if err != nil {
+    // handle error
+}

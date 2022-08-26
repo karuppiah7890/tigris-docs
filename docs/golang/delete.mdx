@@ -1,0 +1,17 @@
+---
+title: Deleting
+---
+
+import DeleteTemplate, {
+  toc as deleteToc,
+} from "../templates/_deleting-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!./_snippets/delete/_createCollection";
+import simpleDeleteSource from "!!raw-loader!./_snippets/delete/_simpleDelete";
+
+<DeleteTemplate
+  codeLang="go"
+  createCollection={createCollectionSource}
+  simpleDelete={simpleDeleteSource}
+/>
+
+export const toc = [...deleteToc];

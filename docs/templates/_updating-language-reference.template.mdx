@@ -1,0 +1,17 @@
+import CodeBlock from "@theme/CodeBlock";
+
+Tigris enables you to quickly add data and easily retrieve or edit that data through simple and
+intuitive APIs. The first step is to set up the collection object. All the CRUD operations on
+the collection are performed through this collection object.
+
+<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+
+## Update documents
+
+The Update API is used to update existing documents that match the filters.
+Fields that need to be updated are specified when calling the API.
+
+In the following example, the field **balance** is updated for documents which
+match the filter `id = 1`.
+
+<CodeBlock language={props.codeLang}>{props.simpleUpdate}</CodeBlock>

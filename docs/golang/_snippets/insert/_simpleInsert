@@ -1,0 +1,6 @@
+_, err := users.Insert(ctx,
+    &User{Name: "Jania McGrory", Balance: 6045.7},
+    &User{Name: "Bunny Instone", Balance: 2948.87})
+if err != nil {
+    // handle error
+}

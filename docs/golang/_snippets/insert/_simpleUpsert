@@ -1,0 +1,6 @@
+_, err := users.InsertOrReplace(ctx,
+    &User{Id: 1, Name: "Jania McGrory", Balance: 6045.7},
+    &User{Id: 2, Name: "Bunny Instone", Balance: 2948.87})
+if err != nil {
+    // handle error
+}

@@ -1,0 +1,19 @@
+---
+title: Inserting
+---
+
+import InsertTemplate, {
+  toc as insertToc,
+} from "../templates/_inserting-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!./_snippets/insert/_createCollection";
+import simpleInsertSource from "!!raw-loader!./_snippets/insert/_simpleInsert";
+import simpleUpsertSource from "!!raw-loader!./_snippets/insert/_simpleUpsert";
+
+<InsertTemplate
+  codeLang="go"
+  createCollection={createCollectionSource}
+  simpleInsert={simpleInsertSource}
+  simpleUpsert={simpleUpsertSource}
+/>
+
+export const toc = [...insertToc];

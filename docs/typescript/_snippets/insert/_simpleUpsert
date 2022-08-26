@@ -1,0 +1,5 @@
+const insertedOrReplacedDoc: User = await users.insertOrReplace({
+  userId: 1,
+  balance: 1000000,
+  name: "Bunny Instone",
+});
