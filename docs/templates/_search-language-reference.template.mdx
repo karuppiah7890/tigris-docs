@@ -1,8 +1,11 @@
+import SearchOverview from "./_search-overview.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
 
 Tigris offers a realtime search for documents in a collection. Searching is by default enabled for a
 collection, there is no setup. This guide section will walk through how to use Tigris search in
 different scenarios.
+
+<div>{props.loadOverview && <SearchOverview />}</div>
 
 ### Example collection
 

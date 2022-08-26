@@ -18,8 +18,11 @@ import multipleSortFieldsSource from "!!raw-loader!./_snippets/search/_multipleS
 import includeFieldsSource from "!!raw-loader!./_snippets/search/_includeFields";
 import excludeFieldsSource from "!!raw-loader!./_snippets/search/_excludeFields";
 
+export const isOverview = true;
+
 <SearchTemplate
   codeLang="shell"
+  loadOverview={isOverview}
   createCollection={createCollectionSource}
   searchForDocuments={searchForDocumentsSource}
   phraseSearch={phraseSearchSource}

@@ -1,0 +1,33 @@
+## Specification
+
+```shell
+{
+  "q": string,
+  "search_fields": [string],
+  "facet": {
+    <field1>: {
+      "size": number
+    },
+  },
+  "filter": {
+    <field1>: number|string|boolean,
+    <field2>: {<$lt|$lte|$gt|$gte>: number},
+    <$and|$or>: [<field3>: number|string|boolean, expr1, expr2...]
+  },
+  "include_fields": [string],
+  "exclude_fields": [string],
+  "page_size": number,
+  "page": number
+}
+```
+
+Understanding the syntax:
+
+- The `q` is a query string for searching across text fields.
+- The `search_fields` an array of fields to project search query against. By default, query will be searched against all text fields.
+- The `facet` query to aggregate results on given fields.
+- The `filter` syntax are documented [here](query#filter).
+- The `include_fields` an optional param to only include the fields specified in the array.
+- The `exclude_fields` an optional param to exclude the fields.
+- The `page_size` an optional key that can set to control the number of hits to be returned per page, default is 20.
+- The `page` an optional key that can set to specify the page to retrieve. If page is set then only hits for this page is returned.

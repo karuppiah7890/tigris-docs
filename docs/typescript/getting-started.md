@@ -42,7 +42,7 @@ const userSchema: TigrisSchema<User> = {
 ```
 
 For detailed documentation on schema representation refer to the
-[data modeling](datamodel) section.
+[data modeling](datamodel/overview.mdx) section.
 
 ## Connect and initialize the database
 

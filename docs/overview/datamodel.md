@@ -37,9 +37,10 @@ that it remains consistent and up-to-date with the application's business logic.
 The language specific reference sections cover defining the data models and
 schemas in the supported programming languages:
 
-- **[Data modeling with Go](../golang/datamodel/declare)**
-- **[Data modeling with Java](../java/datamodel/declare)**
-- **[Data modeling with TypeScript](../typescript/datamodel/declare)**
+- **[Data modeling in HTTP](../http/datamodel/declare)**
+- **[Data modeling in Go](../golang/datamodel/declare)**
+- **[Data modeling in Java](../java/datamodel/declare)**
+- **[Data modeling in TypeScript](../typescript/datamodel/declare)**
 
 ## Evolving the Data Models
 

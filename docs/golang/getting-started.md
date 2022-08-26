@@ -29,7 +29,7 @@ type User struct {
 This declaration will create a collection named `users`.
 
 For detailed documentation on data modeling refer to the
-[data modeling](datamodel) section.
+[data modeling](datamodel/overview.mdx) section.
 
 ### Connect and initialize the database
 

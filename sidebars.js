@@ -30,13 +30,40 @@ const sidebars = {
         "overview/schema",
         "overview/query",
         "overview/search",
-        "overview/change-events",
       ],
     },
     {
       type: "doc",
       label: "Quickstart",
       id: "quickstart/quickstart",
+    },
+    {
+      type: "category",
+      label: "HTTP Reference",
+      collapsed: true,
+      link: {
+        type: "generated-index",
+      },
+      items: [
+        "http/getting-started",
+        {
+          type: "category",
+          label: "Data Modeling",
+          link: {
+            type: "doc",
+            id: "http/datamodel/overview",
+          },
+          collapsed: false,
+          items: [
+            "http/datamodel/declare",
+            "http/datamodel/primary-key",
+            "http/datamodel/embedded",
+            "http/datamodel/types",
+          ],
+        },
+        "http/query",
+        "http/search",
+      ],
     },
     {
       type: "category",
