@@ -1,0 +1,8 @@
+_, err := catalog.Update(ctx, filter.And(
+    filter.Lte("id", 4),
+    filter.Gte("id", 2),
+    ),
+    fields.Set("popularity": 9))
+if err != nil {
+    // handle error
+}

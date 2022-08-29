@@ -27,14 +27,17 @@ const tigris: Tigris = new Tigris({
   serverUrl: "localhost:8081",
 });
 
-interface User extends TigrisCollectionType {
-  userId?: number;
+interface Catalog extends TigrisCollectionType {
+  id?: number;
   name: string;
-  balance: number;
+  price: number;
+  brand: string;
+  labels: string;
+  popularity: number;
 }
 
-const userSchema: TigrisSchema<User> = {
-  userId: {
+const catalogSchema: TigrisSchema<Catalog> = {
+  id: {
     type: TigrisDataTypes.INT32,
     primary_key: {
       order: 1,
@@ -44,16 +47,25 @@ const userSchema: TigrisSchema<User> = {
   name: {
     type: TigrisDataTypes.STRING,
   },
-  balance: {
+  price: {
     type: TigrisDataTypes.NUMBER,
+  },
+  brand: {
+    type: TigrisDataTypes.STRING,
+  },
+  labels: {
+    type: TigrisDataTypes.STRING,
+  },
+  popularity: {
+    type: TigrisDataTypes.INT32,
   },
 };
 
-const db: Database = await tigris.createDatabaseIfNotExists("hello-db");
+const db: Database = await tigris.createDatabaseIfNotExists("catalogdb");
 
-const users: Collection<User> = await db.createOrUpdateCollection(
-  "users",
-  userSchema
+const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
+  "catalog",
+  catalogSchema
 );
 ```
 
@@ -66,14 +78,14 @@ const users: Collection<User> = await db.createOrUpdateCollection(
 ## 3. Persist and query
 
 ```typescript
-const insertedUser: User = await users.insertOrReplace({
-  userId: 1,
-  balance: 1000000,
-  name: "Bunny Instone",
+const insertedCatalog: Catalog = await catalog.insertOrReplace({
+  id: 1,
+  price: 99.9,
+  name: "fiona handbag",
 });
 
-const user: User = await users.findOne({
-  userId: 1,
+const c: Catalog = await catalog.findOne({
+  id: 1,
 });
 ```
 

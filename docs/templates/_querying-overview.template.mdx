@@ -1,5 +1,11 @@
 ## Specification
 
+| HTTP API | HTTP Method | URL Params                                          | Resource                                                  |
+| -------- | ----------- | --------------------------------------------------- | --------------------------------------------------------- |
+| READ     | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/read` |
+
+#### JSON Payload
+
 ```shell
 {
   "fields": {
@@ -17,7 +23,7 @@
 }
 ```
 
-Understanding the syntax:
+Understanding the request payload:
 
 - The `fields` projection allows you to specify which field to include by setting it to 1 or exclude it by setting it to 0. By default, all the fields are returned in the response.
 - The `filter` syntax is documented in the following section.

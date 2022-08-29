@@ -1,0 +1,6 @@
+_, err := catalog.InsertOrReplace(ctx,
+    &Catalog{Name: "sneakers shoes", Price: 40, Brand: "adidas", Labels: "shoes", Popularity: 10},
+    &Catalog{Name: "running shoes", Price: 89, Brand: "coach", Labels: "shoes", Popularity: 10})
+if err != nil {
+    // handle error
+}

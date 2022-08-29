@@ -1,21 +1,9 @@
-// insert single document
-const user: User = {
-  name: "Jania McGrory",
-  balance: 6045.7,
+const catalog: Catalog = {
+    name: "tote bag",
+    price: 49,
+    brand: "coach",
+    labels: "handbags",
+    popularity: 9,
 };
 
-const insertedUser: User = await users.insert(user);
-
-// insert multiple documents
-const users: Array<User> = [
-  {
-    name: "Jania McGrory",
-    balance: 6045.7,
-  },
-  {
-    name: "Bunny Instone",
-    balance: 2948.87,
-  };
-];
-
-const insertedUsers: Array<User> = await users.insertMany(users);
+const insertedCatalog: Catalog = await catalog.insert(catalog);

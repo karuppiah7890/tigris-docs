@@ -1,0 +1,4 @@
+_, err := catalog.DeleteAll(ctx)
+if err != nil {
+    // handle error
+}

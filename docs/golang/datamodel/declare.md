@@ -4,21 +4,24 @@ Models are regular Go structs composed of basic Go types or custom types.
 Field properties can be modified using optional "tigris" tag.
 
 ```go
-type User struct {
-    Id      int `tigris:"primaryKey,autoGenerate"`
-    Name    string
-    Balance float64
+type Catalog struct {
+	Id         int `tigris:"primary_key,autoGenerate"`
+	Name       string
+	Price      float64
+	Brand      string
+	Labels     string
+	Popularity int
 }
 ```
 
-This declaration will create a collection named `users`.
+This declaration will create a collection named `catalogues`.
 
 ### Collection Names
 
 The name of the collection is derived from the struct name. The struct
 name is pluralized to snake_cases as collection name. For example, the
-struct name `User` is converted to `users` as the collection name. While
-the struct name `UserDetail` is converted to `user_details` as the
+struct name `Catalog` is converted to `catalogues` as the collection name. While
+the struct name `CatalogDetail` is converted to `catalog_details` as the
 collection name.
 
 ### Field Names
@@ -29,9 +32,12 @@ fields in the collection schema with a different name, you can configure
 **json** field tags as can be seen below
 
 ```go
-type User struct {
-    Id      int `json:"id" tigris:"primaryKey,autoGenerate"`
-    Name    string
-    Balance float64
+type Catalog struct {
+	Id         int `json:"id" tigris:"primaryKey,autoGenerate"`
+	Name       string
+	Price      float64
+	Brand      string
+	Labels     string
+	Popularity int
 }
 ```

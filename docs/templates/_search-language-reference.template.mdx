@@ -9,7 +9,11 @@ different scenarios.
 
 ### Example collection
 
-Assuming an e-commerce website that has a collection catalog and has 6 products(documents) in it.
+Let's first have the collection.
+
+<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+
+Assuming an e-commerce website that has the above collection catalog and has 6 products(documents) in it.
 
 | id  | name           | price | brand        | labels   | popularity | reviews                             |
 | --- | -------------- | ----- | ------------ | -------- | ---------- | ----------------------------------- |
@@ -19,10 +23,6 @@ Assuming an e-commerce website that has a collection catalog and has 6 products(
 | 4   | sneakers shoes | 40    | adidas       | shoes    | 10         | {"author": "olivia", "rating": 9}   |
 | 5   | running shoes  | 89    | nike         | shoes    | 10         | {"author": "olivia", "rating": 8.5} |
 | 6   | running shorts | 35    | adidas       | clothing | 7          | {"author": "olivia", "rating": 7.5} |
-
-Let's first have the collection.
-
-<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
 
 ## Searching for documents
 

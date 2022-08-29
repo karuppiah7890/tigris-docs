@@ -1,0 +1,22 @@
+## Specification
+
+| HTTP API | HTTP Method | URL Params                                          | Resource                                                    |
+| -------- | ----------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| DELETE   | DELETE      | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/delete` |
+
+#### JSON Payload
+
+```shell
+{
+  "filter": {
+    <field1>: number|string|boolean,
+    <field2>: {<$lt|$lte|$gt|$gte>: number},
+    <$and|$or>: [<field3>: number|string|boolean, expr1, expr2...]
+  }
+}
+```
+
+Understanding the syntax:
+
+- The `filter` syntax is similar as documented in the [Query](query#filter) section which allows you to filter and delete
+  only the documents that are matching the criteria.

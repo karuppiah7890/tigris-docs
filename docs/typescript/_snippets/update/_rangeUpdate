@@ -1,0 +1,22 @@
+await catalog.update(
+  {
+    op: LogicalOperator.AND,
+        selectorFilters: [
+            {
+                op: SelectorFilterOperator.LT,
+                fields: {
+                    id: 4
+                }
+            },
+            {
+                op: SelectorFilterOperator.GTE,
+                fields: {
+                    id: 2
+                }
+            }
+        ]
+  },
+  {
+    popularity: 9,
+  }
+);

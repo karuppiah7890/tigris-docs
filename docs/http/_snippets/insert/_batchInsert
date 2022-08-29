@@ -1,0 +1,9 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/insert' \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "documents": [
+        {"name": "tote bag", "price": 49, "brand": "coach", "labels": "handbags", "popularity": 9},
+        {"name": "sling bag", "price": 75, "brand": "coach", "labels": "purses", "popularity": 9}
+    ],
+  }'

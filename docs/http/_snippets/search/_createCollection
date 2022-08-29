@@ -6,7 +6,8 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/creat
         "title": "catalog",
         "properties": {
             "id": {
-                "type": "integer"
+                "type": "integer",
+                "autoGenerate": true
             },
             "name": {
                 "type": "string"

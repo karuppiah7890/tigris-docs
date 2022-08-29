@@ -1,0 +1,13 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/databases/delete' \
+  -X DELETE \
+  -H "Content-Type: application/json"
+  -d '{
+    "filter": {
+        "id": {
+            "$gte": 3
+        },
+        "id": {
+            "$lt": 5
+        }
+    }
+  }'

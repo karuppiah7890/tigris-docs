@@ -19,21 +19,21 @@ how the order of the fields are defined in case of a composite primary key
 
 ```typescript
 // data container
-interface User extends TigrisCollectionType {
-  userId?: number;
-  email: string;
+interface Catalog extends TigrisCollectionType {
+  id?: number;
+  name: string;
 }
 
 // schema definition
-const userSchema: TigrisSchema<User> = {
-  userId: {
+const catalogSchema: TigrisSchema<Catalog> = {
+  id: {
     type: TigrisDataTypes.INT32,
     primary_key: {
       order: 1,
       autoGenerate: true,
     },
   },
-  email: {
+  name: {
     type: TigrisDataTypes.STRING,
     primary_key: {
       order: 2,
@@ -51,11 +51,11 @@ At later point if you want to read this field to your data container you can
 add this field into your data container.
 
 ```typescript
-export interface User extends TigrisCollectionType {
+export interface Catalog extends TigrisCollectionType {
   _id: string;
-  userId: number;
+  productId: number;
   name: string;
-  balance: number;
+  price: number;
 }
 ```
 

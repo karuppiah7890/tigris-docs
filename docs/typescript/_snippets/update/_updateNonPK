@@ -1,0 +1,16 @@
+await catalog.update(
+  {
+      op: LogicalOperator.AND,
+          selectorFilters: [
+              {
+                  name: "sneakers shoes"
+              },
+              {
+                 brand: "nike"
+              }
+          ]
+    },
+  {
+    price: 85,
+  }
+);

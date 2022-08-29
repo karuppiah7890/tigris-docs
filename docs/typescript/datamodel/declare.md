@@ -7,15 +7,18 @@ There are two basic constructs for TypeScript Tigris modeling.
 
 ```typescript
 // data container
-interface User extends TigrisCollectionType {
-  userId?: number;
+interface Catalog extends TigrisCollectionType {
+  id?: number;
   name: string;
-  balance: number;
+  price: number;
+  brand: string;
+  labels: string;
+  popularity: number;
 }
 
 // schema definition
-const userSchema: TigrisSchema<User> = {
-  userId: {
+const catalogSchema: TigrisSchema<Catalog> = {
+  id: {
     type: TigrisDataTypes.INT32,
     primary_key: {
       order: 1,
@@ -25,8 +28,17 @@ const userSchema: TigrisSchema<User> = {
   name: {
     type: TigrisDataTypes.STRING,
   },
-  balance: {
+  price: {
     type: TigrisDataTypes.NUMBER,
+  },
+  brand: {
+    type: TigrisDataTypes.STRING,
+  },
+  labels: {
+    type: TigrisDataTypes.STRING,
+  },
+  popularity: {
+    type: TigrisDataTypes.INT32,
   },
 };
 ```

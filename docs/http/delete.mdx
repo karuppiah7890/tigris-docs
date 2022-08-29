@@ -1,0 +1,24 @@
+---
+title: Delete Documents
+---
+
+import DeleteTemplate, {
+  toc as deleteToc,
+} from "../templates/_deleting-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!./_snippets/delete/_createCollection";
+import simpleDeleteSource from "!!raw-loader!./_snippets/delete/_simpleDelete";
+import rangeDeleteSource from "!!raw-loader!./_snippets/delete/_rangeDelete";
+import deleteAllSource from "!!raw-loader!./_snippets/delete/_deleteAll";
+
+export const isOverview = true;
+
+<DeleteTemplate
+  codeLang="shell"
+  loadOverview={isOverview}
+  createCollection={createCollectionSource}
+  simpleDelete={simpleDeleteSource}
+  rangeDelete={rangeDeleteSource}
+  deleteAll={deleteAllSource}
+/>
+
+export const toc = [...deleteToc];

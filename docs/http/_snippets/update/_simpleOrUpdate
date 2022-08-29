@@ -1,0 +1,17 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/update' \
+  -X PUT \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fields": {
+      "$set": {
+        "popularity": 9
+      }
+    },
+    "filter": {
+        "$or": [{
+            "id": 1
+        }, {
+            "id": 4
+        }]
+    }
+  }'

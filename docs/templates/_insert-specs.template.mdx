@@ -1,0 +1,18 @@
+## Specification
+
+| HTTP API | HTTP Method | URL Params                                          | Resource                                                     |
+| -------- | ----------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| INSERT   | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/insert`  |
+| REPLACE  | PUT         | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/replace` |
+
+#### JSON Payload
+
+```shell
+{
+  "documents": [{doc1}, {doc2}...]
+}
+```
+
+Understanding the request payload:
+
+- The **documents** represent an array of json documents that you want to insert or replace in a collection.

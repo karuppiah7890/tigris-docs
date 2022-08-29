@@ -1,0 +1,16 @@
+await catalog.update(
+  {
+      op: LogicalOperator.OR,
+          selectorFilters: [
+              {
+                  id: 1
+              },
+              {
+                 id: 4
+              }
+          ]
+    },
+  {
+    popularity: 9,
+  }
+);

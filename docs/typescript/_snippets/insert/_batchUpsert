@@ -1,0 +1,18 @@
+const catalogues: Array<Catalog> = [
+  {
+    name: "sneakers shoes",
+    price: 40,
+    brand: "adidas",
+    labels: "shoes",
+    popularity: 10,
+  },
+  {
+    name: "running shoes",
+    price: 89,
+    brand: "coach",
+    labels: "shoes",
+    popularity: 10,
+  };
+];
+
+const insertedOrReplacedCatalogues: Array<Catalog> = await catalog.insertOrReplaceMany(catalogues);

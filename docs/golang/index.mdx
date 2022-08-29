@@ -23,15 +23,18 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 ## 2. Define data models
 
 ```go
-type User struct {
-    Id      int `tigris:"primary_key,autoGenerate"`
-    Name    string
-    Balance float64
+type Catalog struct {
+	Id         int `tigris:"primary_key,autoGenerate"`
+	Name       string
+	Price      float64
+	Brand      string
+	Labels     string
+	Popularity int
 }
 
 db, err := tigris.OpenDatabase(ctx,
 	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "hello_db", &User{})
+    "catalogdb", &Catalog{})
 ```
 
 <span style={{textAlign: "right"}}>
@@ -43,15 +46,15 @@ db, err := tigris.OpenDatabase(ctx,
 ## 3. Persist and query
 
 ```go
-users := tigris.GetCollection[User](db)
+catalog := tigris.GetCollection[Catalog](db)
 
-_, err := users.Insert(ctx, &User{Name: "Jania McGrory", Balance: 6045.7})
+_, err := catalog.Insert(ctx, &Catalog{Name: "fiona handbag", Price: 99.9, Brand: "michael kors", Labels: "purses", Popularity: 8})
 if err != nil {
     // handle error
 }
 
-var user *User
-user, err = users.ReadOne(ctx, filter.Eq("Id", 1)) // find user with Id 1
+var product *Catalog
+product, err = catalog.ReadOne(ctx, filter.Eq("Id", 1)) // find user with Id 1
 if err != nil {
     // handle error
 }

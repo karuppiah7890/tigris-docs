@@ -1,4 +1,4 @@
-_, err := users.Delete(ctx, filter.Eq("Id", "1"))
+_, err := catalog.Delete(ctx, filter.Eq("id", 5))
 if err != nil {
     // handle error
 }

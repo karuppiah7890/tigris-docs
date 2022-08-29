@@ -13,7 +13,7 @@ marking it as auto generated.
 
 ```json
 {
-  "title": "users",
+  "title": "catalog",
   "properties": {
     "id": {
       "type": "string",
@@ -22,8 +22,8 @@ marking it as auto generated.
     "name": {
       "type": "string"
     },
-    "phone": {
-      "type": "string"
+    "price": {
+      "type": "number"
     }
   },
   "primary_key": ["id"]
@@ -38,22 +38,19 @@ fields is defined in the case of a composite primary key
 
 ```json
 {
-  "title": "users",
+  "title": "catalog",
   "properties": {
     "id": {
-      "type": "string"
-    },
-    "email": {
       "type": "string"
     },
     "name": {
       "type": "string"
     },
-    "phone": {
+    "price": {
       "type": "string"
     }
   },
-  "primary_key": ["id", "email"]
+  "primary_key": ["id", "name"]
 }
 ```
 
@@ -64,16 +61,13 @@ field is present in the schema then Tigris will automatically use it otherwise i
 
 ```json
 {
-  "title": "users",
+  "title": "catalog",
   "properties": {
-    "email": {
-      "type": "string"
-    },
     "name": {
       "type": "string"
     },
-    "phone": {
-      "type": "string"
+    "price": {
+      "type": "number"
     }
   }
 }

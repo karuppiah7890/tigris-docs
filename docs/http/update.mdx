@@ -1,0 +1,26 @@
+---
+title: Update Documents
+---
+
+import UpdateTemplate, {
+  toc as updateToc,
+} from "../templates/_updating-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!./_snippets/update/_createCollection";
+import simpleUpdateSource from "!!raw-loader!./_snippets/update/_simpleUpdate";
+import orUpdateSource from "!!raw-loader!./_snippets/update/_simpleOrUpdate";
+import rangeUpdateSource from "!!raw-loader!./_snippets/update/_rangeUpdate";
+import updateNonPKSource from "!!raw-loader!./_snippets/update/_updateNonPK";
+
+export const isOverview = true;
+
+<UpdateTemplate
+  codeLang="shell"
+  loadOverview={isOverview}
+  createCollection={createCollectionSource}
+  simpleUpdate={simpleUpdateSource}
+  orUpdate={orUpdateSource}
+  rangeUpdate={rangeUpdateSource}
+  updateNonPK={updateNonPKSource}
+/>
+
+export const toc = [...updateToc];

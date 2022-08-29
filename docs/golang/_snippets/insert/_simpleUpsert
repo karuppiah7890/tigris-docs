@@ -1,6 +1,5 @@
-_, err := users.InsertOrReplace(ctx,
-    &User{Id: 1, Name: "Jania McGrory", Balance: 6045.7},
-    &User{Id: 2, Name: "Bunny Instone", Balance: 2948.87})
+_, err := catalog.InsertOrReplace(ctx,
+    &Catalog{Id: 3, Name: "sling bag", Price: 99, Brand: "coach", Labels: "purses", Popularity: 9})
 if err != nil {
     // handle error
 }

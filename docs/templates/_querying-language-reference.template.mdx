@@ -31,7 +31,11 @@ For multiple conditions, there are two logical operators supported.
 
 ## Example Collection
 
-Assuming an e-commerce website that has a collection catalog and has 5 products(documents) in it.
+The first step is to create the collection object.
+
+<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+
+Assuming an e-commerce website that has the above collection catalog and has 5 products(documents) in it.
 
 | id  | name           | price | brand        | labels   | popularity | reviews                             |
 | --- | -------------- | ----- | ------------ | -------- | ---------- | ----------------------------------- |
@@ -40,10 +44,6 @@ Assuming an e-commerce website that has a collection catalog and has 5 products(
 | 3   | sling bag      | 75    | coach        | purses   | 9          | {"author": "alice", "rating": 9.2}  |
 | 4   | sneakers shoes | 40    | adidas       | shoes    | 10         | {"author": "olivia", "rating": 9}   |
 | 5   | running shoes  | 89    | nike         | shoes    | 10         | {"author": "olivia", "rating": 8.5} |
-
-The first step is to create the collection object.
-
-<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
 
 ### Simple read query
 

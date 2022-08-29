@@ -1,0 +1,12 @@
+curl 'http://localhost:8081/api/v1/databases/userdb/collections/users/documents/update' \
+  -X PUT \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fields": {
+        "$set": {"price": 85}
+    },
+    "filter": {
+        "name": "sneakers shoes",
+        "brand": "nike"
+    }
+  }'

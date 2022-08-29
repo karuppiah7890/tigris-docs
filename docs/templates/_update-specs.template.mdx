@@ -1,0 +1,27 @@
+## Specification
+
+| HTTP API | HTTP Method | URL Params                                          | Resource                                                    |
+| -------- | ----------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| UPDATE   | PUT         | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/update` |
+
+#### JSON Payload
+
+```shell
+{
+  "fields": {
+    "$set": {
+      <field1>: <new-value>
+    }
+  },
+  "filter": {
+    <field1>: number|string|boolean,
+    <field2>: {<$lt|$lte|$gt|$gte>: number},
+    <$and|$or>: [<field3>: number|string|boolean, expr1, expr2...]
+  }
+}
+```
+
+Understanding the request payload:
+
+- The `fields` has `$set` operator that allows you to set fields to new values.
+- The `filter` syntax is similar as documented in the [Query](query#filter) section.

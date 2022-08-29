@@ -1,17 +1,59 @@
+import UpdateSpecs from "./_update-specs.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
-
-Tigris enables you to quickly add data and easily retrieve or edit that data through simple and
-intuitive APIs. The first step is to set up the collection object. All the CRUD operations on
-the collection are performed through this collection object.
-
-<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
-
-## Update documents
 
 The Update API is used to update existing documents that match the filters.
 Fields that need to be updated are specified when calling the API.
 
-In the following example, the field **balance** is updated for documents which
-match the filter `id = 1`.
+<div>{props.loadOverview && <UpdateSpecs />}</div>
+
+### Example collection
+
+The first step is to set up the collection object. All the operations on
+the collection is performed through this collection object.
+
+<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+
+Now let's assume an e-commerce website that has the above collection catalog and has 5 products(documents) present in it.
+
+| id  | name           | price | brand        | labels   | popularity | reviews                             |
+| --- | -------------- | ----- | ------------ | -------- | ---------- | ----------------------------------- |
+| 1   | fiona handbag  | 99.9  | michael kors | purses   | 8          | {"author": "alice", "rating": 7}    |
+| 2   | tote bag       | 49    | coach        | handbags | 9          | {"author": "olivia", "rating": 8.3} |
+| 3   | sling bag      | 75    | coach        | purses   | 9          | {"author": "alice", "rating": 9.2}  |
+| 4   | sneakers shoes | 40    | adidas       | shoes    | 10         | {"author": "olivia", "rating": 9}   |
+| 5   | running shoes  | 89    | nike         | shoes    | 10         | {"author": "olivia", "rating": 8.5} |
+
+### Simple Update
+
+A simple update is by updating a document that matches the id which is the primary key of this collection.
+In the above collection, let's say there is a need to modify the `price` of a product that has an id assigned as **1**.
 
 <CodeBlock language={props.codeLang}>{props.simpleUpdate}</CodeBlock>
+
+### Updates using logical OR
+
+A single update is shown in the above example but there could be a need to update multiple products by
+their primary key. A logical `OR` filter is one of the ways of updating multiple documents. The example below is
+updating the `popularity` score for two documents that have id **1** or **4**.
+
+<CodeBlock language={props.codeLang}>{props.orUpdate}</CodeBlock>
+
+### Range update
+
+Extending the example, what if there is a need to reset the `popularity` score of a few products but these product ids
+are continuous? In this case, a range update can be performed on this field. The following example is applying
+range update on the id field.
+
+<CodeBlock language={props.codeLang}>{props.rangeUpdate}</CodeBlock>
+
+:::note
+More filters can be used to narrow down the results further.
+:::
+
+## Filtering on multiple fields
+
+There may be cases when you don't know the primary key value and instead wants to update a document by applying a
+condition on the non-primary key field. The following example is increasing the `price` of a product when the name
+and brand match with the documents present in the collection.
+
+<CodeBlock language={props.codeLang}>{props.updateNonPK}</CodeBlock>

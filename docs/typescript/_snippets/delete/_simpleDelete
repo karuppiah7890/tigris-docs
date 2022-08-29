@@ -1,0 +1,3 @@
+await catalog.delete({
+  id: 5,
+});

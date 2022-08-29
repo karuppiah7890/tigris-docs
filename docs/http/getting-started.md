@@ -18,7 +18,7 @@ you need to use the following structure `http://localhost:8081/api/v1/databases/
 Using the above structure, the first step is to create a database.
 
 ```shell
-curl 'http://localhost:8081/api/v1/databases/userdb/create' \
+curl 'http://localhost:8081/api/v1/databases/catalogdb/create' \
   -X POST \
   -H 'Content-Type: application/json'
 ```
@@ -32,36 +32,50 @@ operations on a collection looks like this `http://localhost:8081/api/v1/databas
 
 ### Creating a collection
 
-Taking the URL structure from above, let's create a `users` collection under `userdb` database.
+Taking the URL structure from above, let's create a `catalog` collection under `catalogdb` database.
 
 ```shell
-curl 'http://localhost:8081/api/v1/databases/userdb/collections/users/createOrUpdate' \
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/createOrUpdate' \
   -X POST \
   -H 'Content-Type: application/json' \
   -d '{
-      "title": "users",
-      "description": "Collection of documents with details of users",
-      "properties": {
-        "id": {
-          "description": "A unique identifier for the user",
-          "type": "integer",
-          "autoGenerate": true
-        },
-        "name": {
-          "description": "Name of the user",
-          "type": "string",
-          "maxLength": 100
-        },
-        "balance": {
-          "description": "User account balance",
-          "type": "number"
-        }
-      },
-      "primary_key": ["id"]
-    }'
+  "title": "catalog",
+  "description": "A collection of products"
+  "properties": {
+    "id": {
+      "description": "A unique identifier for the product",
+      "type": "integer",
+      "autoGenerate": true
+    },
+    "name": {
+      "description": "Name of the product",
+      "type": "string",
+      "maxLength": 128
+    },
+    "price": {
+      "description": "Price of the product",
+      "type": "number"
+    },
+    "brand": {
+      "description": "The brand of the product",
+      "type": "string"
+    },
+    "labels": {
+      "description": "Labeling of the product",
+      "type": "string"
+    },
+    "popularity": {
+      "description": "Popularity score of the product",
+      "type": "integer"
+    }
+  },
+  "primary_key": [
+    "id"
+  ]
+}'
 ```
 
-This will create a collection named `users` under database `userdb`.
+This will create a collection named `catalog` under database `catalogdb`.
 
 The schema is needed to create a collection. In the next section, on [data modeling](datamodel/overview.mdx) let's take a deeper look
 on how to model the collection.

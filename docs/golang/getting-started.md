@@ -19,14 +19,17 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 Models are regular Go structs composed of basic Go types or custom types.
 
 ```go
-type User struct {
-    Id      int `tigris:"primary_key,autoGenerate"`
-    Name    string
-    Balance float64
+type Catalog struct {
+	Id         int `tigris:"primary_key,autoGenerate"`
+	Name       string
+	Price      float64
+	Brand      string
+	Labels     string
+	Popularity int
 }
 ```
 
-This declaration will create a collection named `users`.
+This declaration will create a collection named `catalog`.
 
 For detailed documentation on data modeling refer to the
 [data modeling](datamodel/overview.mdx) section.
@@ -40,5 +43,5 @@ the collections if they already exist.
 ```go
 db, err := tigris.OpenDatabase(ctx,
 	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "hello_db", &User{})
+    "catalogdb", &Catalog{})
 ```

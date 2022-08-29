@@ -49,27 +49,38 @@ This is described in the section below.
 
 ## Example Schema
 
-Using the above specification, to model a collection `users` that has `id`, `name`, `balance` field and the `id` field
-is set as auto generated.
+Using the above specification, to model a collection `catalog` that has `id`, `name`, `price`, `brand`, `labels`,
+`popularity` field and the `id` field is set as auto generated.
 
 ```json
 {
-  "title": "users",
-  "description": "Collection of documents with details of users",
+  "title": "catalog",
   "properties": {
     "id": {
-      "description": "A unique identifier for the user",
+      "description": "A unique identifier for the product",
       "type": "integer",
       "autoGenerate": true
     },
     "name": {
-      "description": "Name of the user",
+      "description": "Name of the product",
       "type": "string",
       "maxLength": 128
     },
-    "balance": {
-      "description": "User account balance",
+    "price": {
+      "description": "Price of the product",
       "type": "number"
+    },
+    "brand": {
+      "description": "The brand of the product",
+      "type": "string"
+    },
+    "labels": {
+      "description": "Labeling of the product",
+      "type": "string"
+    },
+    "popularity": {
+      "description": "Popularity score of the product",
+      "type": "integer"
     }
   },
   "primary_key": ["id"]

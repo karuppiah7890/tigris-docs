@@ -1,16 +1,44 @@
+import DeleteSpecs from "./_delete-specs.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
 
-Tigris enables you to quickly add data and easily retrieve or edit that data through simple and
-intuitive APIs. The first step is to set up the collection object. All the CRUD operations on
+Delete API is used to delete existing documents that match the filters.
+
+<div>{props.loadOverview && <DeleteSpecs />}</div>
+
+### Example collection
+
+The first step is to set up the collection object. All the operations on
 the collection are performed through this collection object.
 
 <CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
 
-## Delete documents
+Now let's assume an e-commerce website that has the above collection catalog and has 5 products(documents) present in it.
 
-The Delete API is used to delete existing documents that match the filters.
+| id  | name           | price | brand        | labels   | popularity | reviews                             |
+| --- | -------------- | ----- | ------------ | -------- | ---------- | ----------------------------------- |
+| 1   | fiona handbag  | 99.9  | michael kors | purses   | 8          | {"author": "alice", "rating": 7}    |
+| 2   | tote bag       | 49    | coach        | handbags | 9          | {"author": "olivia", "rating": 8.3} |
+| 3   | sling bag      | 75    | coach        | purses   | 9          | {"author": "alice", "rating": 9.2}  |
+| 4   | sneakers shoes | 40    | adidas       | shoes    | 10         | {"author": "olivia", "rating": 9}   |
+| 5   | running shoes  | 89    | nike         | shoes    | 10         | {"author": "olivia", "rating": 8.5} |
 
-In the following example, the field **balance** is updated for documents which
-match the filter `id = 1`.
+### Simple Delete
+
+A simple delete is by filtering on the primary key of the document. Let's say you need to remove a product
+from this collection that has an `id` assigned as **5**.
 
 <CodeBlock language={props.codeLang}>{props.simpleDelete}</CodeBlock>
+
+### Range Delete
+
+Extending the above example, in case the products that you are planning to remove have continuous ids then you can
+use range delete to remove these products. As an example, if you need to delete documents that have `id` greater
+than or equal to **3** but less than **5**.
+
+<CodeBlock language={props.codeLang}>{props.rangeDelete}</CodeBlock>
+
+### Delete All
+
+Sometimes, there is a need to delete all the documents then an empty filter can be sent to the server.
+
+<CodeBlock language={props.codeLang}>{props.deleteAll}</CodeBlock>

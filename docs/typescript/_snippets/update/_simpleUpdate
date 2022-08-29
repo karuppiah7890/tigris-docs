@@ -1,0 +1,8 @@
+await catalog.update(
+  {
+    id: 1,
+  },
+  {
+    price: 65, // set the price of this product to 65
+  }
+);

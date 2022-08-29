@@ -1,5 +1,5 @@
 ---
-title: Deleting
+title: Delete Documents
 ---
 
 import DeleteTemplate, {
@@ -7,11 +7,19 @@ import DeleteTemplate, {
 } from "../templates/_deleting-language-reference.template.mdx";
 import createCollectionSource from "!!raw-loader!./_snippets/delete/_createCollection";
 import simpleDeleteSource from "!!raw-loader!./_snippets/delete/_simpleDelete";
+import rangeDeleteSource from "!!raw-loader!./_snippets/delete/_rangeDelete";
+import deleteAllSource from "!!raw-loader!./_snippets/delete/_deleteAll";
+
+export const isOverview = false;
 
 <DeleteTemplate
   codeLang="go"
+  loadOverview={isOverview}
+  createCollection={createCollectionSource}
   createCollection={createCollectionSource}
   simpleDelete={simpleDeleteSource}
+  rangeDelete={rangeDeleteSource}
+  deleteAll={deleteAllSource}
 />
 
 export const toc = [...deleteToc];
