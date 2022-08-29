@@ -2,7 +2,13 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/docum
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
-    "documents": [
-        {"name": "fiona handbag", "price": 99.9, "brand": "michael kors", "labels": "purses", "popularity": 8}
-    ],
-  }'
+  "documents":[
+    {
+      "name":"fiona handbag",
+      "price":99.9,
+      "brand":"michael kors",
+      "labels":"purses",
+      "popularity":8
+    }
+  ]
+}'

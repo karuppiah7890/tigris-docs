@@ -5,6 +5,6 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/docum
     "q": "running",
     "search_fields": ["name", "labels"],
     "sort": [
-        {"popularity": "$desc"},
+        {"popularity": "$desc"}
     ]
   }'

@@ -39,39 +39,41 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/creat
   -X POST \
   -H 'Content-Type: application/json' \
   -d '{
-  "title": "catalog",
-  "description": "A collection of products"
-  "properties": {
-    "id": {
-      "description": "A unique identifier for the product",
-      "type": "integer",
-      "autoGenerate": true
+  "schema":{
+    "title":"catalog",
+    "description":"A collection of products",
+    "properties":{
+      "id":{
+        "description":"A unique identifier for the product",
+        "type":"integer",
+        "autoGenerate":true
+      },
+      "name":{
+        "description":"Name of the product",
+        "type":"string",
+        "maxLength":128
+      },
+      "price":{
+        "description":"Price of the product",
+        "type":"number"
+      },
+      "brand":{
+        "description":"The brand of the product",
+        "type":"string"
+      },
+      "labels":{
+        "description":"Labeling of the product",
+        "type":"string"
+      },
+      "popularity":{
+        "description":"Popularity score of the product",
+        "type":"integer"
+      }
     },
-    "name": {
-      "description": "Name of the product",
-      "type": "string",
-      "maxLength": 128
-    },
-    "price": {
-      "description": "Price of the product",
-      "type": "number"
-    },
-    "brand": {
-      "description": "The brand of the product",
-      "type": "string"
-    },
-    "labels": {
-      "description": "Labeling of the product",
-      "type": "string"
-    },
-    "popularity": {
-      "description": "Popularity score of the product",
-      "type": "integer"
-    }
-  },
-  "primary_key": [
-    "id"
-  ]
+    "primary_key":[
+      "id"
+    ]
+  }
 }'
 ```
 

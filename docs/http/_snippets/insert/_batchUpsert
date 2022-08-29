@@ -2,8 +2,20 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/docum
   -X PUT \
   -H "Content-Type: application/json" \
   -d '{
-    "documents": [
-        {"name": "sneakers shoes", "price": 40, "brand": "adidas", "labels": "shoes", "popularity": 10},
-        {"name": "running shoes", "price": 89, "brand": "coach", "labels": "shoes", "popularity": 10}
-    ],
-  }'
+  "documents":[
+    {
+      "name":"sneakers shoes",
+      "price":40,
+      "brand":"adidas",
+      "labels":"shoes",
+      "popularity":10
+    },
+    {
+      "name":"running shoes",
+      "price":89,
+      "brand":"coach",
+      "labels":"shoes",
+      "popularity":10
+    }
+  ]
+}'

@@ -1,6 +1,6 @@
-curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/databases/delete' \
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/delete' \
   -X DELETE \
-  -H "Content-Type: application/json"
+  -H "Content-Type: application/json" \
   -d '{
     "filter": {}
   }'

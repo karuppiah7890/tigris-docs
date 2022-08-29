@@ -1,4 +1,4 @@
-curl 'http://localhost:8081/api/v1/databases/userdb/collections/users/documents/update' \
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/update' \
   -X PUT \
   -H "Content-Type: application/json" \
   -d '{
@@ -7,6 +7,6 @@ curl 'http://localhost:8081/api/v1/databases/userdb/collections/users/documents/
     },
     "filter": {
         "name": "sneakers shoes",
-        "brand": "nike"
+        "brand": "adidas"
     }
   }'
