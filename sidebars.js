@@ -30,6 +30,7 @@ const sidebars = {
         "overview/schema",
         "overview/query",
         "overview/search",
+        "overview/event",
       ],
     },
     {
