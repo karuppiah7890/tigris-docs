@@ -45,20 +45,20 @@ const catalogSchema: TigrisSchema<Catalog> = {
 ## Auto-generated Primary Key
 
 If no primary key is specified in the model, Tigris automatically adds a
-special `_id` field of type `string` (UUID) as the primary key.
+special `id` field of type `string` (UUID) as the primary key.
 
 At later point if you want to read this field to your data container you can
 add this field into your data container.
 
 ```typescript
 export interface Catalog extends TigrisCollectionType {
-  _id: string;
+  id: string;
   productId: number;
   name: string;
   price: number;
 }
 ```
 
-Note: you do not need to explicitly mention this `_id: string` field to your
+Note: you do not need to explicitly mention this `id: string` field to your
 schema definition. It is available implicitly (as long as you don't have
 primary key defined).
