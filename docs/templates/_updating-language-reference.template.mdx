@@ -1,5 +1,6 @@
 import UpdateSpecs from "./_update-specs.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
+import { AsyncCodeBlock } from "./commons";
 
 The Update API is used to update existing documents that match the filters.
 Fields that need to be updated are specified when calling the API.
@@ -11,7 +12,11 @@ Fields that need to be updated are specified when calling the API.
 The first step is to set up the collection object. All the operations on
 the collection is performed through this collection object.
 
-<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.createCollection}
+  asyncExample={props.asyncCreateCollection}
+/>
 
 Now let's assume an e-commerce website that has the above collection catalog and has 5 products(documents) present in it.
 
@@ -28,7 +33,11 @@ Now let's assume an e-commerce website that has the above collection catalog and
 A simple update is by updating a document that matches the id which is the primary key of this collection.
 In the above collection, let's say there is a need to modify the `price` of a product that has an id assigned as **1**.
 
-<CodeBlock language={props.codeLang}>{props.simpleUpdate}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.simpleUpdate}
+  asyncExample={props.asyncSimpleUpdate}
+/>
 
 ### Updates using logical OR
 

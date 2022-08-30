@@ -1,0 +1,22 @@
+catalog.read(
+    Filters.and(
+        Filters.eq("brand", "adidas"),
+        Filters.lt("price", 50)
+    ),
+    new TigrisAsyncReader<Catalog>() {
+        @Override
+        public void onNext(Catalog product) {
+            // receive document
+        }
+
+        @Override
+        public void onError(Throwable t) {
+            // handle terminating error
+        }
+
+        @Override
+        public void onCompleted() {
+            // successfully delivered all results
+        }
+    }
+);

@@ -1,0 +1,5 @@
+Catalog product = new Catalog("fiona handbag", 99.9, "michael kors", "purses", 8);
+// set primary key
+product.setId(3);
+
+CompletableFuture<InsertOrReplaceResponse<Catalog>> responseFuture = catalog.insert(product);

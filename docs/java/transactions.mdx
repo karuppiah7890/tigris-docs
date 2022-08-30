@@ -1,0 +1,95 @@
+---
+title: Transactions
+---
+
+import Tabs from "@theme/Tabs";
+import { tabbedItemTheme } from "../commons";
+import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
+
+Tigris provides global, ACID transactions with strict serializability
+using optimistic concurrency control. The transactions allow multiple
+clients to concurrently read and write data in the database with strong
+consistency guarantees.
+
+Transactions in Tigris work across collections and documents without any
+restrictions. Unlike some other document databases, there are no confusing
+read or write concerns to configure, and no cross-shard caveats.
+
+<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<TabItem value={syncClientLabel} label={syncClientLabel}>
+
+```java
+TigrisDatabase db = client.getDatabase(dbName);
+db.transact(
+    tx -> {
+        try {
+            // retrieve transaction aware collection
+            TigrisCollection<User> userCollection = db.getCollection(User.class);
+            User emma = userCollection.readOne(Filters.eq("id", emma.getId()));
+            User lucy = userCollection.readOne(Filters.eq("id", lucy.getId()));
+
+            // reduce emma's balance by 10
+            userCollection.update(
+            Filters.eq("id", emma.getId()),
+            UpdateFields.newBuilder().set("balance", emma.getBalance() - 10).build());
+
+            // increment lucy's balance by 10
+            userCollection.update(
+            Filters.eq("id", lucy.getId()),
+            UpdateFields.newBuilder().set("balance", lucy.getBalance() + 10).build());
+        } catch (Exception ex) {
+            // throw it to rollback ongoing transaction
+            throw new IllegalStateException(ex);
+        }
+    }
+);
+```
+
+</TabItem>
+
+<TabItem value={asyncClientLabel} label={asyncClientLabel}>
+
+```java
+TigrisAsyncDatabase db = asyncClient.getDatabase(dbName);
+db.beginTransaction(new TransactionOptions())
+  .whenComplete((session, throwable) -> {
+      if (throwable != null) {
+          // handle exception
+      }
+      try{
+          // retrieve transaction aware collection
+          TransactionTigrisCollection<User> userCollection = session.getCollection(User.class);
+          User emma = userCollection.readOne(Filters.eq("id", emma.getId()));
+          User lucy = userCollection.readOne(Filters.eq("id", lucy.getId()));
+
+          // reduce emma's balance by 10
+          userCollection.update(
+              Filters.eq("id", emma.getId()),
+              UpdateFields.newBuilder().set(
+                  "balance",
+                  emma.getBalance() - 10
+              ).build()
+          );
+
+          // increment lucy's balance by 10
+          userCollection.update(
+              Filters.eq("id", lucy.getId()),
+              UpdateFields.newBuilder().set(
+                  "balance",
+                  lucy.getBalance() + 10
+              ).build()
+          );
+
+          // commit transaction
+          session.commit();
+      } catch(Exception ex) {
+          // handle ex
+          // in case of an error, rollback
+          session.rollback();
+      }
+  }
+);
+```
+
+</TabItem>
+</Tabs>

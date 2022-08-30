@@ -1,12 +1,14 @@
 ---
-title: Searching
+title: Search Documents
 ---
 
 import SearchTemplate, {
   toc as searchToc,
 } from "../templates/_search-language-reference.template.mdx";
 import createCollectionSource from "!!raw-loader!./_snippets/search/_createCollection";
-import searchForDocumentsSource from "!!raw-loader!./_snippets/search/_searchForDocuments";
+import asyncCreateCollectionSource from "!!raw-loader!./_snippets/search/_asyncCreateCollection";
+import simpleSearchSource from "!!raw-loader!./_snippets/search/_simpleSearch";
+import asyncSimpleSearchSource from "!!raw-loader!./_snippets/search/_asyncSimpleSearch";
 import phraseSearchSource from "!!raw-loader!./_snippets/search/_phraseSearchQuery";
 import matchAllSource from "!!raw-loader!./_snippets/search/_matchAllSearch";
 import searchFieldsSource from "!!raw-loader!./_snippets/search/_searchFields";
@@ -21,7 +23,9 @@ import excludeFieldsSource from "!!raw-loader!./_snippets/search/_excludeFields"
 <SearchTemplate
   codeLang="java"
   createCollection={createCollectionSource}
-  searchForDocuments={searchForDocumentsSource}
+  asyncCreateCollection={asyncCreateCollectionSource}
+  simpleSearch={simpleSearchSource}
+  asyncSimpleSearch={asyncSimpleSearchSource}
   phraseSearch={phraseSearchSource}
   matchAllSearch={matchAllSource}
   searchFields={searchFieldsSource}

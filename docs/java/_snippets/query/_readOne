@@ -1,2 +1,1 @@
-Catalog product = catalog.readOne(Filters.eq("brand", "adidas"))
-System.out.println(product);
+Optional<Catalog> product = catalog.readOne(Filters.eq("brand", "adidas"))

@@ -1,0 +1,4 @@
+UpdateResponse response = catalog.update(
+    Filters.eq("id", 1),
+    UpdateFields.newBuilder().set("price", 65).build()
+);

@@ -1,0 +1,4 @@
+Catalog sneakers = new Catalog("sneakers shoes", 40, "adidas", "shoes", 10);
+Catalog runningShoes = new Catalog("running shoes", 89, "coach", "shoes", 10);
+
+catalog.insert(Arrays.asList(sneakers, runningShoes));

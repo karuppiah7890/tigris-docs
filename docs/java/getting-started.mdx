@@ -1,29 +1,14 @@
-# Getting Started
+---
+title: Getting Started
+---
 
-The Tigris Java client libraries offer both [asynchronous](async-client) and
-[synchronous](sync-client) clients.
-
-The asynchronous client provides non-blocking, asynchronous APIs for
-interacting with Tigris. These APIs let you use the SDK to build scalable
-applications that use system resources in an efficient way.
-
-While the synchronous clients cater to a wider audience, and also make the
-client libraries approachable for users not familiar with asynchronous
-programming.
-
-:::info
-
-We recommend using the asynchronous clients for production systems to
-maximize the use of system resources.
-
-:::
+import Tabs from "@theme/Tabs";
+import { tabbedItemTheme } from "../commons";
+import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
 
 ## Installation
 
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
-<Tabs className="unique-tabs">
+<Tabs className={tabbedItemTheme}>
 <TabItem value="maven" label="Maven">
 
 ```xml
@@ -57,7 +42,128 @@ import com.tigrisdata.db.annotation.*;
 import com.tigrisdata.db.type.*;
 ```
 
-## In this section
+## Client
 
-The following documentation pages provide details about the functionality
-provided by the Java client libraries.
+The Tigris Java client libraries offer both **asynchronous** and **synchronous** clients.
+
+The asynchronous client provides non-blocking, asynchronous APIs for interacting with Tigris.
+These APIs let you use the SDK to build scalable applications that use system resources in an
+efficient way.
+
+While the synchronous clients cater to a wider audience, and also make the client libraries
+approachable for users not familiar with asynchronous programming.
+
+:::tip
+
+We recommend using the asynchronous clients for production systems to
+maximize the use of system resources.
+
+:::
+
+### Initialize
+
+<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<TabItem value={syncClientLabel} label={syncClientLabel}>
+
+```java
+// configuration
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:8081").build();
+
+// client
+TigrisClient client = StandardTigrisClient.getInstance(tigrisConfiguration);
+```
+
+</TabItem>
+
+<TabItem value={asyncClientLabel} label={asyncClientLabel}>
+
+```java
+// configuration
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:8081").build();
+
+// client
+TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configuration);
+```
+
+</TabItem>
+</Tabs>
+
+### Create database
+
+<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<TabItem value={syncClientLabel} label={syncClientLabel}>
+
+```java
+TigrisDatabase db = client.createDatabaseIfNotExists("sampledb");
+```
+
+</TabItem>
+
+<TabItem value={asyncClientLabel} label={asyncClientLabel}>
+
+```java
+CompletableFuture<TigrisAsyncDatabase> future = asyncClient.createDatabaseIfNotExists("sampledb");
+```
+
+</TabItem>
+</Tabs>
+
+### Retrieve database
+
+<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<TabItem value={syncClientLabel} label={syncClientLabel}>
+
+```java
+TigrisDatabase db = client.getDatabase("sampledb");
+```
+
+</TabItem>
+
+<TabItem value={asyncClientLabel} label={asyncClientLabel}>
+
+```java
+TigrisAsyncDatabase db = asyncClient.getDatabase("sampledb");
+```
+
+</TabItem>
+</Tabs>
+
+### Create collection
+
+<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<TabItem value={syncClientLabel} label={syncClientLabel}>
+
+```java
+CreateOrUpdateCollectionsResponse response = db.createOrUpdateCollections(User.class);
+```
+
+</TabItem>
+
+<TabItem value={asyncClientLabel} label={asyncClientLabel}>
+
+```java
+CompletableFuture<CreateOrUpdateCollectionsResponse> future = db.createOrUpdateCollections(User.class);
+```
+
+</TabItem>
+</Tabs>
+
+### Retrieve collection
+
+<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<TabItem value={syncClientLabel} label={syncClientLabel}>
+
+```java
+TigrisCollection<User> collection = db.getCollection(User.class);
+```
+
+</TabItem>
+
+<TabItem value={asyncClientLabel} label={asyncClientLabel}>
+
+```java
+TigrisAsyncCollection<User> collection = db.getCollection(User.class);
+```
+
+</TabItem>
+</Tabs>

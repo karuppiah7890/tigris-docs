@@ -1,0 +1,6 @@
+catalog.update(
+    Filters.and(
+        Filters.eq("name", "sneakers shoes"),
+        Filters.eq("name", "adidas")),
+    UpdateFields.newBuilder().set("price", 85).build()
+);

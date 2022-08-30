@@ -1,5 +1,6 @@
 import InsertSpecs from "./_insert-specs.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
+import { AsyncCodeBlock } from "./commons";
 
 To insert one or more documents in Tigris, you can use Insert or Replace API.
 
@@ -10,14 +11,22 @@ To insert one or more documents in Tigris, you can use Insert or Replace API.
 The first step is to set up the collection object. All the operations on
 the collection are performed through this collection object.
 
-<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.createCollection}
+  asyncExample={props.asyncCreateCollection}
+/>
 
 ## Insert
 
 Insert API can be used to insert one or more documents into the collection. Since the `id` field
 is marked as **autoGenerate**, you don't need to specify a value for it and Tigris will automatically generate it for you.
 
-<CodeBlock language={props.codeLang}>{props.simpleInsert}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.simpleInsert}
+  asyncExample={props.asyncSimpleInsert}
+/>
 
 The insert API maintains the uniqueness of the field marked as the primary key, for example, the field `id` in the
 example above. If the document with the same primary key value already exists in the collection, the operation will fail
@@ -34,7 +43,11 @@ primary key value. This API is useful when there is no need for a uniqueness che
 to replace documents that already exist. The following is an example when the row with an `id` **3** already exists
 so the below operation will replace the document with the newly provided data.
 
-<CodeBlock language={props.codeLang}>{props.simpleUpsert}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.simpleUpsert}
+  asyncExample={props.asyncSimpleUpsert}
+/>
 
 As the API can also be used when the document doesn't exist. The following is an example of when these two
 documents are inserted because there are no corresponding ids.

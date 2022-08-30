@@ -1,0 +1,1 @@
+CompletableFuture<DeleteResponse> future = catalog.delete(Filters.eq("id", 5));

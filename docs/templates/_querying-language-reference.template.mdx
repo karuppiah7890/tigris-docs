@@ -1,5 +1,6 @@
 import QueryingOverview from "./_querying-overview.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
+import { AsyncCodeBlock } from "./commons";
 
 Tigris provides powerful query functionality for specifying which documents you want to retrieve. There is no need to
 index any field as Tigris allows querying on any field of a document.
@@ -33,7 +34,11 @@ For multiple conditions, there are two logical operators supported.
 
 The first step is to create the collection object.
 
-<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.createCollection}
+  asyncExample={props.asyncCreateCollection}
+/>
 
 Assuming an e-commerce website that has the above collection catalog and has 5 products(documents) in it.
 
@@ -50,7 +55,11 @@ Assuming an e-commerce website that has the above collection catalog and has 5 p
 A straightforward query is to read documents by applying a filter on a field. As an example, applying the filter on the
 above collection by reading only the products that are of `brand` "adidas".
 
-<CodeBlock language={props.codeLang}>{props.readOne}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.readOne}
+  asyncExample={props.asyncReadOne}
+/>
 
 :::note
 String comparison is case sensitive.
@@ -61,7 +70,11 @@ String comparison is case sensitive.
 Single field filtering is useful but what if you need to also filter by `price`. Following is an example where we are
 reading all the products where `brand` is "adidas" and `price` is less than 50.
 
-<CodeBlock language={props.codeLang}>{props.multipleFields}</CodeBlock>
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.multipleFields}
+  asyncExample={props.asyncMultipleFields}
+/>
 
 ### Reading specific fields
 

@@ -1,0 +1,21 @@
+SearchRequest request = SearchRequest.newBuilder().withQuery("running").build();
+
+catalog.search(
+    request,
+    new TigrisAsyncSearchReader<Catalog>() {
+        @Override
+        public void onNext(SearchResult<Catalog> result) {
+            // receive search results
+        }
+
+        @Override
+        public void onError(Throwable t){
+            // handle terminating error
+        }
+
+        @Override
+        public void onCompleted() {
+            // successfully delivered all results
+        }
+    }
+);

@@ -159,17 +159,12 @@ const sidebars = {
             "java/datamodel/types",
           ],
         },
-        "java/async-client",
-        {
-          type: "category",
-          label: "Sync Client",
-          link: {
-            type: "doc",
-            id: "java/sync-client",
-          },
-          collapsed: false,
-          items: ["java/query", "java/search"],
-        },
+        "java/insert",
+        "java/update",
+        "java/delete",
+        "java/query",
+        "java/search",
+        "java/transactions",
       ],
     },
     {

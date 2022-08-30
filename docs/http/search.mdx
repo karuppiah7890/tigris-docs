@@ -6,7 +6,7 @@ import SearchTemplate, {
   toc as searchToc,
 } from "../templates/_search-language-reference.template.mdx";
 import createCollectionSource from "!!raw-loader!./_snippets/search/_createCollection";
-import searchForDocumentsSource from "!!raw-loader!./_snippets/search/_searchForDocuments";
+import simpleSearchSource from "!!raw-loader!./_snippets/search/_simpleSearch";
 import phraseSearchSource from "!!raw-loader!./_snippets/search/_phraseSearchQuery";
 import matchAllSource from "!!raw-loader!./_snippets/search/_matchAllSearch";
 import searchFieldsSource from "!!raw-loader!./_snippets/search/_searchFields";
@@ -24,7 +24,7 @@ export const isOverview = true;
   codeLang="shell"
   loadOverview={isOverview}
   createCollection={createCollectionSource}
-  searchForDocuments={searchForDocumentsSource}
+  simpleSearch={simpleSearchSource}
   phraseSearch={phraseSearchSource}
   matchAllSearch={matchAllSource}
   searchFields={searchFieldsSource}

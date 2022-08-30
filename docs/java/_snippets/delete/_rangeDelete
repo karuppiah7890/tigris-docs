@@ -1,0 +1,6 @@
+catalog.delete(
+    Filters.and(
+        Filters.lt("id", 5),
+        Filters.gte("id", 3)
+    )
+);

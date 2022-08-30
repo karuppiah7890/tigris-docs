@@ -1,0 +1,6 @@
+catalog.update(
+    Filters.or(
+        Filters.eq("id", 1),
+        Filters.eq("id", 4)),
+    UpdateFields.newBuilder().set("popularity", 9).build()
+);

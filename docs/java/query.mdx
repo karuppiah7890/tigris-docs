@@ -1,13 +1,16 @@
 ---
-title: Querying
+title: Query Documents
 ---
 
 import QueryTemplate, {
   toc as queryToc,
 } from "../templates/_querying-language-reference.template.mdx";
 import createCollectionSource from "!!raw-loader!./_snippets/query/_createCollection";
+import asyncCreateCollectionSource from "!!raw-loader!./_snippets/query/_asyncCreateCollection";
 import readOneSource from "!!raw-loader!./_snippets/query/_readOne";
+import asyncReadOneSource from "!!raw-loader!./_snippets/query/_asyncReadOne";
 import multipleFieldsSource from "!!raw-loader!./_snippets/query/_multipleFields";
+import asyncMultipleFieldsSource from "!!raw-loader!./_snippets/query/_asyncMultipleFields";
 import readFieldsSource from "!!raw-loader!./_snippets/query/_readFields";
 import rangeReadSource from "!!raw-loader!./_snippets/query/_rangeRead";
 import metaFilterSource from "!!raw-loader!./_snippets/query/_metadataFilter";
@@ -29,8 +32,11 @@ export const filterSyntax = {
   codeLang="java"
   filters={filterSyntax}
   createCollection={createCollectionSource}
+  asyncCreateCollection={asyncCreateCollectionSource}
   readOne={readOneSource}
+  asyncReadOne={asyncReadOneSource}
   multipleFields={multipleFieldsSource}
+  asyncMultipleFields={asyncMultipleFieldsSource}
   readFields={readFieldsSource}
   rangeRead={rangeReadSource}
   metadataFilter={metaFilterSource}

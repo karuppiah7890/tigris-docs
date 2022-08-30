@@ -1,0 +1,1 @@
+DeleteResponse response = catalog.delete(Filters.eq("id", 5));

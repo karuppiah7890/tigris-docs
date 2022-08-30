@@ -36,7 +36,10 @@ public class User implements TigrisCollectionType {
   private String name;
   private double balance;
 
-  public User() {}
+  public User(String name, double balance) {
+    this.name = name;
+    this.balance = balance;
+  }
 
   public int getId() {
     return id;
@@ -100,11 +103,5 @@ TigrisCollection<User> userCollection = db.getCollection(User.class);
 
 User alice = new User("Alice", 100);
 userCollection.insert(alice);
-User usr = userCollection.readOne(Filters.eq("id", alice.getId())).get();
+User user = userCollection.readOne(Filters.eq("id", alice.getId())).get();
 ```
-
-<span style={{textAlign: "right"}}>
-
-[CRUD operations →](sync-client)
-
-</span>

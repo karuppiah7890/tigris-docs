@@ -1,0 +1,1 @@
+TigrisAsyncCollection<Catalog> catalog = tigrisDatabase.getCollection(Catalog.class);

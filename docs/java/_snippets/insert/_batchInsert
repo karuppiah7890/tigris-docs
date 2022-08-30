@@ -1,0 +1,4 @@
+Catalog handBag = new Catalog("fiona handbag", 99.9, "michael kors", "purses", 8);
+Catalog slingBag = new Catalog("sling bag", 75, "coach", "purses", 9);
+
+catalog.insert(Arrays.asList(handBag, slingBag));
