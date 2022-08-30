@@ -28,119 +28,6 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
 <Tabs className="unique-tabs">
-<TabItem value="go" label="Go">
-
-**Prerequisites**
-
-All you'll need is any computer running macOS or Linux, with
-[Golang 1.18 or newer](https://go.dev/dl/) installed.
-
-**Install the client library**
-
-```shell
-go get -u github.com/tigrisdata/tigris-client-go@latest
-```
-
-**Quickstart**
-
-```go title=main.go
-package main
-
-import (
-    "context"
-    "fmt"
-    "time"
-
-    "github.com/tigrisdata/tigris-client-go/config"
-    "github.com/tigrisdata/tigris-client-go/fields"
-    "github.com/tigrisdata/tigris-client-go/filter"
-    "github.com/tigrisdata/tigris-client-go/tigris"
-)
-
-// User is a declaration of the model for the collection
-type User struct {
-    tigris.Model
-    Name    string
-    Balance float64
-}
-
-func main() {
-    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
-    defer cancel()
-
-    // Connect to the Tigris backend, create the database and collection if they don't exist,
-    // otherwise update the schema of the collection if it already exists
-    db, err := tigris.OpenDatabase(ctx, &config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "hello_db", &User{})
-    if err != nil {
-        panic(err)
-    }
-
-    // Get the collection object, all the CRUD operations on the collection will be performed
-    // through this collection object
-    users := tigris.GetCollection[User](db)
-
-    // Insert
-    userJ := User{Name: "Jania McGrory", Balance: 6045.7}
-    userB := User{Name: "Bunny Instone", Balance: 2948.87}
-    users.Insert(ctx, &userJ, &userB)
-
-    // Read
-    var user *User
-    user, err = users.ReadOne(ctx, filter.Eq("ID", userJ.ID)) // find user with primary key field
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(user)
-
-    user, err = users.ReadOne(ctx, filter.Eq("Name", "Jania McGrory")) // find user with Name Jania McGrory
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(user)
-
-    // Update - update user's name
-    users.Update(ctx, filter.Eq("ID", userJ.ID), fields.Set("Name", "Jania McGrover"))
-
-    // Transaction - transfer balance between users
-    db.Tx(ctx, func(txCtx context.Context) error {
-        // update their balance
-        if _, err = users.Update(txCtx, filter.Eq("ID", userJ.ID),
-        fields.Set("Balance", userJ.Balance-100)); err != nil {
-          return err
-        }
-        if _, err = users.Update(txCtx, filter.Eq("ID", userB.ID),
-        fields.Set("Balance", userB.Balance+100)); err != nil {
-          return err
-        }
-
-        return nil
-    })
-
-    // Search for users with `Name` like "bunny" and `Balance` greater than 500
-    searchRequest := search.NewRequestBuilder().
-                        WithQuery("bunny").
-                        WithSearchFields("Name").
-                        WithFilter(filter.Gt("Balance", 500)).
-                        Build()
-    iterator, err := users.Search(ctx, searchRequest)
-    if err != nil {
-        panic(err)
-    }
-    var result search.Result[User]
-    for iterator.Next(&result) {
-        fmt.Printf("%#v", result)
-    }
-
-    // Delete - delete users with IDs 1 or 2
-    users.Delete(ctx, filter.Or(filter.Eq("ID", userJ.ID), filter.Eq("ID", userB.ID)))
-
-    // Drop the database and its collections
-    db.Drop(ctx)
-}
-```
-
-</TabItem>
 <TabItem value="http" label="HTTP">
 
 **Prerequisites**
@@ -294,6 +181,236 @@ with all its collections.
 
 ```shell
 curl -X DELETE http://localhost:8081/api/v1/databases/sampledb/drop
+```
+
+</TabItem>
+<TabItem value="typescript" label="TypeScript">
+
+**Prerequisites**
+
+All you'll need is any computer running macOS or Linux, with
+[NodeJS](https://nodejs.org/en/) v12 or later installed.
+
+**Quickstart**
+
+Let's run following command to scaffold a Tigris quickstart app that
+demonstrates Tigris operations.
+
+```shell
+mkdir tigris-quickstart-ts && cd tigris-quickstart-ts
+npx create-tigris-app
+```
+
+**Code overview**
+
+Above code scaffolded the project with following directory structure.
+
+```
+.
+├── package.json
+├── src
+│   ├── app.ts
+│   ├── index.ts
+│   ├── controllers
+│   │   └── user-controller.ts
+│   └── models
+│       └── user.ts
+└── tsconfig.json
+```
+
+- `index.ts` is the entry-point for the generated application.
+- `app.ts` is the application class that initializes the Tigris client.
+- `models/user.ts` contains the data-container and schema for `users`
+  collection.
+- `controllers/user-controller.ts` has CRUD routes to mane `users` collection.
+
+**Compile and start the application**
+
+```shell
+npm run build && npm run start
+```
+
+**Insert users**
+
+Run following commands to create two users: John and Jane
+
+```shell
+curl localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "John", "balance": 6045.7}'
+
+curl localhost:8080/users/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Jane", "balance": 2948.87}'
+```
+
+**Insert products**
+
+Run the following commands to insert products
+
+```shell
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Avocado", "price": 10, "quantity": 5}'
+
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Avocado Oil", "price": 80, "quantity": 15}'
+
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"name": "Gold", "price": 3000, "quantity": 1}'
+```
+
+**Check the balances and stock**
+
+Now go ahead and confirm that data has been persisted in DB
+
+```shell
+curl http://localhost:8080/users/1
+curl http://localhost:8080/products/1
+```
+
+**Search**
+
+Lets search for users
+
+```shell
+curl http://localhost:8080/users/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{"q": "john"}'
+```
+
+Or search for products named "avocado" and price less than 50
+
+```shell
+curl localhost:8080/products/search \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+        "q": "avocado",
+        "searchFields": ["name"],
+        "filter": {"price": {"$lt": 50}}
+      }'
+```
+
+</TabItem>
+<TabItem value="go" label="Go">
+
+**Prerequisites**
+
+All you'll need is any computer running macOS or Linux, with
+[Golang 1.18 or newer](https://go.dev/dl/) installed.
+
+**Install the client library**
+
+```shell
+go get -u github.com/tigrisdata/tigris-client-go@latest
+```
+
+**Quickstart**
+
+```go title=main.go
+package main
+
+import (
+    "context"
+    "fmt"
+    "time"
+
+    "github.com/tigrisdata/tigris-client-go/config"
+    "github.com/tigrisdata/tigris-client-go/fields"
+    "github.com/tigrisdata/tigris-client-go/filter"
+    "github.com/tigrisdata/tigris-client-go/tigris"
+)
+
+// User is a declaration of the model for the collection
+type User struct {
+    tigris.Model
+    Name    string
+    Balance float64
+}
+
+func main() {
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // Connect to the Tigris backend, create the database and collection if they don't exist,
+    // otherwise update the schema of the collection if it already exists
+    db, err := tigris.OpenDatabase(ctx, &config.Database{Driver: config.Driver{URL: "localhost:8081"}},
+    "hello_db", &User{})
+    if err != nil {
+        panic(err)
+    }
+
+    // Get the collection object, all the CRUD operations on the collection will be performed
+    // through this collection object
+    users := tigris.GetCollection[User](db)
+
+    // Insert
+    userJ := User{Name: "Jania McGrory", Balance: 6045.7}
+    userB := User{Name: "Bunny Instone", Balance: 2948.87}
+    users.Insert(ctx, &userJ, &userB)
+
+    // Read
+    var user *User
+    user, err = users.ReadOne(ctx, filter.Eq("ID", userJ.ID)) // find user with primary key field
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(user)
+
+    user, err = users.ReadOne(ctx, filter.Eq("Name", "Jania McGrory")) // find user with Name Jania McGrory
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(user)
+
+    // Update - update user's name
+    users.Update(ctx, filter.Eq("ID", userJ.ID), fields.Set("Name", "Jania McGrover"))
+
+    // Transaction - transfer balance between users
+    db.Tx(ctx, func(txCtx context.Context) error {
+        // update their balance
+        if _, err = users.Update(txCtx, filter.Eq("ID", userJ.ID),
+        fields.Set("Balance", userJ.Balance-100)); err != nil {
+          return err
+        }
+        if _, err = users.Update(txCtx, filter.Eq("ID", userB.ID),
+        fields.Set("Balance", userB.Balance+100)); err != nil {
+          return err
+        }
+
+        return nil
+    })
+
+    // Search for users with `Name` like "bunny" and `Balance` greater than 500
+    searchRequest := search.NewRequestBuilder().
+                        WithQuery("bunny").
+                        WithSearchFields("Name").
+                        WithFilter(filter.Gt("Balance", 500)).
+                        Build()
+    iterator, err := users.Search(ctx, searchRequest)
+    if err != nil {
+        panic(err)
+    }
+    var result search.Result[User]
+    for iterator.Next(&result) {
+        fmt.Printf("%#v", result)
+    }
+
+    // Delete - delete users with IDs 1 or 2
+    users.Delete(ctx, filter.Or(filter.Eq("ID", userJ.ID), filter.Eq("ID", userB.ID)))
+
+    // Drop the database and its collections
+    db.Drop(ctx)
+}
 ```
 
 </TabItem>
@@ -482,123 +599,6 @@ public class TigrisApp {
         }
     }
 }
-```
-
-</TabItem>
-<TabItem value="typescript" label="TypeScript">
-
-**Prerequisites**
-
-All you'll need is any computer running macOS or Linux, with
-[NodeJS](https://nodejs.org/en/) v12 or later installed.
-
-**Quickstart**
-
-Let's run following command to scaffold a Tigris quickstart app that
-demonstrates Tigris operations.
-
-```shell
-mkdir tigris-quickstart-ts && cd tigris-quickstart-ts
-npx create-tigris-app
-```
-
-**Code overview**
-
-Above code scaffolded the project with following directory structure.
-
-```
-.
-├── package.json
-├── src
-│   ├── app.ts
-│   ├── index.ts
-│   ├── controllers
-│   │   └── user-controller.ts
-│   └── models
-│       └── user.ts
-└── tsconfig.json
-```
-
-- `index.ts` is the entry-point for the generated application.
-- `app.ts` is the application class that initializes the Tigris client.
-- `models/user.ts` contains the data-container and schema for `users`
-  collection.
-- `controllers/user-controller.ts` has CRUD routes to mane `users` collection.
-
-**Compile and start the application**
-
-```shell
-npm run build && npm run start
-```
-
-**Insert users**
-
-Run following commands to create two users: John and Jane
-
-```shell
-curl localhost:8080/users/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "John", "balance": 6045.7}'
-
-curl localhost:8080/users/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Jane", "balance": 2948.87}'
-```
-
-**Insert products**
-
-Run the following commands to insert products
-
-```shell
-curl localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Avocado", "price": 10, "quantity": 5}'
-
-curl localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Avocado Oil", "price": 80, "quantity": 15}'
-
-curl localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Gold", "price": 3000, "quantity": 1}'
-```
-
-**Check the balances and stock**
-
-Now go ahead and confirm that data has been persisted in DB
-
-```shell
-curl http://localhost:8080/users/1
-curl http://localhost:8080/products/1
-```
-
-**Search**
-
-Lets search for users
-
-```shell
-curl http://localhost:8080/users/search \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"q": "john"}'
-```
-
-Or search for products named "avocado" and price less than 50
-
-```shell
-curl localhost:8080/products/search \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{
-        "q": "avocado",
-        "searchFields": ["name"],
-        "filter": {"price": {"$lt": 50}}
-      }'
 ```
 
 </TabItem>

@@ -71,6 +71,38 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "TypeScript Reference",
+      link: {
+        type: "doc",
+        id: "typescript/index",
+      },
+      collapsed: true,
+      items: [
+        "typescript/getting-started",
+        {
+          type: "category",
+          label: "Data Modeling",
+          link: {
+            type: "doc",
+            id: "typescript/datamodel/overview",
+          },
+          collapsed: false,
+          items: [
+            "typescript/datamodel/declare",
+            "typescript/datamodel/primary-key",
+            "typescript/datamodel/embedded",
+          ],
+        },
+        "typescript/insert",
+        "typescript/update",
+        "typescript/delete",
+        "typescript/query",
+        "typescript/search",
+        "typescript/transactions",
+      ],
+    },
+    {
+      type: "category",
       label: "Go Reference",
       link: {
         type: "doc",
@@ -138,38 +170,6 @@ const sidebars = {
           collapsed: false,
           items: ["java/query", "java/search"],
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "TypeScript Reference",
-      link: {
-        type: "doc",
-        id: "typescript/index",
-      },
-      collapsed: true,
-      items: [
-        "typescript/getting-started",
-        {
-          type: "category",
-          label: "Data Modeling",
-          link: {
-            type: "doc",
-            id: "typescript/datamodel/overview",
-          },
-          collapsed: false,
-          items: [
-            "typescript/datamodel/declare",
-            "typescript/datamodel/primary-key",
-            "typescript/datamodel/embedded",
-          ],
-        },
-        "typescript/insert",
-        "typescript/update",
-        "typescript/delete",
-        "typescript/query",
-        "typescript/search",
-        "typescript/transactions",
       ],
     },
     {
