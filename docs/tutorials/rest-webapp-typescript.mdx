@@ -68,7 +68,7 @@ curl http://localhost:8080/users/create \
 ### Create Products
 
 ```shell
-curl http://localhost:8080/users/create \
+curl http://localhost:8080/products/create \
     -X POST \
     -H 'Content-Type: application/json' \
     -d '{
@@ -77,7 +77,7 @@ curl http://localhost:8080/users/create \
         "price": 4.39
       }'
 
-curl http://localhost:8080/users/create \
+curl http://localhost:8080/products/create \
     -X POST \
     -H 'Content-Type: application/json' \
     -d '{
@@ -86,7 +86,7 @@ curl http://localhost:8080/users/create \
         "price": 10
       }'
 
-curl http://localhost:8080/users/create \
+curl http://localhost:8080/products/create \
     -X POST \
     -H 'Content-Type: application/json' \
     -d '{
@@ -109,7 +109,7 @@ curl http://localhost:8080/products/3
 
 ### Search
 
-Lets search for users
+Let's search for users
 
 ```shell
 curl http://localhost:8080/users/search \
@@ -152,7 +152,6 @@ Open the project in your favorite IDE and add the following to
 ```typescript title="order-controller.ts"
 import { User } from "../models/user";
 import { Product } from "../models/product";
-import { UpdateFieldsOperator } from "@tigrisdata/core/dist/types";
 ```
 
 **HTTP handler**
