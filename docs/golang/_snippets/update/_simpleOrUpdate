@@ -1,8 +1,8 @@
-_, err := catalog.Update(ctx, filter.Or(
-    filter.Eq("id", 1),
-    filter.Eq("id", 4),
-    ),
-    fields.Set("popularity": 9))
+_, err := catalogs.Update(ctx,
+    filter.Or(
+        filter.Eq("Id", 1),
+        filter.Eq("Id", 4)),
+    fields.Set("Popularity", 9))
 if err != nil {
     // handle error
 }

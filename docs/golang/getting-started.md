@@ -29,7 +29,7 @@ type Catalog struct {
 }
 ```
 
-This declaration will create a collection named `catalog`.
+This declaration will create a collection named `catalogs`.
 
 For detailed documentation on data modeling refer to the
 [data modeling](datamodel/overview.mdx) section.

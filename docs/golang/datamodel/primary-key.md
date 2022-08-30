@@ -33,10 +33,10 @@ The `ID` field is automatically populated when the document inserted into collec
 For example using the model above:
 
 ```go
-c := Catalog{Name: "fiona handbag", Price: 99}
-_, err := catalog.Insert(ctx, &c)
-// error handling here
-fmt.Printf("Auto-generated user ID: %v\n", u.ID)
+catalog := tigris.GetCollection[Catalog](db)
+
+product := Catalog{Name: "fiona handbag", Price: 99}
+_, err = catalog.Insert(context.Background(), &product)
 ```
 
 ### User ID field

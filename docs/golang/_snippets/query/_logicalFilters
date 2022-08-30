@@ -1,10 +1,10 @@
-it, err := catalog.Read(ctx, filter.And(
+it, err := catalogs.Read(ctx, filter.And(
     filter.Or(
-        filter.Eq("brand", "adidas"),
-        filter.Eq("brand", "coach")),
+        filter.Eq("Brand", "adidas"),
+        filter.Eq("Brand", "coach")),
     filter.And(
-        filter.Lt("price", 50),
-        filter.Gte("popularity", 8)),
+        filter.Lt("Price", 50),
+        filter.Gte("Popularity", 8)),
     ),
 )
 if err != nil {

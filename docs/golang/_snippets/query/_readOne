@@ -1,4 +1,4 @@
-product, err := catalog.ReadOne(ctx, filter.Eq("brand", "adidas"))
+product, err := catalogs.ReadOne(ctx, filter.Eq("Brand", "adidas"))
 if err != nil {
     panic(err)
 }

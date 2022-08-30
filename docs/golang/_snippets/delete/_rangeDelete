@@ -1,8 +1,6 @@
-_, err := catalog.Delete(ctx, filter.And(
-    filter.Lt("id", 5),
-    filter.Gte("id", 3),
-    )
-)
+_, err := catalogs.Delete(ctx, filter.And(
+    filter.Lt("Id", 5),
+    filter.Gte("Id", 3)))
 if err != nil {
     // handle error
 }

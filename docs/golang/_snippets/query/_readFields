@@ -1,6 +1,11 @@
-it, err := catalog.Read(ctx,
-    filter.And(filter.Eq("brand", "adidas"), filter.Lt("price", 50)),
-    fields.Include("name").Include("price").Include("brand")
+it, err := catalogs.Read(ctx,
+    filter.And(
+        filter.Eq("Brand", "adidas"),
+        filter.Lt("Price", 50),
+    ),
+    fields.Include("Name").
+        Include("Price").
+        Include("Brand"),
 )
 if err != nil {
     panic(err)

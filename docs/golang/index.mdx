@@ -46,15 +46,15 @@ db, err := tigris.OpenDatabase(ctx,
 ## 3. Persist and query
 
 ```go
-catalog := tigris.GetCollection[Catalog](db)
+catalogs := tigris.GetCollection[Catalog](db)
 
-_, err := catalog.Insert(ctx, &Catalog{Name: "fiona handbag", Price: 99.9, Brand: "michael kors", Labels: "purses", Popularity: 8})
+_, err := catalogs.Insert(ctx, &Catalog{Name: "fiona handbag", Price: 99.9, Brand: "michael kors", Labels: "purses", Popularity: 8})
 if err != nil {
     // handle error
 }
 
 var product *Catalog
-product, err = catalog.ReadOne(ctx, filter.Eq("Id", 1)) // find user with Id 1
+product, err = catalogs.ReadOne(ctx, filter.Eq("Id", 1)) // find catalog with Id 1
 if err != nil {
     // handle error
 }

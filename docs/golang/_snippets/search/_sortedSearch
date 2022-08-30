@@ -1,5 +1,5 @@
 request := search.NewRequestBuilder().
               WithQuery("running").
-              WithSearchFields("name", "labels").
-              WithSorting(sort.Descending("popularity"))
+              WithSearchFields("Name", "Labels").
+              WithSorting(sort.Descending("Popularity"))
               Build()

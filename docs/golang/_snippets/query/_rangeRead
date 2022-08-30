@@ -1,4 +1,9 @@
-it, err := catalog.Read(ctx, filter.And(filter.Lt("price", 50), filter.Gte("popularity", 8)))
+it, err := catalogs.Read(ctx,
+    filter.And(
+        filter.Lt("Price", 50),
+        filter.Gte("Popularity", 8),
+    ),
+)
 if err != nil {
     panic(err)
 }

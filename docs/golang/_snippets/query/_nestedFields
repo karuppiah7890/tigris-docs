@@ -1,4 +1,9 @@
-it, err := catalog.Read(ctx, filter.And(filter.Eq("labels", "shoes"), filter.Gt("reviews.rating", 7)))
+it, err := catalogs.Read(ctx,
+    filter.And(
+        filter.Eq("Labels", "shoes"),
+        filter.Gt("Reviews.Rating", 7),
+    ),
+)
 if err != nil {
     panic(err)
 }

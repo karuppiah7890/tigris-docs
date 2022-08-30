@@ -14,13 +14,13 @@ type Catalog struct {
 }
 ```
 
-This declaration will create a collection named `catalogues`.
+This declaration will create a collection named `catalogs`.
 
 ### Collection Names
 
 The name of the collection is derived from the struct name. The struct
 name is pluralized to snake_cases as collection name. For example, the
-struct name `Catalog` is converted to `catalogues` as the collection name. While
+struct name `Catalog` is converted to `catalogs` as the collection name. While
 the struct name `CatalogDetail` is converted to `catalog_details` as the
 collection name.
 

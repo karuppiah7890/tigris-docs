@@ -1,4 +1,4 @@
-_, err := catalog.Insert(ctx,
+_, err := catalogs.Insert(ctx,
     &Catalog{Name: "tote bag", Price: 49, Brand: "coach", Labels: "handbags", Popularity: 9},
     &Catalog{Name: "sling bag", Price: 75, Brand: "coach", Labels: "purses", Popularity: 9})
 if err != nil {
