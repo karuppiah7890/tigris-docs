@@ -16,6 +16,11 @@ Tigris client uses interface for data container and developers define the schema
 of their data container using TigrisSchema
 
 ```typescript title=DataContainer
+interface Review extends TigrisCollectionType {
+  author: string;
+  rating: number;
+}
+
 interface Catalog extends TigrisCollectionType {
   id?: number;
   name: string;
@@ -27,6 +32,15 @@ interface Catalog extends TigrisCollectionType {
 ```
 
 ```typescript title=SchemaDefinition
+const reviewSchema: TigrisSchema<Review> = {
+  author: {
+    type: TigrisDataTypes.STRING,
+  },
+  rating: {
+    type: TigrisDataTypes.NUMBER,
+  },
+};
+
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
     type: TigrisDataTypes.INT32,
@@ -50,6 +64,9 @@ const catalogSchema: TigrisSchema<Catalog> = {
   popularity: {
     type: TigrisDataTypes.INT32,
   },
+  reviews: {
+    type: reviewSchema,
+  },
 };
 ```
 
@@ -69,7 +86,7 @@ const tigris: Tigris = new Tigris({
 Create database (if not exists)
 
 ```typescript
-const db: Database = await tigris.createDatabaseIfNotExists("catalogdb");
+const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
 ```
 
 Create collection

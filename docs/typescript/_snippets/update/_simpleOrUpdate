@@ -1,4 +1,4 @@
-await catalog.update(
+const updateResponse: UpdateResponse = await catalog.update(
   {
       op: LogicalOperator.OR,
           selectorFilters: [

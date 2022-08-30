@@ -1,9 +1,9 @@
-const catalog: Catalog = {
-    name: "tote bag",
-    price: 49,
-    brand: "coach",
-    labels: "handbags",
-    popularity: 9,
+const product: Catalog = {
+    name: "fiona handbag",
+    price: 99.9,
+    brand: "michael kors",
+    labels: "purses",
+    popularity: 8,
 };
 
-const insertedCatalog: Catalog = await catalog.insert(catalog);
+const insertedProduct: Catalog = await catalog.insert(product);

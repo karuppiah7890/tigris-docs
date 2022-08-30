@@ -1,4 +1,4 @@
-await catalog.update(
+const updateResponse: UpdateResponse = await catalog.update(
   {
       op: LogicalOperator.AND,
           selectorFilters: [
@@ -6,7 +6,7 @@ await catalog.update(
                   name: "sneakers shoes"
               },
               {
-                 brand: "nike"
+                 brand: "adidas"
               }
           ]
     },

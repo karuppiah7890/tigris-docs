@@ -1,4 +1,4 @@
-const catalogues: Array<Catalog> = [
+const products: Array<Catalog> = [
   {
     name: "tote bag",
     price: 49,
@@ -12,7 +12,7 @@ const catalogues: Array<Catalog> = [
     brand: "coach",
     labels: "purses",
     popularity: 9,
-  };
+  }
 ];
 
-const insertedCatalogues: Array<Catalog> = await catalog.insertMany(catalogues);
+const insertedProducts: Array<Catalog> = await catalog.insertMany(products);
