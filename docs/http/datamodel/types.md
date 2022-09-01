@@ -292,7 +292,7 @@ fields _languages_ and _address_
 
 `null` is an allowed value that can be used with any of the fields in the
 schema except for the ones that are part of the primary key definition. If a
-field is set to the null value, then the document stored in the database
-will have that field set to the null value. If you are looking for the
+field is set to the `null` value, then the document stored in the database
+will have that field set to the `null` value. If you are looking for the
 behavior where you would like fields without any values to not be stored as
 part of the document, then simply skip setting them to any value.
