@@ -306,112 +306,62 @@ curl localhost:8080/products/search \
 **Prerequisites**
 
 All you'll need is any computer running macOS or Linux, with
-[Golang 1.18 or newer](https://go.dev/dl/) installed.
+[Golang 1.18 or newer](https://go.dev/dl/) and Docker installed.
 
-**Install the client library**
+You also need to install [Tigris CLI](/cli).
+
+**Scaffolding the project**
+
+Run scaffold command to generate project files:
 
 ```shell
-go get -u github.com/tigrisdata/tigris-client-go@latest
+tigris scaffold go Mycompany Myproject HelloDB User
 ```
 
-**Quickstart**
+This will:
 
-```go title=main.go
-package main
+- Create directory with the name Myproject
+- Initialize Go module `github.com/Mycompany/Myproject
+- Generate main.go
 
-import (
-    "context"
-    "fmt"
-    "time"
+The main.go file contains the code, which initializes the client,
+connects to Tigris instance and execute example document APIs.
 
-    "github.com/tigrisdata/tigris-client-go/config"
-    "github.com/tigrisdata/tigris-client-go/fields"
-    "github.com/tigrisdata/tigris-client-go/filter"
-    "github.com/tigrisdata/tigris-client-go/tigris"
-)
+** Build and run **
 
-// User is a declaration of the model for the collection
-type User struct {
-    tigris.Model
-    Name    string
-    Balance float64
-}
-
-func main() {
-    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
-    defer cancel()
-
-    // Connect to the Tigris backend, create the database and collection if they don't exist,
-    // otherwise update the schema of the collection if it already exists
-    db, err := tigris.OpenDatabase(ctx, &config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "hello_db", &User{})
-    if err != nil {
-        panic(err)
-    }
-
-    // Get the collection object, all the CRUD operations on the collection will be performed
-    // through this collection object
-    users := tigris.GetCollection[User](db)
-
-    // Insert
-    userJ := User{Name: "Jania McGrory", Balance: 6045.7}
-    userB := User{Name: "Bunny Instone", Balance: 2948.87}
-    users.Insert(ctx, &userJ, &userB)
-
-    // Read
-    var user *User
-    user, err = users.ReadOne(ctx, filter.Eq("ID", userJ.ID)) // find user with primary key field
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(user)
-
-    user, err = users.ReadOne(ctx, filter.Eq("Name", "Jania McGrory")) // find user with Name Jania McGrory
-    if err != nil {
-        panic(err)
-    }
-    fmt.Println(user)
-
-    // Update - update user's name
-    users.Update(ctx, filter.Eq("ID", userJ.ID), fields.Set("Name", "Jania McGrover"))
-
-    // Transaction - transfer balance between users
-    db.Tx(ctx, func(txCtx context.Context) error {
-        // update their balance
-        if _, err = users.Update(txCtx, filter.Eq("ID", userJ.ID),
-        fields.Set("Balance", userJ.Balance-100)); err != nil {
-          return err
-        }
-        if _, err = users.Update(txCtx, filter.Eq("ID", userB.ID),
-        fields.Set("Balance", userB.Balance+100)); err != nil {
-          return err
-        }
-
-        return nil
-    })
-
-    // Search for users with `Name` like "bunny" and `Balance` greater than 500
-    searchRequest := search.NewRequestBuilder().
-                        WithQuery("bunny").
-                        WithSearchFields("Name").
-                        WithFilter(filter.Gt("Balance", 500)).
-                        Build()
-    iterator, err := users.Search(ctx, searchRequest)
-    if err != nil {
-        panic(err)
-    }
-    var result search.Result[User]
-    for iterator.Next(&result) {
-        fmt.Printf("%#v", result)
-    }
-
-    // Delete - delete users with IDs 1 or 2
-    users.Delete(ctx, filter.Or(filter.Eq("ID", userJ.ID), filter.Eq("ID", userB.ID)))
-
-    // Drop the database and its collections
-    db.Drop(ctx)
-}
+```shell
+cd Myproject
+go mod tidy
+go build .
 ```
+
+After successful execution of above commands you should have `./Myproject` binary in the
+current directory.
+
+To test the binary you can bring a local Tigris instance up using [CLI](/cli)
+
+```shell
+tigris local up
+```
+
+or connect to the hosted instance, by obtaining `ApplicationId` and `ApplicationSecret`
+in the Tigris web console and add credentials in the configuration structure:
+
+```go
+cfg := &config.Database{Driver: config.Driver{
+    URL:               "api.preview.tigrisdata.cloud",
+    ApplicationId:     {application_id}},
+    ApplicationSecret: {application_secret},
+}}
+```
+
+now execute compiled binary which performs API call and output the results on the console:
+
+```
+./Myproject
+```
+
+You can now start modifying and extending main.go for your needs.
 
 </TabItem>
 <TabItem value="java" label="Java">
