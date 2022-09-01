@@ -19,6 +19,11 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 Models are regular Go structs composed of basic Go types or custom types.
 
 ```go
+type Reviews struct {
+    Author  string
+    Ratings float64
+}
+
 type Catalog struct {
 	Id         int `tigris:"primary_key,autoGenerate"`
 	Name       string
@@ -26,6 +31,7 @@ type Catalog struct {
 	Brand      string
 	Labels     string
 	Popularity int
+	Reviews    *Reviews
 }
 ```
 

@@ -23,6 +23,11 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 ## 2. Define data models
 
 ```go
+type Reviews struct {
+    Author  string
+    Ratings float64
+}
+
 type Catalog struct {
 	Id         int `tigris:"primary_key,autoGenerate"`
 	Name       string
