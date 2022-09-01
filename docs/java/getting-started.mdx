@@ -62,6 +62,8 @@ maximize the use of system resources.
 
 ### Initialize
 
+Configure your JAVA application to connect to Tigris.
+
 <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
@@ -90,6 +92,9 @@ TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configurat
 
 ### Create database
 
+Creating a database is fairly easy and safe using _if not exists_ protocol. This will throw an exception
+if a database with given name already exists.
+
 <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
@@ -109,6 +114,8 @@ CompletableFuture<TigrisAsyncDatabase> future = asyncClient.createDatabaseIfNotE
 </Tabs>
 
 ### Retrieve database
+
+Retrieve the database instance.
 
 <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
@@ -130,6 +137,9 @@ TigrisAsyncDatabase db = asyncClient.getDatabase("sampledb");
 
 ### Create collection
 
+Create a collection mapping to `User.class`. [Read more](datamodel/declare) about declaring class
+models for Tigris collection.
+
 <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
@@ -149,6 +159,8 @@ CompletableFuture<CreateOrUpdateCollectionsResponse> future = db.createOrUpdateC
 </Tabs>
 
 ### Retrieve collection
+
+Retrieve a collection instance.
 
 <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
