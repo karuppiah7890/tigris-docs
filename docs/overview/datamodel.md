@@ -49,7 +49,8 @@ evolves. Tigris offers this flexibility by allowing the schema to be evolved
 in a lightweight manner without any downtime. The schema changes are
 performed in a transactional manner, take only a few milliseconds to
 complete and do not require a collection rebuild. The updated schema is
-immediately made available to any new transactions.
+immediately made available to any new transactions. The schema of old records
+will be updated automatically when the record is updated.
 
 The following schema changes are currently supported:
 
