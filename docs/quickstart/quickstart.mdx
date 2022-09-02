@@ -211,8 +211,8 @@ Above code scaffolded the project with following directory structure.
 ├── src
 │   ├── app.ts
 │   ├── index.ts
-│   ├── controllers
-│   │   └── user-controller.ts
+│   ├── lib
+│   │   └── config.ts
 │   └── models
 │       └── user.ts
 └── tsconfig.json
@@ -222,7 +222,62 @@ Above code scaffolded the project with following directory structure.
 - `app.ts` is the application class that initializes the Tigris client.
 - `models/user.ts` contains the data-container and schema for `users`
   collection.
-- `controllers/user-controller.ts` has CRUD routes to mane `users` collection.
+- `lib/config.ts` contains the initialization of Tigris client.
+
+**Schema**
+Scaffolded project provides following (`user.ts`) schema. You can extend the schema by modifying.
+
+```
+import {
+    TigrisCollectionType,
+    TigrisDataTypes,
+    TigrisSchema
+} from "@tigrisdata/core/dist/types";
+
+export interface User extends TigrisCollectionType {
+    userId?: number;
+    name: string;
+    balance: number;
+}
+
+export const userSchema: TigrisSchema<User> = {
+    userId: {
+        type: TigrisDataTypes.INT32,
+        primary_key: {
+        order: 1,
+        autoGenerate: true,
+    },
+    },
+        name: {
+        type: TigrisDataTypes.STRING,
+    },
+        balance: {
+        type: TigrisDataTypes.NUMBER,
+    },
+};
+```
+
+**Client initialization**
+
+`src/lib/config.ts` initializes the client as follows
+
+```
+new Tigris({
+    serverUrl: "localhost:8081",
+    insecureChannel: true, // plaintext communication
+}
+```
+
+This will create tigris client and point it to server running on localhost.
+To use the preview cloud on Tigris platform you can modify initialization as follows
+
+```
+new Tigris({
+    serverUrl: 'api.preview.tigrisdata.cloud:443',
+    applicationId: "<YOUR_APP_ID>",
+    applicationSecret: "<YOUR_APP_SECRET>"
+});
+```
 
 **Compile and start the application**
 
@@ -230,75 +285,12 @@ Above code scaffolded the project with following directory structure.
 npm run build && npm run start
 ```
 
-**Insert users**
-
-Run following commands to create two users: John and Jane
-
-```shell
-curl localhost:8080/users/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "John", "balance": 6045.7}'
-
-curl localhost:8080/users/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Jane", "balance": 2948.87}'
-```
-
-**Insert products**
-
-Run the following commands to insert products
-
-```shell
-curl localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Avocado", "price": 10, "quantity": 5}'
-
-curl localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Avocado Oil", "price": 80, "quantity": 15}'
-
-curl localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"name": "Gold", "price": 3000, "quantity": 1}'
-```
-
-**Check the balances and stock**
-
-Now go ahead and confirm that data has been persisted in DB
-
-```shell
-curl http://localhost:8080/users/1
-curl http://localhost:8080/products/1
-```
-
-**Search**
-
-Lets search for users
-
-```shell
-curl http://localhost:8080/users/search \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{"q": "john"}'
-```
-
-Or search for products named "avocado" and price less than 50
-
-```shell
-curl localhost:8080/products/search \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{
-        "q": "avocado",
-        "searchFields": ["name"],
-        "filter": {"price": {"$lt": 50}}
-      }'
-```
+- It creates a db named `hello_db`
+- registers collection schema `users` on the db.
+- performs CRUD operations on `users`.
+- performs interactive transaction.
+- deletes the users from collection.
+- deletes the database.
 
 </TabItem>
 <TabItem value="go" label="Go">
