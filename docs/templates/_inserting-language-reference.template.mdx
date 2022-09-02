@@ -17,7 +17,7 @@ the collection are performed through this collection object.
   asyncExample={props.asyncCreateCollection}
 />
 
-## Insert
+## Insert a Single Document
 
 Insert API can be used to insert one or more documents into the collection. Since the `id` field
 is marked as **autoGenerate**, you don't need to specify a value for it and Tigris will automatically generate it for you.
@@ -32,11 +32,13 @@ The insert API maintains the uniqueness of the field marked as the primary key, 
 example above. If the document with the same primary key value already exists in the collection, the operation will fail
 by throwing an HTTP status code **409** with the message <i>"duplicate key value, violates key constraint"</i>
 
-Similar, to a single row insert, you can also perform batch inserts.
+## Insert Multiple Documents
+
+Similar, to a single row insert, you can also insert multiple documents by passing an array of documents.
 
 <CodeBlock language={props.codeLang}>{props.batchInsert}</CodeBlock>
 
-## Upsert
+## Upsert a Single Document
 
 Insert or replace operation can be used to insert a new document or replace an existing document with the same
 primary key value. This API is useful when there is no need for a uniqueness check on the primary key, and it is fine
@@ -48,6 +50,8 @@ so the below operation will replace the document with the newly provided data.
   defaultExample={props.simpleUpsert}
   asyncExample={props.asyncSimpleUpsert}
 />
+
+## Upsert Multiple Documents
 
 As the API can also be used when the document doesn't exist. The following is an example of when these two
 documents are inserted because there are no corresponding ids.

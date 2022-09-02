@@ -68,6 +68,17 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/creat
       "popularity":{
         "description":"Popularity score of the product",
         "type":"integer"
+      },
+      "reviews":{
+        "type":"object",
+        "properties":{
+          "author":{
+            "type":"string"
+          },
+          "rating":{
+            "type":"number"
+          }
+        }
       }
     },
     "primary_key":[

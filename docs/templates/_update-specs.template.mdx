@@ -1,10 +1,10 @@
-## Specification
+## Request Specification
 
-| HTTP API | HTTP Method | URL Params                                          | Resource                                                    |
-| -------- | ----------- | --------------------------------------------------- | ----------------------------------------------------------- |
-| UPDATE   | PUT         | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/update` |
+| HTTP API                                                                                           | HTTP Method | URL Params                                          | Resource                                                    |
+| -------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| [UPDATE](https://docs.tigrisdata.com/httpdocs/server/v1/api#tag/Documents/operation/Tigris_Update) | PUT         | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/update` |
 
-#### JSON Payload
+### Request Payload
 
 ```shell
 {
@@ -26,7 +26,7 @@ Understanding the request payload:
 - The `fields` has `$set` operator that allows you to set fields to new values.
 - The `filter` syntax is similar as documented in the [Query](query#filter) section.
 
-#### Response Payload
+### Response Payload
 
 The response has **modified_count** that returns number of documents updated as part of the request. An update doesn't
 return an error if no documents is modified. The **modified_count** will not be returned in the response in that case.

@@ -2,43 +2,43 @@ curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/creat
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{
-    "schema": {
-        "title": "catalog",
-        "properties": {
-            "id": {
-                "type": "integer",
-                "format": "int32",
-                "autoGenerate": true
-            },
-            "name": {
-                "type": "string"
-            },
-            "price": {
-                "type": "number"
-            },
-            "brand": {
-                "type": "string"
-            },
-            "labels": {
-                "type": "string"
-            },
-            "popularity": {
-                "type": "integer"
-            },
-            "reviews": {
-                "type": "object",
-                "properties": {
-                    "author": {
-                        "type": "string"
-                      },
-                    "rating": {
-                        "type": "number"
-                    }
-                }
-            }
-        },
-        "primary_key": [
-            "id"
-        ]
-    }
-  }'
+  "schema":{
+    "title":"catalog",
+    "properties":{
+      "id":{
+        "type":"integer",
+        "format":"int32",
+        "autoGenerate":true
+      },
+      "name":{
+        "type":"string"
+      },
+      "price":{
+        "type":"number"
+      },
+      "brand":{
+        "type":"string"
+      },
+      "labels":{
+        "type":"string"
+      },
+      "popularity":{
+        "type":"integer"
+      },
+      "reviews":{
+        "type":"object",
+        "properties":{
+          "author":{
+            "type":"string"
+          },
+          "rating":{
+            "type":"number"
+          }
+        }
+      }
+    },
+    "primary_key":[
+      "id"
+    ]
+  }
+}'

@@ -1,11 +1,11 @@
-## Specification
+## Request Specification
 
-| HTTP API | HTTP Method | URL Params                                          | Resource                                                     |
-| -------- | ----------- | --------------------------------------------------- | ------------------------------------------------------------ |
-| INSERT   | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/insert`  |
-| REPLACE  | PUT         | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/replace` |
+| HTTP API                                                                                             | HTTP Method | URL Params                                          | Resource                                                     |
+| ---------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| [INSERT](https://docs.tigrisdata.com/httpdocs/server/v1/api#tag/Documents/operation/Tigris_Insert)   | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/insert`  |
+| [REPLACE](https://docs.tigrisdata.com/httpdocs/server/v1/api#tag/Documents/operation/Tigris_Replace) | PUT         | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/replace` |
 
-#### JSON Payload
+### Request Payload
 
 ```shell
 {

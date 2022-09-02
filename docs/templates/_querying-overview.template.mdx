@@ -1,10 +1,10 @@
-## Specification
+## Request Specification
 
-| HTTP API | HTTP Method | URL Params                                          | Resource                                                  |
-| -------- | ----------- | --------------------------------------------------- | --------------------------------------------------------- |
-| READ     | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/read` |
+| HTTP API                                                                                       | HTTP Method | URL Params                                          | Resource                                                  |
+| ---------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------- | --------------------------------------------------------- |
+| [READ](https://docs.tigrisdata.com/httpdocs/server/v1/api#tag/Documents/operation/Tigris_Read) | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/documents/read` |
 
-#### JSON Payload
+### Request Payload
 
 ```shell
 {
