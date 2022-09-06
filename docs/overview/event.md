@@ -6,6 +6,7 @@ are both searchable and queryable.
 
 ## Key Concepts
 
+- <b>Topic</b>: A topic here is a type of collection whose type is set as "messages".
 - <b>Publish</b>: A topic can have one or more publishers. A publisher is responsible for publishing messages on the topic.
 - <b>Subscribe</b>: A topic can have one or more subscribers. A subscriber consumes messages from a topic.
 - <b>Partitions</b>: A topic has by default 64 partitions. Ordering is guaranteed in a single partition.

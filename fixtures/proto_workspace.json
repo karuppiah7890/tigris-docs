@@ -1769,10 +1769,23 @@
           "fullName": "tigrisdata.v1.PublishRequestOptions",
           "description": "",
           "hasExtensions": false,
-          "hasFields": false,
+          "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
-          "fields": []
+          "fields": [
+            {
+              "name": "partition",
+              "description": "",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         },
         {
           "name": "PublishResponse",
@@ -2788,10 +2801,23 @@
           "fullName": "tigrisdata.v1.SubscribeRequestOptions",
           "description": "",
           "hasExtensions": false,
-          "hasFields": false,
+          "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
-          "fields": []
+          "fields": [
+            {
+              "name": "partitions",
+              "description": "",
+              "label": "repeated",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         },
         {
           "name": "SubscribeResponse",
@@ -3190,7 +3216,7 @@
             },
             {
               "name": "Read",
-              "description": "Reads a range of documents from the collection. Tigris does not require you to\nindex any fields and automatically index all the fields which means you can filter by any field in the document.\nAn empty filter will trigger reading all the documents inside this collection. The API supports pagination that\ncan be used by passing `Limit/Skip` parameters. The `skip` parameter skips the number of documents from the start and\nthe `limit` parameter is used to specify the number of documents to read. You can find more detailed documentation\nof the Read API \u003ca href=\"https://docs.tigrisdata.com/overview/query\" title=\"here\"\u003ehere\u003c/a\u003e.",
+              "description": "Reads a range of documents from the collection, or messages from a collection in case of event streaming. Tigris does not require you to\nindex any fields and automatically index all the fields which means you can filter by any field in the document.\nAn empty filter will trigger reading all the documents inside this collection. The API supports pagination that\ncan be used by passing `Limit/Skip` parameters. The `skip` parameter skips the number of documents from the start and\nthe `limit` parameter is used to specify the number of documents to read. You can find more detailed documentation\nof the Read API \u003ca href=\"https://docs.tigrisdata.com/overview/query\" title=\"here\"\u003ehere\u003c/a\u003e.",
               "requestType": "ReadRequest",
               "requestLongType": "ReadRequest",
               "requestFullType": "tigrisdata.v1.ReadRequest",
@@ -3206,6 +3232,11 @@
                       "method": "POST",
                       "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/read",
                       "body": "*"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/api/v1/databases/{db}/collections/{collection}/messages/read",
+                      "body": "*"
                     }
                   ]
                 }
@@ -3213,7 +3244,7 @@
             },
             {
               "name": "Search",
-              "description": "Searches a collection for the documents matching the query. A search can be a term search or a phrase search.\nSearch API allows filtering the result set using filters as documented \u003ca href=\"https://docs.tigrisdata.com/overview/query#specification-1\" title=\"here\"\u003ehere\u003c/a\u003e.\nYou can also perform a faceted search by passing the fields in the facet parameter.\nYou can find more detailed documentation of the Search API with multiple examples \u003ca href=\"https://docs.tigrisdata.com/overview/search\" title=\"here\"\u003ehere\u003c/a\u003e.",
+              "description": "Searches a collection for the documents matching the query, or messages in case of event streaming. A search can be\na term search or a phrase search. Search API allows filtering the result set using filters as documented \u003ca href=\"https://docs.tigrisdata.com/overview/query#specification-1\" title=\"here\"\u003ehere\u003c/a\u003e.\nYou can also perform a faceted search by passing the fields in the facet parameter.\nYou can find more detailed documentation of the Search API with multiple examples \u003ca href=\"https://docs.tigrisdata.com/overview/search\" title=\"here\"\u003ehere\u003c/a\u003e.",
               "requestType": "SearchRequest",
               "requestLongType": "SearchRequest",
               "requestFullType": "tigrisdata.v1.SearchRequest",
@@ -3228,6 +3259,11 @@
                     {
                       "method": "POST",
                       "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/search",
+                      "body": "*"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/api/v1/databases/{db}/collections/{collection}/messages/search",
                       "body": "*"
                     }
                   ]
@@ -3478,7 +3514,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/publish",
+                      "pattern": "/api/v1/databases/{db}/collections/{collection}/messages/publish",
                       "body": "*"
                     }
                   ]
@@ -3501,7 +3537,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/subscribe",
+                      "pattern": "/api/v1/databases/{db}/collections/{collection}/messages/subscribe",
                       "body": "*"
                     }
                   ]
