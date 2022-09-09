@@ -902,24 +902,10 @@ _**package** tigrisdata.v1_
     fullName: "tigrisdata.v1.CollectionMetadata",
     description: "",
     hasExtensions: false,
-    hasFields: true,
+    hasFields: false,
     hasOneofs: false,
     extensions: [],
-    fields: [
-      {
-        name: "type",
-        description: "",
-        label: "",
-        type: "CollectionType",
-        longType: "CollectionType",
-        fullType: "tigrisdata.v1.CollectionType",
-        ismap: false,
-        isoneof: false,
-        oneofdecl: "",
-        defaultValue: "",
-        typeLink: "/protodocs/server/v1/api.proto#collectiontype",
-      },
-    ],
+    fields: [],
   }}
 />
 
@@ -1161,20 +1147,6 @@ _**package** tigrisdata.v1_
         oneofdecl: "",
         defaultValue: "",
         typeLink: "/protodocs/server/v1/api.proto#collectionoptions",
-      },
-      {
-        name: "type",
-        description:
-          "Type of the collection.\n<li> DOCUMENTS: Support CRUD APIs.\n<li> MESSAGES: Supports Pub/Sub APIs.",
-        label: "",
-        type: "CollectionType",
-        longType: "CollectionType",
-        fullType: "tigrisdata.v1.CollectionType",
-        ismap: false,
-        isoneof: false,
-        oneofdecl: "",
-        defaultValue: "",
-        typeLink: "/protodocs/server/v1/api.proto#collectiontype",
       },
     ],
   }}
@@ -4182,23 +4154,6 @@ _**package** tigrisdata.v1_
       { name: "CONFLICT", number: "17", description: "409" },
       { name: "BAD_GATEWAY", number: "18", description: "502" },
       { name: "METHOD_NOT_ALLOWED", number: "19", description: "405" },
-    ],
-  }}
-/>
-
-### `CollectionType`
-
-<ProtoEnum
-  key={1}
-  enumb={{
-    name: "CollectionType",
-    longName: "CollectionType",
-    fullName: "tigrisdata.v1.CollectionType",
-    description:
-      "The type of this collection. Tigris supports Document based APIs for DOCUMENTS collection and Pub/Sub APIs for\nMESSAGES collection.",
-    values: [
-      { name: "DOCUMENTS", number: "0", description: "" },
-      { name: "MESSAGES", number: "1", description: "" },
     ],
   }}
 />

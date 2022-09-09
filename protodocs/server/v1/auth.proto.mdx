@@ -13,6 +13,181 @@ _**package** tigrisdata.auth.v1_
 
 ---
 
+## Services
+
+### `Auth`
+
+#### `getAccessToken`
+
+<ProtoServiceMethod
+  key={"getAccessToken-0"}
+  method={{
+    name: "getAccessToken",
+    description:
+      "Gets an access token.\nsupports two grant_type: [refresh_token, client_credentials]",
+    requestType: "GetAccessTokenRequest",
+    requestLongType: "GetAccessTokenRequest",
+    requestFullType: "tigrisdata.auth.v1.GetAccessTokenRequest",
+    requestStreaming: false,
+    responseType: "GetAccessTokenResponse",
+    responseLongType: "GetAccessTokenResponse",
+    responseFullType: "tigrisdata.auth.v1.GetAccessTokenResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [{ method: "POST", pattern: "/auth/token", body: "*" }],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#getaccesstokenrequest",
+    responseTypeLink: "/protodocs/server/v1/auth.proto#getaccesstokenresponse",
+  }}
+/>
+
+#### `createApplication`
+
+<ProtoServiceMethod
+  key={"createApplication-1"}
+  method={{
+    name: "createApplication",
+    description: "Create an application.",
+    requestType: "CreateApplicationRequest",
+    requestLongType: "CreateApplicationRequest",
+    requestFullType: "tigrisdata.auth.v1.CreateApplicationRequest",
+    requestStreaming: false,
+    responseType: "CreateApplicationResponse",
+    responseLongType: "CreateApplicationResponse",
+    responseFullType: "tigrisdata.auth.v1.CreateApplicationResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/create", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#createapplicationrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#createapplicationresponse",
+  }}
+/>
+
+#### `updateApplication`
+
+<ProtoServiceMethod
+  key={"updateApplication-2"}
+  method={{
+    name: "updateApplication",
+    description: "Update an application.",
+    requestType: "UpdateApplicationRequest",
+    requestLongType: "UpdateApplicationRequest",
+    requestFullType: "tigrisdata.auth.v1.UpdateApplicationRequest",
+    requestStreaming: false,
+    responseType: "UpdateApplicationResponse",
+    responseLongType: "UpdateApplicationResponse",
+    responseFullType: "tigrisdata.auth.v1.UpdateApplicationResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/update", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#updateapplicationrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#updateapplicationresponse",
+  }}
+/>
+
+#### `deleteApplication`
+
+<ProtoServiceMethod
+  key={"deleteApplication-3"}
+  method={{
+    name: "deleteApplication",
+    description: "Delete an application.",
+    requestType: "DeleteApplicationsRequest",
+    requestLongType: "DeleteApplicationsRequest",
+    requestFullType: "tigrisdata.auth.v1.DeleteApplicationsRequest",
+    requestStreaming: false,
+    responseType: "DeleteApplicationResponse",
+    responseLongType: "DeleteApplicationResponse",
+    responseFullType: "tigrisdata.auth.v1.DeleteApplicationResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "DELETE", pattern: "/auth/applications/delete", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink:
+      "/protodocs/server/v1/auth.proto#deleteapplicationsrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#deleteapplicationresponse",
+  }}
+/>
+
+#### `listApplications`
+
+<ProtoServiceMethod
+  key={"listApplications-4"}
+  method={{
+    name: "listApplications",
+    description: "Lists all application visible to requesting actor.",
+    requestType: "ListApplicationsRequest",
+    requestLongType: "ListApplicationsRequest",
+    requestFullType: "tigrisdata.auth.v1.ListApplicationsRequest",
+    requestStreaming: false,
+    responseType: "ListApplicationsResponse",
+    responseLongType: "ListApplicationsResponse",
+    responseFullType: "tigrisdata.auth.v1.ListApplicationsResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/list", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink: "/protodocs/server/v1/auth.proto#listapplicationsrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#listapplicationsresponse",
+  }}
+/>
+
+#### `rotateApplicationSecret`
+
+<ProtoServiceMethod
+  key={"rotateApplicationSecret-5"}
+  method={{
+    name: "rotateApplicationSecret",
+    description:
+      "RotateApplicationRequest returns the new application with rotated secret",
+    requestType: "RotateApplicationSecretRequest",
+    requestLongType: "RotateApplicationSecretRequest",
+    requestFullType: "tigrisdata.auth.v1.RotateApplicationSecretRequest",
+    requestStreaming: false,
+    responseType: "RotateApplicationSecretResponse",
+    responseLongType: "RotateApplicationSecretResponse",
+    responseFullType: "tigrisdata.auth.v1.RotateApplicationSecretResponse",
+    responseStreaming: false,
+    options: {
+      "google.api.http": {
+        rules: [
+          { method: "POST", pattern: "/auth/applications/rotate", body: "*" },
+        ],
+      },
+    },
+    requestTypeLink:
+      "/protodocs/server/v1/auth.proto#rotateapplicationsecretrequest",
+    responseTypeLink:
+      "/protodocs/server/v1/auth.proto#rotateapplicationsecretresponse",
+  }}
+/>
+
+---
+
 ## Messages
 
 ### `Application`
@@ -101,6 +276,30 @@ _**package** tigrisdata.auth.v1_
         oneofdecl: "",
         defaultValue: "",
       },
+      {
+        name: "updated_at",
+        description: "Updated at",
+        label: "",
+        type: "int64",
+        longType: "int64",
+        fullType: "int64",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "updated_by",
+        description: "Updated by",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
     ],
   }}
 />
@@ -163,7 +362,7 @@ _**package** tigrisdata.auth.v1_
     fields: [
       {
         name: "created_application",
-        description: "",
+        description: "created app object",
         label: "",
         type: "Application",
         longType: "Application",
@@ -195,7 +394,7 @@ _**package** tigrisdata.auth.v1_
     fields: [
       {
         name: "deleted",
-        description: "",
+        description: "status flag for delete operation",
         label: "",
         type: "bool",
         longType: "bool",
@@ -225,7 +424,7 @@ _**package** tigrisdata.auth.v1_
     fields: [
       {
         name: "id",
-        description: "",
+        description: "application id",
         label: "",
         type: "string",
         longType: "string",
@@ -463,6 +662,91 @@ _**package** tigrisdata.auth.v1_
   }}
 />
 
+### `UpdateApplicationRequest`
+
+<ProtoMessage
+  key={11}
+  message={{
+    name: "UpdateApplicationRequest",
+    longName: "UpdateApplicationRequest",
+    fullName: "tigrisdata.auth.v1.UpdateApplicationRequest",
+    description: "Request creation of user application",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "id",
+        description: "application id",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "name",
+        description: "A new human readable app name",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+      {
+        name: "description",
+        description: "A new human readable app description",
+        label: "",
+        type: "string",
+        longType: "string",
+        fullType: "string",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+      },
+    ],
+  }}
+/>
+
+### `UpdateApplicationResponse`
+
+<ProtoMessage
+  key={12}
+  message={{
+    name: "UpdateApplicationResponse",
+    longName: "UpdateApplicationResponse",
+    fullName: "tigrisdata.auth.v1.UpdateApplicationResponse",
+    description: "CreateApplication returns created application",
+    hasExtensions: false,
+    hasFields: true,
+    hasOneofs: false,
+    extensions: [],
+    fields: [
+      {
+        name: "updated_application",
+        description: "updated application object",
+        label: "",
+        type: "Application",
+        longType: "Application",
+        fullType: "tigrisdata.auth.v1.Application",
+        ismap: false,
+        isoneof: false,
+        oneofdecl: "",
+        defaultValue: "",
+        typeLink: "/protodocs/server/v1/auth.proto#application",
+      },
+    ],
+  }}
+/>
+
 ---
 
 ## Enums
@@ -480,153 +764,6 @@ _**package** tigrisdata.auth.v1_
       { name: "REFRESH_TOKEN", number: "0", description: "" },
       { name: "CLIENT_CREDENTIALS", number: "1", description: "" },
     ],
-  }}
-/>
-
----
-
-## Services
-
-### `Auth`
-
-#### `getAccessToken`
-
-<ProtoServiceMethod
-  key={"getAccessToken-0"}
-  method={{
-    name: "getAccessToken",
-    description:
-      "Gets an access token.\nsupports two grant_type: [refresh_token, client_credentials]",
-    requestType: "GetAccessTokenRequest",
-    requestLongType: "GetAccessTokenRequest",
-    requestFullType: "tigrisdata.auth.v1.GetAccessTokenRequest",
-    requestStreaming: false,
-    responseType: "GetAccessTokenResponse",
-    responseLongType: "GetAccessTokenResponse",
-    responseFullType: "tigrisdata.auth.v1.GetAccessTokenResponse",
-    responseStreaming: false,
-    options: {
-      "google.api.http": {
-        rules: [{ method: "POST", pattern: "/auth/token", body: "*" }],
-      },
-    },
-    requestTypeLink: "/protodocs/server/v1/auth.proto#getaccesstokenrequest",
-    responseTypeLink: "/protodocs/server/v1/auth.proto#getaccesstokenresponse",
-  }}
-/>
-
-#### `createApplication`
-
-<ProtoServiceMethod
-  key={"createApplication-1"}
-  method={{
-    name: "createApplication",
-    description: "Create an application.",
-    requestType: "CreateApplicationRequest",
-    requestLongType: "CreateApplicationRequest",
-    requestFullType: "tigrisdata.auth.v1.CreateApplicationRequest",
-    requestStreaming: false,
-    responseType: "CreateApplicationResponse",
-    responseLongType: "CreateApplicationResponse",
-    responseFullType: "tigrisdata.auth.v1.CreateApplicationResponse",
-    responseStreaming: false,
-    options: {
-      "google.api.http": {
-        rules: [
-          { method: "POST", pattern: "/auth/applications/create", body: "*" },
-        ],
-      },
-    },
-    requestTypeLink: "/protodocs/server/v1/auth.proto#createapplicationrequest",
-    responseTypeLink:
-      "/protodocs/server/v1/auth.proto#createapplicationresponse",
-  }}
-/>
-
-#### `deleteApplication`
-
-<ProtoServiceMethod
-  key={"deleteApplication-2"}
-  method={{
-    name: "deleteApplication",
-    description: "Delete an application.",
-    requestType: "DeleteApplicationsRequest",
-    requestLongType: "DeleteApplicationsRequest",
-    requestFullType: "tigrisdata.auth.v1.DeleteApplicationsRequest",
-    requestStreaming: false,
-    responseType: "DeleteApplicationResponse",
-    responseLongType: "DeleteApplicationResponse",
-    responseFullType: "tigrisdata.auth.v1.DeleteApplicationResponse",
-    responseStreaming: false,
-    options: {
-      "google.api.http": {
-        rules: [
-          { method: "DELETE", pattern: "/auth/applications/delete", body: "*" },
-        ],
-      },
-    },
-    requestTypeLink:
-      "/protodocs/server/v1/auth.proto#deleteapplicationsrequest",
-    responseTypeLink:
-      "/protodocs/server/v1/auth.proto#deleteapplicationresponse",
-  }}
-/>
-
-#### `listApplications`
-
-<ProtoServiceMethod
-  key={"listApplications-3"}
-  method={{
-    name: "listApplications",
-    description: "Lists all application visible to requesting actor.",
-    requestType: "ListApplicationsRequest",
-    requestLongType: "ListApplicationsRequest",
-    requestFullType: "tigrisdata.auth.v1.ListApplicationsRequest",
-    requestStreaming: false,
-    responseType: "ListApplicationsResponse",
-    responseLongType: "ListApplicationsResponse",
-    responseFullType: "tigrisdata.auth.v1.ListApplicationsResponse",
-    responseStreaming: false,
-    options: {
-      "google.api.http": {
-        rules: [
-          { method: "POST", pattern: "/auth/applications/list", body: "*" },
-        ],
-      },
-    },
-    requestTypeLink: "/protodocs/server/v1/auth.proto#listapplicationsrequest",
-    responseTypeLink:
-      "/protodocs/server/v1/auth.proto#listapplicationsresponse",
-  }}
-/>
-
-#### `rotateApplicationSecret`
-
-<ProtoServiceMethod
-  key={"rotateApplicationSecret-4"}
-  method={{
-    name: "rotateApplicationSecret",
-    description:
-      "RotateApplicationRequest returns the new application with rotated secret",
-    requestType: "RotateApplicationSecretRequest",
-    requestLongType: "RotateApplicationSecretRequest",
-    requestFullType: "tigrisdata.auth.v1.RotateApplicationSecretRequest",
-    requestStreaming: false,
-    responseType: "RotateApplicationSecretResponse",
-    responseLongType: "RotateApplicationSecretResponse",
-    responseFullType: "tigrisdata.auth.v1.RotateApplicationSecretResponse",
-    responseStreaming: false,
-    options: {
-      "google.api.http": {
-        rules: [
-          { method: "POST", pattern: "/auth/applications/rotate", body: "*" },
-        ],
-      },
-    },
-    requestTypeLink:
-      "/protodocs/server/v1/auth.proto#rotateapplicationsecretrequest",
-    responseTypeLink:
-      "/protodocs/server/v1/auth.proto#rotateapplicationsecretresponse",
   }}
 />
 

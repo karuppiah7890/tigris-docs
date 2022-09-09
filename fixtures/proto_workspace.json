@@ -116,24 +116,6 @@
               "description": "405"
             }
           ]
-        },
-        {
-          "name": "CollectionType",
-          "longName": "CollectionType",
-          "fullName": "tigrisdata.v1.CollectionType",
-          "description": "The type of this collection. Tigris supports Document based APIs for DOCUMENTS collection and Pub/Sub APIs for\nMESSAGES collection.",
-          "values": [
-            {
-              "name": "DOCUMENTS",
-              "number": "0",
-              "description": ""
-            },
-            {
-              "name": "MESSAGES",
-              "number": "1",
-              "description": ""
-            }
-          ]
         }
       ],
       "extensions": [],
@@ -300,23 +282,10 @@
           "fullName": "tigrisdata.v1.CollectionMetadata",
           "description": "",
           "hasExtensions": false,
-          "hasFields": true,
+          "hasFields": false,
           "hasOneofs": false,
           "extensions": [],
-          "fields": [
-            {
-              "name": "type",
-              "description": "",
-              "label": "",
-              "type": "CollectionType",
-              "longType": "CollectionType",
-              "fullType": "tigrisdata.v1.CollectionType",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
+          "fields": []
         },
         {
           "name": "CollectionOptions",
@@ -514,18 +483,6 @@
               "type": "CollectionOptions",
               "longType": "CollectionOptions",
               "fullType": "tigrisdata.v1.CollectionOptions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "type",
-              "description": "Type of the collection.\n\u003cli\u003e DOCUMENTS: Support CRUD APIs.\n\u003cli\u003e MESSAGES: Supports Pub/Sub APIs.",
-              "label": "",
-              "type": "CollectionType",
-              "longType": "CollectionType",
-              "fullType": "tigrisdata.v1.CollectionType",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -3950,6 +3907,30 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "Updated at",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_by",
+              "description": "Updated by",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -4001,7 +3982,7 @@
           "fields": [
             {
               "name": "created_application",
-              "description": "",
+              "description": "created app object",
               "label": "",
               "type": "Application",
               "longType": "Application",
@@ -4025,7 +4006,7 @@
           "fields": [
             {
               "name": "deleted",
-              "description": "",
+              "description": "status flag for delete operation",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -4049,7 +4030,7 @@
           "fields": [
             {
               "name": "id",
-              "description": "",
+              "description": "application id",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4239,6 +4220,78 @@
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "UpdateApplicationRequest",
+          "longName": "UpdateApplicationRequest",
+          "fullName": "tigrisdata.auth.v1.UpdateApplicationRequest",
+          "description": "Request creation of user application",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "application id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "A new human readable app name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "A new human readable app description",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateApplicationResponse",
+          "longName": "UpdateApplicationResponse",
+          "fullName": "tigrisdata.auth.v1.UpdateApplicationResponse",
+          "description": "CreateApplication returns created application",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updated_application",
+              "description": "updated application object",
+              "label": "",
+              "type": "Application",
+              "longType": "Application",
+              "fullType": "tigrisdata.auth.v1.Application",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
         }
       ],
       "services": [
@@ -4288,6 +4341,29 @@
                     {
                       "method": "POST",
                       "pattern": "/auth/applications/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "updateApplication",
+              "description": "Update an application.",
+              "requestType": "UpdateApplicationRequest",
+              "requestLongType": "UpdateApplicationRequest",
+              "requestFullType": "tigrisdata.auth.v1.UpdateApplicationRequest",
+              "requestStreaming": false,
+              "responseType": "UpdateApplicationResponse",
+              "responseLongType": "UpdateApplicationResponse",
+              "responseFullType": "tigrisdata.auth.v1.UpdateApplicationResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/auth/applications/update",
                       "body": "*"
                     }
                   ]
