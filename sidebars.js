@@ -23,7 +23,7 @@ const sidebars = {
         type: "doc",
         id: "overview/intro",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "overview/concepts",
         "overview/datamodel",
@@ -175,9 +175,9 @@ const sidebars = {
       },
       collapsed: true,
       items: [
+        "tutorials/rest-webapp-typescript",
         "tutorials/rest-webapp-go",
         "tutorials/rest-webapp-java",
-        "tutorials/rest-webapp-typescript",
       ],
     },
     {

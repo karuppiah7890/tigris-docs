@@ -1,32 +1,51 @@
 # TypeScript RESTful Web App
 
-In this guide we will build a web application that accepts HTTP requests to
-store and retrieve data in the Tigris backend. The application uses
-[Express](https://expressjs.com/) framework.
+In this guide we will build a RESTful web application that demonstrates the
+following features of Tigris:
 
-This is a simplified implementation of an e-commerce use case - this is just
-one of many use cases for how you could interact with Tigris!
+- Flexible Document Model
+- Global Search
+- Automatic Indexing
+- Event Streaming
+- Transactions
+- Simple APIs
 
-Now let's get started locally with Tigris.
+This tutorial would provide you with a starting point towards building a
+feature rich web application.
 
-## Startup Tigris locally via Docker
+:::info
+
+The application uses the [Express](https://expressjs.com/) framework.
+
+:::
+
+Now let's get started with Tigris.
+
+## Getting Started
+
+Clone the application code repository
+
+```shell
+git clone https://github.com/tigrisdata/tigris-starter-ts.git
+```
+
+And navigate to the directory created
+
+```shell
+cd tigris-starter-ts
+```
+
+### Startup Tigris local development environment
 
 import StartupLocally from "../includes/_startup_tigris_locally.mdx";
 
 <StartupLocally />
 
-## Setting up and starting the application
-
-### Clone the starter application code repository
-
-```shell
-git clone https://github.com/tigrisdata/tigris-starter-ts.git
-cd tigris-starter-ts
-```
+## Starting the application
 
 ### Build the project
 
-The next step is to build project.
+The next step is to build project
 
 ```shell
 npm run build
@@ -38,87 +57,126 @@ npm run build
 npm run dev
 ```
 
-Note: this is running with hot-reloading on.
+## Using the application
 
-:::info
-A successful launch of the application will see log entry
+### Event streaming
+
+Every time a new user is created we publish a new event. Take a look at the
+code inside [src/controllers/user-controller.ts](https://github.com/tigrisdata/tigris-starter-ts/blob/main/src/controllers/user-controller.ts#L90).
+
+Let's subscribe to this event stream. Open a new terminal window and run the
+following command
 
 ```shell
-[1] ⚡️[server]: Server is running at http://localhost:8080
+curl -N -X POST localhost:8080/users/subscribe
 ```
 
-:::
+Keep this terminal window open so that you can watch the events live. Use a
+separate terminal window for the remainder of the tutorial.
 
-## Testing the application
+### CRUD operations
 
-Let's create a user and a product.
+Tigris allows you to quickly add data and easily retrieve or edit that data
+through simple and intuitive APIs. Continue using your preferred programming
+language, there is no new database query language to learn.
 
-### Create a User
+Take a look at the source files inside
+[src/controllers](https://github.com/tigrisdata/tigris-starter-ts/tree/main/src/controllers)
+to see how Tigris CRUD APIs are used.
+
+Let's create user and product records, and then read them back.
+
+#### Insert users
+
+Run following commands to create two user records
 
 ```shell
-curl http://localhost:8080/users/create \
+curl localhost:8080/users/create \
     -X POST \
     -H 'Content-Type: application/json' \
     -d '{
-        "name": "Jania McGrory",
-        "balance": 6045.7
-      }'
+          "name":"John",
+          "balance":100
+        }'
 ```
-
-### Create Products
 
 ```shell
-curl http://localhost:8080/products/create \
+curl localhost:8080/users/create \
     -X POST \
     -H 'Content-Type: application/json' \
     -d '{
-        "name": "Vanilla Beans",
-        "quantity": 6358,
-        "price": 4.39
-      }'
-
-curl http://localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{
-        "name": "Avocado",
-        "quantity": 5,
-        "price": 10
-      }'
-
-curl http://localhost:8080/products/create \
-    -X POST \
-    -H 'Content-Type: application/json' \
-    -d '{
-        "name": "Avocado Oil",
-        "quantity": 15,
-        "price": 80
-      }'
+          "name":"Jane",
+          "balance":200
+        }'
 ```
 
-### Read from db
+Now if you go back to the terminal window where you ran the
+`curl .... subscribe` command you will notice two events displayed.
 
-Now go ahead and confirm that the data has been persisted in DB
+#### Insert products
+
+Run the following commands to insert some product records
 
 ```shell
-curl http://localhost:8080/users/1
-curl http://localhost:8080/products/1
-curl http://localhost:8080/products/2
-curl http://localhost:8080/products/3
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+          "name":"Avocado",
+          "price":10,
+          "quantity":5
+        }'
 ```
 
-### Search
+```shell
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+          "name":"Avocado Oil",
+          "price":80,
+          "quantity":15
+        }'
+```
 
-Let's search for users
+```shell
+curl localhost:8080/products/create \
+    -X POST \
+    -H 'Content-Type: application/json' \
+    -d '{
+          "name":"Gold",
+          "price":3000,
+          "quantity":1
+        }'
+```
+
+#### Read the records
+
+Now go ahead and confirm that the data has been persisted
+
+```shell
+curl http://localhost:8080/users
+```
+
+```shell
+curl http://localhost:8080/products
+```
+
+### Global search
+
+Tigris comes with an integrated search engine that eliminates the need to
+run a separate search platform and synchronize data.
+
+Let's search for users named "Jane"
 
 ```shell
 curl http://localhost:8080/users/search \
     -X POST \
     -H 'Content-Type: application/json' \
-    -d '{"q": "john"}'
+    -d '{"q": "jane"}'
 ```
 
-Or search for products named "avocado" and price less than 50
+Or, search for products named "avocado" and price less than 50
 
 ```shell
 curl localhost:8080/products/search \
@@ -131,30 +189,24 @@ curl localhost:8080/products/search \
       }'
 ```
 
-## Extend the application
+## Extending the application
 
-Now let's set up a HTTP handler that will leverage Tigris to insert data
-into the _orders_ collection while updating the data in the _users_ and
-_products_ collections.
-
-:::info
 One of the main features of Tigris is the ability to perform ACID
-transactions. We will perform the insert and update operations in a
-transaction ensuring that the collections are consistently updated.
-
-:::
+transactions. Now let's set up a HTTP handler that will perform the insert
+and update operations in a transaction ensuring that the collections are
+consistently updated.
 
 Open the project in your favorite IDE and add the following to
 `src/controllers/order-controller.ts`
 
-**Additional Imports**
+#### Additional imports
 
 ```typescript title="order-controller.ts"
 import { User } from "../models/user";
 import { Product } from "../models/product";
 ```
 
-**HTTP handler**
+#### New HTTP handler
 
 ```typescript title="order-controller.ts"
 public createOrder = async (req: Request, res: Response) => {
@@ -237,34 +289,45 @@ public createOrder = async (req: Request, res: Response) => {
 };
 ```
 
-**Configure Route**
-Add below in `OrderController.setupRoutes` to configure HTTP routing.
+#### Configure HTTP route
 
-```typescript
+Add the following new route to the `OrderController.setupRoutes` function
+
+```typescript title="order-controller.ts"
 this.router.post(`${this.path}/:userId/:productId/:quantity`, this.createOrder);
 ```
 
-Use the newly added HTTP endpoint to create an
-order.
+Now that we have set up the new HTTP route, let's use it to create a new
+order record.
 
-### Create an Order
+#### Insert an order
+
+Replace `{user-id}`, and `{product-id}` below with IDs of the records you
+see when running the commands in the [Read the records](#read-the-records)
+section.
 
 ```shell
-curl -X 'POST' 'http://localhost:8080/order/{user-id}/{product-id}/20'
+curl -X 'POST' 'http://localhost:8080/order/{user-id}/{product-id}/4'
 ```
 
-Note: The commands to create user and product will output the generated ID.
+#### Read all order records
+
+Now go ahead and confirm that the order record has been persisted
+
+```shell
+curl http://localhost:8080/orders
+```
 
 ## Understanding what just happened
 
-The starter project includes the TypeScript Tigris data container interfaces
-and their corresponding schema definition located at `src/models/`.
-
 When you launched the application, code located in `App.initializeTigris`
-created the database and registered the schema with the Tigris backend based
-for these 3 models (User, Product, Order).
+created a database named **tigris_starter_ts**. It then created the
+collections for storing the documents **users**, **products**, **orders**,
+and **user_events** for storing the events. All of this was done
+instantaneously in true serverless fashion.
 
-You wrote a new HTTP handler that used Tigris' transaction feature. The
-transaction involved reading data, validating that certain conditions around
-the product quantity and user's balance are met, and finally inserting a new
-order together with updating the users and products collections.
+The model definitions for these collections are located
+inside [src/models/](https://github.com/tigrisdata/tigris-starter-ts/tree/main/src/models).
+
+You also leveraged the event streaming and search features through code
+without having to setup any complicated infrastructure.
