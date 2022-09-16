@@ -1,0 +1,18 @@
+## Request Specification
+
+| HTTP API                                                                                                       | HTTP Method | URL Params                                          | Resource                                                      |
+| -------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------- | ------------------------------------------------------------- |
+| [PUBLISH](https://docs.tigrisdata.com/httpdocs/server/v1/api#tag/Event-Streaming/operation/Tigris_Publish)     | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/messages/publish`   |
+| [SUBSCRIBE](https://docs.tigrisdata.com/httpdocs/server/v1/api#tag/Event-Streaming/operation/Tigris_Subscribe) | POST        | <li> Database Name </li> <li> Collection Name </li> | `/databases/{db}/collections/{collection}/messages/subscribe` |
+
+### Request Payload for Publish
+
+```shell
+{
+  "messages": [{msg1}, {msg2}...]
+}
+```
+
+Understanding the request payload:
+
+- The **messages** represent an array of json messages that you want to publish.

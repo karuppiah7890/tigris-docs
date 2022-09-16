@@ -215,7 +215,7 @@ _**package** tigrisdata.admin.v1_
         rules: [
           {
             method: "POST",
-            pattern: "/admin/v1/namespaces/{name}/create",
+            pattern: "/v1/admin/namespaces/{name}/create",
             body: "*",
           },
         ],
@@ -244,7 +244,7 @@ _**package** tigrisdata.admin.v1_
     responseStreaming: false,
     options: {
       "google.api.http": {
-        rules: [{ method: "POST", pattern: "/admin/v1/namespaces/list" }],
+        rules: [{ method: "POST", pattern: "/v1/admin/namespaces/list" }],
       },
     },
     requestTypeLink: "/protodocs/server/v1/admin.proto#listnamespacesrequest",

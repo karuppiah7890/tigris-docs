@@ -1,0 +1,43 @@
+import EventSpecs from "./_event-specs.template.mdx";
+import CodeBlock from "@theme/CodeBlock";
+import { AsyncCodeBlock } from "./commons";
+
+Tigris has built-in event streaming support. To subscribe and publish to a topic, you can use Publish and Subscribe API.
+
+<div>{props.loadOverview && <InsertSpecs />}</div>
+
+### Example Topic
+
+As we have seen in other examples an e-commerce website collection catalog. Now, let's say you want to have an order
+topic where an event is fired when an order is placed. The first step is to set up this topic object.
+
+<CodeBlock language={props.codeLang}>{props.createCollection}</CodeBlock>
+
+:::note
+The collection type is set as "messages".
+:::
+
+### Subscribe to a Topic
+
+Subscribe API can be used to subscribe to a topic. Subscribe to this topic in a different terminal like below.
+
+<CodeBlock language={props.codeLang}>{props.simpleSubscribe}</CodeBlock>
+
+### Publish a Single Message
+
+Publish API can be used to publish one or more messages to the topic.
+
+<CodeBlock language={props.codeLang}>{props.simplePublish}</CodeBlock>
+
+### Publish Many Messages
+
+Similar to a single message, many messages can be published in a single call.
+
+<CodeBlock language={props.codeLang}>{props.batchPublish}</CodeBlock>
+
+### Subscribe to only messages that you need
+
+You can also send a filter during the Subscribe request that way you'll only receive events that match the filter.
+Try this in a different terminal and send some orders like above that have status set as `canceled`.
+
+<CodeBlock language={props.codeLang}>{props.filterSubscribe}</CodeBlock>

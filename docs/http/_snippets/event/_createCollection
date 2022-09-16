@@ -1,0 +1,20 @@
+curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/order_events/createOrUpdate' \
+-X POST \
+-H 'Content-Type: application/json' \
+-d '{
+  "schema":{
+    "title":"order_events",
+    "properties":{
+      "order_id":{
+        "type":"integer",
+      },
+      "order_name":{
+        "type":"string"
+      },
+      "order_status":{
+        "type":"string"
+      }
+    },
+    "collection_type": "messages"
+  }
+}'

@@ -67,6 +67,7 @@ const sidebars = {
         "http/delete",
         "http/query",
         "http/search",
+        "http/event_streaming",
       ],
     },
     {

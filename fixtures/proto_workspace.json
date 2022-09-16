@@ -181,6 +181,30 @@
           ]
         },
         {
+          "name": "Collation",
+          "longName": "Collation",
+          "fullName": "tigrisdata.v1.Collation",
+          "description": "A collation allows you to specify string comparison rules. Default is case-sensitive, to override it you can set\nthis option to 'ci' that will apply to all the text fields in the filters.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "case",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "CollectionDescription",
           "longName": "CollectionDescription",
           "fullName": "tigrisdata.v1.CollectionDescription",
@@ -672,6 +696,18 @@
               "type": "WriteOptions",
               "longType": "WriteOptions",
               "fullType": "tigrisdata.v1.WriteOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collation",
+              "description": "A collation allows you to specify string comparison rules. Default is case-sensitive, to override it you can set\nthis option to 'ci' that will apply to all the text fields in the filters.",
+              "label": "",
+              "type": "Collation",
+              "longType": "Collation",
+              "fullType": "tigrisdata.v1.Collation",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1828,7 +1864,7 @@
             },
             {
               "name": "filter",
-              "description": "Returns documents matching this filter. A filter can simply be a key, value pair where a key is the field name and the value would be the value for this field.\nTigris also allows complex filtering by passing logical expressions. Logical filters are applied on two or more fields using `$or` and `$and`.\nA few examples of filters:\n\u003cli\u003e To read a user document where the id has a value 1: ```{\"id\": 1 }```\n\u003cli\u003e To read all the user documents where the key \"id\" has a value 1 or 2 or 3: `{\"$or\": [{\"id\": 1}, {\"id\": 2}, {\"id\": 3}]}`\nThe detailed documentation of the filter is \u003ca href=\"https://docs.tigrisdata.com/overview/query#specification-1\" title=\"here\"\u003ehere\u003c/a\u003e.",
+              "description": "Returns documents matching this filter. A filter can simply be a key, value pair where a key is the field name and the value would be the value for this field.\nTigris also allows complex filtering by passing logical expressions. Logical filters are applied on two or more fields using `$or` and `$and`.\nA few examples of filters:\n\u003cli\u003e To read a user document where the id has a value 1: ```{\"id\": 1 }```\n\u003cli\u003e To read all the user documents where the key \"id\" has a value 1 or 2 or 3: `{\"$or\": [{\"id\": 1}, {\"id\": 2}, {\"id\": 3}]}`\nFilter allows setting collation on an individual field level. To set collation for all the fields see options.\nThe detailed documentation of the filter is \u003ca href=\"https://docs.tigrisdata.com/overview/query#specification-1\" title=\"here\"\u003ehere\u003c/a\u003e.",
               "label": "",
               "type": "bytes",
               "longType": "bytes",
@@ -1905,6 +1941,18 @@
               "type": "bytes",
               "longType": "bytes",
               "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collation",
+              "description": "A collation allows you to specify string comparison rules. Default is case-sensitive, to override it you can set\nthis option to 'ci' that will apply to all the text fields in the filters.",
+              "label": "",
+              "type": "Collation",
+              "longType": "Collation",
+              "fullType": "tigrisdata.v1.Collation",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -2509,6 +2557,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "collation",
+              "description": "A collation allows you to specify string comparison rules. Default is case-sensitive, to override it you can set\nthis option to 'ci' that will apply to all the text fields in the filters.",
+              "label": "",
+              "type": "Collation",
+              "longType": "Collation",
+              "fullType": "tigrisdata.v1.Collation",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -2749,6 +2809,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "filter",
+              "description": "Filter allows you to subscribe only for events that you need. Filter syntax is similar to `ReadRequest.filter`.",
+              "label": "",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -2940,6 +3012,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "collation",
+              "description": "A collation allows you to specify string comparison rules. Default is case-sensitive, to override it you can set\nthis option to 'ci' that will apply to all the text fields in the filters.",
+              "label": "",
+              "type": "Collation",
+              "longType": "Collation",
+              "fullType": "tigrisdata.v1.Collation",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -3026,7 +3110,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/transactions/begin",
+                      "pattern": "/v1/databases/{db}/transactions/begin",
                       "body": "*"
                     }
                   ]
@@ -3049,7 +3133,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/transactions/commit",
+                      "pattern": "/v1/databases/{db}/transactions/commit",
                       "body": "*"
                     }
                   ]
@@ -3072,7 +3156,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/transactions/rollback",
+                      "pattern": "/v1/databases/{db}/transactions/rollback",
                       "body": "*"
                     }
                   ]
@@ -3095,7 +3179,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/insert",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/insert",
                       "body": "*"
                     }
                   ]
@@ -3118,7 +3202,7 @@
                   "rules": [
                     {
                       "method": "PUT",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/replace",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/replace",
                       "body": "*"
                     }
                   ]
@@ -3141,7 +3225,7 @@
                   "rules": [
                     {
                       "method": "DELETE",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/delete",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/delete",
                       "body": "*"
                     }
                   ]
@@ -3164,7 +3248,7 @@
                   "rules": [
                     {
                       "method": "PUT",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/update",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/update",
                       "body": "*"
                     }
                   ]
@@ -3187,7 +3271,12 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/read",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/read",
+                      "body": "*"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/read",
                       "body": "*"
                     },
                     {
@@ -3215,7 +3304,12 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/documents/search",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/search",
+                      "body": "*"
+                    },
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/search",
                       "body": "*"
                     },
                     {
@@ -3243,7 +3337,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/createOrUpdate",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/createOrUpdate",
                       "body": "*"
                     }
                   ]
@@ -3266,7 +3360,7 @@
                   "rules": [
                     {
                       "method": "DELETE",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/drop",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/drop",
                       "body": "*"
                     }
                   ]
@@ -3289,7 +3383,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/list"
+                      "pattern": "/v1/databases/list"
                     }
                   ]
                 }
@@ -3311,7 +3405,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/list",
+                      "pattern": "/v1/databases/{db}/collections/list",
                       "body": "*"
                     }
                   ]
@@ -3334,7 +3428,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/create",
+                      "pattern": "/v1/databases/{db}/create",
                       "body": "*"
                     }
                   ]
@@ -3357,7 +3451,7 @@
                   "rules": [
                     {
                       "method": "DELETE",
-                      "pattern": "/api/v1/databases/{db}/drop",
+                      "pattern": "/v1/databases/{db}/drop",
                       "body": "*"
                     }
                   ]
@@ -3380,7 +3474,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/describe",
+                      "pattern": "/v1/databases/{db}/describe",
                       "body": "*"
                     }
                   ]
@@ -3403,7 +3497,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/describe",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/describe",
                       "body": "*"
                     }
                   ]
@@ -3426,7 +3520,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/events",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/events",
                       "body": "*"
                     }
                   ]
@@ -3449,7 +3543,7 @@
                   "rules": [
                     {
                       "method": "GET",
-                      "pattern": "/api/v1/info"
+                      "pattern": "/v1/info"
                     }
                   ]
                 }
@@ -3471,7 +3565,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/messages/publish",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/publish",
                       "body": "*"
                     }
                   ]
@@ -3494,7 +3588,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/api/v1/databases/{db}/collections/{collection}/messages/subscribe",
+                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/subscribe",
                       "body": "*"
                     }
                   ]
@@ -3683,7 +3777,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/admin/v1/namespaces/{name}/create",
+                      "pattern": "/v1/admin/namespaces/{name}/create",
                       "body": "*"
                     }
                   ]
@@ -3706,7 +3800,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/admin/v1/namespaces/list"
+                      "pattern": "/v1/admin/namespaces/list"
                     }
                   ]
                 }
@@ -3786,7 +3880,7 @@
                   "rules": [
                     {
                       "method": "GET",
-                      "pattern": "/api/v1/health"
+                      "pattern": "/v1/health"
                     }
                   ]
                 }
@@ -4135,85 +4229,14 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ListApplicationsRequest",
-          "longName": "ListApplicationsRequest",
-          "fullName": "tigrisdata.auth.v1.ListApplicationsRequest",
-          "description": "Request listing of all the application those are visible to requesting actor",
-          "hasExtensions": false,
-          "hasFields": false,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": []
-        },
-        {
-          "name": "ListApplicationsResponse",
-          "longName": "ListApplicationsResponse",
-          "fullName": "tigrisdata.auth.v1.ListApplicationsResponse",
-          "description": "ListApplication returns one or more visible application to user",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
+            },
             {
-              "name": "applications",
-              "description": "",
-              "label": "repeated",
-              "type": "Application",
-              "longType": "Application",
-              "fullType": "tigrisdata.auth.v1.Application",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "RotateApplicationSecretRequest",
-          "longName": "RotateApplicationSecretRequest",
-          "fullName": "tigrisdata.auth.v1.RotateApplicationSecretRequest",
-          "description": "Request rotation of an application secret",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "id",
-              "description": "",
+              "name": "expires_in",
+              "description": "Access token expiration timeout in seconds",
               "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "RotateApplicationSecretResponse",
-          "longName": "RotateApplicationSecretResponse",
-          "fullName": "tigrisdata.auth.v1.RotateApplicationSecretResponse",
-          "description": "RotateApplicationRequest returns the new application with rotated secret",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "application",
-              "description": "",
-              "label": "",
-              "type": "Application",
-              "longType": "Application",
-              "fullType": "tigrisdata.auth.v1.Application",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -4432,7 +4455,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/auth/applications/rotate",
+                      "pattern": "/v1/auth/token",
                       "body": "*"
                     }
                   ]
@@ -4958,7 +4981,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/observability/v1/metrics/timeseries/query",
+                      "pattern": "/v1/observability/metrics/timeseries/query",
                       "body": "*"
                     }
                   ]
