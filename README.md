@@ -60,7 +60,7 @@ npm run generate
 
 Move `Services` section before `Messages` section in protodocs/server/v1/api.proto.mdx
 
-# # Code Quality
+# Code Quality
 
 ## 1. Linting
 
