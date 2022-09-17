@@ -8,15 +8,18 @@ less prone to errors, making them an essential part of application architecture.
 For Tigris, schemas are an integral part and form the basis for our declarative
 approach to database infrastructure.
 
+## Flexible Document Model
+
 Tigris enforces that all documents stored in a collection conform to the
-collection's schema.
+collection's schema. But you have the flexibility to evolve your data model as
+the application evolves.
 
-:::tip
-We offer schema flexibility by having the ability to evolve the schema in a
-very lightweight manner. Documents with different schemas are allowed to
-co-exist. Schema changes are instant and do not require a full table rebuild.
-
-:::
+Tigris offers this flexibility by allowing the schema to be evolved
+in a lightweight manner without any downtime. The schema changes are
+performed in a transactional manner, take only a few milliseconds to
+complete and do not require a collection rebuild. The updated schema is
+immediately made available to any new transactions. The schema of old records
+will be updated automatically when the record is updated.
 
 ## Data Types
 
@@ -44,14 +47,6 @@ schemas in the supported programming languages:
 
 ## Evolving the Data Models
 
-You have the flexibility to evolve your data model as the application
-evolves. Tigris offers this flexibility by allowing the schema to be evolved
-in a lightweight manner without any downtime. The schema changes are
-performed in a transactional manner, take only a few milliseconds to
-complete and do not require a collection rebuild. The updated schema is
-immediately made available to any new transactions. The schema of old records
-will be updated automatically when the record is updated.
-
 The following schema changes are currently supported:
 
 - Add a new field to an existing collection without any restrictions.
@@ -65,3 +60,54 @@ The following schema changes are currently not supported:
 - Change the data type of the field.
 - Remove a field from the schema.
 - Add or remove a field from the primary key definition.
+
+## Embedded Data Model
+
+Tigris offers rich documents that enable embedding related data in a single
+document. Embedded models allow applications to complete database operations
+with fewer queries or updates, thus reducing query activity and increasing
+efficiency. Following examples demonstrate a collection that leverages this pattern by
+storing related data in a single data model.
+
+```json
+{
+  "id": 1,
+  "name": "janice",
+  "balance": 99,
+  "product_items": [{ "name": "shoes", "quantity": 1, "price": 201 }]
+}
+```
+
+## Relational Data Model
+
+Tigris allows you to design your schema in multiple ways. Sometimes there is a
+need to normalize your data model and split related data across multiple
+collections. This can be easily accomplished as follows:
+
+```shell
+# users collection
+{
+  "user_id": 1,
+  "name": "Janice James",
+  "nick_name": "janice",
+  "email": "janice@somedomain.com"
+}
+
+# memberships collection which stores a reference to the document in the
+# users collection
+{
+  "membership_id": 123,
+  "user_id": 1,
+  "plan": "preview",
+  "balance": 99
+}
+```
+
+## Null Values
+
+`null` is an allowed value that can be used with any of the fields in the
+schema except for the ones that are part of the primary key definition. If a
+field is set to the null value, then the document stored in the database
+will have that field set to the null value. If you are looking for the
+behavior where you would like fields without any values to not be stored as
+part of the document, then simply skip setting them to any value.

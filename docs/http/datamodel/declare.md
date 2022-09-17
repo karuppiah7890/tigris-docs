@@ -1,7 +1,7 @@
 # Declaring Models
 
-Tigris follows the JSON schema
-[specification](https://json-schema.org/specification.html).
+A schema defines all the fields that make up the document in a collection.
+Tigris follows the schema as per the JSON schema [specification](https://json-schema.org/specification.html).
 
 Every schema has three required keywords which are expressed as JSON keys:
 
@@ -31,9 +31,6 @@ Using these keywords the schema specification of the collection is as follows:
 ```
 
 ## Defining the properties
-
-As shown in the schema above there are three fields that make up the user
-document. These fields are defined as part of the properties.
 
 The fields must all have the following keywords expressed as JSON keys:
 
@@ -86,8 +83,11 @@ Using the above specification, to model a collection `catalog` that has `id`, `n
 
 ## Collection Names
 
-The name of the collection is reflecting in the title of the schema and used by Tigris server as-is.
+The name of the collection is the title specified in the schema definition.
+In the example above, the name of the collection is `catalog`.
 
 ## Field Names
 
-The field names are the keys inside the properties objects. There is no conversion performed by default.
+The field names are the keys inside the properties section of the schema. In
+the example above, the fields are `id`, `name`, `price`, `brand`, `labels`,
+and `popularity`.

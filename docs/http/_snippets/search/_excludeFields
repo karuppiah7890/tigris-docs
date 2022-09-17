@@ -1,4 +1,4 @@
-curl -L 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/search' \
+curl -L 'http://localhost:8081/v1/databases/catalogdb/collections/catalog/documents/search' \
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{

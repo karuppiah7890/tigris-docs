@@ -1,6 +1,6 @@
 # Note the modified_count in the response. It should 1 if there was a document with an id 1 exists
 # in the database and is modified as part of this request.
-curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/catalog/documents/update' \
+curl 'http://localhost:8081/v1/databases/catalogdb/collections/catalog/documents/update' \
   -X PUT \
   -H "Content-Type: application/json" \
   -d '{

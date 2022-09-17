@@ -1,4 +1,4 @@
-curl 'http://localhost:8081/api/v1/databases/catalogdb/collections/order_events/createOrUpdate' \
+curl 'http://localhost:8081/v1/databases/catalogdb/collections/order_events/createOrUpdate' \
 -X POST \
 -H 'Content-Type: application/json' \
 -d '{

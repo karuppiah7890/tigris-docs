@@ -45,7 +45,7 @@ Creating a database is as easy as calling an API, and it is ready in an
 instant.
 
 ```shell
-curl -X POST http://localhost:8081/api/v1/databases/sampledb/create
+curl -X POST http://localhost:8081/v1/databases/sampledb/create
 ```
 
 Similarly, a collection is instantaneously created through the API. In
@@ -53,7 +53,7 @@ Tigris, a collection is an ordered set of records called documents that all
 follow a specific schema and whose fields are strongly typed.
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/createOrUpdate \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/createOrUpdate \
       -X POST \
       -H "Content-Type: application/json" \
       -d '{
@@ -82,7 +82,7 @@ curl http://localhost:8081/api/v1/databases/sampledb/collections/users/createOrU
 The schema of the collections created above can be fetched as follows
 
 ```shell
-curl -X POST http://localhost:8081/api/v1/databases/sampledb/collections/users/describe
+curl -X POST http://localhost:8081/v1/databases/sampledb/collections/users/describe
 ```
 
 **Insert some documents**
@@ -91,7 +91,7 @@ The following example will replace documents with the same `id` if they
 already exist, or create new documents if they don't exist with the same `id`.
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/insert \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/documents/insert \
       -X POST \
       -H "Content-Type: application/json" \
       -d '{
@@ -107,7 +107,7 @@ curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents
 Read the document from the collection by using its `id`.
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/read \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/documents/read \
       -X POST \
       -H "Content-Type: application/json" \
       -d '{
@@ -120,7 +120,7 @@ curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents
 Read the document from the collection by using the field `name`.
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/read \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/documents/read \
       -X POST \
       -H "Content-Type: application/json" \
       -d '{
@@ -133,7 +133,7 @@ curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents
 Update one of the fields in a document by using its `id`.
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/update \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/documents/update \
       -X PUT \
       -H "Content-Type: application/json" \
       -d '{
@@ -149,7 +149,7 @@ curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents
 Search for users with `name` like "bunny" and `balance` greater than 500
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/search \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/documents/search \
       -X POST \
       -H "Content-Type: application/json" \
       -d '{
@@ -165,7 +165,7 @@ Use the delete API to remove the documents from the collection
 based on the filter.
 
 ```shell
-curl http://localhost:8081/api/v1/databases/sampledb/collections/users/documents/delete \
+curl http://localhost:8081/v1/databases/sampledb/collections/users/documents/delete \
       -X DELETE \
       -H "Content-Type: application/json" \
       -d '{
@@ -184,7 +184,7 @@ Finally, drop the database _sampledb_ we have created for this quickstart
 with all its collections.
 
 ```shell
-curl -X DELETE http://localhost:8081/api/v1/databases/sampledb/drop
+curl -X DELETE http://localhost:8081/v1/databases/sampledb/drop
 ```
 
 </TabItem>

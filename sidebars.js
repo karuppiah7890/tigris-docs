@@ -27,7 +27,6 @@ const sidebars = {
       items: [
         "overview/concepts",
         "overview/datamodel",
-        "overview/schema",
         "overview/query",
         "overview/search",
         "overview/event",
