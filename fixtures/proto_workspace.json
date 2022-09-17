@@ -4,120 +4,11 @@
       "name": "server/v1/api.proto",
       "description": "",
       "package": "tigrisdata.v1",
-      "hasEnums": true,
+      "hasEnums": false,
       "hasExtensions": false,
       "hasMessages": true,
       "hasServices": true,
-      "enums": [
-        {
-          "name": "Code",
-          "longName": "Code",
-          "fullName": "tigrisdata.v1.Code",
-          "description": "Codes returned by the Tigris server in the case of error",
-          "values": [
-            {
-              "name": "OK",
-              "number": "0",
-              "description": "200"
-            },
-            {
-              "name": "CANCELLED",
-              "number": "1",
-              "description": "499"
-            },
-            {
-              "name": "UNKNOWN",
-              "number": "2",
-              "description": "500"
-            },
-            {
-              "name": "INVALID_ARGUMENT",
-              "number": "3",
-              "description": "400"
-            },
-            {
-              "name": "DEADLINE_EXCEEDED",
-              "number": "4",
-              "description": "504"
-            },
-            {
-              "name": "NOT_FOUND",
-              "number": "5",
-              "description": "404"
-            },
-            {
-              "name": "ALREADY_EXISTS",
-              "number": "6",
-              "description": "409"
-            },
-            {
-              "name": "PERMISSION_DENIED",
-              "number": "7",
-              "description": "403"
-            },
-            {
-              "name": "RESOURCE_EXHAUSTED",
-              "number": "8",
-              "description": "429"
-            },
-            {
-              "name": "FAILED_PRECONDITION",
-              "number": "9",
-              "description": "412"
-            },
-            {
-              "name": "ABORTED",
-              "number": "10",
-              "description": "409"
-            },
-            {
-              "name": "OUT_OF_RANGE",
-              "number": "11",
-              "description": "400"
-            },
-            {
-              "name": "UNIMPLEMENTED",
-              "number": "12",
-              "description": "501"
-            },
-            {
-              "name": "INTERNAL",
-              "number": "13",
-              "description": "500"
-            },
-            {
-              "name": "UNAVAILABLE",
-              "number": "14",
-              "description": "503"
-            },
-            {
-              "name": "DATA_LOSS",
-              "number": "15",
-              "description": "500"
-            },
-            {
-              "name": "UNAUTHENTICATED",
-              "number": "16",
-              "description": "401"
-            },
-            {
-              "name": "CONFLICT",
-              "number": "17",
-              "description": "409"
-            },
-            {
-              "name": "BAD_GATEWAY",
-              "number": "18",
-              "description": "502"
-            },
-            {
-              "name": "METHOD_NOT_ALLOWED",
-              "number": "19",
-              "description": "405"
-            }
-          ]
-        }
-      ],
+      "enums": [],
       "extensions": [],
       "messages": [
         {
@@ -478,7 +369,7 @@
             },
             {
               "name": "schema",
-              "description": "Schema of the documents in this collection. The schema specifications are same as\nJSON schema specification defined \u003ca href=\"https://json-schema.org/specification.html\" title=\"here\"\u003ehere\u003c/a\u003e.\n\u003cp\u003e\u003c/p\u003eThe following is an schema example:\n`{\n \"title\": \"user\",\n \"description\": \"Collection of documents with details of users\",\n \"properties\": {\n   \"id\": {\n     \"description\": \"A unique identifier for the user\",\n     \"type\": \"integer\"\n   },\n   \"name\": {\n     \"description\": \"Name of the user\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   },\n   \"balance\": {\n     \"description\": \"User account balance\",\n     \"type\": \"number\"\n   }\n },\n \"primary_key\": [\"id\"]\n}`",
+              "description": "The schema specifications are same as\nJSON schema specification defined \u003ca href=\"https://json-schema.org/specification.html\" title=\"here\"\u003ehere\u003c/a\u003e.\nThe schema of the `documents` collection differs from the schema of `messages` collection as `messages` collection does not\nhave any concept of `primary_key`. The server recognizes type of the collection by the `collection_type` set in\nthe schema.\n\u003cp\u003e\u003c/p\u003e\nSchema example of `documents`:\n`{\n \"title\": \"user\",\n \"description\": \"Collection of documents with details of users\",\n \"properties\": {\n   \"id\": {\n     \"description\": \"A unique identifier for the user\",\n     \"type\": \"integer\"\n   },\n   \"name\": {\n     \"description\": \"Name of the user\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   },\n   \"balance\": {\n     \"description\": \"User account balance\",\n     \"type\": \"number\"\n   }\n },\n \"primary_key\": [\"id\"]\n}`\n\u003cp\u003e\u003c/p\u003e*Note: The `collection_type` is not set as default is documents.*\n\u003cp\u003e\u003c/p\u003eSchema example of `messages`:\n`{\n \"title\": \"user_events\",\n \"description\": \"Topic for user events\",\n \"properties\": {\n   \"event_id\": {\n     \"description\": \"A id for the event\",\n     \"type\": \"integer\"\n   },\n   \"event_type\": {\n     \"description\": \"Type of the Event\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   }\n   \"event_details\": {\n     \"description\": \"Details about the Event\",\n     \"type\": \"string\"\n   }\n },\n \"collection_type\": \"messages\"\n}`\n\u003cp\u003e\u003c/p\u003e *Note: The `collection_type` is set as \"messages\".*",
               "label": "",
               "type": "bytes",
               "longType": "bytes",
@@ -490,7 +381,7 @@
             },
             {
               "name": "only_create",
-              "description": "If set to true then the update schema request to the collection will fail by returning a conflict with HTTP Status\ncode 409. The default is false.",
+              "description": "If set to `true` then the update schema request to the collection will fail by returning a conflict with HTTP Status\ncode 409. The default is false.",
               "label": "",
               "type": "bool",
               "longType": "bool",
@@ -1100,90 +991,6 @@
           ]
         },
         {
-          "name": "Error",
-          "longName": "Error",
-          "fullName": "tigrisdata.v1.Error",
-          "description": "The Error type defines a logical error model",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "code",
-              "description": "The status code is a short, machine parsable string,\nwhich uniquely identifies the error type.\nTigris to HTTP code mapping [here](/reference/http-code)",
-              "label": "",
-              "type": "Code",
-              "longType": "Code",
-              "fullType": "tigrisdata.v1.Code",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "message",
-              "description": "A developer-facing descriptive error message",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ErrorDetails",
-          "longName": "ErrorDetails",
-          "fullName": "tigrisdata.v1.ErrorDetails",
-          "description": "ErrorDetails defines error format passed by Tigris HTTP protocol",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "code",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "message",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "retry",
-              "description": "",
-              "label": "",
-              "type": "RetryInfo",
-              "longType": "RetryInfo",
-              "fullType": "tigrisdata.v1.RetryInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "EventsRequest",
           "longName": "EventsRequest",
           "fullName": "tigrisdata.v1.EventsRequest",
@@ -1367,53 +1174,6 @@
               "type": "int64",
               "longType": "int64",
               "fullType": "int64",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "GetInfoRequest",
-          "longName": "GetInfoRequest",
-          "fullName": "tigrisdata.v1.GetInfoRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": false,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": []
-        },
-        {
-          "name": "GetInfoResponse",
-          "longName": "GetInfoResponse",
-          "fullName": "tigrisdata.v1.GetInfoResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "server_version",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "error",
-              "description": "NOTE: This is a hack to propagate this object definition to OpenAPI",
-              "label": "",
-              "type": "Error",
-              "longType": "Error",
-              "fullType": "tigrisdata.v1.Error",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1732,7 +1492,7 @@
             },
             {
               "name": "messages",
-              "description": "",
+              "description": "An array of JSON messages to publish.",
               "label": "repeated",
               "type": "bytes",
               "longType": "bytes",
@@ -2181,30 +1941,6 @@
               "type": "Timestamp",
               "longType": "google.protobuf.Timestamp",
               "fullType": "google.protobuf.Timestamp",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "RetryInfo",
-          "longName": "RetryInfo",
-          "fullName": "tigrisdata.v1.RetryInfo",
-          "description": "Contains retry information",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "delay",
-              "description": "retry delay advice in milliseconds",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -3313,7 +3049,7 @@
             },
             {
               "name": "CreateOrUpdateCollection",
-              "description": "Creates a new collection or atomically upgrades the collection to the new schema provided in the request.\nSchema changes are applied atomically and immediately without any downtime.\nThis endpoint allows the creation of a collection based on the type. \u003cp\u003e\u003c/p\u003e\nThere are two collection types supported by Tigris:\n   \u003cli\u003e DOCUMENTS: Support CRUD APIs.\n   \u003cli\u003e MESSAGES: Supports Pub/Sub APIs.",
+              "description": "Creates a new collection or atomically upgrades the collection to the new schema provided in the request.\nSchema changes are applied atomically and immediately without any downtime.\nTigris Offers two types of collections: \u003cp\u003e\u003c/p\u003e\n   \u003cli\u003e `DOCUMENTS`: Offers rich CRUD APIs.\n   \u003cli\u003e `MESSAGES`: Offers event streaming APIs.",
               "requestType": "CreateOrUpdateCollectionRequest",
               "requestLongType": "CreateOrUpdateCollectionRequest",
               "requestFullType": "tigrisdata.v1.CreateOrUpdateCollectionRequest",
@@ -3518,30 +3254,8 @@
               }
             },
             {
-              "name": "GetInfo",
-              "description": "Provides the information about the server. This information includes returning the server version, etc.",
-              "requestType": "GetInfoRequest",
-              "requestLongType": "GetInfoRequest",
-              "requestFullType": "tigrisdata.v1.GetInfoRequest",
-              "requestStreaming": false,
-              "responseType": "GetInfoResponse",
-              "responseLongType": "GetInfoResponse",
-              "responseFullType": "tigrisdata.v1.GetInfoResponse",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "GET",
-                      "pattern": "/v1/info"
-                    }
-                  ]
-                }
-              }
-            },
-            {
               "name": "Publish",
-              "description": "Publish API is use to publish messages to the collection.",
+              "description": "Endpoint for publishing messages to a topic.",
               "requestType": "PublishRequest",
               "requestLongType": "PublishRequest",
               "requestFullType": "tigrisdata.v1.PublishRequest",
@@ -3564,7 +3278,7 @@
             },
             {
               "name": "Subscribe",
-              "description": "Subscribe is used to subscribe to the collection and receive messages from it.",
+              "description": "Endpoint for subscribing to a topic to receive a stream of messages. The `partition` can be set to stream only\nfrom a specific partition.",
               "requestType": "SubscribeRequest",
               "requestLongType": "SubscribeRequest",
               "requestFullType": "tigrisdata.v1.SubscribeRequest",
@@ -3595,208 +3309,18 @@
       "package": "tigrisdata.admin.v1",
       "hasEnums": false,
       "hasExtensions": false,
-      "hasMessages": true,
+      "hasMessages": false,
       "hasServices": true,
       "enums": [],
       "extensions": [],
-      "messages": [
-        {
-          "name": "CreateNamespaceRequest",
-          "longName": "CreateNamespaceRequest",
-          "fullName": "tigrisdata.admin.v1.CreateNamespaceRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "id",
-              "description": "A unique namespace id.",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "A namespace name.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "CreateNamespaceResponse",
-          "longName": "CreateNamespaceResponse",
-          "fullName": "tigrisdata.admin.v1.CreateNamespaceResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "message",
-              "description": "A detailed response message.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "status",
-              "description": "An enum with value set as \"created\".",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "ListNamespacesRequest",
-          "longName": "ListNamespacesRequest",
-          "fullName": "tigrisdata.admin.v1.ListNamespacesRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": false,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": []
-        },
-        {
-          "name": "ListNamespacesResponse",
-          "longName": "ListNamespacesResponse",
-          "fullName": "tigrisdata.admin.v1.ListNamespacesResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "namespaces",
-              "description": "",
-              "label": "repeated",
-              "type": "NamespaceInfo",
-              "longType": "NamespaceInfo",
-              "fullType": "tigrisdata.admin.v1.NamespaceInfo",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "NamespaceInfo",
-          "longName": "NamespaceInfo",
-          "fullName": "tigrisdata.admin.v1.NamespaceInfo",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "id",
-              "description": "A unique namespace id.",
-              "label": "",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "name",
-              "description": "A namespace name.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        }
-      ],
+      "messages": [],
       "services": [
         {
           "name": "Admin",
           "longName": "Admin",
           "fullName": "tigrisdata.admin.v1.Admin",
           "description": "",
-          "methods": [
-            {
-              "name": "createNamespace",
-              "description": "Creates a new namespace, if it does not exist",
-              "requestType": "CreateNamespaceRequest",
-              "requestLongType": "CreateNamespaceRequest",
-              "requestFullType": "tigrisdata.admin.v1.CreateNamespaceRequest",
-              "requestStreaming": false,
-              "responseType": "CreateNamespaceResponse",
-              "responseLongType": "CreateNamespaceResponse",
-              "responseFullType": "tigrisdata.admin.v1.CreateNamespaceResponse",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/v1/admin/namespaces/{name}/create",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "listNamespaces",
-              "description": "List all namespace",
-              "requestType": "ListNamespacesRequest",
-              "requestLongType": "ListNamespacesRequest",
-              "requestFullType": "tigrisdata.admin.v1.ListNamespacesRequest",
-              "requestStreaming": false,
-              "responseType": "ListNamespacesResponse",
-              "responseLongType": "ListNamespacesResponse",
-              "responseFullType": "tigrisdata.admin.v1.ListNamespacesResponse",
-              "responseStreaming": false,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/v1/admin/namespaces/list"
-                    }
-                  ]
-                }
-              }
-            }
-          ]
+          "methods": null
         }
       ]
     },
@@ -3856,7 +3380,7 @@
           "methods": [
             {
               "name": "Health",
-              "description": "",
+              "description": "This endpoint can be used to check the liveness of the server.",
               "requestType": "HealthCheckInput",
               "requestLongType": ".HealthCheckInput",
               "requestFullType": "HealthCheckInput",
@@ -3914,7 +3438,7 @@
           "name": "GetAccessTokenRequest",
           "longName": "GetAccessTokenRequest",
           "fullName": "tigrisdata.auth.v1.GetAccessTokenRequest",
-          "description": "Requests the access token by specifying\ngrant_type:refresh_token \u0026 refresh_token\nor\ngrant_type:client_credentials \u0026 [client_id, client_secret]",
+          "description": "The Request message for the GetAccessToken. The grant type is a required field and based on the grant type\nthe other fields are used as mentioned below.",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -3934,7 +3458,7 @@
             },
             {
               "name": "refresh_token",
-              "description": "case: refresh_token: A valid refresh token",
+              "description": "Refresh token is required when grant type is set as `REFRESH_TOKEN`.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3946,7 +3470,7 @@
             },
             {
               "name": "client_id",
-              "description": "case: client_credentials: A valid credentials (client_id, client_secret,\naudience)",
+              "description": "Client Id is required when grant type is set as `CLIENT_CREDENTIALS`.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3958,7 +3482,7 @@
             },
             {
               "name": "client_secret",
-              "description": "",
+              "description": "Your Tigris API Key is required when grant type is set as `CLIENT_CREDENTIALS`.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3974,7 +3498,7 @@
           "name": "GetAccessTokenResponse",
           "longName": "GetAccessTokenResponse",
           "fullName": "tigrisdata.auth.v1.GetAccessTokenResponse",
-          "description": "GetAccessToken returns response containing access_token and optionally\nrefresh_token",
+          "description": "The response of GetAccessToken which contains access_token and optionally refresh_token.",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
@@ -3982,7 +3506,7 @@
           "fields": [
             {
               "name": "access_token",
-              "description": "An access token.",
+              "description": "An Access Token.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3994,7 +3518,7 @@
             },
             {
               "name": "refresh_token",
-              "description": "Refresh token.",
+              "description": "The Refresh Token.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -4006,7 +3530,7 @@
             },
             {
               "name": "expires_in",
-              "description": "Access token expiration timeout in seconds",
+              "description": "Access token expiration timeout in seconds.",
               "label": "",
               "type": "int32",
               "longType": "int32",
@@ -4027,8 +3551,8 @@
           "description": "",
           "methods": [
             {
-              "name": "getAccessToken",
-              "description": "Gets an access token.\nsupports two grant_type: [refresh_token, client_credentials]",
+              "name": "GetAccessToken",
+              "description": "Endpoint for receiving access token from Tigris Server. The endpoint requires Grant Type(`grant_type`) which has\ntwo possible values \u003ci\u003e\"REFRESH_TOKEN\"\u003c/i\u003e or \u003ci\u003e\"CLIENT_CREDENTIALS\"\u003c/i\u003e based on which either Refresh token(`refresh_token`)\nneeds to be set or client credentials(`client_id`, `client_secret`).",
               "requestType": "GetAccessTokenRequest",
               "requestLongType": "GetAccessTokenRequest",
               "requestFullType": "tigrisdata.auth.v1.GetAccessTokenRequest",
@@ -4062,6 +3586,114 @@
       "hasMessages": true,
       "hasServices": true,
       "enums": [
+        {
+          "name": "Code",
+          "longName": "Code",
+          "fullName": "tigrisdata.observability.v1.Code",
+          "description": "Codes returned by the Tigris server in the case of error",
+          "values": [
+            {
+              "name": "OK",
+              "number": "0",
+              "description": "200"
+            },
+            {
+              "name": "CANCELLED",
+              "number": "1",
+              "description": "499"
+            },
+            {
+              "name": "UNKNOWN",
+              "number": "2",
+              "description": "500"
+            },
+            {
+              "name": "INVALID_ARGUMENT",
+              "number": "3",
+              "description": "400"
+            },
+            {
+              "name": "DEADLINE_EXCEEDED",
+              "number": "4",
+              "description": "504"
+            },
+            {
+              "name": "NOT_FOUND",
+              "number": "5",
+              "description": "404"
+            },
+            {
+              "name": "ALREADY_EXISTS",
+              "number": "6",
+              "description": "409"
+            },
+            {
+              "name": "PERMISSION_DENIED",
+              "number": "7",
+              "description": "403"
+            },
+            {
+              "name": "RESOURCE_EXHAUSTED",
+              "number": "8",
+              "description": "429"
+            },
+            {
+              "name": "FAILED_PRECONDITION",
+              "number": "9",
+              "description": "412"
+            },
+            {
+              "name": "ABORTED",
+              "number": "10",
+              "description": "409"
+            },
+            {
+              "name": "OUT_OF_RANGE",
+              "number": "11",
+              "description": "400"
+            },
+            {
+              "name": "UNIMPLEMENTED",
+              "number": "12",
+              "description": "501"
+            },
+            {
+              "name": "INTERNAL",
+              "number": "13",
+              "description": "500"
+            },
+            {
+              "name": "UNAVAILABLE",
+              "number": "14",
+              "description": "503"
+            },
+            {
+              "name": "DATA_LOSS",
+              "number": "15",
+              "description": "500"
+            },
+            {
+              "name": "UNAUTHENTICATED",
+              "number": "16",
+              "description": "401"
+            },
+            {
+              "name": "CONFLICT",
+              "number": "17",
+              "description": "409"
+            },
+            {
+              "name": "BAD_GATEWAY",
+              "number": "18",
+              "description": "502"
+            },
+            {
+              "name": "METHOD_NOT_ALLOWED",
+              "number": "19",
+              "description": "405"
+            }
+          ]
+        },
         {
           "name": "MetricQueryFunction",
           "longName": "MetricQueryFunction",
@@ -4225,6 +3857,137 @@
               "type": "double",
               "longType": "double",
               "fullType": "double",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "Error",
+          "longName": "Error",
+          "fullName": "tigrisdata.observability.v1.Error",
+          "description": "The Error type defines a logical error model",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "code",
+              "description": "The status code is a short, machine parsable string,\nwhich uniquely identifies the error type.\nTigris to HTTP code mapping [here](/reference/http-code)",
+              "label": "",
+              "type": "Code",
+              "longType": "Code",
+              "fullType": "tigrisdata.observability.v1.Code",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "message",
+              "description": "A developer-facing descriptive error message",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ErrorDetails",
+          "longName": "ErrorDetails",
+          "fullName": "tigrisdata.observability.v1.ErrorDetails",
+          "description": "ErrorDetails defines error format passed by Tigris HTTP protocol",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "code",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "message",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "retry",
+              "description": "",
+              "label": "",
+              "type": "RetryInfo",
+              "longType": "RetryInfo",
+              "fullType": "tigrisdata.observability.v1.RetryInfo",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetInfoRequest",
+          "longName": "GetInfoRequest",
+          "fullName": "tigrisdata.observability.v1.GetInfoRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "GetInfoResponse",
+          "longName": "GetInfoResponse",
+          "fullName": "tigrisdata.observability.v1.GetInfoResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "server_version",
+              "description": "",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "error",
+              "description": "NOTE: This is a hack to propagate this object definition to OpenAPI",
+              "label": "",
+              "type": "Error",
+              "longType": "Error",
+              "fullType": "tigrisdata.observability.v1.Error",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -4509,6 +4272,30 @@
           ]
         },
         {
+          "name": "RetryInfo",
+          "longName": "RetryInfo",
+          "fullName": "tigrisdata.observability.v1.RetryInfo",
+          "description": "Contains retry information",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "delay",
+              "description": "retry delay advice in milliseconds",
+              "label": "",
+              "type": "int32",
+              "longType": "int32",
+              "fullType": "int32",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "RollupFunction",
           "longName": "RollupFunction",
           "fullName": "tigrisdata.observability.v1.RollupFunction",
@@ -4570,6 +4357,28 @@
                       "method": "POST",
                       "pattern": "/v1/observability/metrics/timeseries/query",
                       "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "GetInfo",
+              "description": "Provides the information about the server. This information includes returning the server version, etc.",
+              "requestType": "GetInfoRequest",
+              "requestLongType": "GetInfoRequest",
+              "requestFullType": "tigrisdata.observability.v1.GetInfoRequest",
+              "requestStreaming": false,
+              "responseType": "GetInfoResponse",
+              "responseLongType": "GetInfoResponse",
+              "responseFullType": "tigrisdata.observability.v1.GetInfoResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/v1/observability/info"
                     }
                   ]
                 }
