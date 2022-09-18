@@ -1,0 +1,14 @@
+const orderEvents: Array<OrderEvent> = [
+  {
+    orderId: 2,
+    orderName: "order of purses",
+    orderStatus: "completed",
+  },
+  {
+    orderId: 3,
+    orderName: "order of handbags",
+    orderStatus: "cancelled",
+  },
+];
+
+topic.publishMany(orderEvents);

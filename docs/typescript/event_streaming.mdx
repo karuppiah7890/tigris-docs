@@ -1,0 +1,26 @@
+---
+title: Event Streaming
+---
+
+import EventTemplate, {
+  toc as eventToc,
+} from "../templates/_event-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!./_snippets/event/_createCollection";
+import simplePublishSource from "!!raw-loader!./_snippets/event/_simplePublish";
+import simpleSubscribeSource from "!!raw-loader!./_snippets/event/_simpleSubscribe";
+import batchPublishSource from "!!raw-loader!./_snippets/event/_batchPublish";
+import filterSubscribeSource from "!!raw-loader!./_snippets/event/_filterSubscribe";
+
+export const isOverview = true;
+
+<EventTemplate
+  codeLang="typescript"
+  loadOverview={isOverview}
+  createCollection={createCollectionSource}
+  simplePublish={simplePublishSource}
+  simpleSubscribe={simpleSubscribeSource}
+  batchPublish={batchPublishSource}
+  filterSubscribe={filterSubscribeSource}
+/>
+
+export const toc = [...eventToc];

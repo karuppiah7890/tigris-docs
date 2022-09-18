@@ -19,7 +19,7 @@ The collection type is set as "messages".
 
 ### Subscribe to a Topic
 
-Subscribe API can be used to subscribe to a topic. Subscribe to this topic in a different terminal like below.
+Subscribe API can be used to subscribe to a topic. Subscribe to this topic in a different session like below.
 
 <CodeBlock language={props.codeLang}>{props.simpleSubscribe}</CodeBlock>
 
@@ -38,6 +38,6 @@ Similar to a single message, many messages can be published in a single call.
 ### Subscribe to only messages that you need
 
 You can also send a filter during the Subscribe request that way you'll only receive events that match the filter.
-Try this in a different terminal and send some orders like above that have status set as `canceled`.
+Try this in a different session and send some orders like above that have status set as `canceled`.
 
 <CodeBlock language={props.codeLang}>{props.filterSubscribe}</CodeBlock>

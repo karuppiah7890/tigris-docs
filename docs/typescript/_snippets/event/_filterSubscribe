@@ -1,0 +1,17 @@
+topic.subscribeWithFilter({
+  op: SelectorFilterOperator.EQ,
+  fields: {
+    orderStatus: "cancelled"
+  }
+},
+{
+  onNext(orderEvent: OrderEvent) {
+    console.log(orderEvent);
+  },
+  onEnd() {
+    // handle onEnd
+  },
+  onError(error: Error) {
+    console.log(error);
+  },
+});

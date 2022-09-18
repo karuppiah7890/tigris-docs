@@ -1,0 +1,19 @@
+export interface OrderEvent extends TigrisTopicType {
+  orderId: number;
+  orderName: string;
+  orderStatus: string;
+}
+
+export const orderEventSchema: TigrisSchema<OrderEvent> = {
+  orderId: {
+    type: TigrisDataTypes.INT32,
+  },
+  orderName: {
+    type: TigrisDataTypes.STRING,
+  },
+  orderStatus: {
+    type: TigrisDataTypes.STRING,
+  },
+};
+
+const topic = await db.createOrUpdateTopic<OrderEvent>("order_events", orderEventSchema);

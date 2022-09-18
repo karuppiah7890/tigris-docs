@@ -99,6 +99,7 @@ const sidebars = {
         "typescript/query",
         "typescript/search",
         "typescript/transactions",
+        "typescript/event_streaming",
       ],
     },
     {
