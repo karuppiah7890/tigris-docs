@@ -1,0 +1,12 @@
+curl 'http://localhost:8081/v1/databases/catalogdb/collections/order_events/messages/publish' \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+  "messages":[
+    {
+      "order_id":1,
+      "order_name":"order of shoes",
+      "order_status":"completed"
+    }
+  ]
+}'

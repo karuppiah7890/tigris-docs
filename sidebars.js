@@ -42,7 +42,8 @@ const sidebars = {
       label: "HTTP Reference",
       collapsed: true,
       link: {
-        type: "generated-index",
+        type: "doc",
+        id: "http/index",
       },
       items: [
         "http/getting-started",

@@ -1,30 +1,28 @@
+import StartupLocally from "../includes/_startup_tigris_locally.mdx";
 import createCollectionSource from "!!raw-loader!./_snippets/index/_createCollection";
 import insertSource from "!!raw-loader!./_snippets/index/_insert";
 import querySource from "!!raw-loader!./_snippets/index/_query";
 import searchSource from "!!raw-loader!./_snippets/index/_search";
+import createTopicSource from "!!raw-loader!./_snippets/index/_createTopic";
+import publishSource from "!!raw-loader!./_snippets/index/_publish";
 import CodeBlock from "@theme/CodeBlock";
 
-# Java Reference
+# HTTP Reference
 
-[![Maven Central](https://img.shields.io/maven-central/v/com.tigrisdata/tigris-client-java)](https://mvnrepository.com/artifact/com.tigrisdata/tigris-client)
-[![javadoc](https://javadoc.io/badge2/com.tigrisdata/tigris-client/javadoc.svg)](https://javadoc.io/doc/com.tigrisdata/tigris-client)
+[![OpenAPI][openapi-image]][openapi-link]
 
-Tigris provides an easy-to-use and intuitive interface for Java. Setting up
+[openapi-image]: https://img.shields.io/badge/OpenAPI-Tigris-success?style=plastic&logo=openapiinitiative
+[openapi-link]: ../apidocs/
+
+Tigris provides an easy-to-use intuitive API to query database. Setting up
 the database is instantaneous, as well - no need for tedious configuration.
 You define the data model as part of the application code, which then drives
 the database infrastructure without you having to configure and provision
 database resources.
 
-## 1. Install package
+## 1. Start Tigris
 
-```xml
-<!-- https://mvnrepository.com/artifact/com.tigrisdata/tigris-client -->
-<dependency>
-    <groupId>com.tigrisdata</groupId>
-    <artifactId>tigris-client</artifactId>
-    <version>insert_version_number_here</version>
-</dependency>
-```
+<StartupLocally />
 
 <span style={{textAlign: "right"}}>
 
@@ -34,7 +32,7 @@ database resources.
 
 ## 2. Define data models
 
-<CodeBlock language="java">{createCollectionSource}</CodeBlock>
+<CodeBlock language="shell">{createCollectionSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
@@ -44,7 +42,7 @@ database resources.
 
 ## 3. Persist data
 
-<CodeBlock language="java">{insertSource}</CodeBlock>
+<CodeBlock language="shell">{insertSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
@@ -54,7 +52,7 @@ database resources.
 
 ## 4. Query data
 
-<CodeBlock language="java">{querySource}</CodeBlock>
+<CodeBlock language="shell">{querySource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
@@ -64,10 +62,26 @@ database resources.
 
 ## 5. Search data
 
-<CodeBlock language="java">{searchSource}</CodeBlock>
+<CodeBlock language="shell">{searchSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
 [Search documents →](search)
+
+</span>
+
+## 6. Stream events
+
+### 6.1 Create topic
+
+<CodeBlock language="shell">{createTopicSource}</CodeBlock>
+
+### 6.2 Publish message
+
+<CodeBlock language="shell">{publishSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](event_streaming)
 
 </span>

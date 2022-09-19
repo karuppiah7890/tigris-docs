@@ -1,0 +1,1 @@
+Optional<Catalog> product = catalog.readOne(Filters.eq("brand", "adidas"))

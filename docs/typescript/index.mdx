@@ -1,3 +1,11 @@
+import createCollectionSource from "!!raw-loader!./_snippets/index/_createCollection";
+import insertSource from "!!raw-loader!./_snippets/index/_insert";
+import querySource from "!!raw-loader!./_snippets/index/_query";
+import searchSource from "!!raw-loader!./_snippets/index/_search";
+import createTopicSource from "!!raw-loader!./_snippets/index/_createTopic";
+import publishSource from "!!raw-loader!./_snippets/index/_publish";
+import CodeBlock from "@theme/CodeBlock";
+
 # TypeScript Reference
 
 ![npm](https://img.shields.io/npm/v/@tigrisdata/core)
@@ -22,70 +30,7 @@ npm install @tigrisdata/core
 
 ## 2. Define data models
 
-```typescript
-const tigris: Tigris = new Tigris({
-  serverUrl: "localhost:8081",
-});
-
-interface Review extends TigrisCollectionType {
-  author: string;
-  rating: number;
-}
-
-interface Catalog extends TigrisCollectionType {
-  id?: number;
-  name: string;
-  price: number;
-  brand: string;
-  labels: string;
-  popularity: number;
-  reviews?: object;
-}
-
-const reviewSchema: TigrisSchema<Review> = {
-  author: {
-    type: TigrisDataTypes.STRING,
-  },
-  rating: {
-    type: TigrisDataTypes.NUMBER,
-  },
-};
-
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT32,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  brand: {
-    type: TigrisDataTypes.STRING,
-  },
-  labels: {
-    type: TigrisDataTypes.STRING,
-  },
-  popularity: {
-    type: TigrisDataTypes.INT32,
-  },
-  reviews: {
-    type: reviewSchema,
-  },
-};
-
-const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
-
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
-  "catalog",
-  catalogSchema
-);
-```
+<CodeBlock language="typescript">{createCollectionSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
@@ -93,25 +38,48 @@ const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
 
 </span>
 
-## 3. Persist and query
+## 3. Persist data
 
-```typescript
-const insertedProduct: Catalog = await catalog.insertOrReplace({
-  id: 1,
-  price: 99.9,
-  name: "fiona handbag",
-  brand: "michael kors",
-  labels: "purses",
-  popularity: 8,
-});
-
-const product: Catalog = await catalog.findOne({
-  id: 1,
-});
-```
+<CodeBlock language="typescript">{insertSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
-[CRUD operations →](crud)
+[Insert documents →](insert)
+
+</span>
+
+## 4. Query data
+
+<CodeBlock language="typescript">{querySource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Query documents →](query)
+
+</span>
+
+## 5. Search data
+
+<CodeBlock language="typescript">{searchSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Search documents →](search)
+
+</span>
+
+## 6. Stream events
+
+### 6.1 Create topic
+
+<CodeBlock language="typescript">{createTopicSource}</CodeBlock>
+
+### 6.2 Publish message
+
+<CodeBlock language="typescript">{publishSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](event_streaming)
 
 </span>

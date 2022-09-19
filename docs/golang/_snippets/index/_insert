@@ -1,0 +1,5 @@
+_, err := catalogs.Insert(ctx,
+    &Catalog{Name: "fiona handbag", Price: 99.9, Brand: "michael kors", Labels: "purses", Popularity: 8})
+if err != nil {
+    // handle error
+}

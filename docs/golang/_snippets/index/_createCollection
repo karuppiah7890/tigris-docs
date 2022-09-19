@@ -1,0 +1,17 @@
+type Reviews struct {
+    Author  string
+    Ratings float64
+}
+
+type Catalog struct {
+	Id         int `tigris:"primary_key,autoGenerate"`
+	Name       string
+	Price      float64
+	Brand      string
+	Labels     string
+	Popularity int
+}
+
+db, err := tigris.OpenDatabase(ctx,
+	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
+    "catalogdb", &Catalog{})

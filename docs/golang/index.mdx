@@ -1,3 +1,9 @@
+import createCollectionSource from "!!raw-loader!./_snippets/index/_createCollection";
+import insertSource from "!!raw-loader!./_snippets/index/_insert";
+import querySource from "!!raw-loader!./_snippets/index/_query";
+import searchSource from "!!raw-loader!./_snippets/index/_search";
+import CodeBlock from "@theme/CodeBlock";
+
 # Go Reference
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/tigrisdata/tigris-client-go.svg)](https://pkg.go.dev/github.com/tigrisdata/tigris-client-go)
@@ -22,25 +28,7 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 
 ## 2. Define data models
 
-```go
-type Reviews struct {
-    Author  string
-    Ratings float64
-}
-
-type Catalog struct {
-	Id         int `tigris:"primary_key,autoGenerate"`
-	Name       string
-	Price      float64
-	Brand      string
-	Labels     string
-	Popularity int
-}
-
-db, err := tigris.OpenDatabase(ctx,
-	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "catalogdb", &Catalog{})
-```
+<CodeBlock language="go">{createCollectionSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
@@ -48,25 +36,32 @@ db, err := tigris.OpenDatabase(ctx,
 
 </span>
 
-## 3. Persist and query
+## 3. Persist data
 
-```go
-catalogs := tigris.GetCollection[Catalog](db)
-
-_, err := catalogs.Insert(ctx, &Catalog{Name: "fiona handbag", Price: 99.9, Brand: "michael kors", Labels: "purses", Popularity: 8})
-if err != nil {
-    // handle error
-}
-
-var product *Catalog
-product, err = catalogs.ReadOne(ctx, filter.Eq("Id", 1)) // find catalog with Id 1
-if err != nil {
-    // handle error
-}
-```
+<CodeBlock language="go">{insertSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
-[CRUD operations →](crud)
+[Insert documents →](insert)
+
+</span>
+
+## 4. Query data
+
+<CodeBlock language="go">{querySource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Query documents →](query)
+
+</span>
+
+## 5. Search data
+
+<CodeBlock language="go">{searchSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Search documents →](search)
 
 </span>

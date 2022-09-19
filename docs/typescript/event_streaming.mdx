@@ -11,11 +11,8 @@ import simpleSubscribeSource from "!!raw-loader!./_snippets/event/_simpleSubscri
 import batchPublishSource from "!!raw-loader!./_snippets/event/_batchPublish";
 import filterSubscribeSource from "!!raw-loader!./_snippets/event/_filterSubscribe";
 
-export const isOverview = true;
-
 <EventTemplate
   codeLang="typescript"
-  loadOverview={isOverview}
   createCollection={createCollectionSource}
   simplePublish={simplePublishSource}
   simpleSubscribe={simpleSubscribeSource}

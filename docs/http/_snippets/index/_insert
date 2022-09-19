@@ -1,0 +1,14 @@
+curl 'http://localhost:8081/v1/databases/catalogdb/collections/catalog/documents/insert' \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+  "documents":[
+    {
+      "name":"fiona handbag",
+      "price":99.9,
+      "brand":"michael kors",
+      "labels":"purses",
+      "popularity":8
+    }
+  ]
+}'

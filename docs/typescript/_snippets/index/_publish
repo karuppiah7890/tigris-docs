@@ -1,0 +1,7 @@
+const orderEvent: OrderEvent = {
+  orderId: 1,
+  orderName: "order of shoes",
+  orderStatus: "completed"
+};
+
+topic.publish(orderEvent);

@@ -1,0 +1,3 @@
+Catalog product = new Catalog("fiona handbag", 99.9, "michael kors", "purses", 8);
+
+InsertResponse<Catalog> response = catalog.insert(product);
