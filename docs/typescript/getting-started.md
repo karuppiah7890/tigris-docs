@@ -28,6 +28,8 @@ interface Catalog extends TigrisCollectionType {
   brand: string;
   labels: string;
   popularity: number;
+  review: Review;
+  attributes: object;
 }
 ```
 
@@ -66,6 +68,9 @@ const catalogSchema: TigrisSchema<Catalog> = {
   },
   reviews: {
     type: reviewSchema,
+  },
+  attributes: {
+    type: TigrisDataTypes.OBJECT,
   },
 };
 ```

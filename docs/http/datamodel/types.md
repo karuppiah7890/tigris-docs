@@ -26,19 +26,19 @@ responses, but our Java client library uses the Java _long_ type.
 
 :::
 
-| Type    | Format    | Description                                                                                                                      | Supported for Key Fields | Supported for autoGenerate |
-| ------- | --------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | -------------------------- |
-| integer |           | A 64-bit integral number. Optionally, format can be specified as `int64`.                                                        | Yes                      | Yes                        |
-| integer | int32     | A 32-bit integral number.                                                                                                        | Yes                      | Yes                        |
-| number  |           | A double-precision 64-bit IEEE 754 floating point. Optionally, format can be specified as `double`.                              | No                       | No                         |
-| number  | float     | A single-precision 32-bit IEEE 754 floating point.                                                                               | No                       | No                         |
-| string  |           | An arbitrary string. It may contain Unicode characters.                                                                          | Yes                      | Yes                        |
-| string  | byte      | Binary data in an undifferentiated byte stream.                                                                                  | Yes                      | Yes                        |
-| string  | uuid      | Universally unique identifiers (UUIDs). UUIDs are 16-byte numbers used to uniquely identify records.                             | Yes                      | Yes                        |
-| string  | date-time | An RFC3339 timestamp in UTC time. This in the format of yyyy-MM-ddTHH:mm:ss.SSSZ. The milliseconds portion (".SSS") is optional. | Yes                      | Yes                        |
-| boolean |           | A boolean value, either "true" or "false".                                                                                       | No                       | No                         |
-| array   |           | An array of values. The items property indicates the schema for the array values.                                                | No                       | No                         |
-| object  |           | A container type that stores other fields. The properties key defines the schema for the object.                                 | No                       | No                         |
+| Type    | Format    | Description                                                                                                                                                                                            | Supported for Key Fields | Supported for autoGenerate |
+| ------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ | -------------------------- |
+| integer |           | A 64-bit integral number. Optionally, format can be specified as `int64`.                                                                                                                              | Yes                      | Yes                        |
+| integer | int32     | A 32-bit integral number.                                                                                                                                                                              | Yes                      | Yes                        |
+| number  |           | A double-precision 64-bit IEEE 754 floating point. Optionally, format can be specified as `double`.                                                                                                    | No                       | No                         |
+| number  | float     | A single-precision 32-bit IEEE 754 floating point.                                                                                                                                                     | No                       | No                         |
+| string  |           | An arbitrary string. It may contain Unicode characters.                                                                                                                                                | Yes                      | Yes                        |
+| string  | byte      | Binary data in an undifferentiated byte stream.                                                                                                                                                        | Yes                      | Yes                        |
+| string  | uuid      | Universally unique identifiers (UUIDs). UUIDs are 16-byte numbers used to uniquely identify records.                                                                                                   | Yes                      | Yes                        |
+| string  | date-time | An RFC3339 timestamp in UTC time. This in the format of yyyy-MM-ddTHH:mm:ss.SSSZ. The milliseconds portion (".SSS") is optional.                                                                       | Yes                      | Yes                        |
+| boolean |           | A boolean value, either "true" or "false".                                                                                                                                                             | No                       | No                         |
+| array   |           | An array of values. The items property indicates the schema for the array values.                                                                                                                      | No                       | No                         |
+| object  |           | A container type that stores other fields. The properties key defines the schema for the object, but is optional. To store semi-structured data where schema may not be known you can omit properties. | No                       | No                         |
 
 ### int64
 
@@ -193,6 +193,17 @@ defines the schema for the object.
         "type": "integer"
       }
     }
+  }
+}
+```
+
+Tigris also supports storing semi-structured data for objects where the schema is not known. This is done by omitting
+the `properties` key which is optional for the object data type.
+
+```json
+{
+  "event_data": {
+    "type": "object"
   }
 }
 ```
