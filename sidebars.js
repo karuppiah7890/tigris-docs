@@ -25,11 +25,23 @@ const sidebars = {
       },
       collapsed: true,
       items: [
-        "overview/concepts",
-        "overview/datamodel",
-        "overview/query",
-        "overview/search",
-        "overview/event",
+        {
+          type: "category",
+          label: "Key Concepts",
+          link: {
+            type: "doc",
+            id: "overview/concepts",
+          },
+          collapsed: true,
+          items: [
+            "overview/datamodel",
+            "overview/query",
+            "overview/search",
+            "overview/event",
+          ],
+        },
+        "overview/architecture/architecture",
+        "overview/features",
       ],
     },
     {

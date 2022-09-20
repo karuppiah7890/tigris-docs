@@ -120,30 +120,14 @@ const config = {
             position: "left",
           },
           {
-            type: "dropdown",
-            label: "API Reference",
+            label: "API",
+            to: "apidocs/",
             position: "left",
-            items: [
-              {
-                label: "HTTP API",
-                to: "apidocs/",
-              },
-              {
-                label: "RPC",
-                to: "protodocs/server/v1/api.proto",
-                activeBasePath: "protodocs",
-              },
-            ],
           },
           {
             href: "https://blog.tigrisdata.com/",
             label: "Blog",
             position: "left",
-          },
-          {
-            href: "https://jobs.lever.co/tigris",
-            label: "Careers",
-            position: "right",
           },
           {
             href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
