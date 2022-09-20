@@ -127,3 +127,11 @@ set as "shoes" but should have `rating` greater than 7.
 You can also read all documents from your collection by calling readAll API.
 
 <CodeBlock language={props.codeLang}>{props.readAll}</CodeBlock>
+
+### Case-Insensitive Queries
+
+Tigris supports Collation which allows you to specify string comparison rules. Default is **case-sensitive** filtering on
+text fields. But if you need to ignore the case then set the case to `ci` in the collation object. The following example is
+showing when you need to query for a `brand` "adidas", but you don't care about the case.
+
+<CodeBlock language={props.codeLang}>{props.readUsingCollation}</CodeBlock>

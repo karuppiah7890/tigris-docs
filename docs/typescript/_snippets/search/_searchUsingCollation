@@ -1,0 +1,28 @@
+const request: SearchRequest<Catalog> = {
+  q: "running",
+  filter: {
+    brand: "adidas",
+  }
+};
+
+const options: SearchRequestOptions = {
+  collation: {
+    case: "ci",
+  },
+};
+
+catalog.search(
+  request,
+  {
+    onEnd() {
+      // when search completes
+    },
+    onNext(result: SearchResult<Catalog>) {
+      // when a search result is fetched
+    },
+    onError(error: Error) {
+      // in case of an error
+    },
+  },
+  options
+);

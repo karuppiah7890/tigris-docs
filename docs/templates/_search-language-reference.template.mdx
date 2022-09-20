@@ -158,3 +158,12 @@ example, if `reviews` field is not included in documents in search results, it c
 for text querying, filtering and/or faceting; just that matched documents won't include `reviews`
 field.
 :::
+
+## Case-Insensitive Search Result Filtering
+
+Search is **case-insensitive** but the filtering to restrict the search result is **case-sensitive** by default. Tigris supports
+Collation which allows you to specify string comparison rules for filtering on text fields. Set the case to `ci` in the
+collation object to make it **case-insensitive**. The following example is showing when you are searching for text "running" and you need to filter by brand
+field, but you don't care about the case.
+
+<CodeBlock language={props.codeLang}>{props.searchUsingCollation}</CodeBlock>

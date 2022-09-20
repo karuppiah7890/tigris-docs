@@ -1,0 +1,20 @@
+const options = new ReadRequestOptions();
+options.collation = {
+  case: "ci",
+};
+catalog.findMany(
+    {
+      brand: "adidas",
+    },
+    null,
+    null,
+    options
+  )
+  .then((value) => {
+    const products: Catalog[] = <Catalog[]>value;
+    for (const i in products) {
+      console.log(products[i]);
+    }
+  });
+
+
