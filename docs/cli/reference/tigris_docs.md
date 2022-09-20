@@ -1,15 +1,15 @@
-## tigris version
+## tigris docs
 
-Shows tigris cli version
+Generates CLI documentation in Markdown format
 
 ```
-tigris version [flags]
+tigris docs {output directory} [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for version
+  -h, --help   help for docs
 ```
 
 ### SEE ALSO

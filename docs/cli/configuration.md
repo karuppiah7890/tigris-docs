@@ -6,14 +6,14 @@ Tigris CLI utility reads configuration both from config files and environment va
 
 Utility loads configuration from the following locations in the given order:
 
-1. /etc/tigris/tigris.yaml
-2. $HOME/.tigris/tigris.yaml
-3. ./config/tigris.yaml
-4. ./tigris.yaml
+1. /etc/tigris/tigris-cli.yaml
+2. $HOME/.tigris/tigris-cli.yaml
+3. ./config/tigris-cli.yaml
+4. ./tigris-cli.yaml
 
 ### Example configuration file
 
-Here is an example of tigris.yaml:
+Here is an example of tigris-cli.yaml:
 
 ```yaml
 url: tigris.example.com:8081

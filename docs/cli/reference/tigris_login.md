@@ -1,15 +1,15 @@
-## tigris version
+## tigris login
 
-Shows tigris cli version
+Authenticate on the Tigris instance
 
 ```
-tigris version [flags]
+tigris login [url] [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for version
+  -h, --help   help for login
 ```
 
 ### SEE ALSO

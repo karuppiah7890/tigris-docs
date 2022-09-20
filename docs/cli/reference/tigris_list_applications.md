@@ -1,15 +1,15 @@
-## tigris list databases
+## tigris list applications
 
-Lists databases
+Lists applications
 
 ```
-tigris list databases [flags]
+tigris list applications [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for databases
+  -h, --help   help for applications
 ```
 
 ### SEE ALSO

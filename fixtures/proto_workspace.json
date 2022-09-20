@@ -1468,7 +1468,7 @@
           "fields": [
             {
               "name": "db",
-              "description": "",
+              "description": "Database name where to publish messages.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1480,7 +1480,7 @@
             },
             {
               "name": "collection",
-              "description": "",
+              "description": "Topic name where to publish messages.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1523,19 +1523,19 @@
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
-          "hasOneofs": false,
+          "hasOneofs": true,
           "extensions": [],
           "fields": [
             {
               "name": "partition",
               "description": "",
-              "label": "",
+              "label": "optional",
               "type": "int32",
               "longType": "int32",
               "fullType": "int32",
               "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
+              "isoneof": true,
+              "oneofdecl": "_partition",
               "defaultValue": ""
             }
           ]
@@ -2512,7 +2512,7 @@
           "fields": [
             {
               "name": "db",
-              "description": "",
+              "description": "Database name.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2524,7 +2524,7 @@
             },
             {
               "name": "collection",
-              "description": "",
+              "description": "Topic name.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -3797,6 +3797,11 @@
             {
               "name": "WRITE",
               "number": "2",
+              "description": ""
+            },
+            {
+              "name": "METADATA",
+              "number": "3",
               "description": ""
             }
           ]

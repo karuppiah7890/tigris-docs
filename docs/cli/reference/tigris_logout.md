@@ -1,15 +1,15 @@
-## tigris version
+## tigris logout
 
-Shows tigris cli version
+Logout from Tigris instance
 
 ```
-tigris version [flags]
+tigris logout [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for version
+  -h, --help   help for logout
 ```
 
 ### SEE ALSO

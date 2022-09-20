@@ -1,15 +1,15 @@
-## tigris create database
+## tigris create application
 
-Creates database
+Create application credentials
 
 ```
-tigris create database {db} [flags]
+tigris create application {name} {description} [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for database
+  -h, --help   help for application
 ```
 
 ### SEE ALSO

@@ -1,15 +1,15 @@
-## tigris drop database
+## tigris drop application
 
-Drops database
+Drop application credentials
 
 ```
-tigris drop database {db} [flags]
+tigris drop application {id} [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for database
+  -h, --help   help for application
 ```
 
 ### SEE ALSO
