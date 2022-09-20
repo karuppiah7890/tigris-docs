@@ -195,6 +195,11 @@ const sidebars = {
       ],
     },
     {
+      type: "doc",
+      label: "Authentication",
+      id: "authentication/authentication",
+    },
+    {
       type: "category",
       label: "Command Line Interface",
       link: {
