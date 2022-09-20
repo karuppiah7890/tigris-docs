@@ -15,7 +15,7 @@ simple but powerful universal API.
 
 The diagram below shows the high level architecture of Tigris.
 
-![Tigris High Level Architecture Overview](tigris-cloud-native-arch.jpg)
+![Tigris High Level Architecture Overview](tigris-high-level-arch.jpg)
 
 ## FoundationDB as the data persistence layer
 
