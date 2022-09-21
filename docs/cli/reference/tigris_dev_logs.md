@@ -1,13 +1,13 @@
 ---
-id: local-logs
-title: Local Logs
-slug: /cli/local-logs
+id: dev-logs
+title: Local dev logs
+slug: /cli/dev-logs
 ---
 
 Shows logs from local Tigris instance
 
-```
-tigris local logs [flags]
+```shell
+tigris dev logs [flags]
 ```
 
 ### Options

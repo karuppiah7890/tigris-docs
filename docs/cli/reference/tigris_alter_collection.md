@@ -10,13 +10,13 @@ Updates collection schema
 
 Updates collection schema.
 
-```
+```shell
 tigris alter collection {db} {schema} [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Pass the schema as a string
   tigris alter collection testdb '{

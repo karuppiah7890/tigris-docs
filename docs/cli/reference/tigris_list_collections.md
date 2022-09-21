@@ -6,7 +6,7 @@ slug: /cli/list-collections
 
 Lists database collections
 
-```
+```shell
 tigris list collections {db} [flags]
 ```
 

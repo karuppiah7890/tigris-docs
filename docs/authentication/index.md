@@ -21,6 +21,11 @@ Once authenticated, the user can create applications. Each application has a
 used to communicate with the Tigris via the supported TypeScript, Go and Java
 SDKs.
 
+Authentication process is described here:
+
+- [CLI](../cli/authentication.md)
+- UI
+
 ## Supported auth providers
 
 ### Auth0

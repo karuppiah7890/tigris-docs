@@ -10,13 +10,13 @@ Generates sample schema
 
 Generates sample schema consisting of three collections: products, users, orders.
 
-```
+```shell
 tigris generate sample-schema [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Generate sample schema files in current directory orders.json, products.json and users.json
   tigris generate sample-schema

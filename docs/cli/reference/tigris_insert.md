@@ -10,13 +10,13 @@ Inserts document(s)
 
 Inserts one or more documents into a collection.
 
-```
+```shell
 tigris insert {db} {collection} {document}...|- [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Insert a single document into the users collection
   tigris insert testdb users '{"id": 1, "name": "Alice Alan"}'
@@ -36,4 +36,11 @@ tigris insert {db} {collection} {document}...|- [flags]
   # ]
   cat /home/alice/user_records.json | tigris insert testdb users -
 
+```
+
+### Options
+
+```
+  -b, --batch_size int32   set batch size (default 100)
+  -h, --help               help for insert
 ```

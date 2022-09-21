@@ -46,8 +46,30 @@ The `OpenDatabase` function connects to the Tigris backend, creates the
 database and collections if they don't exist, otherwise updates the schema of
 the collections if they already exist.
 
+#### Local development configuration
+
 ```go
 db, err := tigris.OpenDatabase(ctx,
 	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
     "catalogdb", &Catalog{})
 ```
+
+#### Cloud platform configuration
+
+Tigris URL, ApplicationID and ApplicationSecret need to be set as follows,
+in order to connect to the hosted platform:
+
+```go
+cfg := &config.Database{
+	Driver: config.Driver{
+		URL: "api.preview.tigrisdata.cloud"
+		ClientID: "paste client_id here"
+		ClientSecret: "paste client_secret here"
+	}
+}
+
+db, err := tigris.OpenDatabase(ctx, cfg, "catalogdb", &Catalog{})
+```
+
+The ApplicationID and ApplicationSecret can be retrieved by creating an application
+in the [CLI](../cli/authentication.md#application-credentials) or UI.

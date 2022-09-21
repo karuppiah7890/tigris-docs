@@ -27,28 +27,28 @@ tigris search testdb users -q "Alice"
 tigris search testdb users -q "Alice" -f "firstName,lastName"
 
 # Filter for users with age > 23
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter "{\"age\": {\"$gt\": 23}}"
+tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}'
 
 # Aggregate results by current city and get top 10 cities
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter "{\"age\": {\"$gt\": 23}}" --facet "{\"currentCity\": {\"size\": 10}}"
+tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}'
 
 # Sort the results by age in increasing order
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter "{\"age\": {\"$gt\": 23}}" --facet "{\"currentCity\": {\"size\": 10}}" --sort "[{\"age\": \"$asc\"}]"
+tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]'
 
 # Exclude sensitive information from results
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter "{\"age\": {\"$gt\": 23}}" --facet "{\"currentCity\": {\"size\": 10}}" --sort "[{\"age\": \"$asc\"}]" -x "phoneNumber,address"
+tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]' -x "phoneNumber,address"
 
 # Paginate the results, with 15 per page
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter "{\"age\": {\"$gt\": 23}}" --facet "{\"currentCity\": {\"size\": 10}}" --sort "[{\"age\": \"$asc\"}]" -x "phoneNumber,address" -p 1 -c 15
+tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]' -x "phoneNumber,address" -p 1 -c 15
 
 # Find users with last name exactly matching "Wong"
-tigris search testdb users --filter "{\"lastName\": \"Wong\"}"
+tigris search testdb users --filter '{"lastName": "Wong"}'
+
 ```
 
 ### Options
 
-```shell
-Flags:
+```
   -q, --query string            query string for searching across text fields
   -f, --searchFields strings    comma separated value of fields to project search query against
       --filter string           further refine the search results using filters (default "{}")

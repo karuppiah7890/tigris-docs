@@ -10,13 +10,13 @@ Creates collection(s)
 
 Creates collections with provided schema.
 
-```
+```shell
 tigris create collection {db} {schema}...|- [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Pass the schema as a string
   tigris create collection testdb '{

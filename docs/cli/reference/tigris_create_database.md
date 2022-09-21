@@ -6,7 +6,7 @@ slug: /cli/create-database
 
 Creates database
 
-```
+```shell
 tigris create database {db} [flags]
 ```
 

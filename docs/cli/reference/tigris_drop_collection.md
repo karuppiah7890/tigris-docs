@@ -6,7 +6,7 @@ slug: /cli/drop-collection
 
 Drops collection
 
-```
+```shell
 tigris drop collection {db} [flags]
 ```
 

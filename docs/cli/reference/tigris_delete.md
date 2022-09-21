@@ -10,13 +10,13 @@ Deletes document(s)
 
 Deletes documents according to the provided filter.
 
-```
+```shell
 tigris delete {db} {collection} {filter} [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Delete a user where the value of the id field is 2
   tigris delete testdb users '{"id": 2}'

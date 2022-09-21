@@ -11,13 +11,13 @@ Executes a set of operations in a transaction
 Executes a set of operations in a transaction.
 All the read, write and schema operations are supported.
 
-```
+```shell
 tigris transact {db} {operation}...|- [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Perform a transaction that inserts and updates in three collections
   tigris tigris transact testdb \

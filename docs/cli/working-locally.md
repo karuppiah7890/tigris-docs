@@ -7,7 +7,7 @@ Getting started working with Tigris locally requires one easy step.
 Open your terminal, and:
 
 ```shell
-tigris local up
+tigris dev start
 ```
 
 This will spin up Tigris locally via Docker. The Tigris
@@ -133,7 +133,7 @@ Shutting down the locally running Tigris is also as easy as requiring a
 single step. Open your terminal, and:
 
 ```shell
-tigris local down
+tigris dev stop
 ```
 
 ## Customizing the Tigris server version and port
@@ -142,5 +142,5 @@ You can change the Tigris server port. For example, if you want
 the server to be available on port `9091`:
 
 ```shell
-tigris local up 9091
+tigris dev start 9091
 ```

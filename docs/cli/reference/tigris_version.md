@@ -6,7 +6,7 @@ slug: /cli/version
 
 Shows tigris cli version
 
-```
+```shell
 tigris version [flags]
 ```
 

@@ -10,7 +10,7 @@ Describes collection
 
 Returns collection schema including metadata
 
-```
+```shell
 tigris describe collection {db} {collection} [flags]
 ```
 

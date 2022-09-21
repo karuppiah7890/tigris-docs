@@ -6,7 +6,7 @@ slug: /cli/drop-database
 
 Drops database
 
-```
+```shell
 tigris drop database {db} [flags]
 ```
 

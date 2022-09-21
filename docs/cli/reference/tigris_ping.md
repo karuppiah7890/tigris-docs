@@ -6,7 +6,7 @@ slug: /cli/ping
 
 Checks connection to Tigris
 
-```
+```shell
 tigris ping [flags]
 ```
 

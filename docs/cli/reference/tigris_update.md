@@ -10,13 +10,13 @@ Updates document(s)
 
 Updates the field values in documents according to provided filter.
 
-```
+```shell
 tigris update {db} {collection} {filter} {fields} [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Update the field "name" of user where the value of the id field is 2
   tigris update testdb users '{"id": 19}' '{"$set": {"name": "Updated New User"}}'

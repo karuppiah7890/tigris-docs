@@ -10,7 +10,7 @@ Describes database
 
 Returns schema and metadata for all the collections in the database
 
-```
+```shell
 tigris describe database {db} [flags]
 ```
 

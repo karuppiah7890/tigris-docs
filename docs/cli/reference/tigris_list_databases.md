@@ -6,7 +6,7 @@ slug: /cli/list-databases
 
 Lists databases
 
-```
+```shell
 tigris list databases [flags]
 ```
 

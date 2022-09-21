@@ -10,13 +10,13 @@ Generates completion script for shell
 
 Generates completion helper script for multiple shells
 
-```
+```shell
 tigris completion [bash|zsh|fish|powershell]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Bash
 

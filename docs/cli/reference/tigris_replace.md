@@ -10,13 +10,13 @@ Inserts or replaces document(s)
 
 Inserts new documents or replaces existing documents.
 
-```
+```shell
 tigris insert_or_replace {db} {collection} {document}...|- [flags]
 ```
 
 ### Examples
 
-```
+```shell
 
   # Insert new documents
   tigris insert_or_replace testdb users '{"id": 1, "name": "John Wong"}'
