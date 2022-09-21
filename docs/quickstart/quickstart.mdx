@@ -859,7 +859,7 @@ public class TigrisApp {
         client.dropDatabase("hello-db");
     }
 
-    public static class User implements TigrisCollectionType {
+    public static class User implements TigrisDocumentCollectionType {
         @TigrisPrimaryKey(order = 1, autoGenerate = true)
         private int userId;
         private String name;

@@ -11,7 +11,7 @@ import com.tigrisdata.db.type.TigrisCollectionType;
 import java.util.Objects;
 
 @TigrisCollection(value = "catalog")
-public class Catalog implements TigrisCollectionType {
+public class Catalog implements TigrisDocumentCollectionType {
   @TigrisField(description = "A unique identifier for the catalog item")
   @TigrisPrimaryKey(order = 1, autoGenerate = true)
   private int id;
@@ -128,7 +128,7 @@ collection named `product_catalog`.
 
 ```java
 @TigrisCollection("product_catalog")
-public class Catalog implements TigrisCollectionType {
+public class Catalog implements TigrisDocumentCollectionType {
     //...
 }
 ```
@@ -142,7 +142,7 @@ You can optionally add description to your fields by using the annotation
 `@TigrisField` as below
 
 ```java
-public class Catalog implements TigrisCollectionType {
+public class Catalog implements TigrisDocumentCollectionType {
 
     @TigrisField(description = "Name of the product")
     private String name;

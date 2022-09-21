@@ -9,7 +9,7 @@ Below is an example of embedded data model. We first define the `Product`
 type and then embed it inside the `Order` type.
 
 ```java
-public class Product implements TigrisCollectionType {
+public class Product implements TigrisDocumentCollectionType {
 
     @TigrisField(description = "A unique identifier for the product")
     @TigrisPrimaryKey(order = 1, autoGenerate = true)
@@ -75,7 +75,7 @@ public class Product implements TigrisCollectionType {
     }
 }
 
-public class Order implements TigrisCollectionType {
+public class Order implements TigrisDocumentCollectionType {
 
     @TigrisPrimaryKey(order = 1, autoGenerate = true)
     private long id;
