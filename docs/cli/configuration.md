@@ -17,8 +17,8 @@ Here is an example of tigris.yaml:
 
 ```yaml
 url: tigris.example.com:8081
-application_id: "your_app_id"
-application_secret: "you_app_secret"
+client_id: "your_app_id"
+client_secret: "you_app_secret"
 timeout: 2s
 ```
 
@@ -45,15 +45,15 @@ Environment variables have precedence over configuration files.
 ## Example environment configuration
 
 ```shell
-export TIGRIS_APPLICATION_ID="your_app_id"
-export TIGRIS_APPLICATION_SECRET="your_app_secret"
+export TIGRIS_CLIENT_ID="your_app_id"
+export TIGRIS_CLIENT_SECRET="your_app_secret"
 export TIGRIS_URL="tigris.example.com:8081"
 ```
 
 ## Available configuration variables
 
-- `application_id` - Unique application identifier obtained in the web console
-- `application_secret` - Application secret obtained in the web console
+- `client_id` - Unique application identifier obtained in the web console
+- `client_secret` - Application secret obtained in the web console
 - `url` - URL pointing to the Tigris installation with optional port
 - `timeout` - Request timeout
 - `protocol` - Protocol GRPC or HTTP(S).
@@ -64,6 +64,6 @@ export TIGRIS_URL="tigris.example.com:8081"
 url: "localhost:8081"
 timeout: 5s
 protocol: grpc
-application_id: ""
-application_secret: """
+client_id: ""
+client_secret: """
 ```
