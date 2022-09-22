@@ -7,7 +7,7 @@ package com.tigrisdata.db.client.collection;
 
 import com.tigrisdata.db.annotation.TigrisField;
 import com.tigrisdata.db.annotation.TigrisPrimaryKey;
-import com.tigrisdata.db.type.TigrisCollectionType;
+import com.tigrisdata.db.type.TigrisDocumentCollectionType;
 import java.util.Objects;
 
 @TigrisCollection(value = "catalog")
