@@ -4,6 +4,8 @@ on:
 
 env:
   NEXT_PUBLIC_ANALYTICS_ID: dummy_for_testing
+  NEXT_ALGOLIA_APPID: dummy_for_testing
+  NEXT_ALGOLIA_APIKEY: dummy_for_testing
 
 jobs:
   build:
