@@ -2,23 +2,33 @@ import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 import { tabbedItemTheme } from "../commons";
 
+### Install CLI
+
 <Tabs className={tabbedItemTheme}>
-<TabItem value="Docker" label="Docker">
+<TabItem value="macOS" label="macOS">
 
 ```shell
-docker run -d -p 8081:8081 tigrisdata/tigris-local:latest
+brew install tigrisdata/tigris/tigris-cli
 ```
 
+[Alternative ways of installation](/cli/installation.mdx).
+
 </TabItem>
-<TabItem value="CLI" label="CLI">
+<TabItem value="Linux" label="Linux">
+
+```shell
+curl -sSL https://tigris.dev/cli-linux | sudo tar -xz -C /usr/local/bin
+```
+
+[Alternative ways of installation](/cli/installation.mdx).
+
+</TabItem>
+</Tabs>
+
+### Start local Tigris instance
 
 ```shell
 tigris dev start
 ```
-
-CLI installation instructions [here](/cli/installation.mdx).
-
-</TabItem>
-</Tabs>
 
 Once this command has completed, Tigris will be available on port `8081`.

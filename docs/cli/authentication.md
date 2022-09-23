@@ -53,9 +53,10 @@ token: <token value>
 url: api.preview.tigrisdata.cloud
 ```
 
-** Warning **
+:::caution
 Please make sure to keep the token secure. Whoever possess the token
 can execute any command on your name.
+:::
 
 The token can be provided as authorization header to authenticate bare [HTTP APIs](/apidocs):
 
@@ -86,5 +87,6 @@ authentication configuration:
 }
 ```
 
-** Warning **
+:::caution
 Please make sure to keep the client id and secret in a safe place.
+:::
