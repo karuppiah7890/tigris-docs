@@ -81,7 +81,7 @@ authentication configuration:
   "id": "<client id>",
   "name": "your_app_name",
   "description": "human readable description",
-  "secret": "<client secrete here",
+  "secret": "<client secret here>",
   "created_at": 1663802082000,
   "created_by": "github|3436058"
 }

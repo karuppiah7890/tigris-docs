@@ -17,8 +17,8 @@ Here is an example of tigris.yaml:
 
 ```yaml
 url: tigris.example.com:8081
-client_id: "your_app_id"
-client_secret: "you_app_secret"
+client_id: "your_client_id"
+client_secret: "your_client_secret"
 timeout: 2s
 ```
 
@@ -45,8 +45,8 @@ Environment variables have precedence over configuration files.
 ## Example environment configuration
 
 ```shell
-export TIGRIS_CLIENT_ID="your_app_id"
-export TIGRIS_CLIENT_SECRET="your_app_secret"
+export TIGRIS_CLIENT_ID="your_client_id"
+export TIGRIS_CLIENT_SECRET="your_client_secret"
 export TIGRIS_URL="tigris.example.com:8081"
 ```
 

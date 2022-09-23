@@ -56,7 +56,7 @@ db, err := tigris.OpenDatabase(ctx,
 
 #### Cloud platform configuration
 
-Tigris URL, ApplicationID and ApplicationSecret need to be set as follows,
+Tigris URL, ClientID and ClientSecret need to be set as follows,
 in order to connect to the hosted platform:
 
 ```go
@@ -71,5 +71,5 @@ cfg := &config.Database{
 db, err := tigris.OpenDatabase(ctx, cfg, "catalogdb", &Catalog{})
 ```
 
-The ApplicationID and ApplicationSecret can be retrieved by creating an application
+The ClientID and ClientSecret can be retrieved by creating an application
 in the [CLI](../cli/authentication.md#application-credentials) or UI.

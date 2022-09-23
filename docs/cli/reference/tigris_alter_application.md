@@ -21,7 +21,7 @@ Output:
   "id": "<client id>",
   "name": "new_name1",
   "description": "new descr1",
-  "secret": "<client secrete here",
+  "secret": "<client secret here>",
   "created_at": 1663802082000,
   "created_by": "github|3436058"
 }
