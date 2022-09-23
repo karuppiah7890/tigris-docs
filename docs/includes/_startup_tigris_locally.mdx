@@ -1,18 +1,22 @@
-<Tabs>
-<TabItem value="CLI" label="CLI">
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { tabbedItemTheme } from "../commons";
 
-        ```shell
-        tigris dev start
-        ```
-
-        CLI installation instructions [here](/cli/installation.md).
-
-</TabItem>
+<Tabs className={tabbedItemTheme}>
 <TabItem value="Docker" label="Docker">
 
-        ```shell
-        docker run -d -p 8081:8081 tigrisdata/tigris-local:latest
-        ```
+```shell
+docker run -d -p 8081:8081 tigrisdata/tigris-local:latest
+```
+
+</TabItem>
+<TabItem value="CLI" label="CLI">
+
+```shell
+tigris dev start
+```
+
+CLI installation instructions [here](/cli/installation.mdx).
 
 </TabItem>
 </Tabs>
