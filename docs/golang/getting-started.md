@@ -1,3 +1,7 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { tabbedItemTheme } from "../commons";
+
 # Getting Started
 
 ## Prerequisites
@@ -8,13 +12,47 @@ or newer.
 
 ## Installation
 
+Install Tigris client as a dependency of you Go modules enabled project.
+
 ```shell
 go get -u github.com/tigrisdata/tigris-client-go@latest
 ```
 
-## Connecting to the database
+## Create Connection
 
-### Set up the data model
+<Tabs className={tabbedItemTheme}>
+<TabItem value="Tigris Cloud" label="Tigris Cloud">
+
+Tigris URL, ClientID and ClientSecret need to be set as follows,
+in order to connect to the hosted platform:
+
+```go
+cfg := &config.Database{
+	Driver: config.Driver{
+		URL: "api.preview.tigrisdata.cloud"
+		ClientID: "paste client_id here"
+		ClientSecret: "paste client_secret here"
+	}
+}
+
+client, err := tigris.NewClient(ctx, cfg)
+```
+
+The ClientID and ClientSecret can be retrieved by creating an application
+in the [CLI](../cli/authentication.md#application-credentials) or UI.
+
+</TabItem>
+<TabItem value="Development Environment" label="Development Environment">
+
+```go
+cfg := &config.Database{Driver: config.Driver{URL: "localhost:8081"}}
+client, err := tigris.NewClient(ctx, cfg)
+```
+
+</TabItem>
+</Tabs>
+
+## Set up the data model
 
 Models are regular Go structs composed of basic Go types or custom types.
 
@@ -40,36 +78,11 @@ This declaration will create a collection named `catalogs`.
 For detailed documentation on data modeling refer to the
 [data modeling](datamodel/overview.mdx) section.
 
-### Connect and initialize the database
+### Create Database and Collections
 
-The `OpenDatabase` function connects to the Tigris backend, creates the
-database and collections if they don't exist, otherwise updates the schema of
-the collections if they already exist.
-
-#### Local development configuration
+The `OpenDatabase` creates the database and collections if they don't exist,
+otherwise updates the schema of the collections if they already exist.
 
 ```go
-db, err := tigris.OpenDatabase(ctx,
-	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "catalogdb", &Catalog{})
+db, err := client.OpenDatabase(ctx, "catalogdb", &Catalog{})
 ```
-
-#### Cloud platform configuration
-
-Tigris URL, ClientID and ClientSecret need to be set as follows,
-in order to connect to the hosted platform:
-
-```go
-cfg := &config.Database{
-	Driver: config.Driver{
-		URL: "api.preview.tigrisdata.cloud"
-		ClientID: "paste client_id here"
-		ClientSecret: "paste client_secret here"
-	}
-}
-
-db, err := tigris.OpenDatabase(ctx, cfg, "catalogdb", &Catalog{})
-```
-
-The ClientID and ClientSecret can be retrieved by creating an application
-in the [CLI](../cli/authentication.md#application-credentials) or UI.

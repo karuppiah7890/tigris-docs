@@ -1,3 +1,7 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { tabbedItemTheme } from "../commons";
+
 # Getting Started
 
 ## Prerequisites
@@ -9,6 +13,39 @@ The Tigris client is compatible with Node version 12 onwards.
 ```shell
 npm install @tigrisdata/core
 ```
+
+## Create Connection
+
+<Tabs className={tabbedItemTheme}>
+<TabItem value="Tigris Cloud" label="Tigris Cloud">
+
+Tigris server URL, ClientID and ClientSecret need to be set as follows,
+in order to connect to the hosted platform:
+
+```typescript
+const tigris: Tigris = new Tigris({
+  serverUrl: "api.preview.tigrisdata.cloud",
+  clientId: "paste client_id here",
+  clientSecret: "paste client_secret here",
+});
+```
+
+The ClientID and ClientSecret can be retrieved by creating an application
+in the [CLI](../cli/authentication.md#application-credentials) or UI.
+
+</TabItem>
+<TabItem value="Development Environment" label="Development Environment">
+
+For local development only URL pointing to the localhost is required:
+
+```typescript
+const tigris: Tigris = new Tigris({
+  serverUrl: "localhost:8081",
+});
+```
+
+</TabItem>
+</Tabs>
 
 ## Set up the data model
 
@@ -78,15 +115,7 @@ const catalogSchema: TigrisSchema<Catalog> = {
 For detailed documentation on schema representation refer to the
 [data modeling](datamodel/overview.mdx) section.
 
-## Connect and initialize the database
-
-Configure Tigris client using configuration.
-
-```typescript
-const tigris: Tigris = new Tigris({
-  serverUrl: "localhost:8081",
-});
-```
+#### Create Database and Collections
 
 Create database (if not exists)
 

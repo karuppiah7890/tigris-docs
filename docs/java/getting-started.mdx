@@ -1,10 +1,8 @@
----
-title: Getting Started
----
-
 import Tabs from "@theme/Tabs";
 import { tabbedItemTheme } from "../commons";
 import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
+
+# Getting Started
 
 ## Installation
 
@@ -60,17 +58,38 @@ maximize the use of system resources.
 
 :::
 
-### Initialize
+### Create Connection
 
-Configure your JAVA application to connect to Tigris.
+<Tabs className={tabbedItemTheme}>
+<TabItem value="Tigris Cloud" label="Tigris Cloud">
+
+Tigris URL, ClientID and ClientSecret need to be set as follows,
+in order to connect to the hosted platform:
+
+```java
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder("api.preview.tigrisdata.cloud")
+    .withAuthConfig(new TigrisConfiguration.AuthConfig("paste client_id here", "paste client_secret here"))
+    .build();
+```
+
+</TabItem>
+<TabItem value="Development Environment" label="Development Environment">
+
+Configure your JAVA application to connect to local Tigris.
+
+```java
+// configuration
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:8081").build();
+```
+
+</TabItem>
+
+</Tabs>
 
 <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
-// configuration
-TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:8081").build();
-
 // client
 TigrisClient client = StandardTigrisClient.getInstance(tigrisConfiguration);
 ```
