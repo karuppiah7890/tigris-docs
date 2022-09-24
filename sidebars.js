@@ -51,39 +51,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "HTTP Reference",
-      collapsed: true,
-      link: {
-        type: "doc",
-        id: "http/index",
-      },
-      items: [
-        "http/getting-started",
-        {
-          type: "category",
-          label: "Data Modeling",
-          link: {
-            type: "doc",
-            id: "http/datamodel/overview",
-          },
-          collapsed: false,
-          items: [
-            "http/datamodel/declare",
-            "http/datamodel/primary-key",
-            "http/datamodel/embedded",
-            "http/datamodel/types",
-          ],
-        },
-        "http/insert",
-        "http/update",
-        "http/delete",
-        "http/query",
-        "http/search",
-        "http/event_streaming",
-      ],
-    },
-    {
-      type: "category",
       label: "TypeScript Reference",
       link: {
         type: "doc",
@@ -113,6 +80,39 @@ const sidebars = {
         "typescript/search",
         "typescript/transactions",
         "typescript/event_streaming",
+      ],
+    },
+    {
+      type: "category",
+      label: "HTTP Reference",
+      collapsed: true,
+      link: {
+        type: "doc",
+        id: "http/index",
+      },
+      items: [
+        "http/getting-started",
+        {
+          type: "category",
+          label: "Data Modeling",
+          link: {
+            type: "doc",
+            id: "http/datamodel/overview",
+          },
+          collapsed: false,
+          items: [
+            "http/datamodel/declare",
+            "http/datamodel/primary-key",
+            "http/datamodel/embedded",
+            "http/datamodel/types",
+          ],
+        },
+        "http/insert",
+        "http/update",
+        "http/delete",
+        "http/query",
+        "http/search",
+        "http/event_streaming",
       ],
     },
     {
