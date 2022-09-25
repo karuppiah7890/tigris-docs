@@ -3,6 +3,16 @@ id: quickstart
 slug: /quickstart
 ---
 
+import TigrisCloud from "../includes/_tigris_cloud.mdx";
+import StartupLocally from "../includes/_startup_tigris_locally.mdx";
+import HTTPQuickstart from "./_http_quickstart.mdx";
+import TSQuickstart from "./_ts_quickstart.mdx";
+import GoQuickstart from "./_go_quickstart.mdx";
+import JavaQuickstart from "./_java_quickstart.mdx";
+import { tabbedItemTheme } from "../commons";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
 # Quickstart
 
 Tigris is the all-in-one open source developer data platform.
@@ -23,20 +33,23 @@ infrastructure._
 
 The following guide will get you up and running with Tigris. It covers
 creating database and collection, writing queries to read and write data,
-and performing search.
+and performing search all without touching any infrastructure.
 
-## Startup Tigris on your local machine
+## Setup Tigris
 
-import StartupLocally from "../includes/_startup_tigris_locally.mdx";
-import HTTPQuickstart from "./_http_quickstart.mdx";
-import TSQuickstart from "./_ts_quickstart.mdx";
-import GoQuickstart from "./_go_quickstart.mdx";
-import JavaQuickstart from "./_java_quickstart.mdx";
-import { tabbedItemTheme } from "../commons";
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+<Tabs>
+<TabItem value="cloud" label="Tigris Cloud">
+
+<TigrisCloud />
+
+</TabItem>
+
+<TabItem value="dev" label="Development Environment">
 
 <StartupLocally />
+
+</TabItem>
+</Tabs>
 
 ## Quickstart
 

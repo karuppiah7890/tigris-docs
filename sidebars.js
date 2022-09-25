@@ -206,7 +206,7 @@ const sidebars = {
         type: "doc",
         id: "cli/overview",
       },
-      collapsed: false,
+      collapsed: true,
       items: [
         "cli/authentication",
         "cli/installation",
