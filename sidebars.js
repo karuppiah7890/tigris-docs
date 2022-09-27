@@ -201,6 +201,16 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Observability",
+      link: {
+        type: "doc",
+        id: "observability/overview",
+      },
+      collapsed: true,
+      items: ["observability/tags", "observability/metrics"],
+    },
+    {
+      type: "category",
       label: "Command Line Interface",
       link: {
         type: "doc",
