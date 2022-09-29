@@ -71,6 +71,7 @@ const sidebars = {
             "typescript/datamodel/declare",
             "typescript/datamodel/primary-key",
             "typescript/datamodel/embedded",
+            "typescript/datamodel/types",
           ],
         },
         "typescript/insert",
