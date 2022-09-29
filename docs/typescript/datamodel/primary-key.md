@@ -20,14 +20,14 @@ how the order of the fields are defined in case of a composite primary key
 ```typescript
 // data container
 interface Catalog extends TigrisCollectionType {
-  id?: number;
+  id?: string;
   name: string;
 }
 
 // schema definition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
-    type: TigrisDataTypes.INT32,
+    type: TigrisDataTypes.INT64,
     primary_key: {
       order: 1,
       autoGenerate: true,

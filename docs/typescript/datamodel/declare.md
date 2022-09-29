@@ -8,7 +8,7 @@ There are two basic constructs for TypeScript Tigris modeling.
 ```typescript
 // data container
 interface Catalog extends TigrisCollectionType {
-  id?: number;
+  id?: string;
   name: string;
   price: number;
   brand: string;
@@ -20,7 +20,7 @@ interface Catalog extends TigrisCollectionType {
 // schema definition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
-    type: TigrisDataTypes.INT32,
+    type: TigrisDataTypes.INT64,
     primary_key: {
       order: 1,
       autoGenerate: true,
@@ -52,5 +52,10 @@ const catalogSchema: TigrisSchema<Catalog> = {
 - You must keep the data container and schema definition in sync.
 - The primary key field is marked as autoGenerate=true which is why it
   is defined as an optional field.
-
-:::
+- Due to Javascript's limitation if you want to use `int64` with values
+  greater than 53 bits then use `bigint` or `string` in your model (data
+  container interface) schema will still say `INT64`. If you are using
+  default serializer/deserializer in your application use it as `string`.
+  server will still keep it as `int64`. If you have no serde else where in
+  the app or all the serde are handling `bigint` properly then use `bigint`.
+  :::
