@@ -1,0 +1,34 @@
+# Data Modeling
+
+Tigris enables the data models to be declared as part of the
+application code. These data models are then converted to appropriate
+objects, such as collections, on the backend.
+
+## Declaring Models
+
+There are two basic constructs for TypeScript Tigris modeling.
+
+1. Data containers - interface that holds the data model
+2. Schema of Data containers - TigrisSchema definition of these data containers.
+
+```ts
+// data container
+interface ProductEvents extends TigrisCollectionType {
+  orderId?: string;
+  name: string;
+  status: string;
+}
+
+// schema definition of the topic
+const productEventsSchema: TigrisSchema<ProductEvents> = {
+  orderId: {
+    type: TigrisDataTypes.INT64,
+  },
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  status: {
+    type: TigrisDataTypes.STRING,
+  },
+};
+```

@@ -113,7 +113,7 @@ const catalogSchema: TigrisSchema<Catalog> = {
 ```
 
 For detailed documentation on schema representation refer to the
-[data modeling](datamodel/overview.mdx) section.
+[data modeling](datamodeling_docs.mdx) section.
 
 #### Create Database and Collections
 

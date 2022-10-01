@@ -31,7 +31,7 @@ management.
   - Stream events directly from your apps, services, or IOT devices.
   - Since data is automatically indexed, you can query all data and search
     through all events with ease.
-- 🔍 **Global Search**
+- 🔍 **Real-time Search**
   - Search across all your collections at once using full text or faceted
     search.
   - Create rich user experiences with an integrated search engine

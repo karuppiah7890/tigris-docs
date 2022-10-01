@@ -34,6 +34,7 @@ const config = {
         docs: {
           routeBasePath: "/",
           sidebarPath: require.resolve("./sidebars.js"),
+          breadcrumbs: false,
           editUrl: "https://github.com/tigrisdata/tigris-docs/blob/main",
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
@@ -120,8 +121,13 @@ const config = {
             position: "left",
           },
           {
-            label: "API",
+            label: "API Reference",
             to: "apidocs/",
+            position: "left",
+          },
+          {
+            label: "Guides",
+            to: "guides/",
             position: "left",
           },
           {

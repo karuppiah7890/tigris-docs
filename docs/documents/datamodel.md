@@ -1,0 +1,61 @@
+# Data Modeling
+
+Tigris is quite flexible in terms of the different types of data models that
+are supported. A collection's schema defines the structure of the documents
+that are stored in the collection. This schema maps to an entity or object
+in your application code. This is why you declare the data model as part of
+your application code with Tigris.
+
+When choosing the right data model to use, always think about how your
+application works with the data and how the relationships between data is
+represented.
+
+## Embedded data model
+
+Emebedded documents store related data together in a single document
+structure. Tigris allows you to have rich schemas that enable embedding
+related data in a single document using Object and Array field types.
+
+Embedded models allow applications to retrieve and manipulate related data
+in a single database operation. The following examples demonstrate a
+collection that leverages this pattern by storing related data in a single
+data model:
+
+![Embedded data model](/img/embedded.jpg)
+
+## Normalized data model
+
+Sometimes there is a need to split related data across multiple collections.
+This is known as a normalized data model - this model stores relationships
+between data as references in the documents. Applications then resolve these
+references when accessing the data.
+
+Below is an example that demonstrates a normalized data model:
+
+![Normalized data model](/img/relational-model.jpg)
+
+### Data consistency and atomicity of operations
+
+When using a normalized data model, you would have data split across
+multiple collections. As a result, data modifications will likely result in
+modifications to multiple documents. As Tigris provides ACID transactions,
+you can safely modify multiple documents in a transactional manner with
+guaranteed atomicity.
+
+:::tip
+
+With Tigris, there is no performance penalty for multi-document transactions.
+Hence, Tigris supports Embedded and relational data models equally well and
+leaves the choice to the user to decide what is best for their application
+use case.
+
+:::
+
+## Further reading
+
+Checkout the language-specific reference sections to learn more about
+defining data models in your favorite language.
+
+- [Data modeling in TypeScript](../typescript/datamodeling_docs)
+- [Data modeling in Go](../golang/datamodel/declare)
+- [Data modeling in Java](../java/datamodel/declare)
