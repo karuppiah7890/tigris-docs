@@ -13,6 +13,8 @@ to run a separate search system alongside your database.
 Furthermore, Tigris automatically indexes the data in collections and topics,
 providing rich search capability out-of-the-box.
 
+![Search Architecture](/img/search.jpg)
+
 ## Features
 
 Tigris embedded search provides the following rich set of features:
