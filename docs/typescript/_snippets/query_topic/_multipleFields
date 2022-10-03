@@ -1,0 +1,16 @@
+topic.findMany({
+    op: LogicalOperator.AND,
+    selectorFilters: [
+        {
+            brand: "adidas"
+        },
+        {
+            status: "sold"
+        },
+    ]
+}).then(value => {
+    const orders: ProductEvents[] = <ProductEvents[]>value;
+    for (const i in orders) {
+        console.log(orders[i]);
+    }
+});

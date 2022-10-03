@@ -1,0 +1,22 @@
+topic.findMany({
+    op: LogicalOperator.AND,
+    selectorFilters: [
+        {
+            op: SelectorFilterOperator.GTE,
+            fields: {
+                created_at: "2022-01-01T17:29:28.000Z"
+            }
+        },
+        {
+            op: SelectorFilterOperator.LT,
+            fields: {
+                created_at: "2022-01-02T17:29:28.000Z"
+            }
+        }
+    ]
+}).then(value => {
+    const orders: ProductEvents[] = <ProductEvents[]>value;
+    for (const i in orders) {
+        console.log(orders[i]);
+    }
+});

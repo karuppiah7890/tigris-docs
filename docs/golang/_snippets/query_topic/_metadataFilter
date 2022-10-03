@@ -1,0 +1,5 @@
+it, err := topic.Read(ctx, filter.And(
+        filter.Gte("created_at", "2022-01-01T17:29:28.000Z"),
+        filter.Lt("created_at", "2022-01-02T17:29:28.000Z"),
+    ),
+)

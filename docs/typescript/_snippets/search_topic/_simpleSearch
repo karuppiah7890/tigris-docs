@@ -1,0 +1,15 @@
+const request: SearchRequest<ProductEvents> = {
+  q: "running",
+};
+
+topic.search(request, {
+  onEnd() {
+    // when search completes
+  },
+  onNext(result: SearchResult<Catalog>) {
+    // when a search result is fetched
+  },
+  onError(error: Error) {
+    // in case of an error
+  },
+});

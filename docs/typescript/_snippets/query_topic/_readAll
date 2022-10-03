@@ -1,0 +1,11 @@
+catalog.findAllStream({
+  onEnd() {
+    // handle onEnd
+  },
+  onNext(product: Product) {
+    console.log(product);
+  },
+  onError(_error: Error) {
+    console.log(_error);
+  },
+});

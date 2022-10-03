@@ -1,0 +1,4 @@
+const request: SearchRequest<ProductEvents> = {
+  q: "running",
+  excludeFields: ["id", "metadata"]
+};

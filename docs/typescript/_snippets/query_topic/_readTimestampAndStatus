@@ -1,0 +1,18 @@
+topic.findMany({
+    op: LogicalOperator.AND,
+    selectorFilters: [
+        {
+            op: SelectorFilterOperator.GTE,
+            fields: {
+                created_at: "2022-01-01T17:29:28.000Z"
+            }
+        },
+        {
+            status: "sold"
+        },
+    ]
+}).then(value => {
+    const order: ProductEvents = <ProductEvents> value;
+    console.log(order.name);
+    console.log(order.status);
+});

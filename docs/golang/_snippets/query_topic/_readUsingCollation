@@ -1,0 +1,12 @@
+event, err := topic.ReadWithOptions(ctx,
+	filter.Eq("Brand", "adidas"),
+	&tigris.ReadOptions {
+		Collation: & driver.Collation {
+			Case: "ci",
+		},
+	},
+)
+if err != nil {
+	panic(err)
+}
+fmt.Println(event)

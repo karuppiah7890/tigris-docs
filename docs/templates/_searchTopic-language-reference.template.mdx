@@ -1,0 +1,169 @@
+import SearchOverview from "./_search-overview.template.mdx";
+import CodeBlock from "@theme/CodeBlock";
+import { AsyncCodeBlock } from "./commons";
+
+Tigris offers a realtime search for events in a topic. Searching is by default enabled for a
+topic, there is no setup. This guide section will walk through how to use Tigris search in
+different scenarios.
+
+<div>{props.loadOverview && <SearchOverview />}</div>
+
+### Example collection
+
+As we have seen in document store examples an e-commerce website collection catalog. Now, let's say you want to have an
+order topic where an event is fired when an order is placed. The first step is to set up this topic object.
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.createCollection}
+  asyncExample={props.asyncCreateCollection}
+/>
+
+Now, let's assume the above topic has 5 orders(events) in it.
+
+| orderId | name           | brand        | status     | metadata                                               |
+| ------- | -------------- | ------------ | ---------- | ------------------------------------------------------ |
+| 1       | fiona handbag  | michael kors | "sold"     | {"color": "black", "account": "jane", "quantity": 8}   |
+| 2       | tote bag       | coach        | "sold"     | {"color": "olivia", "account": "mark", "quantity": 50} |
+| 3       | sling bag      | coach        | "canceled" | {"color": "alice", "account": "jane", "quantity": 15}  |
+| 4       | sneakers shoes | adidas       | "pending"  | {"color": "olivia", "account": "john", "quantity": 5}  |
+| 5       | running shoes  | nike         | "canceled" | {"color": "olivia", "account": "alex", "quantity": 25} |
+
+## Searching for events
+
+Search consists of executing a query against one or more text fields. Let's perform a simple search query to
+lookup any items matching "running".
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.simpleSearch}
+  asyncExample={props.asyncSimpleSearch}
+/>
+
+:::info
+Search is **case-insensitive** i.e. a search for term `"ruNninG"` would match all of `["Running", "running", "RUnnIng", "RUNNING"]` etc.
+:::
+
+### Phrase search
+
+By default, search is performed over individual terms in the text. For example, search for a
+query string `adventure park` in a dataset would yield following results:
+
+1. "California's kids **adventure park** and Safari"
+2. "**Adventure** island and water **park**"
+3. "Long Island water **park** and **adventure** activities"
+4. "Six flags kids recreation and **adventure park**"
+5. "Hollywood **adventure park** and studios"
+6. "Seaworld **adventure** and theme **park**"
+
+The search phrase can be _escaped_ in query for exact match. In the above example, querying for exact
+phrase `\"adventure park\"` would return:
+
+1. "California's kids **adventure park** and Safari"
+2. "Six flags kids recreation and **adventure park**"
+3. "The Great America **adventure park** and Zoo"
+
+Phrases can still be combined with keywords for richer text search. Continuing above example,
+the query string `kids \"adventure park\"` would result in:
+
+1. "California's **kids adventure park** and Safari"
+2. "Six flags **kids** recreation and **adventure park**"
+
+<CodeBlock language={props.codeLang}>{props.phraseSearch}</CodeBlock>
+
+### Match all search query
+
+When query string isn't specified or an empty string (`""`), a match all query is performed.
+It returns all searchable events, modified by any filters or search parameters used.
+
+<CodeBlock language={props.codeLang}>{props.matchAllSearch}</CodeBlock>
+
+:::tip
+Returning all events is typically useful when used in conjunction with **filter**, or when
+performing a faceted search across the collection.
+:::
+
+## Project search query against specific fields
+
+We can optionally project the search query against selected fields. Continuing previous example of
+searching for "running", we may not want to search in `status` or `brand` field and avoid any
+unwanted results.
+
+<CodeBlock language={props.codeLang}>{props.searchFields}</CodeBlock>
+
+## Refine the search results using filters
+
+Let's adjust the query to only return events that are "sold". We can use
+[filters](query#filter) in search to further refine the results.
+
+<CodeBlock language={props.codeLang}>{props.searchFilters}</CodeBlock>
+
+### Exact text match
+
+Filters can be used to match against one or more field values in a topic. For example, to
+fetch all events from `brand` "adidas".
+
+<CodeBlock language={props.codeLang}>{props.exactMatch}</CodeBlock>
+
+## Faceted search
+
+You can additionally retrieve the number of items a particular `brand` has
+that match our search query.
+
+<CodeBlock language={props.codeLang}>{props.facetedSearch}</CodeBlock>
+
+Facets are a specific use-case of filters, and can only be used for filterable attributes.
+
+:::tip Faceted content navigation UI
+Common application for faceted search is to build UX with quick filters, that users can use
+to narrow search results in real-time. Faceted search interface presents intuitive content
+navigation to the end user.
+:::
+
+## Sorting the search results
+
+Tigris lets you specify an order to sort the search results. You can specify a ranking order in your
+search query to have results sorted with more popular items appearing first.
+
+<CodeBlock language={props.codeLang}>{props.sortedSearch}</CodeBlock>
+
+Many events may have the same score, you can specify additional user-defined sortable
+field to break the tie.
+
+<CodeBlock language={props.codeLang}>{props.multipleSortFields}</CodeBlock>
+
+The results will be first sorted by value of `metadata.quantity` field, `metadata.color` will be used to
+decide ordering if two matching documents have same `quantity`.
+
+:::note
+Events can only be sorted by `integer`, `number` and `date-time` type of fields.
+:::
+
+## Specifying event fields to retrieve
+
+Search query can be programmed to return only specific fields in an event in search results. You
+may only need to retrieve `name`, `brand` and `status` for your use-case.
+
+<CodeBlock language={props.codeLang}>{props.includeFields}</CodeBlock>
+
+On the contrary, exclusion of fields is useful to exclude/hide potentially sensitive fields or
+internal metadata from the document. To include all fields except `id` and `metadata` from events
+in search results.
+
+<CodeBlock language={props.codeLang}>{props.excludeFields}</CodeBlock>
+
+:::note
+Field selection does not impact searching, filtering and faceting capabilities for that field. For
+example, if `metadata` field is not included in search results, it could still be used
+for text querying, filtering and/or faceting; just that matched events won't include `metadata`
+field.
+:::
+
+## Case-Insensitive Search Result Filtering
+
+Search is **case-insensitive** but the filtering to restrict the search result is **case-sensitive** by default. Tigris supports
+Collation which allows you to specify string comparison rules for filtering on text fields. Set the case to `ci` in the
+collation object to make it **case-insensitive**. The following example is showing when you are searching for text "running"
+and you need to filter by `brand` field, but you don't care about the case.
+
+<CodeBlock language={props.codeLang}>{props.searchUsingCollation}</CodeBlock>

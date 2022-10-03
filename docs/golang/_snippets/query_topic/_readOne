@@ -1,0 +1,5 @@
+event, err := topic.ReadOne(ctx, filter.Eq("Brand", "adidas"))
+if err != nil {
+    panic(err)
+}
+fmt.Println(event)

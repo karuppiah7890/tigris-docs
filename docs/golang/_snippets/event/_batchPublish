@@ -1,0 +1,6 @@
+_, err := topic.Publish(ctx,
+    &ProductEvents{OrderId: 2, Name: "tote bag", Status: "sold"},
+    &ProductEvents{OrderId: 3, Name: "sling bag", Status: "canceled"})
+if err != nil {
+    // handle error
+}

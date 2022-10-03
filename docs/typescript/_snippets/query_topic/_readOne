@@ -1,0 +1,10 @@
+topic.findOne({
+    op: SelectorFilterOperator.EQ,
+    fields: {
+        brand: "adidas"
+    }
+}).then(value => {
+    const order: ProductEvents = <ProductEvents> value;
+    console.log(order.name);
+    console.log(order.status);
+});

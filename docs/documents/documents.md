@@ -1,7 +1,7 @@
 # Documents
 
-A documents collection is analogous to tables in a relational database.
-Data records are stored as documents which are analogous to JSON documents.
+A collection is analogous to tables in a relational database.
+Records are stored in collection as documents which are analogous to JSON documents.
 Documents are composed of field-value pairs.
 
 ![Document](/img/jsondoc.jpg)

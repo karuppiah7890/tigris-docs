@@ -1,0 +1,1 @@
+topic := tigris.GetTopic[ProductEvents](catalogdb)

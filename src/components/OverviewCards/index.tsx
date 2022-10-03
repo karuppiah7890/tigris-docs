@@ -27,7 +27,7 @@ const OverviewCards = [
     buttonDescription: "Get started with QuickStart",
   },
   {
-    name: "Documents",
+    name: "Documents Store",
     url: {
       page: "/overview/documents",
     },
@@ -37,7 +37,7 @@ const OverviewCards = [
         searching JSON documents.
       </Translate>
     ),
-    buttonDescription: "Get started with Documents Collection",
+    buttonDescription: "Get started with Documents Store",
   },
   {
     name: "Event Streaming",

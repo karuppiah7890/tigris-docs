@@ -1,0 +1,16 @@
+it, err := topic.Read(ctx,
+    filter.And(
+        filter.Eq("Brand", "adidas"),
+        filter.Lt("Status", "sold"),
+    ),
+    fields.Include("Name").
+        Include("Brand").
+        Include("Status"),
+)
+if err != nil {
+    panic(err)
+}
+var event ProductEvents
+for it.Next(&event) {
+    fmt.Printf("%+v\n", event)
+}

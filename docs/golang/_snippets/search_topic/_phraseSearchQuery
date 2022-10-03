@@ -1,0 +1,3 @@
+phraseSearch := search.NewRequestBuilder().WithQuery("\"adventure park\"").Build()
+
+mixedSearch := search.NewRequestBuilder().WithQuery("kids \"adventure park\"").Build()

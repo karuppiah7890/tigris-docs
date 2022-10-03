@@ -1,0 +1,11 @@
+it, err := topic.Read(ctx,
+    filter.Eq("Metadata.Account", "jane"),
+)
+if err != nil {
+    panic(err)
+}
+
+var event ProductEvents
+for it.Next(&event) {
+    fmt.Printf("%+v\n", event)
+}

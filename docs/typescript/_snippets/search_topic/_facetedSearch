@@ -1,0 +1,8 @@
+const request: SearchRequest<ProductEvents> = {
+  q: "running",
+  searchFields: ["name"],
+  filter: {
+    status: "sold"
+  },
+  facets: ["brand"],
+};

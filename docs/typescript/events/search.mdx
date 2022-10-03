@@ -1,0 +1,41 @@
+---
+title: Search Events
+---
+
+import SearchTemplate, {
+  toc as searchToc,
+} from "../../templates/_searchTopic-language-reference.template.mdx";
+import collectionSource from "!!raw-loader!../_snippets/search_topic/_createTopic";
+import simpleSearchSource from "!!raw-loader!../_snippets/search_topic/_simpleSearch";
+import phraseSearchSource from "!!raw-loader!../_snippets/search_topic/_phraseSearchQuery";
+import matchAllSource from "!!raw-loader!../_snippets/search_topic/_matchAllSearch";
+import searchFieldsSource from "!!raw-loader!../_snippets/search_topic/_searchFields";
+import searchFiltersSource from "!!raw-loader!../_snippets/search_topic/_searchFilters";
+import exactMatchSource from "!!raw-loader!../_snippets/search_topic/_exactMatch";
+import facetedSearchSource from "!!raw-loader!../_snippets/search_topic/_facetedSearch";
+import sortedSearchSource from "!!raw-loader!../_snippets/search_topic/_sortedSearch";
+import multipleSortFieldsSource from "!!raw-loader!../_snippets/search_topic/_multipleSortFields";
+import includeFieldsSource from "!!raw-loader!../_snippets/search_topic/_includeFields";
+import excludeFieldsSource from "!!raw-loader!../_snippets/search_topic/_excludeFields";
+import searchUsingCollationSource from "!!raw-loader!../_snippets/search_topic/_searchUsingCollation";
+
+<SearchTemplate
+  codeLang="typescript"
+  createCollection={collectionSource}
+  simpleSearch={simpleSearchSource}
+  phraseSearch={phraseSearchSource}
+  matchAllSearch={matchAllSource}
+  searchFields={searchFieldsSource}
+  searchFilters={searchFiltersSource}
+  exactMatch={exactMatchSource}
+  facetedSearch={facetedSearchSource}
+  sortedSearch={sortedSearchSource}
+  multipleSortFields={multipleSortFieldsSource}
+  includeFields={includeFieldsSource}
+  excludeFields={excludeFieldsSource}
+  searchUsingCollation={searchUsingCollationSource}
+/>
+
+[//]: # "workaround to generate table of contents, see https://github.com/facebook/docusaurus/issues/3915"
+
+export const toc = [...searchToc];

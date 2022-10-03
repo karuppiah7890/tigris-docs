@@ -1,0 +1,26 @@
+---
+title: Insert or Replace Documents
+---
+
+import InsertTemplate, {
+  toc as insertToc,
+} from "../../templates/_inserting-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!../_snippets/insert/_createCollection";
+import simpleInsertSource from "!!raw-loader!../_snippets/insert/_simpleInsert";
+import batchInsertSource from "!!raw-loader!../_snippets/insert/_batchInsert";
+import simpleUpsertSource from "!!raw-loader!../_snippets/insert/_simpleUpsert";
+import batchUpsertSource from "!!raw-loader!../_snippets/insert/_batchUpsert";
+
+export const isOverview = false;
+
+<InsertTemplate
+  codeLang="typescript"
+  loadOverview={isOverview}
+  createCollection={createCollectionSource}
+  simpleInsert={simpleInsertSource}
+  batchInsert={batchInsertSource}
+  simpleUpsert={simpleUpsertSource}
+  batchUpsert={batchUpsertSource}
+/>
+
+export const toc = [...insertToc];

@@ -14,8 +14,7 @@ Tigris refers to an event stream as a **topic**.
 
 ## Topic
 
-A topic is created by creating a collection of type **messages**. A topic is
-analogous to a topic in Kafka. Events are stored as documents which are
+A topic is analogous to a topic in Kafka. Events are stored as documents which are
 analogous to JSON documents. Documents are composed of field-value pairs.
 
 ![Event](/img/message.jpg)

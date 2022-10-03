@@ -1,4 +1,4 @@
-# Databases and Collections
+# Databases
 
 Tigris stores data records as documents. Documents are analogous to JSON
 objects but Tigris stores them in an optimized binary format. Documents are
@@ -20,32 +20,20 @@ A database can be created in an idempotent way as follows:
 const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
 ```
 
+Tigris has two offerings collections and topics.
+
 ## Collections
 
-Tigris stores data records in collections. A collection always has a
+Tigris stores data records in collections. A collection is analogous
+to tables in a relational database. A collection always has a
 pre-defined schema that enables you to structure the data. The schema can be
-easily evolved in a lightweight way without costly rebuild operations.
+easily evolved in a lightweight way without costly rebuild operations. You interact with it using CRUD APIs.
+Tigris provides strictly serializable transactions, enabling you to perform consistent
+operations on your data records. See the [Documents](../documents) section to learn more about collections.
 
 ![Collections](/img/collections.jpg)
 
-### Collection types
-
-Tigris offers two types of collections.
-
-#### Documents Collection
-
-A `documents` collection is analogous to tables in a relational database.
-You interact with it using CRUD APIs. Tigris provides strictly serializable
-transactions, enabling you to perform consistent operations on your data
-records. See the [Documents](../documents) section to learn more about this
-collection type.
-
-#### Messages Collection
-
-A `messages` collection is analogous to a topic in Kafka. You interact with
-collections of this type using Publish/Subscribe APIs that enable you to
-build event streaming applications. See the [Event Streaming](docs/events)
-section to learn more about this collection type.
+See the [Documents](../documents) section to learn more about collections.
 
 ### Creating a collection
 
@@ -73,14 +61,20 @@ const reviews: Collection<Review> = await db.createOrUpdateCollection(
 );
 ```
 
+## Topics
+
+A topic is analogous to a topic in Kafka. You interact with
+topic using Publish/Subscribe APIs that enable you to
+build event streaming applications. See the [Event Streaming](docs/events)
+section to learn more about this collection type.
+
 :::tip When would I need both?
 
 Suppose you are building an order management platform. You will need a
-collection of type **documents** to store products, orders, and users. But
-some of the ordering functionality requires async processing - such as
-sending an email when the order has been completed. You can accomplish this
-by utilizing a collection type of **messages**. Publishing an event to it once
-the order flow completes. Then in your email service you can subscribe to
-the events in the collection and take the necessary action.
+collection to store products, orders, and users. But some of the ordering
+functionality requires async processing - such as sending an email when the
+order has been completed. You can accomplish this by utilizing a topic.
+Publishing an event to it once the order flow ends. Then in your email service,
+you can subscribe to the events in the topic and take the necessary action.
 
 :::

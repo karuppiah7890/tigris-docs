@@ -1,0 +1,6 @@
+request := search.NewRequestBuilder().
+              WithQuery("running").
+              WithSearchFields("Name", "Labels").
+              WithFilter(
+                  filter.And(filter.Gte("Price", 40), filter.Lt("Price", 90))).
+              Build()

@@ -1,6 +1,6 @@
 # Search and Query Operations
 
-Tigris automatically indexes the event data in collections and provides
+Tigris automatically indexes the event data in topics and provides
 rich query and search capability out-of-the-box. This differentiates Tigris
 from other event streaming systems such as Kafka. As with Tigris, you can
 query and search events the same way you query and search data in a regular
@@ -8,7 +8,7 @@ database.
 
 ## Query Operations
 
-Query operations retrieve events from a collection. Tigris by default
+Query operations retrieve events from a topic. Tigris by default
 indexes all the fields of the event allowing you to retrieve data by
 applying filters on any of the fields.
 
@@ -19,7 +19,7 @@ Query operations support the following features:
 - **Exact Matches**: Perform equality match on any field
 - **Range Queries**: Do range queries on any numeric field. Tigris also
   enables, by default, range queries on created or updated at timestamp of the
-  document
+  event
 - **Nested fields**: Query on nested fields
 - **Projection**: Include or exclude the fields that are not needed in the result
 - **Pagination**: Paginate the results through the use of _limit_ and _offset_

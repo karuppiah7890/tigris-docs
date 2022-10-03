@@ -1,0 +1,14 @@
+const request: SearchRequest<Catalog> = {
+  q: "running",
+  searchFields: ["name", "brand"],
+  sort: [
+    {
+      field: "metadata.quantity",
+      order: SortOrder.DESC
+    },
+    {
+      field: "metadata.color",
+      order: SortOrder.DESC
+    }
+  ]
+};

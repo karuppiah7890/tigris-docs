@@ -1,0 +1,8 @@
+it, err := catalogs.ReadAll(ctx)
+if err != nil {
+    panic(err)
+}
+var product Catalog
+for it.Next(&product) {
+    fmt.Printf("%+v\n", product)
+}

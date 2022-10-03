@@ -1,0 +1,142 @@
+import QueryingOverview from "./_querying-overview.template.mdx";
+import CodeBlock from "@theme/CodeBlock";
+import { AsyncCodeBlock } from "./commons";
+
+Tigris provides powerful query functionality for specifying which events you want to retrieve. There is no need to
+index any field as Tigris allows querying on any field of an event.
+
+<div>{props.loadOverview && <QueryingOverview />}</div>
+
+## Filter
+
+Filter provides the following comparison operators with the same semantics as in virtually all programming languages.
+
+- <b>{props.filters["eq"]}</b>: equal to is used for exact matching.
+- <b>{props.filters["lt"]}</b>: less than is used for matching documents using
+  less than criteria.
+- <b>{props.filters["lte"]}</b>: less than or equal to is similar to <b>
+    {props.filters["lt"]}
+  </b> but also matches for equality.
+- <b>{props.filters["gt"]}</b>: greater than is used for matching documents
+  using greater than criteria.
+- <b>{props.filters["gte"]}</b>: greater than or equal to is similar to <b>
+    {props.filters["gt"]}
+  </b> but also matches for equality.
+
+For multiple conditions, there are two logical operators supported.
+
+- <b>{props.filters["or"]}</b>: Combines multiple filter operators and returns
+  documents when either condition is met.
+- <b>{props.filters["and"]}</b>: Combines multiple filter operators and returns
+  documents when all the conditions are met.
+
+## Example Topic
+
+As we have seen in document store examples an e-commerce website collection catalog. Now, let's say you want to have an
+order topic where an event is fired when an order is placed. The first step is to set up this topic object.
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.createCollection}
+  asyncExample={props.asyncCreateCollection}
+/>
+
+Now, let's assume the above topic has 5 orders(events) in it.
+
+| orderId | name           | brand        | status     | metadata                                               |
+| ------- | -------------- | ------------ | ---------- | ------------------------------------------------------ |
+| 1       | fiona handbag  | michael kors | "sold"     | {"color": "black", "account": "jane", "quantity": 8}   |
+| 2       | tote bag       | coach        | "sold"     | {"color": "olivia", "account": "mark", "quantity": 50} |
+| 3       | sling bag      | coach        | "canceled" | {"color": "alice", "account": "jane", "quantity": 15}  |
+| 4       | sneakers shoes | adidas       | "pending"  | {"color": "olivia", "account": "john", "quantity": 5}  |
+| 5       | running shoes  | nike         | "canceled" | {"color": "olivia", "account": "alex", "quantity": 25} |
+
+## Query on all the Events
+
+### Simple read query
+
+A straightforward query is to read events by applying a filter on a field. As an example, applying the filter on the
+above collection by reading only the orders that are of `brand` "adidas".
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.readOne}
+  asyncExample={props.asyncReadOne}
+/>
+
+:::note
+String comparison is case sensitive.
+:::
+
+### Filtering on multiple fields
+
+Single field filtering is useful but what if you need to also filter by `status`. Following is an example where we are
+reading all the orders where `brand` is "coach" and `status` is "sold".
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.multipleFields}
+  asyncExample={props.asyncMultipleFields}
+/>
+
+### Reading specific fields
+
+Instead of reading all the fields of an event, fields projection allows reading specific fields. As an above example,
+let's say you only need to read `name`, `brand` and `status` fields from an event.
+
+<CodeBlock language={props.codeLang}>{props.readFields}</CodeBlock>
+
+:::note
+To exclude use excludeField("fieldName").
+:::
+
+### Querying nested fields
+
+As we can see all the above examples are for top level fields but what if you have an object, and you want to filter
+events based on one of the nested field. Taking the above data, if you want to get all the orders which is bought by
+`account` "jane".
+
+<CodeBlock language={props.codeLang}>{props.nestedFields}</CodeBlock>
+
+### Applying range conditions
+
+Many times the need for filtering is based on range on a numeric field. A range can be applied to any numeric field and
+in fact multiple numeric fields can be part of a single filter. Let’s take an example of reading all the products that
+are "sold" and have `quantity` less than or equal to 10.
+
+<CodeBlock language={props.codeLang}>{props.rangeRead}</CodeBlock>
+
+## Query on Events by Timestamp
+
+Tigris automatically generates timestamp of the event when it is published.
+
+- **created_at:** Time when the event was published to the topic.
+
+This timestamp can be used to narrow down the results. You can use any filter from above and extend it with a timestamp
+filter.
+
+For example, to read all events published within a 24-hour period:
+
+<CodeBlock language={props.codeLang}>{props.metadataFilter}</CodeBlock>
+
+### Filter on a timestamp and a field
+
+Let say, you want to read events that are "sold" but are published after "2022-01-01T17:29:28.000Z".
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.timestampAndStatus}
+  asyncExample={props.asyncTimestampAndStatus}
+/>
+
+:::note
+String comparison is case sensitive.
+:::
+
+## Case-Insensitive Queries
+
+Tigris supports Collation which allows you to specify string comparison rules. Default is **case-sensitive** filtering on
+text fields. But if you need to ignore the case then set the case to `ci` in the collation object. The following example is
+showing when you need to query for a `brand` "adidas", but you don't care about the case.
+
+<CodeBlock language={props.codeLang}>{props.readUsingCollation}</CodeBlock>

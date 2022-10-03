@@ -1,0 +1,26 @@
+# Data Modeling
+
+Tigris enables the data models to be declared as part of the
+application code. These data models are then converted to appropriate
+objects, such as collections, on the backend.
+
+## Declaring Models
+
+Models are regular Go structs composed of basic Go types or custom types.
+Field properties can be modified using optional "tigris" tag.
+
+```go
+type ProductEvents struct {
+	OrderId    int64
+	Name       string
+	Status     string
+}
+```
+
+### Create the Topic
+
+Creates the collection with the model and any new operation will see the changes.
+
+```go
+err := db.CreateTopics(ctx, &ProductEvents{})
+```

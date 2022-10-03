@@ -1,0 +1,21 @@
+topic.findMany({
+    op: LogicalOperator.AND,
+    selectorFilters: [
+        {
+            status: "sold"
+        },
+        {
+            op: SelectorFilterOperator.LTE,
+            fields: {
+                metadata: {
+                  quantity: 10
+                }
+            }
+        }
+    ]
+}).then(value => {
+    const orders: ProductEvents[] = <ProductEvents[]>value;
+    for (const i in orders) {
+        console.log(orders[i]);
+    }
+});

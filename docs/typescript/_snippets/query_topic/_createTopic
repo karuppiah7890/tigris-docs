@@ -1,0 +1,1 @@
+const topic: Topic<ProductEvents> = db.getTopic<ProductEvents>("product_events");
