@@ -5,15 +5,10 @@ slug: /quickstart
 
 import TigrisCloud from "../includes/_tigris_cloud.mdx";
 import StartupLocally from "../includes/_startup_tigris_locally.mdx";
-import HTTPQuickstart from "./_http_quickstart.mdx";
-import TSQuickstart from "./_ts_quickstart.mdx";
-import GoQuickstart from "./_go_quickstart.mdx";
-import JavaQuickstart from "./_java_quickstart.mdx";
-import { tabbedItemTheme } from "../commons";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-# Quickstart
+# Quickstart: TypeScript
 
 Tigris is the all-in-one open source developer data platform.
 
@@ -53,28 +48,512 @@ and performing search all without touching any infrastructure.
 
 ## Quickstart
 
-<Tabs className={tabbedItemTheme}>
-<TabItem value="typescript" label="TypeScript">
+### Prerequisites
 
-<TSQuickstart />
+All you'll need is any computer running macOS or Linux, with
+[NodeJS v12](https://nodejs.org/en/blog/release/) or later installed.
 
-</TabItem>
-<TabItem value="http" label="HTTP">
+### 1. Scaffold a new TypeScript project pre-configured with Tigris
 
-<HTTPQuickstart />
+Let's create a directory and navigate to it
 
-</TabItem>
-<TabItem value="go" label="Go">
+```shell
+mkdir hello-tigris && cd hello-tigris
+```
 
-<GoQuickstart />
+Now run the following command to scaffold a TypeScript project pre-configured
+to connect to Tigris
 
-</TabItem>
-<TabItem value="java" label="Java">
+```shell
+npx @tigrisdata/create-tigris-app
+```
 
-<JavaQuickstart />
+This command initializes following file structure in `hello-tigris` directory:
 
-</TabItem>
-</Tabs>
+```
+.
+├── src
+│   └── lib
+│       └── tigrisClient.ts
+│   └── models
+│       └── user.ts
+│   └── repository
+│       └── users.ts
+│   └── index.ts
+├── .env
+└── tsconfig.json
+├── package.json
+```
+
+Now install the project dependencies
+
+```shell
+npm install
+```
+
+### 2. Modeling data in a Tigris collection
+
+Tigris stores documents in collections. Each collection needs to have a
+schema defined and all documents stored in the collection conform to the schema.
+
+For your convenience, the schema of the `users` collection has been
+pre-populated in the project. It is shown below:
+
+```ts title=src/models/user.ts showLineNumbers
+import {
+  TigrisCollectionType,
+  TigrisDataTypes,
+  TigrisSchema,
+} from "@tigrisdata/core/dist/types";
+
+export interface User extends TigrisCollectionType {
+  userId?: number;
+  name: string;
+  balance: number;
+}
+
+export const userSchema: TigrisSchema<User> = {
+  userId: {
+    type: TigrisDataTypes.INT32,
+    primary_key: {
+      order: 1,
+      autoGenerate: true,
+    },
+  },
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  balance: {
+    type: TigrisDataTypes.NUMBER,
+  },
+};
+```
+
+### 3. Connecting to Tigris and creating the database and collection
+
+The project has been pre-configured with the Tigris connection configuration.
+The connection URL, clientID and clientSecret are stored in the `.env` file.
+
+Let's execute the `src/index.ts` file which will perform the following
+operations:
+
+1. Establish connection to Tigris
+2. Create the database named `hello_tigris`
+3. Create the collection `users` using the model defined in `src/models/user.ts`
+
+```shell
+npx ts-node src/index.ts
+```
+
+<details>
+<summary>Output</summary>
+
+```shell
+Connecting to Tigris at ..
+creating db if it doesn't exist: hello_tigris
+db: hello_tigris created successfully
+creating collections if they don't exit, otherwise updating their schema
+{"title":"users","additionalProperties":false,"type":"object","properties":{"userId":{"type":"integer","format":"int32","autoGenerate":true},"name":{"type":"string"},"balance":{"type":"number"}},"collection_type":"documents","primary_key":["userId"]}
+collections created/updated successfully
+All done ...
+```
+
+</details>
+
+### 4. Exploring how to send queries to Tigris
+
+In this section we will be modifying the `UsersRepository` in
+`src/repository/users.ts` and will perform some queries to interact with the
+`users` collection.
+
+#### 4.1 Create a new `User` document
+
+Let's start with a query to create a new `User` document and log it to the
+console. Add the highlighted code below to the file `src/repository/users.ts`
+
+<!-- prettier-ignore-start -->
+```ts title=src/repository/users.ts showLineNumbers
+import { User } from "../models/user";
+import { Collection, DB } from "@tigrisdata/core";
+import { SelectorFilterOperator } from "@tigrisdata/core/dist/types";
+import { SearchRequest, SearchResult } from "@tigrisdata/core/dist/search/types";
+
+export class UsersRepository {
+  private readonly users: Collection<User>;
+
+  constructor(db: DB) {
+    this.users = db.getCollection<User>("users");
+  }
+
+  // TODO: Add implementation
+  // Create a user record
+  public create = async (user: User) => {
+    //highlight-start
+    const createdUser: User = await this.users.insert(user);
+    console.log(createdUser);
+    //highlight-end
+  };
+
+  // > Rest of the code is collapsed
+}
+```
+<!-- prettier-ignore-end -->
+
+Next update the file `src/index.ts` with the code highlighted below.
+
+```ts title=src/index.ts showLineNumbers
+import dotenv from "dotenv";
+dotenv.config();
+
+// Importing Tigris client to connect
+import { TigrisClient } from "./lib/tigrisClient";
+
+// Importing users
+import { UsersRepository } from "./repository/users";
+
+const tigris = new TigrisClient();
+
+async function main() {
+  // Connect to Tigris, create the database if it does not exist.
+  // Create the collections from the models if they don't exist, or
+  // update the schema of the collections based on the model definition
+  await tigris.setup();
+
+  // initialize the repository
+  const repository = new UsersRepository(tigris.db);
+
+  // TODO: perform queries
+  //highlight-start
+  await repository.create({
+    name: "Jane Garcia",
+    balance: 100,
+  });
+  await repository.create({
+    name: "Jane Jerome",
+    balance: 300,
+  });
+  await repository.create({
+    name: "Alice Bloom",
+    balance: 200,
+  });
+  //highlight-end
+}
+
+main()
+  .then(async () => {
+    console.log("All done ...");
+  })
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  });
+```
+
+And execute the `src/index.ts` file again
+
+```shell
+npx ts-node src/index.ts
+```
+
+<details>
+<summary>Output</summary>
+
+```shell
+Connecting to Tigris at ..
+creating db if it doesn't exist: hello_tigris
+db: hello_tigris created successfully
+creating collections if they don't exit, otherwise updating their schema
+{"title":"users","additionalProperties":false,"type":"object","properties":{"userId":{"type":"integer","format":"int32","autoGenerate":true},"name":{"type":"string"},"balance":{"type":"number"}},"collection_type":"documents","primary_key":["userId"]}
+collections created/updated successfully
+{ name: 'Jane Garcia', balance: 100, userId: 2 }
+{ name: 'Jane Jerome', balance: 300, userId: 3 }
+{ name: 'Alice Bloom', balance: 200, userId: 4 }
+All done ...
+```
+
+</details>
+
+Great job, you just created your first `user` records.
+
+#### 4.2 Retrieve all documents from the collection
+
+Tigris provides rich querying functionality to read data. In this section we
+will be using the `findMany` operation to retrieve all the documents in the
+`users` collection.
+
+Add the highlighted code below to the file `src/repository/users.ts`
+
+<!-- prettier-ignore-start -->
+```ts title=src/repository/users.ts showLineNumbers
+import { User } from "../models/user";
+import { Collection, DB } from "@tigrisdata/core";
+import { SelectorFilterOperator } from "@tigrisdata/core/dist/types";
+import { SearchRequest, SearchResult } from "@tigrisdata/core/dist/search/types";
+
+export class UsersRepository {
+  private readonly users: Collection<User>;
+
+  constructor(db: DB) {
+    this.users = db.getCollection<User>("users");
+  }
+
+  // TODO: Add implementation
+  // Create a user record
+  public create = async (user: User) => {
+    const createdUser: User = await this.users.insert(user);
+    console.log(createdUser);
+  };
+
+  // TODO: Add implementation
+  // Read all users from the collection
+  public findAll = async () => {
+    //highlight-start
+    const users: User[] = await this.users.findMany({
+      op: SelectorFilterOperator.NONE,
+    });
+    users.forEach(function (user) {
+      console.log(
+        "UserId: " +
+          user.userId +
+          ", Name: " +
+          user.name +
+          ", Balance: " +
+          user.balance
+      );
+    });
+    //highlight-end
+  };
+
+  // > Rest of the code is collapsed
+}
+```
+<!-- prettier-ignore-end -->
+
+Now delete the `create` calls, and add the call to `findAll` instead in
+the file `src/index.ts`.
+
+```ts title=src/index.ts showLineNumbers
+// Importing Tigris client to connect
+import dotenv from "dotenv";
+dotenv.config();
+
+import { TigrisClient } from "./lib/tigrisClient";
+
+// Importing users
+import { UsersRepository } from "./repository/users";
+
+const tigris = new TigrisClient();
+
+async function main() {
+  // Connect to Tigris, create the database if it does not exist.
+  // Create the collections from the models if they don't exist, or
+  // update the schema of the collections based on the model definition
+  await tigris.setup();
+
+  // initialize the repository
+  const repository = new UsersRepository(tigris.db);
+
+  // TODO: perform queries
+  //highlight-start
+  await repository.findAll();
+  //highlight-end
+}
+
+main()
+  .then(async () => {
+    console.log("All done ...");
+  })
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  });
+```
+
+Let's execute the `src/index.ts` file again
+
+```shell
+npx ts-node src/index.ts
+```
+
+<details>
+<summary>Output</summary>
+
+```shell
+Connecting to Tigris at ..
+creating db if it doesn't exist: hello_tigris
+db: hello_tigris created successfully
+creating collections if they don't exit, otherwise updating their schema
+{"title":"users","additionalProperties":false,"type":"object","properties":{"userId":{"type":"integer","format":"int32","autoGenerate":true},"name":{"type":"string"},"balance":{"type":"number"}},"collection_type":"documents","primary_key":["userId"]}
+collections created/updated successfully
+UserId: 2, Name: Jane Garcia, Balance: 100
+UserId: 3, Name: Jane Jerome, Balance: 300
+UserId: 4, Name: Alice Bloom, Balance: 200
+All done ...
+```
+
+</details>
+
+You have now successfully performed a query on the `users` collection.
+
+#### 4.3 Explore search queries with Tigris
+
+Tigris automatically indexes the data in your collections and provides
+real-time search functionality out of the box. This eliminates the need for
+Elasticsearch.
+
+Add the highlighted code below to the file `src/repository/users.ts`
+
+<!-- prettier-ignore-start -->
+```ts title=src/repository/users.ts showLineNumbers
+import { User } from "../models/user";
+import { Collection, DB } from "@tigrisdata/core";
+import { SelectorFilterOperator } from "@tigrisdata/core/dist/types";
+import { SearchRequest, SearchResult } from "@tigrisdata/core/dist/search/types";
+
+export class UsersRepository {
+  private readonly users: Collection<User>;
+
+  constructor(db: DB) {
+    this.users = db.getCollection<User>("users");
+  }
+
+  // TODO: Add implementation
+  // Create a user record
+  public create = async (user: User) => {
+    const createdUser: User = await this.users.insert(user);
+    console.log(createdUser);
+  };
+
+  // TODO: Add implementation
+  // Read all users from the collection
+  public findAll = async () => {
+    const users: User[] = await this.users.findMany({
+      op: SelectorFilterOperator.NONE,
+    });
+    users.forEach(function (user) {
+      console.log(
+        "UserId: " +
+          user.userId +
+          ", Name: " +
+          user.name +
+          ", Balance: " +
+          user.balance
+      );
+    });
+  };
+
+  // TODO: Add implementation
+  // Search user records by name
+  public search = async (name: string) => {
+    //highlight-start
+    const request: SearchRequest<User> = {
+      q: name,
+      searchFields: ["name"],
+    };
+
+    this.users.search(request, {
+      onEnd() {
+        console.log("search complete");
+      },
+      onNext(result: SearchResult<User>) {
+        console.log("Search results found: " + result.meta.found);
+        result.hits.forEach(function (hit) {
+          const user = hit.document;
+          console.log(
+            "UserId: " +
+              user.userId +
+              ", Name: " +
+              user.name +
+              ", Balance: " +
+              user.balance
+          );
+        });
+      },
+      onError(error: Error) {
+        console.error(error);
+      },
+    });
+    //highlight-end
+  };
+
+  // > Rest of the code is collapsed
+}
+```
+<!-- prettier-ignore-end -->
+
+Now delete the `findAll` call, and add the call to `search` instead in
+the file `src/index.ts`.
+
+```ts title=src/index.ts showLineNumbers
+import dotenv from "dotenv";
+dotenv.config();
+
+// Importing Tigris client to connect
+import { TigrisClient } from "./lib/tigrisClient";
+
+// Importing users
+import { UsersRepository } from "./repository/users";
+
+const tigris = new TigrisClient();
+
+async function main() {
+  // Connect to Tigris, create the database if it does not exist.
+  // Create the collections from the models if they don't exist, or
+  // update the schema of the collections based on the model definition
+  await tigris.setup();
+
+  // initialize the repository
+  const repository = new UsersRepository(tigris.db);
+
+  // TODO: perform queries
+  //highlight-start
+  await repository.search("jane");
+  //highlight-end
+}
+
+main()
+  .then(async () => {
+    console.log("All done ...");
+  })
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  });
+```
+
+Let's execute the `src/index.ts` file again
+
+```shell
+npx ts-node src/index.ts
+```
+
+<details>
+<summary>Output</summary>
+
+```shell
+Connecting to Tigris at ..
+creating db if it doesn't exist: hello_tigris
+db: hello_tigris created successfully
+creating collections if they don't exit, otherwise updating their schema
+{"title":"users","additionalProperties":false,"type":"object","properties":{"userId":{"type":"integer","format":"int32","autoGenerate":true},"name":{"type":"string"},"balance":{"type":"number"}},"collection_type":"documents","primary_key":["userId"]}
+collections created/updated successfully
+All done ...
+Search results found: 2
+UserId: 3, Name: Jane Jerome, Balance: 300
+UserId: 2, Name: Jane Garcia, Balance: 100
+search complete
+```
+
+</details>
+
+You successfully performed the search query on the users collection without
+needing any additional database like Elasticsearch.
+
+### 5. Next steps
+
+In this Quickstart guide, you have learned how to get started with Tigris in
+a TypeScript project. Feel free to dive deeper with the dedicated
+[reference guide for TypeScript](typescript/index.mdx).
 
 ## Where to go from here?
 

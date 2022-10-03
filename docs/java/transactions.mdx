@@ -3,7 +3,6 @@ title: Transactions
 ---
 
 import Tabs from "@theme/Tabs";
-import { tabbedItemTheme } from "../commons";
 import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
 
 Tigris provides global, ACID transactions with strict serializability
@@ -15,7 +14,7 @@ Transactions in Tigris work across collections and documents without any
 restrictions. Unlike some other document databases, there are no confusing
 read or write concerns to configure, and no cross-shard caveats.
 
-<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java

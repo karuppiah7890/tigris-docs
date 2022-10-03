@@ -2,7 +2,6 @@ import React from "react";
 import TabItem from "@theme/TabItem";
 import Tabs from "@theme/Tabs";
 import CodeBlock from "@theme/CodeBlock";
-import { tabbedItemTheme } from "../commons";
 import {
   clientTabGroupId,
   syncClientLabel,
@@ -13,7 +12,7 @@ import {
 export function AsyncCodeBlock({ codeLang, defaultExample, asyncExample }) {
   if (codeLang === "java") {
     return (
-      <Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+      <Tabs groupId={clientTabGroupId}>
         <TabItem value={syncClientLabel} label={syncClientLabel}>
           <CodeBlock language={codeLang}>{defaultExample}</CodeBlock>
         </TabItem>

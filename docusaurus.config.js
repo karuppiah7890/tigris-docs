@@ -97,8 +97,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       colorMode: {
-        defaultMode: "light",
-        respectPrefersColorScheme: false,
+        defaultMode: "dark",
+      },
+      docs: {
+        sidebar: {
+          hideable: true,
+        },
       },
       announcementBar: {
         id: "announcementBar-1", // increment on change
@@ -108,11 +112,12 @@ const config = {
       },
       navbar: {
         hideOnScroll: false,
-        title: "Tigris",
         logo: {
-          alt: "Tigris Logo",
-          src: "img/logo.svg",
-          href: "https://www.tigrisdata.com/",
+          href: "/",
+          src: "/logo/light.png",
+          srcDark: "/logo/dark.png",
+          alt: "Tigris Docs",
+          height: "26px",
         },
         items: [
           {
@@ -138,29 +143,106 @@ const config = {
           {
             href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
             label: "Slack Community",
-            position: "right",
+            position: "left",
           },
           {
             href: "https://github.com/tigrisdata/tigris",
-            className: "navbar-item-github",
+            className: "pseudo-icon github-icon",
             position: "right",
           },
           {
             href: "https://twitter.com/TigrisData",
-            className: "navbar-item-twitter",
+            className: "pseudo-icon twitter-icon",
             position: "right",
+          },
+          {
+            type: "search",
+            position: "right",
+          },
+          {
+            label: "Sign Up",
+            href: "https://www.tigrisdata.com/beta#signup-form",
+            position: "right",
+            className: "wc-portal-signup wc-portal-link",
+          },
+          {
+            label: "Login",
+            href: "https://console.preview.tigrisdata.cloud/",
+            position: "right",
+            className: "wc-portal-login wc-portal-link",
           },
         ],
       },
       footer: {
-        style: "dark",
-        links: [],
-        copyright: `Copyright © ${new Date().getFullYear()} Tigris Data, Inc.`,
+        logo: {
+          href: "/",
+          src: "/logo/light.png",
+          srcDark: "/logo/dark.png",
+          alt: "Tigris Docs",
+          height: "26px",
+        },
+        links: [
+          {
+            title: "Product",
+            items: [
+              {
+                label: "Cloud Console",
+                href: "https://console.preview.tigrisdata.cloud",
+              },
+            ],
+          },
+          {
+            title: "Company",
+            items: [
+              {
+                label: "About Us",
+                href: "https://www.tigrisdata.com",
+              },
+              {
+                label: "Terms of Service",
+                href: "https://www.tigrisdata.com/service-terms",
+              },
+              {
+                label: "Privacy Policy",
+                href: "https://www.tigrisdata.com/privacy-policy",
+              },
+              {
+                label: "Contact Us",
+                href: "mailto:support@tigrisdata.com",
+              },
+            ],
+          },
+          {
+            title: "Resources",
+            items: [
+              {
+                label: "Documentation",
+                href: "https://docs.tigrisdata.com",
+              },
+              {
+                label: "Blog",
+                href: "https://blog.tigrisdata.com",
+              },
+              {
+                label: "Videos",
+                href: "https://www.youtube.com/channel/UCsCQ5Nl3JOh71UNCCNZ3q2g",
+              },
+              {
+                label: "Community",
+                href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
+              },
+            ],
+          },
+        ],
+        copyright: `Copyright © ${new Date().getFullYear()} Tigris Data, Inc. All rights reserved.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: ["java", "scala"],
+      },
+      liveCodeBlock: {
+        playgroundPosition: "bottom",
       },
       algolia: {
         appId: process.env.NEXT_ALGOLIA_APPID,

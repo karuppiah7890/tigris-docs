@@ -1,12 +1,12 @@
 import Tabs from "@theme/Tabs";
-import { tabbedItemTheme } from "../commons";
+import TabItem from "@theme/TabItem";
 import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
 
 # Getting Started
 
 ## Installation
 
-<Tabs className={tabbedItemTheme}>
+<Tabs>
 <TabItem value="maven" label="Maven">
 
 ```xml
@@ -19,11 +19,10 @@ import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
 ```
 
 </TabItem>
-
 <TabItem value="gradle" label="Gradle">
 
 ```shell
-// https://mvnrepository.com/artifact/com.tigrisdata/tigris-client
+# https://mvnrepository.com/artifact/com.tigrisdata/tigris-client
 implementation group: 'com.tigrisdata', name: 'tigris-client', version: 'insert_client_version_here'
 ```
 
@@ -60,7 +59,7 @@ maximize the use of system resources.
 
 ### Create Connection
 
-<Tabs className={tabbedItemTheme}>
+<Tabs>
 <TabItem value="Tigris Cloud" label="Tigris Cloud">
 
 Tigris URL, ClientID and ClientSecret need to be set as follows,
@@ -83,10 +82,9 @@ TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:80
 ```
 
 </TabItem>
-
 </Tabs>
 
-<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
@@ -95,7 +93,6 @@ TigrisClient client = StandardTigrisClient.getInstance(tigrisConfiguration);
 ```
 
 </TabItem>
-
 <TabItem value={asyncClientLabel} label={asyncClientLabel}>
 
 ```java
@@ -114,7 +111,7 @@ TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configurat
 Creating a database is fairly easy and safe using _if not exists_ protocol. This will throw an exception
 if a database with given name already exists.
 
-<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
@@ -122,7 +119,6 @@ TigrisDatabase db = client.createDatabaseIfNotExists("sampledb");
 ```
 
 </TabItem>
-
 <TabItem value={asyncClientLabel} label={asyncClientLabel}>
 
 ```java
@@ -136,7 +132,7 @@ CompletableFuture<TigrisAsyncDatabase> future = asyncClient.createDatabaseIfNotE
 
 Retrieve the database instance.
 
-<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
@@ -144,7 +140,6 @@ TigrisDatabase db = client.getDatabase("sampledb");
 ```
 
 </TabItem>
-
 <TabItem value={asyncClientLabel} label={asyncClientLabel}>
 
 ```java
@@ -159,7 +154,7 @@ TigrisAsyncDatabase db = asyncClient.getDatabase("sampledb");
 Create a collection mapping to `User.class`. [Read more](datamodel/declare) about declaring class
 models for Tigris collection.
 
-<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
@@ -167,7 +162,6 @@ CreateOrUpdateCollectionsResponse response = db.createOrUpdateCollections(User.c
 ```
 
 </TabItem>
-
 <TabItem value={asyncClientLabel} label={asyncClientLabel}>
 
 ```java
@@ -181,7 +175,7 @@ CompletableFuture<CreateOrUpdateCollectionsResponse> future = db.createOrUpdateC
 
 Retrieve a collection instance.
 
-<Tabs groupId={clientTabGroupId} className={tabbedItemTheme}>
+<Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
@@ -189,7 +183,6 @@ TigrisCollection<User> collection = db.getCollection(User.class);
 ```
 
 </TabItem>
-
 <TabItem value={asyncClientLabel} label={asyncClientLabel}>
 
 ```java

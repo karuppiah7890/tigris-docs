@@ -22,9 +22,35 @@ const sidebars = {
       id: "overview/overview",
     },
     {
-      type: "doc",
+      type: "category",
       label: "Quickstart",
-      id: "quickstart/quickstart",
+      link: {
+        type: "doc",
+        id: "quickstart/quickstart",
+      },
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "Quickstart: TypeScript",
+          id: "quickstart/quickstart",
+        },
+        {
+          type: "doc",
+          label: "Quickstart: Go",
+          id: "quickstart/quickstart-go",
+        },
+        {
+          type: "doc",
+          label: "Quickstart: Java",
+          id: "quickstart/quickstart-java",
+        },
+        {
+          type: "doc",
+          label: "Quickstart: HTTP",
+          id: "quickstart/quickstart-http",
+        },
+      ],
     },
     "overview/why-tigris",
     "overview/architecture",

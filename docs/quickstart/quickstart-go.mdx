@@ -1,9 +1,54 @@
-**Prerequisites**
+import TigrisCloud from "../includes/_tigris_cloud.mdx";
+import StartupLocally from "../includes/_startup_tigris_locally.mdx";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Quickstart: Go
+
+Tigris is the all-in-one open source developer data platform.
+
+:::tip Features
+
+- 🪗 Use it as a scalable transactional document store.
+- 🤖 Query all your data without worrying about slow queries due to missing
+  indexes.
+- 🔍 Perform real-time search across your data stores automatically.
+- 🔀 Build event-driven apps with real-time event streaming.
+
+_All provided to you through a unified serverless API enabling you
+to focus on building applications and stop worrying about the data
+infrastructure._
+
+:::
+
+The following guide will get you up and running with Tigris. It covers
+creating database and collection, writing queries to read and write data,
+and performing search all without touching any infrastructure.
+
+## Setup Tigris
+
+<Tabs>
+<TabItem value="cloud" label="Tigris Cloud">
+
+<TigrisCloud />
+
+</TabItem>
+
+<TabItem value="dev" label="Development Environment">
+
+<StartupLocally />
+
+</TabItem>
+</Tabs>
+
+## Quickstart
+
+### Prerequisites
 
 All you'll need is any computer running macOS or Linux, with
 [Golang 1.18 or newer](https://go.dev/dl/) installed.
 
-**Create and initialize project directory**
+### Create and initialize project directory
 
 ```shell
 mkdir tigris_quickstart
@@ -11,7 +56,7 @@ cd tigris_quickstart
 go mod init
 ```
 
-**Quickstart**
+### Code
 
 Create main.go file with the following content:
 
@@ -113,7 +158,7 @@ func main() {
 }
 ```
 
-**Build and run**
+### Build and run
 
 ```shell
 go mod tidy
@@ -121,10 +166,20 @@ go build .
 ./tigris_quickstart
 ```
 
-**Output**
+#### Output
 
 ```
 Name: Jania McGrory, Balance: 6045.7
 Name: Jania McGrory, Balance: 6045.7
 Name: Bunny Instone, Balance: 3048.87
 ```
+
+## Where to go from here?
+
+Browse through the docs in your own areas of interest, or join our
+[Slack Community](https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ)
+to ask any questions you might have.
+
+🚀 [Signup](https://www.tigrisdata.com/beta) for the
+private beta of Tigris Cloud - a fully managed version of Tigris, and try
+out the open source developer data platform in the cloud.
