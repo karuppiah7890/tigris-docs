@@ -2,6 +2,10 @@ import createCollectionSource from "!!raw-loader!./_snippets/index/_createCollec
 import insertSource from "!!raw-loader!./_snippets/index/_insert";
 import querySource from "!!raw-loader!./_snippets/index/_query";
 import searchSource from "!!raw-loader!./_snippets/index/_search";
+import createTopicSource from "!!raw-loader!./_snippets/index/_createTopic";
+import publishSource from "!!raw-loader!./_snippets/index/_publish";
+import subscribeSource from "!!raw-loader!./_snippets/index/_subscribe";
+
 import CodeBlock from "@theme/CodeBlock";
 
 # Go Reference
@@ -32,7 +36,7 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 
 <span style={{textAlign: "right"}}>
 
-[Declaring models →](datamodel/declare)
+[Declaring models →](documents/datamodel)
 
 </span>
 
@@ -42,7 +46,7 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 
 <span style={{textAlign: "right"}}>
 
-[Insert documents →](insert)
+[Insert documents →](documents/insert)
 
 </span>
 
@@ -52,7 +56,7 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 
 <span style={{textAlign: "right"}}>
 
-[Query documents →](query)
+[Query documents →](documents/query)
 
 </span>
 
@@ -62,6 +66,32 @@ go get -u github.com/tigrisdata/tigris-client-go@latest
 
 <span style={{textAlign: "right"}}>
 
-[Search documents →](search)
+[Search documents →](documents/search)
+
+</span>
+
+## 6. Stream events
+
+### 6.1 Create topic
+
+<CodeBlock language="go">{createTopicSource}</CodeBlock>
+
+### 6.2 Publish events
+
+<CodeBlock language="go">{publishSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](events/publish_subscribe)
+
+</span>
+
+### 6.3 Subscribe to events
+
+<CodeBlock language="go">{subscribeSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](events/publish_subscribe)
 
 </span>

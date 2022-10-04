@@ -65,7 +65,7 @@ const reviews: Collection<Review> = await db.createOrUpdateCollection(
 
 A topic is analogous to a topic in Kafka. You interact with
 topic using Publish/Subscribe APIs that enable you to
-build event streaming applications. See the [Event Streaming](docs/events)
+build event streaming applications. See the [Event Streaming](../events)
 section to learn more about this collection type.
 
 :::tip When would I need both?

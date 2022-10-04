@@ -56,6 +56,6 @@ use case.
 Checkout the language-specific reference sections to learn more about
 defining data models in your favorite language.
 
-- [Data modeling in TypeScript](../typescript/datamodeling_docs)
-- [Data modeling in Go](../golang/datamodel/declare)
+- [Data modeling in TypeScript](../typescript/documents/datamodel)
+- [Data modeling in Go](../golang/documents/datamodel)
 - [Data modeling in Java](../java/datamodel/declare)

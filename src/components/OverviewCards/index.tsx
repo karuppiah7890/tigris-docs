@@ -29,7 +29,7 @@ const OverviewCards = [
   {
     name: "Documents Store",
     url: {
-      page: "/overview/documents",
+      page: "/documents",
     },
     description: (
       <Translate id="document.description">
@@ -42,7 +42,7 @@ const OverviewCards = [
   {
     name: "Event Streaming",
     url: {
-      page: "/overview/events/event",
+      page: "/events",
     },
     description: (
       <Translate id="event.description">
@@ -54,7 +54,7 @@ const OverviewCards = [
   {
     name: "Search",
     url: {
-      page: "/overview/search",
+      page: "/searching",
     },
     description: (
       <Translate id="search.description">
@@ -67,7 +67,7 @@ const OverviewCards = [
   {
     name: "Flexible Data Model",
     url: {
-      page: "/overview/documents/datamodel",
+      page: "/documents/datamodel",
     },
     description: (
       <Translate id="model.description">
@@ -119,14 +119,14 @@ const SampleAppCards = [
   {
     name: "Building an Application in Go",
     url: {
-      page: "/rest-webapp-go",
+      page: "/guides/rest-webapp-go",
     },
     buttonDescription: "Go RESTful Web App",
   },
   {
     name: "Building an Application in Java",
     url: {
-      page: "/rest-webapp-java",
+      page: "/guides/rest-webapp-java",
     },
     buttonDescription: "Java RESTful Web App",
   },

@@ -1,17 +1,17 @@
 ---
 id: publish
-title: Publish messages
+title: Publish events
 slug: /cli/publish
 ---
 
-Publish message(s)
+Publish event(s)
 
 ### Synopsis
 
-Publishes one or more messages into a collection.
+Publishes one or more events into a collection.
 
 ```shell
-tigris publish {db} {collection} {message}...|- [flags]
+tigris publish {db} {collection} {event}...|- [flags]
 ```
 
 ### Examples

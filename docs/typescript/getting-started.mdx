@@ -112,21 +112,30 @@ const catalogSchema: TigrisSchema<Catalog> = {
 ```
 
 For detailed documentation on schema representation refer to the
-[data modeling](documents/datamodel.mdx) section.
+[data modeling](documents/datamodel) section.
 
-#### Create Database and Collections
+## Create Database, Collections and Topics
 
-Create database (if not exists)
+### 1. Create database (if not exists)
 
 ```typescript
 const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
 ```
 
-Create collection
+### 2. Create collection
 
 ```typescript
 const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
   "catalog",
   catalogSchema
+);
+```
+
+### 3. Create topic
+
+```typescript
+const topic: Topic<ProductEvents> = await db.createOrUpdateTopic(
+  "product_events",
+  productEventsSchema
 );
 ```

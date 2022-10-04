@@ -1,14 +1,14 @@
 ---
 id: subscribe
-title: Subscribe for messages
+title: Subscribe for events
 slug: /cli/subscribe
 ---
 
-Subscribes to published messages
+Subscribes to published events
 
 ### Synopsis
 
-Streams messages in real-time until cancelled.
+Streams events in real-time.
 
 ```shell
 tigris subscribe {db} {collection} {filter} [flags]

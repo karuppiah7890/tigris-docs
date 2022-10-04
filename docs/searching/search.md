@@ -32,7 +32,7 @@ Tigris embedded search provides the following rich set of features:
 Tigris TypeScript SDK provides the following API to search documents or events
 in a collection or topic:
 
-- [search()](../typescript/search#searching-for-documents): search for one
+- [search()](../typescript/documents/search#searching-for-documents): search for one
   or more documents or events in a collection or topic
 
 ## Search filters
@@ -62,6 +62,6 @@ For multiple conditions, there are two logical operators provided:
 Checkout the language-specific reference sections to learn more about
 using search in your favorite language.
 
-- [Search in TypeScript](../typescript/search)
-- [Search in Go](../golang/search)
+- [Search in TypeScript](../typescript/documents/search)
+- [Search in Go](../golang/documents/search)
 - [Search in Java](../java/search)

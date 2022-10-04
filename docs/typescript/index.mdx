@@ -4,6 +4,7 @@ import querySource from "!!raw-loader!./_snippets/index/_query";
 import searchSource from "!!raw-loader!./_snippets/index/_search";
 import createTopicSource from "!!raw-loader!./_snippets/index/_createTopic";
 import publishSource from "!!raw-loader!./_snippets/index/_publish";
+import subscribeSource from "!!raw-loader!./_snippets/index/_subscribe";
 import CodeBlock from "@theme/CodeBlock";
 
 # TypeScript Reference
@@ -34,7 +35,7 @@ npm install @tigrisdata/core
 
 <span style={{textAlign: "right"}}>
 
-[Declaring models →](datamodel/declare)
+[Declaring models →](documents/datamodel)
 
 </span>
 
@@ -44,7 +45,7 @@ npm install @tigrisdata/core
 
 <span style={{textAlign: "right"}}>
 
-[Insert documents →](insert)
+[Insert documents →](documents/insert)
 
 </span>
 
@@ -54,7 +55,7 @@ npm install @tigrisdata/core
 
 <span style={{textAlign: "right"}}>
 
-[Query documents →](query)
+[Query documents →](documents/query)
 
 </span>
 
@@ -64,7 +65,7 @@ npm install @tigrisdata/core
 
 <span style={{textAlign: "right"}}>
 
-[Search documents →](search)
+[Search documents →](documents/search)
 
 </span>
 
@@ -74,12 +75,22 @@ npm install @tigrisdata/core
 
 <CodeBlock language="typescript">{createTopicSource}</CodeBlock>
 
-### 6.2 Publish message
+### 6.2 Publish events
 
 <CodeBlock language="typescript">{publishSource}</CodeBlock>
 
 <span style={{textAlign: "right"}}>
 
-[Event Streaming →](event_streaming)
+[Event Streaming →](events/publish_subscribe)
+
+</span>
+
+### 6.3 Subscribe to events
+
+<CodeBlock language="typescript">{subscribeSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](events/publish_subscribe)
 
 </span>

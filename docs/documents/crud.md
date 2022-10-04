@@ -18,15 +18,15 @@ with the same primary key already exists.
 Tigris TypeScript SDK provides the following two APIs to insert documents
 into a collection:
 
-- [insert()](../typescript/insert#insert-a-single-document):
+- [insert()](../typescript/documents/insert#insert-a-single-document):
   insert single document
-- [insertMany()](../typescript/insert#insert-multiple-documents):
+- [insertMany()](../typescript/documents/insert#insert-multiple-documents):
   batch insert documents
 
 See the language-specific sections for more examples of Insert operations:
 
-- [Insert Document in TypeScript](../typescript/insert)
-- [Insert Document in Go](../golang/insert)
+- [Insert Document in TypeScript](../typescript/documents/insert)
+- [Insert Document in Go](../golang/documents/insert)
 - [Insert Document in Java](../java/insert)
 
 ### Replace
@@ -41,15 +41,15 @@ Replace operations provide the following behavior:
 Tigris TypeScript SDK provides the following two APIs to replace documents
 in a collection:
 
-- [insertOrReplace()](../typescript/insert#upsert-a-single-document):
+- [insertOrReplace()](../typescript/documents/insert#upsert-a-single-document):
   replace single document
-- [insertOrReplaceMany()](../typescript/insert#upsert-multiple-documents):
+- [insertOrReplaceMany()](../typescript/documents/insert#upsert-multiple-documents):
   batch replace documents
 
 See the language-specific sections for more examples of Replace operations:
 
-- [Replace Document in TypeScript](../typescript/insert)
-- [Replace Document in Go](../golang/insert)
+- [Replace Document in TypeScript](../typescript/documents/insert)
+- [Replace Document in Go](../golang/documents/insert)
 - [Replace Document in Java](../java/insert)
 
 ## Read Operations
@@ -63,8 +63,8 @@ matching zero or more conditions on any field.
 Tigris TypeScript SDK provides the following two APIs to read documents
 from a collection:
 
-- [findOne()](../typescript/query#simple-read-query): read a single document
-- [findMany()](../typescript/query#filtering-on-multiple-fields): read
+- [findOne()](../typescript/documents/query#simple-read-query): read a single document
+- [findMany()](../typescript/documents/query#filtering-on-multiple-fields): read
   multiple documents
 
 See the [Filters](filters) section to learn more about the filters supported in
@@ -72,8 +72,8 @@ read operations.
 
 See the language-specific sections for more examples of Read operations:
 
-- [Read Document in TypeScript](../typescript/query)
-- [Read Document in Go](../golang/query)
+- [Read Document in TypeScript](../typescript/documents/query)
+- [Read Document in Go](../golang/documents/query)
 - [Read Document in Java](../java/query)
 
 ## Update Operations
@@ -87,7 +87,7 @@ any field.
 Tigris TypeScript SDK provides the following API to update documents in a
 collection:
 
-- [update()](../typescript/update#simple-update): update one or more
+- [update()](../typescript/documents/update#simple-update): update one or more
   documents that match the filtering condition
 
 See the [Filters](filters) section to learn more about the filters supported in
@@ -95,8 +95,8 @@ update operations.
 
 See the language-specific sections for more examples of Update operations:
 
-- [Update Document in TypeScript](../typescript/update)
-- [Update Document in Go](../golang/update)
+- [Update Document in TypeScript](../typescript/documents/update)
+- [Update Document in Go](../golang/documents/update)
 - [Update Document in Java](../java/update)
 
 ## Delete Operations
@@ -109,13 +109,13 @@ you the flexibility to delete documents matching conditions on any field.
 Tigris TypeScript SDK provides the following API to delete documents from a
 collection:
 
-- [delete()](../typescript/delete#simple-delete)
+- [delete()](../typescript/documents/delete#simple-delete)
 
 See the [Filters](filters) section to learn more about the filters supported in
 delete operations.
 
 See the language-specific sections for more examples of Delete operations:
 
-- [Delete Document in TypeScript](../typescript/delete)
-- [Delete Document in Go](../golang/delete)
+- [Delete Document in TypeScript](../typescript/documents/delete)
+- [Delete Document in Go](../golang/documents/delete)
 - [Delete Document in Java](../java/delete)
