@@ -26,7 +26,7 @@ Add the new field in your model.
 ```typescript
 // data container
 interface Catalog extends TigrisCollectionType {
-  id?: number;
+  id?: string;
   name: string;
   price: number;
   brand: string;
@@ -39,7 +39,7 @@ interface Catalog extends TigrisCollectionType {
 // schema definition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
-    type: TigrisDataTypes.INT32,
+    type: TigrisDataTypes.INT64,
     primary_key: {
       order: 1,
       autoGenerate: true,

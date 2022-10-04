@@ -27,7 +27,7 @@ All the documents in this collection will follow the defined schema.
 
 ```ts
 interface Catalog extends TigrisCollectionType {
-  id?: number;
+  id?: string;
   name: string;
   price: number;
   attributes: object;
@@ -36,7 +36,7 @@ interface Catalog extends TigrisCollectionType {
 // schema definition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
-    type: TigrisDataTypes.INT32,
+    type: TigrisDataTypes.INT64,
     primary_key: {
       order: 1,
       autoGenerate: true,

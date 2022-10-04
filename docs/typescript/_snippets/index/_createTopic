@@ -1,12 +1,12 @@
 export interface OrderEvent extends TigrisTopicType {
-  orderId: number;
+  orderId: string;
   orderName: string;
   orderStatus: string;
 }
 
 export const orderEventSchema: TigrisSchema<OrderEvent> = {
   orderId: {
-    type: TigrisDataTypes.INT32,
+    type: TigrisDataTypes.INT64,
   },
   orderName: {
     type: TigrisDataTypes.STRING,
