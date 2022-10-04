@@ -6,4 +6,4 @@ const product: Catalog = {
     popularity: 8,
 };
 
-const insertedProduct: Catalog = await catalog.insert(product);
+const insertedProduct: Catalog = await catalog.insertOne(product);

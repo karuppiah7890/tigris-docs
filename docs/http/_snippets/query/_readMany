@@ -3,11 +3,6 @@ curl 'http://localhost:8081/v1/databases/catalogdb/collections/catalog/documents
   -H "Content-Type: application/json" \
   -d '{
     "filter": {
-        "brand": "Adidas"
-    },
-    "options": {
-        "collation": {
-            "case": "ci"
-        }
+        "brand": "adidas"
     }
   }'

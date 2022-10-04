@@ -1,11 +1,5 @@
-catalog.findAllStream({
-  onEnd() {
-    // handle onEnd
-  },
-  onNext(product: Product) {
+const productsCursor: Cursor<Catalog> = catalog.findAllStream();
+
+for await (const product of productsCursor) {
     console.log(product);
-  },
-  onError(_error: Error) {
-    console.log(_error);
-  },
-});
+}

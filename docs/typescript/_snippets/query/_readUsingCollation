@@ -1,20 +1,17 @@
 const options = new ReadRequestOptions();
 options.collation = {
-  case: "ci",
+    case: "ci",
 };
-catalog.findMany(
+
+const productsCursor: Cursor<Catalog> = catalog.findMany(
     {
-      brand: "adidas",
+        brand: "Adidas",
     },
-    null,
-    null,
+    undefined,
+    undefined,
     options
-  )
-  .then((value) => {
-    const products: Catalog[] = <Catalog[]>value;
-    for (const i in products) {
-      console.log(products[i]);
-    }
-  });
+);
 
-
+for await (const product of productsCursor) {
+    console.log(product);
+}

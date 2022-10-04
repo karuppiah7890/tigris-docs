@@ -18,7 +18,7 @@ with the same primary key already exists.
 Tigris TypeScript SDK provides the following two APIs to insert documents
 into a collection:
 
-- [insert()](../typescript/documents/insert#insert-a-single-document):
+- [insertOne()](../typescript/documents/insert#insert-a-single-document):
   insert single document
 - [insertMany()](../typescript/documents/insert#insert-multiple-documents):
   batch insert documents
@@ -41,7 +41,7 @@ Replace operations provide the following behavior:
 Tigris TypeScript SDK provides the following two APIs to replace documents
 in a collection:
 
-- [insertOrReplace()](../typescript/documents/insert#upsert-a-single-document):
+- [insertOrReplaceOne()](../typescript/documents/insert#upsert-a-single-document):
   replace single document
 - [insertOrReplaceMany()](../typescript/documents/insert#upsert-multiple-documents):
   batch replace documents

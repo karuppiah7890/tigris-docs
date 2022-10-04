@@ -1,1 +1,3 @@
-CompletableFuture<Optional<Catalog>> product = catalog.readOne(Filters.eq("brand", "adidas"))
+CompletableFuture<Optional<Catalog>> productFuture = catalog.readOne(Filters.eq("brand", "adidas"));
+
+System.out.println(productFuture.get());

@@ -7,6 +7,7 @@ import QueryTemplate, {
 } from "../templates/_querying-language-reference.template.mdx";
 import createCollectionSource from "!!raw-loader!./_snippets/query/_createCollection";
 import readOneSource from "!!raw-loader!./_snippets/query/_readOne";
+import readManySource from "!!raw-loader!./_snippets/query/_readMany";
 import multipleFieldsSource from "!!raw-loader!./_snippets/query/_multipleFields";
 import readFieldsSource from "!!raw-loader!./_snippets/query/_readFields";
 import rangeReadSource from "!!raw-loader!./_snippets/query/_rangeRead";
@@ -34,6 +35,7 @@ export const isOverview = true;
   filters={filterSyntax}
   createCollection={createCollectionSource}
   readOne={readOneSource}
+  readMany={readManySource}
   multipleFields={multipleFieldsSource}
   readFields={readFieldsSource}
   rangeRead={rangeReadSource}

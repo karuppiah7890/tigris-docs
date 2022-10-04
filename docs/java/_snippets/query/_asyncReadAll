@@ -1,0 +1,18 @@
+catalog.readAll(
+    new TigrisAsyncReader<Catalog>() {
+        @Override
+        public void onNext(Catalog product) {
+            // receive document
+        }
+
+        @Override
+        public void onError(Throwable t) {
+            // handle terminating error
+        }
+
+        @Override
+        public void onCompleted() {
+            // successfully delivered all results
+        }
+    }
+);

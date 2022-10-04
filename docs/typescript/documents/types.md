@@ -1,4 +1,4 @@
-# Supported Field Types
+# Field Types
 
 Tigris supports the majority of the primitive TypeScript types while also
 providing support for custom types.

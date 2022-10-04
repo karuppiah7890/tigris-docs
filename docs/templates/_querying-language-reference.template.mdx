@@ -50,10 +50,10 @@ Assuming an e-commerce website that has the above collection catalog and has 5 p
 | 4   | sneakers shoes | 40    | adidas       | shoes    | 10         | {"author": "olivia", "rating": 9}   |
 | 5   | running shoes  | 89    | nike         | shoes    | 10         | {"author": "olivia", "rating": 8.5} |
 
-### Simple read query
+## Simple read query
 
-A straightforward query is to read documents by applying a filter on a field. As an example, applying the filter on the
-above collection by reading only the products that are of `brand` "adidas".
+A straightforward query is to read document by applying a filter on a field. As an example, using filter
+in above collection to get a product where `brand = "adidas"`
 
 <AsyncCodeBlock
   codeLang={props.codeLang}
@@ -61,14 +61,31 @@ above collection by reading only the products that are of `brand` "adidas".
   asyncExample={props.asyncReadOne}
 />
 
-:::note
-String comparison is case sensitive.
+Above query would return a single document matching the filter. To read multiple documents:
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.readMany}
+  asyncExample={props.asyncReadMany}
+/>
+
+Or to read all documents from the collection:
+
+<AsyncCodeBlock
+  codeLang={props.codeLang}
+  defaultExample={props.readAll}
+  asyncExample={props.asyncReadAll}
+/>
+
+:::tip
+By default, string comparison is **case-sensitive**. To learn, how to make **case-insensitive** queries,
+see the [case-insensitive queries section](#case-insensitive-queries).
 :::
 
-### Filtering on multiple fields
+## Filtering on multiple fields
 
 Single field filtering is useful but what if you need to also filter by `price`. Following is an example where we are
-reading all the products where `brand` is "adidas" and `price` is less than 50.
+reading all the products where `brand = "adidas"` is "adidas" and `price < 50`
 
 <AsyncCodeBlock
   codeLang={props.codeLang}
@@ -76,18 +93,18 @@ reading all the products where `brand` is "adidas" and `price` is less than 50.
   asyncExample={props.asyncMultipleFields}
 />
 
-### Reading specific fields
+## Reading specific fields
 
 Instead of reading all the fields of a document, fields projection allows reading specific fields. As an above example,
 let's say you only need to read `name`, `price` and `brand` fields from a document.
 
 <CodeBlock language={props.codeLang}>{props.readFields}</CodeBlock>
 
-:::note
-To exclude use excludeField("fieldName").
+:::caution
+Users can either specify `include` fields or `exclude` fields, but not both.
 :::
 
-### Applying range conditions
+## Applying range conditions
 
 Many times the need for filtering is based on range on a numeric field. A range can be applied to any numeric field and
 in fact multiple numeric fields can be part of a single filter. Let’s take an example of reading all the products that
@@ -95,7 +112,7 @@ are `price` less than 50 and have a `popularity` score of greater than or equal 
 
 <CodeBlock language={props.codeLang}>{props.rangeRead}</CodeBlock>
 
-#### Querying by metadata
+### Querying by metadata
 
 Tigris automatically generates following metadata fields for the document:
 
@@ -106,7 +123,7 @@ These generated fields are queryable by user. For example, to fetch documents in
 
 <CodeBlock language={props.codeLang}>{props.metadataFilter}</CodeBlock>
 
-### Applying multiple logical filters
+## Applying multiple logical filters
 
 Even after applying multiple AND conditions, what if you need something even more complex? What about reading documents
 where we need a logical `OR` on `brand` but also need to apply logical `AND` on some other fields. Let's read products where the
@@ -114,7 +131,7 @@ where we need a logical `OR` on `brand` but also need to apply logical `AND` on 
 
 <CodeBlock language={props.codeLang}>{props.logicalFilters}</CodeBlock>
 
-### Querying nested fields
+## Querying nested fields
 
 As we can see all the above examples are for top level fields but what if you have an object, and you want to filter
 documents based on one of the nested field. Taking the above data, if you want to get all the products which have `labels`
@@ -122,16 +139,12 @@ set as "shoes" but should have `rating` greater than 7.
 
 <CodeBlock language={props.codeLang}>{props.nestedFields}</CodeBlock>
 
-### Reading all the documents in a collection
+## Case-insensitive queries
 
-You can also read all documents from your collection by calling readAll API.
-
-<CodeBlock language={props.codeLang}>{props.readAll}</CodeBlock>
-
-### Case-Insensitive Queries
-
-Tigris supports Collation which allows you to specify string comparison rules. Default is **case-sensitive** filtering on
-text fields. But if you need to ignore the case then set the case to `ci` in the collation object. The following example is
-showing when you need to query for a `brand` "adidas", but you don't care about the case.
+By default, all String comparisons are **case-sensitive**. However, if you need to ignore the case
+then set the case to `ci` in the collation object. The following example demonstrates a **case-insensitive**
+query for `brand` "Adidas"
 
 <CodeBlock language={props.codeLang}>{props.readUsingCollation}</CodeBlock>
+
+Above query will match terms `["adidas", "aDiDas", "Adidas", "adiDas"]` etc.

@@ -1,4 +1,4 @@
-catalog.findMany({
+const productsCursor: Cursor<Catalog> = catalog.findMany({
     op: LogicalOperator.AND,
     selectorFilters: [
         {
@@ -11,9 +11,8 @@ catalog.findMany({
             }
         }
     ]
-}).then(value => {
-    const products: Catalog[] = <Catalog[]>value;
-    for (const i in products) {
-        console.log(products[i]);
-    }
 });
+
+for await (const product of productsCursor) {
+    console.log(product);
+}

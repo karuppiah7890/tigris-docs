@@ -1,4 +1,4 @@
-const insertedOrReplacedProduct: Catalog = await catalog.insertOrReplace({
+const product: Catalog = await catalog.insertOrReplaceOne({
     id: 3,
     name: "sling bag",
     price: 75,

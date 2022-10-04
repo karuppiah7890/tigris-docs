@@ -1,4 +1,4 @@
-Iterator<Catalog> products = catalog.readAll();
+Iterator<Catalog> products = catalog.read(Filters.eq("brand", "adidas"));
 
 while (products.hasNext()) {
     Catalog product = products.next();

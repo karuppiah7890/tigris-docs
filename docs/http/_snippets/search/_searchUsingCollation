@@ -4,7 +4,7 @@ curl 'http://localhost:8081/v1/databases/catalogdb/collections/catalog/documents
 -d '{
     "q": "running",
     "filter": {
-        "brand": "adidas"
+        "brand": "Adidas"
     },
     "collation": {
         "case": "ci"

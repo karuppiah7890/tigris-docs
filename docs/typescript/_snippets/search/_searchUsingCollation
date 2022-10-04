@@ -1,7 +1,7 @@
 const request: SearchRequest<Catalog> = {
   q: "running",
   filter: {
-    brand: "adidas",
+    brand: "Adidas",
   }
 };
 

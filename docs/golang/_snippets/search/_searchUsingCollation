@@ -1,6 +1,6 @@
 request := search.NewRequestBuilder().
 		WithQuery("running").
-		WithFilter(filter.Eq("Brand", "adidas")).
+		WithFilter(filter.Eq("Brand", "Adidas")).
 		WithOptions(&search.Options{
 			Collation: &driver.Collation{
 				Case: "ci",

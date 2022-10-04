@@ -1,5 +1,5 @@
 product, err := catalogs.ReadWithOptions(ctx,
-	filter.Eq("Brand", "adidas"),
+	filter.Eq("Brand", "Adidas"),
 	&tigris.ReadOptions {
 		Collation: & driver.Collation {
 			Case: "ci",
