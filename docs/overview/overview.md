@@ -53,3 +53,7 @@ Tigris is licensed under the terms of the
   - Deploy Tigris on your own infrastructure whether on-prem or in the cloud
     and keep your data safe and secure. Perfect for ensuring compliance with
     all regulatory requirements.
+
+## How Apps Interact with Tigris
+
+![Apps-Tigris](/img/apps-tigris.jpg)
