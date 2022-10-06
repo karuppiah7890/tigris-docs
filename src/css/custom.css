@@ -408,7 +408,7 @@ table :is(tr, td, th, thead) {
   --ifm-table-stripe-background: transparent;
   --table-cell-color: transparent;
   border: none;
-  background-color: transparent;
+  background-color: var(--ifm-background-color);
   border-bottom: 1px solid var(--docs-color-border);
 }
 
