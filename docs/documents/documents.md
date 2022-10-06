@@ -1,3 +1,7 @@
+---
+slug: /documents/documents
+---
+
 # Documents
 
 A collection is analogous to tables in a relational database.

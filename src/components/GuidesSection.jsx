@@ -9,6 +9,11 @@ export default function GuidesSection({ title, className }) {
   return (
     <Section title={title} className={className}>
       <Card
+        title="Tigris and Next.js"
+        description="Using Tigris as the backend for Next.js applications"
+        to="/guides/nextjs/"
+      />
+      <Card
         title="Building a REST web app in TypeScript"
         description="A simple RESTful web application using Tigris as backend"
         to="/guides/rest-webapp-typescript"

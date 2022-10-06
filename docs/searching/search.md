@@ -10,8 +10,12 @@ seamless and scalable experience for building rich search experiences in
 your app. Built on Typesense, the embedded search engine eliminates the need
 to run a separate search system alongside your database.
 
-Furthermore, Tigris automatically indexes the data in collections and topics,
+:::info Automatic Indexing
+
+Tigris automatically indexes the data in collections and topics,
 providing rich search capability out-of-the-box.
+
+:::
 
 ![Search Architecture](/img/search.jpg)
 

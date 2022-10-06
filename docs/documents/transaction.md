@@ -14,7 +14,7 @@ Following are some of the properties of transactions in Tigris:
   that documents don't need to be locked when updating
 - Transactions are globally ordered and provide strict serializability guarantee
 
-:::tip
+:::info Distributed ACID Transactions
 
 Transactions in Tigris work across collections and documents without any
 restrictions or performance penalty.

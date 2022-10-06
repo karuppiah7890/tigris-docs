@@ -1,14 +1,25 @@
 # Data Modeling
 
 Tigris is quite flexible in terms of the different types of data models that
-are supported. A collection's schema defines the structure of the documents
+are supported.
+
+A collection's schema defines the structure of the documents
 that are stored in the collection. This schema maps to an entity or object
 in your application code. This is why you declare the data model as part of
 your application code with Tigris.
 
-When choosing the right data model to use, always think about how your
-application works with the data and how the relationships between data is
-represented.
+Tigris also enables you to easily modify your data models, all from your
+application code.
+
+import LiteYouTubeEmbed from "react-lite-youtube-embed";
+import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+
+<LiteYouTubeEmbed
+  id="jOIejFvGtD0"
+  params="autoplay=1&autohide=1&showinfo=0&rel=0"
+  title="Easily evolve your data models"
+  poster="maxresdefault"
+/>
 
 ## Embedded data model
 
@@ -23,7 +34,7 @@ data model:
 
 ![Embedded data model](/img/embedded.jpg)
 
-## Normalized data model
+## Relational data model
 
 Sometimes there is a need to split related data across multiple collections.
 This is known as a normalized data model - this model stores relationships
@@ -36,13 +47,13 @@ Below is an example that demonstrates a normalized data model:
 
 ### Data consistency and atomicity of operations
 
-When using a normalized data model, you would have data split across
+When using a relational data model, you would have data split across
 multiple collections. As a result, data modifications will likely result in
 modifications to multiple documents. As Tigris provides ACID transactions,
 you can safely modify multiple documents in a transactional manner with
 guaranteed atomicity.
 
-:::tip
+:::info
 
 With Tigris, there is no performance penalty for multi-document transactions.
 Hence, Tigris supports Embedded and relational data models equally well and
@@ -52,6 +63,10 @@ use case.
 :::
 
 ## Further reading
+
+When choosing the right data model to use, always think about how your
+application works with the data and how the relationships between data is
+represented.
 
 Checkout the language-specific reference sections to learn more about
 defining data models in your favorite language.

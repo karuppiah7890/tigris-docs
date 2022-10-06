@@ -211,12 +211,13 @@ nav.menu {
   padding: 0.25rem 1.5rem;
   border-radius: 4px;
   background-color: var(--docs-color-primary);
-  color: #ffffff;
+  color: #0f2832;
   text-decoration: none;
 }
 
 .footer__cta a:hover {
-  background-color: var(--ifm-color-primary-darker);
+  background-color: var(--ifm-color-primary-darkest);
+  color: #0f2832;
 }
 
 .footer__data {
@@ -437,6 +438,54 @@ table th {
 }
 
 /* Customization of home page and cards */
+.pad {
+  padding: 0 1rem;
+}
+
+.center {
+  width: 100%;
+  max-width: 1080px;
+  margin: 1rem auto;
+  min-height: 400px;
+}
+
+.homepage-content {
+  padding-bottom: 6rem;
+}
+
+#hero {
+  padding: 2rem 0 1.5rem 0;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--docs-color-border);
+}
+
+#hero h2 {
+  font-size: 36px;
+}
+
+#hero p {
+  color: var(--docs-color-text-100);
+}
+
+.homepage-button {
+  --ifm-link-hover-color: #fff;
+  --ifm-link-hover-decoration: none;
+  --ifm-navbar-link-hover-color: #fff;
+  background-color: var(--docs-color-primary);
+  border-radius: 4px;
+  transition-property: all;
+  color: #0f2832;
+  font-size: 14px;
+  display: inline-block;
+  padding: var(--ifm-navbar-item-padding-vertical)
+    var(--ifm-navbar-item-padding-horizontal);
+}
+
+.homepage-button:hover {
+  background-color: var(--ifm-color-primary-darkest);
+  color: #0f2832;
+}
+
 .section-content {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

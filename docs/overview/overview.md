@@ -1,10 +1,17 @@
-# Features
+# Overview
 
-Tigris is the all-in-one open source developer data platform. With a unified
-serverless API that spans search, event streaming, and transactional
-document store, along with smart features like automatic indexing,
-developers can work with their data without all the tedious infrastructure
-management.
+Tigris is the data platform built for developers. Use it as a
+scalable, ACID transactional, real-time backend for your serverless
+applications. Build data-rich features without worrying about slow
+queries or missing indexes. Seamlessly implement search within your
+applications with its embedded search engine. Connect serverless
+functions with its event streams to build highly responsive
+applications that scale automatically.
+
+Tigris is licensed under the terms of the
+[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+### Features
 
 - 🪗 **Flexible Document Model**
   - Supports a wide variety of applications.

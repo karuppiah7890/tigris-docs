@@ -1,12 +1,19 @@
 # Event Streaming
 
 Tigris has built-in support for event streaming that allows you to build
-event-driven applications very quickly. Tigris automatically indexes the
+event-driven applications very quickly.
+
+:::info Automatic indexing of event data enabling powerful query and search capability
+
+Tigris automatically indexes the
 event data for you. This differentiates Tigris from other event streaming
 systems such as Kafka. As with Tigris, you can query and search events the
-same way you query and search data in a regular database. All events are
-transactionally stored within FoundationDB, ensuring data consistency and
-availability.
+same way you are used to querying and searching data in a standard database.
+
+:::
+
+All events are transactionally stored within FoundationDB, ensuring data
+consistency and availability.
 
 Tigris refers to an event stream as a **topic**.
 

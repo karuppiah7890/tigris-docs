@@ -54,7 +54,6 @@ const sidebars = {
     },
     "overview/why-tigris",
     "overview/architecture",
-    "overview/features",
     {
       type: "doc",
       label: "Databases, Collections and Topics",
@@ -62,13 +61,14 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Documents",
+      label: "Document Store",
       link: {
         type: "doc",
-        id: "documents/documents",
+        id: "documents/document-store",
       },
       collapsed: true,
       items: [
+        "documents/documents",
         "documents/datamodel",
         "documents/schema-validation",
         "documents/schema-modification",
@@ -338,6 +338,15 @@ const sidebars = {
     {
       type: "doc",
       id: "guides/guides",
+    },
+    {
+      type: "category",
+      label: "Next.js",
+      link: {
+        type: "doc",
+        id: "guides/nextjs/nextjs",
+      },
+      items: [],
     },
     {
       type: "doc",

@@ -1,10 +1,15 @@
 # Search and Query Operations
 
+With Tigris, you can query and search events the same way you are used to
+querying and searching data in a standard database.
+
+:::info Automatic indexing of event data enabling powerful query and search capability
+
 Tigris automatically indexes the event data in topics and provides
 rich query and search capability out-of-the-box. This differentiates Tigris
-from other event streaming systems such as Kafka. As with Tigris, you can
-query and search events the same way you query and search data in a regular
-database.
+from other event streaming systems such as Kafka.
+
+:::
 
 ## Query Operations
 
