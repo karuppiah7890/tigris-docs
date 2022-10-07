@@ -1,0 +1,124 @@
+# Schema
+
+A schema defines the structure of the events in a topic. All events published in a topic must conform to the schema.
+
+## Schema Validation
+
+The validation happens during the publishing of the events.
+
+## Modifying the Schema
+
+After creating the topic, you can update the schema at any time. For example,
+in the previous `ProductEvents` model you need to add a `metadata` field to
+store other information. This can be achieved by just calling `createOrUpdateTopic`
+with the updated model.
+
+### Step 1: Update the Model
+
+Add the new field in your model.
+
+```java
+public class Metadata {
+    private String color;
+    private String account;
+    private int quantity;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Metadata metadata = (Metadata) o;
+        return quantity == metadata.quantity && Objects.equals(color, metadata.color) && Objects.equals(account, metadata.account);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, account, quantity);
+    }
+}
+
+public class ProductEvents implements TigrisMessageCollectionType {
+    private long orderId;
+    private String name;
+    private String status;
+    private Metadata metadata;
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductEvents that = (ProductEvents) o;
+        return orderId == that.orderId && Objects.equals(name, that.name) && Objects.equals(status, that.status) && Objects.equals(metadata, that.metadata);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(orderId, name, status, metadata);
+    }
+}
+
+```
+
+### Step 2: Update the Topic
+
+Updates the topic with the new model and any new operation will see the changes.
+
+```java
+db.createOrUpdateTopics(ProductEvents.class);
+```

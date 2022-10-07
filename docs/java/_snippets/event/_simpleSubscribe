@@ -1,0 +1,4 @@
+Iterator<ProductEvents> iterator = topic.subscribe();
+while(iterator.hasNext()) {
+  ProductEvents productEvent = iterator.next();
+}

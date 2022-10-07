@@ -1,0 +1,16 @@
+topic.subscribe(new TigrisAsyncMessageReader<ProductEvents>() {
+      @Override
+      public void onNext(ProductEvents message) {
+        // when next product event is published
+      }
+
+      @Override
+      public void onError(Throwable t) {
+        // in case of an error
+      }
+
+      @Override
+      public void onCompleted() {
+        // on completion of stream
+      }
+});

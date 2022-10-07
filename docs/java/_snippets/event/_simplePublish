@@ -1,0 +1,4 @@
+ProductEvents productEvent = new ProductEvents(1, "fiona handbag", "sold");
+
+TigrisTopic<ProductEvents> topic = db.getTopic(ProductEvents.class);
+topic.publish(productEvent);

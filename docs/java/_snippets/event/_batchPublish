@@ -1,0 +1,5 @@
+List<ProductEvents> events = new ArrayList<>();
+events.add(new ProductEvents(2, "tote bag", "sold"));
+events.add(new ProductEvents(3, "sling bag", "canceled"));
+
+topic.publish(events);

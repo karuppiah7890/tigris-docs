@@ -1,6 +1,9 @@
 import createCollectionSource from "!!raw-loader!./_snippets/index/_createCollection";
 import insertSource from "!!raw-loader!./_snippets/index/_insert";
 import querySource from "!!raw-loader!./_snippets/index/_query";
+import createTopicSource from "!!raw-loader!./_snippets/event/_createCollection";
+import publishSource from "!!raw-loader!./_snippets/event/_simplePublish";
+import subscribeSource from "!!raw-loader!./_snippets/event/_simpleSubscribe";
 import searchSource from "!!raw-loader!./_snippets/index/_search";
 import CodeBlock from "@theme/CodeBlock";
 
@@ -69,5 +72,31 @@ database resources.
 <span style={{textAlign: "right"}}>
 
 [Search documents →](search)
+
+</span>
+
+## 6. Stream events
+
+### 6.1 Create topic
+
+<CodeBlock language="java">{createTopicSource}</CodeBlock>
+
+### 6.2 Publish events
+
+<CodeBlock language="java">{publishSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](events/publish_subscribe)
+
+</span>
+
+### 6.3 Subscribe to events
+
+<CodeBlock language="java">{subscribeSource}</CodeBlock>
+
+<span style={{textAlign: "right"}}>
+
+[Event Streaming →](events/publish_subscribe)
 
 </span>

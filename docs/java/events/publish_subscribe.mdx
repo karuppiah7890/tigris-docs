@@ -1,0 +1,33 @@
+---
+title: Event Streaming
+---
+
+import EventTemplate, {
+  toc as eventToc,
+} from "../../templates/_event-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!../_snippets/event/_createCollection";
+import asyncCreateCollectionSource from "!!raw-loader!../_snippets/event/_asyncCreateCollection";
+import simplePublishSource from "!!raw-loader!../_snippets/event/_simplePublish";
+import asyncSimplePublishSource from "!!raw-loader!../_snippets/event/_asyncSimplePublish";
+import simpleSubscribeSource from "!!raw-loader!../_snippets/event/_simpleSubscribe";
+import asyncSimpleSubscribeSource from "!!raw-loader!../_snippets/event/_asyncSimpleSubscribe";
+import batchPublishSource from "!!raw-loader!../_snippets/event/_batchPublish";
+import asyncBatchPublishSource from "!!raw-loader!../_snippets/event/_asyncBatchPublish";
+import filterSubscribeSource from "!!raw-loader!../_snippets/event/_filterSubscribe";
+import asyncFilterSubscribeSource from "!!raw-loader!../_snippets/event/_asyncFilterSubscribe";
+
+<EventTemplate
+  codeLang="java"
+  createCollection={createCollectionSource}
+  asyncCreateCollection={asyncCreateCollectionSource}
+  simplePublish={simplePublishSource}
+  asyncSimplePublish={asyncSimplePublishSource}
+  simpleSubscribe={simpleSubscribeSource}
+  asyncSimpleSubscribe={asyncSimpleSubscribeSource}
+  batchPublish={batchPublishSource}
+  asyncBatchPublish={asyncBatchPublishSource}
+  filterSubscribe={filterSubscribeSource}
+  asyncFilterSubscribe={asyncFilterSubscribeSource}
+/>
+
+export const toc = [...eventToc];

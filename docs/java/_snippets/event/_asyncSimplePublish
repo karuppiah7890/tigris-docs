@@ -1,0 +1,4 @@
+ProductEvents productEvent = new ProductEvents(1, "fiona handbag", "sold");
+
+TigrisAsyncTopic<ProductEvents> topic = db.getAsyncTopic(ProductEvents.class);
+CompletableFuture<PublishResponse<ProductEvents>> response = topic.publish(productEvent);
