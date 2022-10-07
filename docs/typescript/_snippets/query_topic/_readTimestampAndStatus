@@ -1,4 +1,4 @@
-topic.findMany({
+const eventsCursor: Cursor<ProductEvents> = topic.findMany({
     op: LogicalOperator.AND,
     selectorFilters: [
         {
@@ -11,8 +11,8 @@ topic.findMany({
             status: "sold"
         },
     ]
-}).then(value => {
-    const order: ProductEvents = <ProductEvents> value;
-    console.log(order.name);
-    console.log(order.status);
 });
+
+for await (const event of eventsCursor) {
+    console.log(event);
+}

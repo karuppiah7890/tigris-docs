@@ -2,19 +2,16 @@ const options = new ReadRequestOptions();
 options.collation = {
   case: "ci",
 };
-topic.findMany(
-    {
-      brand: "adidas",
-    },
-    null,
-    null,
+
+const eventsCursor: Cursor<ProductEvents> = topic.findMany(
+    { brand: "adidas" },
+    undefined,
+    undefined,
     options
-  )
-  .then((value) => {
-    const orders: ProductEvents[] = <ProductEvents[]>value;
-    for (const i in orders) {
-        console.log(orders[i]);
-    }
-  });
+);
+
+for await (const event of eventsCursor) {
+    console.log(event);
+}
 
 

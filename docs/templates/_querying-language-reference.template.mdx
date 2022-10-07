@@ -1,6 +1,6 @@
 import QueryingOverview from "./_querying-overview.template.mdx";
 import CodeBlock from "@theme/CodeBlock";
-import { AsyncCodeBlock } from "./commons";
+import { AsyncCodeBlock, CursorFundamentalsBox } from "./commons";
 
 Tigris provides powerful query functionality for specifying which documents you want to retrieve. There is no need to
 index any field as Tigris allows querying on any field of a document.
@@ -81,6 +81,8 @@ Or to read all documents from the collection:
 By default, string comparison is **case-sensitive**. To learn, how to make **case-insensitive** queries,
 see the [case-insensitive queries section](#case-insensitive-queries).
 :::
+
+<CursorFundamentalsBox codeLang={props.codeLang} />
 
 ## Filtering on multiple fields
 

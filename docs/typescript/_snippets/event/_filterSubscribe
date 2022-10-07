@@ -1,17 +1,33 @@
-topic.subscribeWithFilter({
+const cancelledOrdersFilter = {
   op: SelectorFilterOperator.EQ,
   fields: {
     orderStatus: "cancelled"
   }
-},
-{
-  onNext(orderEvent: OrderEvent) {
-    console.log(orderEvent);
-  },
-  onEnd() {
-    // handle onEnd
-  },
-  onError(error: Error) {
-    console.log(error);
-  },
-});
+};
+
+// Use one of the two ways to consume events from a topic:
+// 1. Readable streams, when no callback is provided to subscribeWithFilter()
+import { Readable } from 'node:stream';
+
+const stream: Readable = topic.subscribeWithFilter(cancelledOrdersFilter) as Readable;
+
+stream.on("data", (orderEvent: OrderEvent) => console.log(orderEvent));
+stream.on("error", (err: Error) => console.log(err));
+stream.on("end", () => console.log("All messages consumed"));
+
+// Or
+// 2. Subscribe to a topic by providing optional callback
+topic.subscribeWithFilter(
+  cancelledOrdersFilter,
+  {
+    onNext(orderEvent: OrderEvent) {
+      console.log(orderEvent);
+    },
+    onEnd() {
+      // handle onEnd
+    },
+    onError(error: Error) {
+      console.log(error);
+    },
+  }
+);

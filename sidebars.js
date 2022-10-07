@@ -141,6 +141,7 @@ const sidebars = {
             "typescript/documents/query",
             "typescript/documents/search",
             "typescript/documents/transactions",
+            "typescript/documents/cursor",
           ],
         },
         {

@@ -1,4 +1,4 @@
-const productsCursor = catalog.findMany({
+const productsCursor: Cursor<Catalog> = catalog.findMany({
     op: SelectorFilterOperator.EQ,
     fields: {
         brand: "adidas"

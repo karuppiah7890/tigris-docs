@@ -1,0 +1,122 @@
+---
+title: Data access using Cursor
+---
+
+Query operations that fetch multiple documents from server do not immediately return all values.
+The query can potentially match large sets of documents, and may need to be fetched in batches to
+optimize network and memory usage. These queries return an object `cursor` that facilitates data
+consumption. Following are a few ways to access data from a cursor:
+
+## Asynchronous iteration
+
+Cursor implements [AsyncIterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator)
+interface allowing iteration using `for await...of` syntax.
+
+```typescript
+const productsCursor: Cursor<Catalog> = catalog.findMany();
+
+for await (const product of productsCursor) {
+  console.log(product);
+}
+```
+
+## Streaming
+
+A Cursor can be translated to [Readable stream](https://nodejs.org/docs/latest-v12.x/api/stream.html#stream_readable_streams)
+of documents. This allows user to control the flow of data using `stream.pause()`, `stream.resume()`
+or `stream.pipe()` and consume it as the application demands. A stream can be consumed in one of the
+following two ways:
+
+### Streaming: Consume as events
+
+Your **event-driven** application can consume stream by listening for following three events:
+
+1. `"data"` - Stream operates in object mode and emits document as typescript objects as
+   ["data" event](https://nodejs.org/docs/latest-v12.x/api/stream.html#stream_event_data)
+2. `"error"` - Any internal failure would be emitted as ["error" event](https://nodejs.org/docs/latest-v12.x/api/stream.html#stream_event_error_1)
+3. `"end"` - ["end" event](https://nodejs.org/docs/latest-v12.x/api/stream.html#stream_event_end) is
+   emitted when there is no more data to be consumend from the stream
+
+```typescript
+const productsCursor: Cursor<Catalog> = catalog.findMany();
+const productsStream: stream.Readable = productsCursor.stream();
+
+productsStream.on("data", (document) => console.log(document));
+productsStream.on("error", (err: Error) => console.log(err));
+productsStream.on("end", () => console.log("No more data"));
+```
+
+### Streaming: Asynchronous iteration
+
+Streams support asynchronous iteration using `for await...of` syntax
+
+```typescript
+const productsCursor: Cursor<Catalog> = catalog.findMany();
+const productsStream: stream.Readable = productsCursor.stream();
+
+for await (const product of productsStream) {
+  console.log(product);
+}
+```
+
+## Array of documents
+
+An array of documents can be requested from Cursor synchronously using `toArray()` method, this
+would entail reading all documents from database matching the query and returning it as an Array.
+
+```typescript
+const productsCursor: Cursor<Catalog> = catalog.findMany();
+
+console.log(productsCursor.toArray());
+```
+
+:::caution
+If a query matches large number of documents, the internal memory may not be enough to store the
+Array. In such cases, `toArray()` can cause performance issues or failures if dataset exceeds memory
+constraints. It is recommended to use one of the iteration or streaming methods to read documents.
+:::
+
+## Utility methods
+
+### Reset
+
+Although a Cursor object exposes multiple ways to consume data, it restricts usage to only a single
+reading mode to preserve consistency. For example, if documents are being read from cursor iteratively,
+building a stream out of it will throw `TigrisCursorInUseError`. This is to ensure integrity in
+consuming source.
+
+```typescript
+const productsCursor: Cursor<Catalog> = catalog.findMany();
+
+// cursor is an iterator, calling next() would retrieve an item
+productsCursor[Symbol.asyncIterator]().next();
+
+// now consuming data via stream() or toArray() would throw error
+try {
+  for await (const product of productsCursor.stream()) {
+    //...
+  }
+} catch (err: TigrisCursorInUseError) {
+  // error is thrown
+}
+
+try {
+  productsCursor.toArray();
+} catch (err: TigrisCursorInUseError) {
+  // error is thrown
+}
+```
+
+`reset()` method can be used to re-use the Cursor. This essentially sends a new query to server and
+and allows Cursor to be re-used. A new query is sent regardless of current state, and the Cursor may
+yield different results after reset.
+
+```typescript
+const productsCursor: Cursor<Catalog> = catalog.findMany();
+
+// cursor is an iterator, calling next() would retrieve an item
+productsCursor[Symbol.asyncIterator]().next();
+productsCursor.reset();
+console.log(productsCursor.toArray());
+// no error
+```

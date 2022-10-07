@@ -1,4 +1,5 @@
 import React from "react";
+import Admonition from "@theme/Admonition";
 import TabItem from "@theme/TabItem";
 import Tabs from "@theme/Tabs";
 import CodeBlock from "@theme/CodeBlock";
@@ -7,6 +8,7 @@ import {
   syncClientLabel,
   asyncClientLabel,
 } from "../java/commons";
+import { cursorOps, cursorDocLink } from "../typescript/commons";
 
 // eslint-disable-next-line react/prop-types
 export function AsyncCodeBlock({ codeLang, defaultExample, asyncExample }) {
@@ -23,5 +25,24 @@ export function AsyncCodeBlock({ codeLang, defaultExample, asyncExample }) {
     );
   } else {
     return <CodeBlock language={codeLang}>{defaultExample}</CodeBlock>;
+  }
+}
+
+// eslint-disable-next-line react/prop-types
+export function CursorFundamentalsBox({ codeLang }) {
+  if (codeLang === "typescript") {
+    return (
+      <div>
+        <Admonition type="info">
+          <p>
+            <b>{cursorOps}</b> operation returns a Cursor that provides access
+            to data. <a href={cursorDocLink}>Cursor fundamentals section</a>{" "}
+            explains in detail the different ways to retrieve data from Cursor.
+          </p>
+        </Admonition>
+      </div>
+    );
+  } else {
+    return "";
   }
 }

@@ -1,13 +1,12 @@
-topic.findMany({
+const eventsCursor: Cursor<ProductEvents> = topic.findMany({
     op: SelectorFilterOperator.EQ,
     fields: {
         metadata: {
             account: "jane"
         }
     }
-}).then(value => {
-    const orders: ProductEvents[] = <ProductEvents[]>value;
-    for (const i in orders) {
-        console.log(orders[i]);
-    }
 });
+
+for await (const event of eventsCursor) {
+    console.log(event);
+}

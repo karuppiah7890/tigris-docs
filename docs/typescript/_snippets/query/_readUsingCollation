@@ -4,9 +4,7 @@ options.collation = {
 };
 
 const productsCursor: Cursor<Catalog> = catalog.findMany(
-    {
-        brand: "Adidas",
-    },
+    { brand: "Adidas" },
     undefined,
     undefined,
     options

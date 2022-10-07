@@ -86,8 +86,8 @@ let's say you only need to read `name`, `brand` and `status` fields from an even
 
 <CodeBlock language={props.codeLang}>{props.readFields}</CodeBlock>
 
-:::note
-To exclude use excludeField("fieldName").
+:::caution
+Users can either specify `include` fields or `exclude` fields, but not both.
 :::
 
 ### Querying nested fields
