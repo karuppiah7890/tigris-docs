@@ -66,8 +66,8 @@ would entail reading all documents from database matching the query and returnin
 
 ```typescript
 const productsCursor: Cursor<Catalog> = catalog.findMany();
-
-console.log(productsCursor.toArray());
+const products = await productsCursor.toArray();
+console.log(products);
 ```
 
 :::caution
