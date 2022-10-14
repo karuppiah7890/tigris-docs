@@ -76,6 +76,7 @@ const sidebars = {
         "documents/search",
         "documents/transaction",
         "documents/filters",
+        "documents/restrictions",
       ],
     },
     {
