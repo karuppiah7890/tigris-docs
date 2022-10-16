@@ -11,7 +11,7 @@ There are two basic constructs for TypeScript Tigris modeling.
 1. Data containers - interface that holds the data model
 2. Schema of Data containers - TigrisSchema definition of these data containers.
 
-```typescript
+```ts
 // data container
 interface Catalog extends TigrisCollectionType {
   id?: string;
@@ -20,7 +20,8 @@ interface Catalog extends TigrisCollectionType {
   brand: string;
   labels: string;
   popularity: number;
-  attributes: object;
+  entryDate: string;
+  enabled: boolean;
 }
 
 // schema definition
@@ -47,8 +48,11 @@ const catalogSchema: TigrisSchema<Catalog> = {
   popularity: {
     type: TigrisDataTypes.INT32,
   },
-  attribute: {
-    type: TigrisDataTypes.OBJECT,
+  entryDate: {
+    type: TigrisDataTypes.DATE_TIME,
+  },
+  enabled: {
+    type: TigrisDataTypes.BOOLEAN,
   },
 };
 ```

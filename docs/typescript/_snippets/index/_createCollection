@@ -14,7 +14,7 @@ interface Catalog extends TigrisCollectionType {
   brand: string;
   labels: string;
   popularity: number;
-  reviews?: object;
+  reviews?: Review;
 }
 
 const reviewSchema: TigrisSchema<Review> = {

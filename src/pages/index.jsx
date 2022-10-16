@@ -29,7 +29,7 @@ export default function Homepage() {
         <div className="center homepage-content">
           <div id="hero">
             <h2>Tigris Docs</h2>
-            <p>Tigris is the data platform built for developers!</p>
+            <p>Tigris is the easiest way to build data-rich apps!</p>
             <p>
               Use it as a scalable, ACID transactional, real-time backend for
               your serverless applications. Build data-rich features without
@@ -57,9 +57,9 @@ export default function Homepage() {
               to="/guides/"
             />
             <Card
-              title="Why Tigris"
-              description="Learn about our reasons for building Tigris and the problems it solves"
-              to="/guides/"
+              title="API Reference"
+              description="Our API has predictable resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs."
+              to="/apidocs/"
             />
           </Section>
 
