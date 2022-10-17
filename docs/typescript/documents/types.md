@@ -80,7 +80,7 @@ export const catalogSchema: TigrisSchema<Catalog> = {
 };
 ```
 
-## Note:
+## A note about bigint
 
 if there is a field with int64 value. Due to Javascript's limitation
 to handle `bigint` in `JSON.stringify()` and `JSON.parse()` user may either
