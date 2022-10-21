@@ -21,8 +21,8 @@ npm install @tigrisdata/core
 Tigris server URL, ClientID and ClientSecret need to be set as follows,
 in order to connect to the hosted platform:
 
-```typescript
-const tigris: Tigris = new Tigris({
+```ts
+const tigris = new Tigris({
   serverUrl: "api.preview.tigrisdata.cloud",
   clientId: "paste client_id here",
   clientSecret: "paste client_secret here",
@@ -37,8 +37,8 @@ in the [CLI](../cli/authentication.md#application-credentials) or UI.
 
 For local development only URL pointing to the localhost is required:
 
-```typescript
-const tigris: Tigris = new Tigris({
+```ts
+const tigris = new Tigris({
   serverUrl: "localhost:8081",
 });
 ```
@@ -51,12 +51,7 @@ const tigris: Tigris = new Tigris({
 Tigris client uses interface for data container and developers define the schema
 of their data container using TigrisSchema
 
-```typescript title=DataContainer
-interface Review extends TigrisCollectionType {
-  author: string;
-  rating: number;
-}
-
+```ts title=DataContainer
 interface Catalog extends TigrisCollectionType {
   id?: string;
   name: string;
@@ -64,20 +59,10 @@ interface Catalog extends TigrisCollectionType {
   brand: string;
   labels: string;
   popularity: number;
-  review: Review;
 }
 ```
 
-```typescript title=SchemaDefinition
-const reviewSchema: TigrisSchema<Review> = {
-  author: {
-    type: TigrisDataTypes.STRING,
-  },
-  rating: {
-    type: TigrisDataTypes.NUMBER,
-  },
-};
-
+```ts title=SchemaDefinition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
     type: TigrisDataTypes.INT64,
@@ -101,9 +86,6 @@ const catalogSchema: TigrisSchema<Catalog> = {
   popularity: {
     type: TigrisDataTypes.INT32,
   },
-  reviews: {
-    type: reviewSchema,
-  },
 };
 ```
 
@@ -114,14 +96,14 @@ For detailed documentation on schema representation refer to the
 
 ### 1. Create database (if not exists)
 
-```typescript
-const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
+```ts
+const db = await tigris.createDatabaseIfNotExists("catalogdb");
 ```
 
 ### 2. Create collection
 
-```typescript
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
+```ts
+const catalog = await db.createOrUpdateCollection<Catalog>(
   "catalog",
   catalogSchema
 );
@@ -129,8 +111,8 @@ const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
 
 ### 3. Create topic
 
-```typescript
-const topic: Topic<ProductEvents> = await db.createOrUpdateTopic(
+```ts
+const topic = await db.createOrUpdateTopic<ProductEvents>(
   "product_events",
   productEventsSchema
 );

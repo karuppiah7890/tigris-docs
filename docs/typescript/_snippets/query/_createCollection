@@ -1,1 +1,1 @@
-const catalog: Collection<Catalog> = db.getCollection<Catalog>("catalog");
+const catalog = db.getCollection<Catalog>("catalog");

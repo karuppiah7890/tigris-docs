@@ -15,4 +15,4 @@ const products: Array<Catalog> = [
   };
 ];
 
-const insertedOrReplacedProducts: Array<Catalog> = await catalog.insertOrReplaceMany(products);
+const insertedOrReplacedProducts = await catalog.insertOrReplaceMany(products);

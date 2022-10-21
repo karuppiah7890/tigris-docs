@@ -1,4 +1,4 @@
-const eventsCursor: Cursor<ProductEvents> = topic.findMany({
+const eventsCursor = topic.findMany({
     op: SelectorFilterOperator.EQ,
     fields: {
         metadata: {

@@ -20,15 +20,6 @@ export interface CatalogCategory {
   code: string;
 }
 
-export const categorySchema: TigrisSchema<CatalogCategory> = {
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  code: {
-    type: TigrisDataTypes.STRING,
-  },
-};
-
 export interface Catalog extends TigrisCollectionType {
   id?: string;
   name: string;
@@ -42,6 +33,15 @@ export interface Catalog extends TigrisCollectionType {
 }
 
 // schema definition
+export const categorySchema: TigrisSchema<CatalogCategory> = {
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  code: {
+    type: TigrisDataTypes.STRING,
+  },
+};
+
 export const catalogSchema: TigrisSchema<Catalog> = {
   id: {
     type: TigrisDataTypes.INT64,

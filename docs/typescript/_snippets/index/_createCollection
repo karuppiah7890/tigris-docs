@@ -4,7 +4,7 @@ const tigris = new Tigris({
   clientSecret: 'xxx'
 });
 
-const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
+const db = await tigris.createDatabaseIfNotExists("catalogdb");
 
 interface Catalog extends TigrisCollectionType {
   id?: string;
@@ -40,7 +40,7 @@ const catalogSchema: TigrisSchema<Catalog> = {
   },
 };
 
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
+const catalog = await db.createOrUpdateCollection<Catalog>(
   "catalog",
   catalogSchema
 );

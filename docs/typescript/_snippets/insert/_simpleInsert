@@ -1,4 +1,4 @@
-const insertedProduct: Catalog = await catalog.insertOne({
+const insertedProduct = await catalog.insertOne({
     name: "fiona handbag",
     price: 99.9,
     brand: "michael kors",

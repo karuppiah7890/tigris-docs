@@ -15,4 +15,4 @@ const products: Array<Catalog> = [
   }
 ];
 
-const insertedProducts: Array<Catalog> = await catalog.insertMany(products);
+const insertedProducts = await catalog.insertMany(products);

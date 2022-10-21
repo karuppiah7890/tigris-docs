@@ -3,7 +3,7 @@ options.collation = {
   case: "ci",
 };
 
-const eventsCursor: Cursor<ProductEvents> = topic.findMany(
+const eventsCursor = topic.findMany(
     { brand: "adidas" },
     undefined,
     undefined,

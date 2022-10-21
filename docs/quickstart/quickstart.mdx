@@ -177,7 +177,7 @@ export class UsersRepository {
   // Create a user record
   public create = async (user: User) => {
     //highlight-start
-    const createdUser: User = await this.users.insertOne(user);
+    const createdUser = await this.users.insertOne(user);
     console.log(createdUser);
     //highlight-end
   };
@@ -288,7 +288,7 @@ export class UsersRepository {
   // TODO: Add implementation
   // Create a user record
   public create = async (user: User) => {
-    const createdUser: User = await this.users.insertOne(user);
+    const createdUser = await this.users.insertOne(user);
     console.log(createdUser);
   };
 
@@ -403,7 +403,7 @@ export class UsersRepository {
   // TODO: Add implementation
   // Create a user record
   public create = async (user: User) => {
-    const createdUser: User = await this.users.insertOne(user);
+    const createdUser = await this.users.insertOne(user);
     console.log(createdUser);
   };
 
@@ -525,10 +525,10 @@ a TypeScript project. Feel free to dive deeper with the dedicated
 
 ## Where to go from here?
 
+🚀 [Signup](https://www.tigrisdata.com/beta) for the beta of Tigris Cloud - a
+fully managed version of Tigris, and try out the open source developer data
+platform in the cloud.
+
 Browse through the docs in your own areas of interest, or join our
 [Slack Community](https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ)
 to ask any questions you might have.
-
-🚀 [Signup](https://www.tigrisdata.com/beta) for the
-private beta of Tigris Cloud - a fully managed version of Tigris, and try
-out the open source developer data platform in the cloud.

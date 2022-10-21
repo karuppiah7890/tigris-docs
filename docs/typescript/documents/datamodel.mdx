@@ -70,7 +70,7 @@ const catalogSchema: TigrisSchema<Catalog> = {
 Creates the collection with the model and any new operation will see the changes.
 
 ```typescript
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
+const catalog = await db.createOrUpdateCollection<Catalog>(
   "catalog",
   catalogSchema
 );

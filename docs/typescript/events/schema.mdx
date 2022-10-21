@@ -16,7 +16,7 @@ with the updated model.
 
 Add the new field in your model.
 
-```typescript
+```ts
 // data container
 interface ProductEvents extends TigrisTopicType {
   orderId?: number;
@@ -47,7 +47,7 @@ const productEventsSchema: TigrisSchema<ProductEvents> = {
 Updates the topic with the new model and any new operation will see the changes.
 
 ```typescript
-const topic: Topic<ProductEvents> = await db.createOrUpdateTopic(
+const topic = await db.createOrUpdateTopic<ProductEvents>(
   "product_events",
   productEventsSchema
 );

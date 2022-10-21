@@ -33,7 +33,7 @@ const logicalFilter: LogicalFilter <Catalog> = {
     }],
 };
 
-const productsCursor: Cursor<Catalog> = catalog.findMany(logicalFilter);
+const productsCursor = catalog.findMany(logicalFilter);
 
 for await (const product of productsCursor) {
     console.log(product);

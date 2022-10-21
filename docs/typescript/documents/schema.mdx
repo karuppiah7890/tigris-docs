@@ -23,7 +23,7 @@ with a new model.
 
 Add the new field in your model.
 
-```typescript
+```ts
 // data container
 interface Catalog extends TigrisCollectionType {
   id?: string;
@@ -73,8 +73,8 @@ const catalogSchema: TigrisSchema<Catalog> = {
 
 Updates the collection with the new model and any new operation will see the changes.
 
-```typescript
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
+```ts
+const catalog = await db.createOrUpdateCollection<Catalog>(
   "catalog",
   catalogSchema
 );

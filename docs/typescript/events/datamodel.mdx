@@ -37,8 +37,8 @@ const productEventsSchema: TigrisSchema<ProductEvents> = {
 
 Creates the topic with the model and any new operation will see the changes.
 
-```typescript
-const topic: Topic<ProductEvents> = await db.createOrUpdateTopic(
+```ts
+const topic = await db.createOrUpdateTopic(
   "product_events",
   productEventsSchema
 );

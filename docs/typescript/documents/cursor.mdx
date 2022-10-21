@@ -13,7 +13,7 @@ Cursor implements [AsyncIterator](https://developer.mozilla.org/en-US/docs/Web/J
 interface allowing iteration using `for await...of` syntax.
 
 ```typescript
-const productsCursor: Cursor<Catalog> = catalog.findMany();
+const productsCursor = catalog.findMany();
 
 for await (const product of productsCursor) {
   console.log(product);
@@ -38,8 +38,8 @@ Your **event-driven** application can consume stream by listening for following 
    emitted when there is no more data to be consumend from the stream
 
 ```typescript
-const productsCursor: Cursor<Catalog> = catalog.findMany();
-const productsStream: stream.Readable = productsCursor.stream();
+const productsCursor = catalog.findMany();
+const productsStream = productsCursor.stream();
 
 productsStream.on("data", (document) => console.log(document));
 productsStream.on("error", (err: Error) => console.log(err));
@@ -51,8 +51,8 @@ productsStream.on("end", () => console.log("No more data"));
 Streams support asynchronous iteration using `for await...of` syntax
 
 ```typescript
-const productsCursor: Cursor<Catalog> = catalog.findMany();
-const productsStream: stream.Readable = productsCursor.stream();
+const productsCursor = catalog.findMany();
+const productsStream = productsCursor.stream();
 
 for await (const product of productsStream) {
   console.log(product);
@@ -65,7 +65,7 @@ An array of documents can be requested from Cursor synchronously using `toArray(
 would entail reading all documents from database matching the query and returning it as an Array.
 
 ```typescript
-const productsCursor: Cursor<Catalog> = catalog.findMany();
+const productsCursor = catalog.findMany();
 const products = await productsCursor.toArray();
 console.log(products);
 ```
@@ -86,7 +86,7 @@ building a stream out of it will throw `TigrisCursorInUseError`. This is to ensu
 consuming source.
 
 ```typescript
-const productsCursor: Cursor<Catalog> = catalog.findMany();
+const productsCursor = catalog.findMany();
 
 // cursor is an iterator, calling next() would retrieve an item
 productsCursor[Symbol.asyncIterator]().next();
@@ -112,7 +112,7 @@ and allows Cursor to be re-used. A new query is sent regardless of current state
 yield different results after reset.
 
 ```typescript
-const productsCursor: Cursor<Catalog> = catalog.findMany();
+const productsCursor = catalog.findMany();
 
 // cursor is an iterator, calling next() would retrieve an item
 productsCursor[Symbol.asyncIterator]().next();

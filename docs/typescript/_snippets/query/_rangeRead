@@ -1,4 +1,4 @@
-const productsCursor: Cursor<Catalog> = catalog.findMany({
+const productsCursor = catalog.findMany({
     op: LogicalOperator.AND,
     selectorFilters: [
         {
