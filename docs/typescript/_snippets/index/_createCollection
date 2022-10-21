@@ -1,11 +1,10 @@
-const tigris: Tigris = new Tigris({
-  serverUrl: "localhost:8081",
+const tigris = new Tigris({
+  serverUrl: "api.preview.tigrisdata.cloud",
+  clientId: 'xxx',
+  clientSecret: 'xxx'
 });
 
-interface Review extends TigrisCollectionType {
-  author: string;
-  rating: number;
-}
+const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
 
 interface Catalog extends TigrisCollectionType {
   id?: string;
@@ -14,17 +13,7 @@ interface Catalog extends TigrisCollectionType {
   brand: string;
   labels: string;
   popularity: number;
-  reviews?: Review;
 }
-
-const reviewSchema: TigrisSchema<Review> = {
-  author: {
-    type: TigrisDataTypes.STRING,
-  },
-  rating: {
-    type: TigrisDataTypes.NUMBER,
-  },
-};
 
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
@@ -49,12 +38,7 @@ const catalogSchema: TigrisSchema<Catalog> = {
   popularity: {
     type: TigrisDataTypes.INT32,
   },
-  reviews: {
-    type: reviewSchema,
-  },
 };
-
-const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
 
 const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
   "catalog",

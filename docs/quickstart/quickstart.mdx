@@ -4,9 +4,6 @@ slug: /quickstart
 ---
 
 import TigrisCloud from "../includes/_tigris_cloud.mdx";
-import StartupLocally from "../includes/_startup_tigris_locally.mdx";
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
 
 # Quickstart: TypeScript
 
@@ -14,38 +11,14 @@ The following guide will get you up and running with Tigris. It covers
 data modeling, creating database and collection, writing queries to read and
 write data, and performing search all without touching any infrastructure.
 
-## Setup Tigris
+## Prerequisites
 
-<Tabs>
-<TabItem value="cloud" label="Tigris Cloud">
+You'll need any computer running macOS or Linux, with
+[NodeJS v12](https://nodejs.org/en/blog/release/) or later installed.
 
 <TigrisCloud />
 
-</TabItem>
-
-<TabItem value="dev" label="Development Environment">
-
-<StartupLocally />
-
-</TabItem>
-</Tabs>
-
 ## Quickstart
-
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
-
-<LiteYouTubeEmbed
-  id="AlbTDn4jGjA"
-  params="autoplay=1&autohide=1&showinfo=0&rel=0"
-  title="TypeScript API demo"
-  poster="maxresdefault"
-/>
-
-### Prerequisites
-
-All you'll need is any computer running macOS or Linux, with
-[NodeJS v12](https://nodejs.org/en/blog/release/) or later installed.
 
 ### 1. Scaffold a new TypeScript project pre-configured with Tigris
 
@@ -55,12 +28,33 @@ Let's create a directory and navigate to it
 mkdir hello-tigris && cd hello-tigris
 ```
 
-Now run the following command to scaffold a TypeScript project pre-configured
-to connect to Tigris
+Now run the following command to scaffold a TypeScript project
 
 ```shell
 npx @tigrisdata/create-tigris-app
 ```
+
+When prompted use `console.preview.tigrisdata.cloud` as the url of the Tigris
+instance. And use the clientID and clientSecret from the output of the
+`tigris create application` command above.
+
+<details>
+<summary>Output</summary>
+
+```shell
+✔ What is the package-name (default: hello-tigris) ? ·
+✔ Where do you want the project to be generated (default: /Users/ovaistariq/projects/hello-tigris) ? ·
+✔ What is the url for your Tigris instance (default: localhost:8081) ? · console.preview.tigrisdata.cloud
+✔ What is the clientId ? · xxx
+✔ What is the client secret ? · ****************************************************************
+Initializing Tigris quickstart application
+🎉 Initialized the Tigris quickstart application successfully
+Run following command to install dependencies
+npm install
+Learn more at https://docs.tigrisdata.com/quickstart
+```
+
+</details>
 
 This command initializes following file structure in `hello-tigris` directory:
 

@@ -1,9 +1,4 @@
-catalog.findOne({
-    op: SelectorFilterOperator.EQ,
-    fields: {
-        brand: "adidas"
-    }
-}).then(value => {
+catalog.findOne({ brand: "adidas" }).then(value => {
     const product: Catalog = <Catalog> value;
     console.log(product.name); // 'sneakers shoes'
     console.log(product.price); // 40

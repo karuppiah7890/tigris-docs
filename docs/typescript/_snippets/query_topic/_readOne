@@ -1,8 +1,2 @@
-const productEvent = await topic.findOne({
-    op: SelectorFilterOperator.EQ,
-    fields: {
-        brand: "adidas"
-    }
-});
-
+const productEvent = await topic.findOne({ brand: "adidas" });
 console.log(productEvent);

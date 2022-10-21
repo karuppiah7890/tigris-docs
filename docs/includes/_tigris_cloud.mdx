@@ -1,20 +1,67 @@
-### Sign up for Tigris Cloud or login
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-If you have already signed up for Tigris Cloud, then go to
-[https://console.preview.tigrisdata.cloud/](https://console.preview.tigrisdata.cloud/)
-and sign in.
+### Install Tigris CLI
 
-If you haven't signed up, then you can do it at
-[https://www.tigrisdata.com/beta](https://www.tigrisdata.com/beta#signup-form).
-Once your account is activated you will receive an email with
-sign in details.
+Use the command below to install the CLI on **macOS**
 
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+<Tabs>
+<TabItem value="macos" label="macOS">
 
-<LiteYouTubeEmbed
-  id="Ls50EOrU3AQ"
-  params="autoplay=1&autohide=1&showinfo=0&rel=0"
-  title="How to sign in and configure your TypeScript project with Tigris"
-  poster="maxresdefault"
-/>
+```shell
+brew install tigrisdata/tigris/tigris-cli
+```
+
+</TabItem>
+
+<TabItem value="linux" label="linux">
+
+```shell
+curl -sSL https://tigris.dev/cli-linux | sudo tar -xz -C /usr/local/bin
+```
+
+</TabItem>
+</Tabs>
+
+Alternative ways of installation can be found [here](/cli/installation.mdx).
+
+### Sign up for Tigris Cloud
+
+You will need to have a Tigris Cloud account to complete this quickstart. If
+you don't already have an account, you can sign up
+[here](https://www.tigrisdata.com/beta#signup-form).
+
+### Login and set up the application credentials
+
+Login to your Tigris Cloud account
+
+```shell
+tigris login
+```
+
+The next step is to generate credentials to be used by the application we
+will be building in this quickstart
+
+```shell
+tigris create application quickstart "TypeScript quickstart application"
+```
+
+Once the command is executed, it would create the application credentials
+(clientID and clientSecret) and print it on the screen. Make a note of `id`
+and `secret` from the output.
+
+<details>
+<summary>Output</summary>
+
+```json
+{
+  "id": "xxx",
+  "name": "quickstart",
+  "description": "TypeScript quickstart application",
+  "secret": "xxx",
+  "created_at": 1666248043000,
+  "created_by": "google-oauth2|xxx"
+}
+```
+
+</details>

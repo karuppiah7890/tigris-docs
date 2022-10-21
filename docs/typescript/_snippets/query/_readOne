@@ -1,8 +1,2 @@
-const product = await catalog.findOne({
-    op: SelectorFilterOperator.EQ,
-    fields: {
-        brand: "adidas"
-    }
-});
-
+const product = await catalog.findOne({ brand: "adidas" });
 console.log(product);
