@@ -1,5 +1,5 @@
-catalog.findOne({ brand: "adidas" }).then(value => {
-    const product: Catalog = <Catalog> value;
-    console.log(product.name); // 'sneakers shoes'
-    console.log(product.price); // 40
+catalog.findOne({ brand: "adidas" })
+    .then(product: Catalog => {
+        console.log(product.name); // 'sneakers shoes'
+        console.log(product.price); // 40
 });

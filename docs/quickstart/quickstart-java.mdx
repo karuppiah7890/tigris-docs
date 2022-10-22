@@ -50,11 +50,9 @@ public class TigrisApp {
     public static void main(String[] args) throws TigrisException {
         // configure the client
         TigrisConfiguration config =
-            TigrisConfiguration.newBuilder("localhost:8081")
-                .withNetwork(
-                    TigrisConfiguration.NetworkConfig.newBuilder()
-                        .usePlainText() // for dev env - plaintext communication
-                        .build())
+            TigrisConfiguration.newBuilder("api.preview.tigrisdata.cloud")
+                .withAuthConfig(
+                    new TigrisConfiguration.AuthConfig("paste client_id here", "paste client_secret here"))
                 .build();
 
         // initialize the client

@@ -55,8 +55,14 @@ func main() {
 
 	// Connect to the Tigris backend, create the database and collection if they don't exist,
 	// otherwise update the schema of the collection if it already exists
-	db, err := tigris.OpenDatabase(ctx, &config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-		"hello_db", &User{})
+	cfg := &config.Database{
+		Driver: config.Driver{
+          URL: "api.preview.tigrisdata.cloud"
+          ClientID: "your_client_id_here"
+          ClientSecret: "your_client_secret_here"
+		}
+	}
+	db, err := tigris.OpenDatabase(ctx, cfg}, "hello_db", &User{})
 	if err != nil {
 		panic(err)
 	}
