@@ -138,9 +138,9 @@ const config = {
             position: "left",
           },
           {
-            href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
-            label: "Slack Community",
-            position: "left",
+            href: "http://discord.tigrisdata.com",
+            className: "pseudo-icon discord-icon",
+            position: "right",
           },
           {
             href: "https://github.com/tigrisdata/tigris",
@@ -150,6 +150,11 @@ const config = {
           {
             href: "https://twitter.com/TigrisData",
             className: "pseudo-icon twitter-icon",
+            position: "right",
+          },
+          {
+            href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
+            label: "Slack Community",
             position: "right",
           },
           {
@@ -226,7 +231,7 @@ const config = {
               },
               {
                 label: "Community",
-                href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
+                href: "http://discord.tigrisdata.com",
               },
             ],
           },
