@@ -57,9 +57,9 @@ export default function Homepage() {
               to="/guides/"
             />
             <Card
-              title="API Reference"
-              description="Our API has predictable resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs."
-              to="/apidocs/"
+              title="Tigris + Next.js"
+              description="Guides to help you easily build a dynamic data-rich Next.js app with Tigris."
+              to="/guides/nextjs/"
             />
           </Section>
 
