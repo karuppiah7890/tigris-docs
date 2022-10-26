@@ -1,4 +1,4 @@
-const updateResponse = await catalog.update(
+const updateResponse = await catalog.updateOne(
   {
     id: 1,
   },

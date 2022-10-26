@@ -1,4 +1,4 @@
-const deleteResponse = await catalog.delete(
+const deleteResponse = await catalog.deleteMany(
   {
     op: LogicalOperator.AND,
         selectorFilters: [
