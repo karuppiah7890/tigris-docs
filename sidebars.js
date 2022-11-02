@@ -136,6 +136,7 @@ const sidebars = {
             "typescript/documents/datamodel",
             "typescript/documents/types",
             "typescript/documents/schema",
+            "typescript/documents/schema-bootstrap",
             "typescript/documents/insert",
             "typescript/documents/update",
             "typescript/documents/delete",

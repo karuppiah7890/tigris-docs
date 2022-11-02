@@ -1,0 +1,234 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Automatic Schema Management
+
+Made changes to your data models and forgot to apply them in production before deployment? Have
+to communicate schema changes to others or wait for that project tracker issue to resolve? Unexpected
+changes happen all the time, often by mistake and without warning. Even with change control policies
+carved in stone, they may not always be followed.
+
+Tigris lets you automate the schema management process completely and ensures that the data models
+in your application are always in sync with the corresponding schema in the database. This makes the
+change control as simple as a "Code review". Let's see how this works.
+
+## How does this work?
+
+Define your data models as usual in your TypeScript project. Register the directory with the Tigris
+client during build time and let the Tigris SDK automatically synchronize your data models
+with the database. This includes creating databases and collections that do not exist, as well as
+applying schema changes if the data model has evolved.
+
+For example, let's use `<project root>/models/tigris` as a standalone directory to define our models.
+
+### Directories and Files inside `<project root>/models/tigris`
+
+Let's take a look at following directory structure:
+
+```text
+<project root>
+└── models
+    └── tigris
+        └── catalog
+            ├── products.ts
+            └── orders.ts
+```
+
+- **Directories** are used to define databases. In this example, a database name is derived from the
+  directory immediately under `<project root>/models/tigris`, which in this case is `catalog`.
+- **Files** inside directories are used to represent collections in the respective database. From the
+  example, two collections named `products` and `orders` will be created inside `catalog`.
+  Following is an example schema definition in `products.ts`
+
+```ts title="models/tigris/catalog/products.ts"
+import {
+  TigrisCollectionType,
+  TigrisDataTypes,
+  TigrisSchema,
+} from "@tigrisdata/core/dist/types";
+
+export interface Product extends TigrisCollectionType {
+  id?: number;
+  title: string;
+  description: string;
+  price: number;
+}
+
+export const ProductSchema: TigrisSchema<Product> = {
+  id: {
+    type: TigrisDataTypes.INT32,
+    primary_key: { order: 1, autoGenerate: true },
+  },
+  title: {
+    type: TigrisDataTypes.STRING,
+  },
+  description: {
+    type: TigrisDataTypes.STRING,
+  },
+  price: {
+    type: TigrisDataTypes.NUMBER,
+  },
+};
+```
+
+### Use this script to register models
+
+Now, let's write a script that can trigger build time to automatically scan the models directory
+and create the resources.
+
+```ts title="scripts/setup.ts"
+import { Tigris } from "@tigrisdata/core";
+
+async function main() {
+  const tigris = new Tigris({
+    serverUrl: "api.preview.tigrisdata.cloud",
+    clientId: "Your client_id here",
+    clientSecret: "Your client_secret here",
+  });
+
+  //highlight-start
+  await tigris.registerSchemas("models/tigris");
+  //highlight-end
+}
+```
+
+### Execute setup script at build time
+
+Include this script in `package.json` of your **npm** project and register triggers depending how your
+project builds. Here are some examples for popular frameworks:
+
+<Tabs>
+<TabItem value="cli" label="CLI">
+
+```shell
+$> cd <project root>
+$> npx ts-node scripts/setup.ts
+```
+
+</TabItem>
+
+<TabItem value="nextjs" label="Next.js">
+
+```json title="package.json"
+{
+  "scripts": {
+    //highlight-start
+    "setup": "npx ts-node scripts/setup.ts",
+    "predev": "npm run setup",
+    //highlight-end
+    "dev": "next dev",
+    "build": "next build",
+    //highlight-start
+    "postbuild": "npm run setup",
+    //highlight-end
+    "start": "next start"
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="nuxtjs" label="NuxtJS">
+
+```json title="package.json"
+{
+  "scripts": {
+    //highlight-start
+    "setup": "npx ts-node scripts/setup.ts",
+    "predev": "npm run setup",
+    //highlight-end
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    //highlight-start
+    "postbuild": "npm run setup",
+    //highlight-end
+    "start": "nuxt start"
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="nestjs" label="NestJS">
+
+```json title="package.json"
+{
+  "scripts": {
+    //highlight-start
+    "setup": "npx ts-node scripts/setup.ts",
+    "predev": "npm run setup",
+    //highlight-end
+    "dev": "nest start --watch",
+    "build": "nest build",
+    //highlight-start
+    "postbuild": "npm run setup"
+    //highlight-end
+    "start": "node dist/main"
+  }
+}
+```
+
+</TabItem>
+
+<TabItem value="remix" label="Remix">
+
+```json title="package.json"
+{
+  "scripts": {
+    //highlight-start
+    "setup": "npx ts-node scripts/setup.ts",
+    "predev": "npm run setup",
+    //highlight-end
+    "dev": "remix dev",
+    "build": "remix build",
+    //highlight-start
+    "postbuild": "npm run setup",
+    //highlight-end
+    "start": "remix-serve build"
+  }
+}
+```
+
+</TabItem>
+</Tabs>
+
+This way your data models are always synchronized with the database and you never have to step out of
+your development workflow.
+
+## FAQs
+
+<details>
+  <summary>Q - Will a database be created if it already exists?</summary>
+
+- No, Tigris automatically detects if the database already exists.
+
+</details>
+
+<details>
+  <summary>Q - Will a new collection be created if it already exists?</summary>
+
+- No, a new collection will not be created. However, Tigris will attempt to modify the existing
+  schema if there are changes. [Learn more about schema modification in Tigris](schema#modifying-the-schema)
+
+</details>
+
+<details>
+  <summary>Q - What happens if there are no valid schema files in database directory?</summary>
+
+- A database will still be created. Empty or invalid collection schema definitions will be ignored.
+
+</details>
+
+<details>
+  <summary>Q - Will a database/collection be deleted if corresponding directory/file is removed?</summary>
+
+- No, that would be an unsafe operation. Users have to explicitly delete databases and collections.
+
+</details>
+
+<details>
+  <summary>Q - Is using Tigris schema manager required?</summary>
+
+- No, this is just one convenient method to simplify your development workflow.
+
+</details>
