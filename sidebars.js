@@ -350,7 +350,12 @@ const sidebars = {
         type: "doc",
         id: "guides/nextjs/nextjs",
       },
-      items: [],
+      items: [
+        {
+          type: "doc",
+          id: "guides/nextjs/next-todo-app-netlify-deployment",
+        },
+      ],
     },
     {
       type: "doc",
