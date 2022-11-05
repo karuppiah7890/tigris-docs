@@ -348,13 +348,13 @@ const sidebars = {
       label: "Next.js",
       link: {
         type: "doc",
-        id: "guides/nextjs/nextjs",
+        id: "guides/nextjs/index",
       },
+      collapsed: false,
       items: [
-        {
-          type: "doc",
-          id: "guides/nextjs/next-todo-app-netlify-deployment",
-        },
+        "guides/nextjs/todo-app/index",
+        "guides/nextjs/deploy-to-vercel/index",
+        "guides/nextjs/deploy-to-netlify/index",
       ],
     },
     {
