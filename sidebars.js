@@ -116,6 +116,20 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Self-host",
+      link: {
+        type: "doc",
+        id: "self-host/self-host",
+      },
+      collapsed: true,
+      items: [
+        "self-host/deploy-tigris-on-eks",
+        "self-host/deploy-tigris-on-gke",
+        "self-host/deploy-tigris-on-laptop",
+      ],
+    },
+    {
+      type: "category",
       label: "TypeScript Reference",
       link: {
         type: "doc",
