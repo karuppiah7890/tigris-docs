@@ -10,9 +10,9 @@ authors: [rbarabas]
 tags: [tigris, open source, kubernetes, deploy]
 ---
 
-This blog outlines the deployment of Tigris on an Google's Kubernetes Engine (GKE) Autopilot instance.
+This section outlines the deployment of Tigris on an Google's Kubernetes Engine (GKE) Autopilot instance.
 
-The installation will use recommended settings for redundancy, allocating more resources than a simple laptop based installation would. For more information on the laptop based installation please consult our [previous blog](https://blog.tigrisdata.com/deploy-tigris-on-your-laptop)!
+The installation will use recommended settings for redundancy.
 
 If you would rather watch a video, check out the deployment in action on YouTube:
 
@@ -41,7 +41,7 @@ The list of items required:
 
 We will require Helm to perform the installation. It is assumed that the installation host already has access to the deployment target GKE cluster.
 
-The version of `helm` used in this blog was:
+The version of `helm` used:
 
 ```shell
 ❯ helm version
@@ -387,11 +387,8 @@ For a Production installation you will want to add a certificate to your load ba
 
 # Wrapping Up!
 
-I hope above could illustrate how easy it is to deploy Tigris to GKE Autopilot! Feel free to compare it to the [article about deploying Tigris to EKS](https://blog.tigrisdata.com/deploying-tigris-on-eks)
-where we discussed the steps necessary to deploy it to AWS!
+I hope above could illustrate how easy it is to deploy Tigris to GKE Autopilot!
 
-If you have any suggestions for us on Tigris related subjects that you think people might find interesting, feel free to reach out to us on either our Tigris Community Slack channel or our Tigris Discord server!
-
-Hope you enjoyed reading or watching this blog or vlog! If you did, stay tuned as next we are going to cover a few interesting subjects such as performing logical backups and restores with Tigris!
+Hope you enjoyed reading this docs section and watching the video!
 
 ---

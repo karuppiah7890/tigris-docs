@@ -294,7 +294,6 @@ const sidebars = {
         "http/event_streaming",
       ],
     },
-    "overview/deployment",
     {
       type: "category",
       label: "Command Line Interface",

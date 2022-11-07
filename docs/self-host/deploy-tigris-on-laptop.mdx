@@ -10,11 +10,8 @@ authors: [pboros, rbarabas]
 tags: [tigris, open source, kubernetes, deploy]
 ---
 
-Tigris is an open source developer data platform that makes building
-data-rich applications a breeze. This is the first of a series of blog posts
-where we show you how to deploy Tigris in various environments. In the first
-post of the series we will show you how to set up the Tigris platform on
-your laptop. In our next posts we will cover deploying Tigris on EKS and GKE.
+In this section we will show you how to set up the Tigris platform on
+your laptop.
 
 We will use [tigris-deploy](https://github.com/tigrisdata/tigris-deploy),
 which is a set of helm charts and a wrapper script. Using it, we will deploy
@@ -258,8 +255,7 @@ http://127.0.0.1:52999
 ```
 
 This exposes tigris service on port 52999. We can use the tigris command
-line client to interact with the platform running in kubernetes. Apart from
-this, now everybody knows I was writing this blog post using macOS :)
+line client to interact with the platform running in kubernetes.
 
 ```shell
 export TIGRIS_URL="127.0.0.1:52999"
@@ -315,7 +311,6 @@ Once this is done, check the _requests_count_ok_ metrics.
 
 By checking _requests_count_ok_, we can view the metrics about the 3
 requests we just issued. For further information, check out the
-[documentation on metrics](https://docs.tigrisdata.com/observability/observability/metrics),
-as well as the [documentation on deployment](https://docs.tigrisdata.com/overview/deployment).
+[documentation on metrics](https://docs.tigrisdata.com/observability/observability/metrics).
 
 ---
