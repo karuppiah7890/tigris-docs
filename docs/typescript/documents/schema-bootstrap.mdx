@@ -71,6 +71,34 @@ export const ProductSchema: TigrisSchema<Product> = {
 };
 ```
 
+A file can only have 1 exported value of `TigrisSchema` type. If you are using embedded schemas, only
+export the schema you want to use for Collection. Here is an example of embedded collection schema:
+
+```ts title="User model"
+export interface Status {
+  lastSeenAt: string;
+  memberSince: string;
+}
+
+const statusSchema: TigrisSchema<Status> = {
+  lastSeenAt: { type: TigrisDataTypes.DATE_TIME },
+  memberSince: { type: TigrisDataTypes.DATE_TIME },
+};
+
+export interface User extends TigrisCollectionType {
+  name: string;
+  status: Status;
+}
+
+export const userSchema: TigrisSchema<User> = {
+  name: { type: TigrisDataTypes.STRING },
+  status: { type: statusSchema },
+};
+```
+
+Note, how we are only exporting `userSchema` and not using `export const statusSchema` to ensure this
+file represents a single collection.
+
 ### Use this script to register models
 
 Now, let's write a script that can trigger build time to automatically scan the models directory
