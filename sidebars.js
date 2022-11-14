@@ -56,7 +56,7 @@ const sidebars = {
     "overview/architecture",
     {
       type: "doc",
-      label: "Databases, Collections and Topics",
+      label: "Databases and Collections",
       id: "overview/databases",
     },
     {
@@ -77,21 +77,6 @@ const sidebars = {
         "documents/transaction",
         "documents/filters",
         "documents/restrictions",
-      ],
-    },
-    {
-      type: "category",
-      label: "Event Streaming",
-      link: {
-        type: "doc",
-        id: "events/events",
-      },
-      collapsed: true,
-      items: [
-        "events/schema-modification",
-        "events/subscriber",
-        "events/publisher",
-        "events/search-query",
       ],
     },
     {
@@ -160,23 +145,6 @@ const sidebars = {
             "typescript/documents/cursor",
           ],
         },
-        {
-          type: "category",
-          label: "Event Streaming",
-          link: {
-            type: "doc",
-            id: "typescript/events/events",
-          },
-          collapsed: false,
-          items: [
-            "typescript/events/datamodel",
-            "typescript/events/types",
-            "typescript/events/schema",
-            "typescript/events/publish_subscribe",
-            "typescript/events/query",
-            "typescript/events/search",
-          ],
-        },
       ],
     },
     {
@@ -207,23 +175,6 @@ const sidebars = {
             "golang/documents/query",
             "golang/documents/search",
             "golang/documents/transactions",
-          ],
-        },
-        {
-          type: "category",
-          label: "Events",
-          link: {
-            type: "doc",
-            id: "golang/events/events",
-          },
-          collapsed: false,
-          items: [
-            "golang/events/datamodel",
-            "golang/events/types",
-            "golang/events/schema",
-            "golang/events/publish_subscribe",
-            "golang/events/query",
-            "golang/events/search",
           ],
         },
       ],
@@ -291,7 +242,6 @@ const sidebars = {
         "http/delete",
         "http/query",
         "http/search",
-        "http/event_streaming",
       ],
     },
     {

@@ -77,12 +77,6 @@ export default function Homepage() {
               icon={<YellowStar />}
             />
             <Card
-              title="Event Streaming Platform"
-              description="Stream events directly from your apps, services, or IOT devices. Connect your serverless functions to build responsive applications quickly. Since data is automatically indexed, you can query all data and search through all events with ease."
-              to="/events/"
-              icon={<YellowStar />}
-            />
-            <Card
               title="Transactions"
               description="Transactions work across collections and documents without any restrictions. Strictly serializable isolation by default. Unlike some other document databases, there are no confusing read / write concerns to configure, and no cross-shard restrictions."
               to="/documents/transaction"

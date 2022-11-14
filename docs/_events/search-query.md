@@ -32,15 +32,15 @@ Query operations support the following features:
 Tigris TypeScript SDK provides the following two APIs to query events in a
 topic:
 
-- [findOne()](../typescript/events/query#simple-read-query): query for a single
+- [findOne()](docs/typescript/_events/query#simple-read-query): query for a single
   event
-- [findMany()](../typescript/events/query#filtering-on-multiple-fields): query for
+- [findMany()](docs/typescript/_events/query#filtering-on-multiple-fields): query for
   multiple events based on some filtering condition
 
 See the language-specific sections for more examples of Read operations:
 
-- [Query in TypeScript](../typescript/events/query)
-- [Query in Go](../golang/events/query)
+- [Query in TypeScript](docs/typescript/_events/query)
+- [Query in Go](docs/golang/_events/query)
 - [Query in Java](../java/query)
 
 ## Search Operations
@@ -59,13 +59,13 @@ Search operations support the following features:
 Tigris TypeScript SDK provides the following API to search for events
 in a topic:
 
-- [search()](../typescript/events/search#searching-for-documents): search for one
+- [search()](docs/typescript/_events/search#searching-for-documents): search for one
   or more events in a topic
 
 See the language-specific sections for more examples of Search operations:
 
-- [Search in TypeScript](../typescript/events/search)
-- [Search in Go](../golang/events/search)
+- [Search in TypeScript](docs/typescript/_events/search)
+- [Search in Go](docs/golang/_events/search)
 - [Search in Java](../java/search)
 
 ## Filters

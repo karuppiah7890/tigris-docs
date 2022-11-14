@@ -20,8 +20,6 @@ A database can be created in an idempotent way as follows:
 const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
 ```
 
-Tigris has two offerings collections and topics.
-
 ## Collections
 
 Tigris stores data records in collections. A collection is analogous
@@ -60,21 +58,3 @@ const reviews: Collection<Review> = await db.createOrUpdateCollection(
   reviewSchema
 );
 ```
-
-## Topics
-
-A topic is analogous to a topic in Kafka. You interact with
-topic using Publish/Subscribe APIs that enable you to
-build event streaming applications. See the [Event Streaming](../events)
-section to learn more about this collection type.
-
-:::tip When would I need both?
-
-Suppose you are building an order management platform. You will need a
-collection to store products, orders, and users. But some of the ordering
-functionality requires async processing - such as sending an email when the
-order has been completed. You can accomplish this by utilizing a topic.
-Publishing an event to it once the order flow ends. Then in your email service,
-you can subscribe to the events in the topic and take the necessary action.
-
-:::

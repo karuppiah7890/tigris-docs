@@ -13,9 +13,9 @@ indexed.
 Tigris TypeScript SDK provides the following two APIs to publish events
 to a topic:
 
-- [publish()](../typescript/events/publish_subscribe#publish-a-single-message):
+- [publish()](docs/typescript/_events/publish_subscribe#publish-a-single-message):
   publish a single event
-- [publishMany()](../typescript/events/publish_subscribe#publish-many-messages):
+- [publishMany()](docs/typescript/_events/publish_subscribe#publish-many-messages):
   publish a batch of events
 
 ### Ordering of events
