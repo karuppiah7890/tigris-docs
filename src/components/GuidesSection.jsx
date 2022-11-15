@@ -14,6 +14,11 @@ export default function GuidesSection({ title, className }) {
         to="/guides/nextjs/"
       />
       <Card
+        title="Deploying apps built with Tigris"
+        description="Learn how easy it is to deploy applications built with Tigris"
+        to="/guides/deploy-tigris-app/deploy-to-vercel/"
+      />
+      <Card
         title="Building a REST web app in TypeScript"
         description="A simple RESTful web application using Tigris as backend"
         to="/guides/rest-webapp-typescript"

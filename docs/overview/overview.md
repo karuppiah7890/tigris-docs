@@ -34,10 +34,6 @@ Tigris is licensed under the terms of the
   - The system makes query tuning a thing of the past with automatic index
     management and maintenance, meaning you will never have to worry about
     slow queries due to missing indexes.
-- 🔀 **Event Streaming**
-  - Stream events directly from your apps, services, or IOT devices.
-  - Since data is automatically indexed, you can query all data and search
-    through all events with ease.
 - 🔍 **Real-time Search**
   - Search across all your collections at once using full text or faceted
     search.

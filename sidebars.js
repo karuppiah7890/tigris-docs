@@ -314,10 +314,15 @@ const sidebars = {
         id: "guides/nextjs/index",
       },
       collapsed: false,
+      items: ["guides/nextjs/todo-app/index"],
+    },
+    {
+      type: "category",
+      label: "Deploying Apps built with Tigris",
+      collapsed: false,
       items: [
-        "guides/nextjs/todo-app/index",
-        "guides/nextjs/deploy-to-vercel/index",
-        "guides/nextjs/deploy-to-netlify/index",
+        "guides/deploy-tigris-app/deploy-to-vercel/index",
+        "guides/deploy-tigris-app/deploy-to-netlify/index",
       ],
     },
     {
