@@ -16,19 +16,6 @@ export default function NextjsGuidesSection({ title, className }) {
         />
       </Section>
 
-      <Section title="Deployment guides" className={className}>
-        <Card
-          title="Deploying to Vercel"
-          description="Deploy your Next.js and Tigris application to Vercel"
-          to="/guides/nextjs/deploy-to-vercel"
-        />
-        <Card
-          title="Deploying to Netlify"
-          description="Deploy your Next.js and Tigris application to Netlify"
-          to="/guides/nextjs/deploy-to-netlify"
-        />
-      </Section>
-
       <Section title="Example GitHub repos" className={className}>
         <Card
           title="Next.js and Tigris starter app"
