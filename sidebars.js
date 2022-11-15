@@ -326,6 +326,16 @@ const sidebars = {
       ],
     },
     {
+      type: "category",
+      label: "Nuxt.js",
+      link: {
+        type: "doc",
+        id: "guides/nuxtjs/index",
+      },
+      collapsed: false,
+      items: ["guides/nuxtjs/ecommerce/index"],
+    },
+    {
       type: "doc",
       id: "guides/rest-webapp-typescript",
     },
