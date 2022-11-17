@@ -2,14 +2,17 @@
 title: "Tutorial: To-do app"
 ---
 
-import TerminalWindow from "@site/src/components/TerminalWindow/index";
-import CodeBlock from "@theme/CodeBlock";
-import createNextAppOutput from "!!raw-loader!./_createNextAppOutput";
-import runDevOutput from "!!raw-loader!./_runDevOutput";
 import {
   HomepageCard as Card,
   HomepageSection as Section,
 } from "../../../../src/components/HomepageComponents";
+
+import TerminalWindow from "@site/src/components/TerminalWindow/index";
+import CodeBlock from "@theme/CodeBlock";
+import createNextAppOutput from "!!raw-loader!./_createNextAppOutput";
+import runDevOutput from "!!raw-loader!./_runDevOutput";
+import loginOutput from "!!raw-loader!./_loginOutput";
+import tigrisCreateAppOutput from "!!raw-loader!./_tigrisCreateAppOutput";
 
 # Fullstack App with Next.js, Tigris and TypeScript: To-do app
 
@@ -42,14 +45,31 @@ You'll need a few things installed
 - Tigris
   - For **macOS**: `brew install tigrisdata/tigris/tigris-cli`
   - Other operating systems: [See installation instructions here](/cli/installation)
-  - Validate Tigris installation: `tigris dev start`
+
+## Setup Tigris account
+
+Lets set up the Tigris account first.
+
+### Login to your Tigris account or signup
+
+```shell
+tigris login
+```
+
+This will let you sign in to your existing Tigris account, or signup for a new account.
+
+```mdx-code-block
+<TerminalWindow>
+<CodeBlock language="shell">{loginOutput}</CodeBlock>
+</TerminalWindow>
+```
 
 ## Generating the project
 
 Let's get started, open the terminal and run following command:
 
 ```shell
-npx create-next-app --example https://github.com/tigrisdata/tigris-vercel-starter/tree/main-scaffold
+npx create-next-app@latest --example https://github.com/tigrisdata/tigris-vercel-starter/tree/main-scaffold
 ```
 
 This is a simple command to quickly start building a new Next.js application based off a template.
@@ -111,6 +131,37 @@ starter-todo-app
 
 We will be adding code incrementally to our application. First step would be to define the data model
 for our application.
+
+### Add the Tigris cloud credentials
+
+Our application requires credentials to be able to use Tigris. Let's generate the credentials and
+add them to the environment file.
+
+#### Generating application credentials
+
+```shell
+tigris create application starter-todo-app "Starter todo application"
+```
+
+This command will create the credentials and print it on the terminal screen
+
+```mdx-code-block
+<TerminalWindow>
+<CodeBlock language="shell">{tigrisCreateAppOutput}</CodeBlock>
+</TerminalWindow>
+```
+
+We will use the `id` and `secret` from the output and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`
+respectively in the file `.env.development.local`.
+
+#### Adding application credentials to environment file
+
+Now let's create the environment file `.env.development.local` and add the application credentials generated above to it.
+
+```dotenv title=.env.development.local
+TIGRIS_CLIENT_ID=client_id_here
+TIGRIS_CLIENT_SECRET=client_secret_here
+```
 
 ### Defining the data model{#data-model}
 
@@ -454,6 +505,10 @@ You should see following output:
 
 Voila! there you have it. To-do application is accessible on [http://localhost:3000](http://localhost:3000)
 on your browser, go ahead and play around.
+
+![Next.js todo app tutorial screenshot](/img/screenshots/nextjs-todo-app-tutorial.jpg)
+
+[You can also login to the Tigris Cloud Console and explore the data there.](https://console.preview.tigrisdata.cloud/explorer/todoStarterApp/todoItems)
 
 ## Deploy the application
 
