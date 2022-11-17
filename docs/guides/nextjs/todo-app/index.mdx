@@ -6,13 +6,13 @@ import {
   HomepageCard as Card,
   HomepageSection as Section,
 } from "../../../../src/components/HomepageComponents";
-
 import TerminalWindow from "@site/src/components/TerminalWindow/index";
 import CodeBlock from "@theme/CodeBlock";
 import createNextAppOutput from "!!raw-loader!./_createNextAppOutput";
 import runDevOutput from "!!raw-loader!./_runDevOutput";
 import loginOutput from "!!raw-loader!./_loginOutput";
 import tigrisCreateAppOutput from "!!raw-loader!./_tigrisCreateAppOutput";
+import Installation from "../../../includes/_install_cloud_login.mdx";
 
 # Fullstack App with Next.js, Tigris and TypeScript: To-do app
 
@@ -38,31 +38,7 @@ like exploring on your own, else follow along the tutorial.
 
 ## Prerequisites
 
-You'll need a few things installed
-
-- [Node.js](https://nodejs.org/) version 16+
-- [npm](https://www.npmjs.com/) 7 or greater
-- Tigris
-  - For **macOS**: `brew install tigrisdata/tigris/tigris-cli`
-  - Other operating systems: [See installation instructions here](/cli/installation)
-
-## Setup Tigris account
-
-Lets set up the Tigris account first.
-
-### Login to your Tigris account or signup
-
-```shell
-tigris login
-```
-
-This will let you sign in to your existing Tigris account, or signup for a new account.
-
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">{loginOutput}</CodeBlock>
-</TerminalWindow>
-```
+<Installation />
 
 ## Generating the project
 
@@ -152,11 +128,8 @@ This command will create the credentials and print it on the terminal screen
 ```
 
 We will use the `id` and `secret` from the output and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`
-respectively in the file `.env.development.local`.
-
-#### Adding application credentials to environment file
-
-Now let's create the environment file `.env.development.local` and add the application credentials generated above to it.
+respectively in the file `.env.development.local`. Now, let's create the environment file
+`.env.development.local` and add the application credentials generated above to it
 
 ```dotenv title=.env.development.local
 TIGRIS_CLIENT_ID=client_id_here

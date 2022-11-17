@@ -1,0 +1,27 @@
+import TerminalWindow from "@site/src/components/TerminalWindow/index";
+import loginOutput from "!!raw-loader!./_loginOutput";
+import CodeBlock from "@theme/CodeBlock";
+
+You'll need a few things installed
+
+- [Node.js](https://nodejs.org/) version 16+
+- [npm](https://www.npmjs.com/) 7 or greater
+- Tigris
+  - For **macOS**: `brew install tigrisdata/tigris/tigris-cli`
+  - Other operating systems: [See installation instructions here](/cli/installation)
+
+### Setup Tigris account
+
+Lets set up the Tigris account first.
+
+```shell
+tigris login
+```
+
+This will let you sign in to your existing Tigris account, or signup for a new account.
+
+```mdx-code-block
+<TerminalWindow>
+<CodeBlock language="shell">{loginOutput}</CodeBlock>
+</TerminalWindow>
+```
