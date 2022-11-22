@@ -9,21 +9,21 @@
 /* Fonts */
 
 @font-face {
-  font-family: Poppins;
+  font-family: Albert Sans;
   font-weight: 100 900;
   font-display: block;
   font-style: normal;
   font-named-instance: "Regular";
-  src: url(/fonts/Poppins-Regular.ttf);
+  src: url(/fonts/AlbertSans-Regular.ttf);
 }
 
 @font-face {
-  font-family: Poppins;
+  font-family: Albert Sans;
   font-weight: 100 900;
   font-display: block;
   font-style: italic;
   font-named-instance: "Italic";
-  src: url(/fonts/Poppins-Italic.ttf);
+  src: url(/fonts/AlbertSans-Italic.ttf);
 }
 
 @font-face {
@@ -41,7 +41,7 @@ code {
 :root {
   --ifm-spacing-horizontal: 1.5rem;
 
-  --ifm-font-family-base: "Poppins", system-ui, -apple-system, Segoe UI, Roboto,
+  --ifm-font-family-base: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto,
     Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI",
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
