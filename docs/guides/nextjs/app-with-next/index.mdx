@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: To-do app"
+title: "Create Next.js Application with Tigris"
 ---
 
 import {
@@ -14,43 +14,19 @@ import loginOutput from "!!raw-loader!./_loginOutput";
 import tigrisCreateAppOutput from "!!raw-loader!./_tigrisCreateAppOutput";
 import Installation from "../../../includes/_install_cloud_login.mdx";
 
-# Fullstack App with Next.js, Tigris and TypeScript: To-do app
+In this document, you’ll learn how to build fullstack
+apps using [Tigris](https://docs.tigrisdata.com/) and [Next.js][nextjs-url]. This is
+a comprehensive guide to getting an overview of the primary APIs available in Tigris.
 
-This is the first of a series of articles where we will demonstrate how easy it is to build fullstack
-apps using [Tigris](https://docs.tigrisdata.com/) and [Next.js][nextjs-url]. This tutorial series is
-a comprehensive way to getting an overview of the primary APIs available in Tigris.
+### Installation
 
-The article will be focused on Tigris and Next.js and may skip over few things like styling etc. which
-will be pre-generated in the template used for this tutorial.
-
-## What will we build?
-
-This tutorial will focus on building a To-do list app using Next.js and Tigris, where users can
-
-- add to-do items to the list
-- update to-do items as completed
-- delete to-do items
-- search for to-do items in the list
-
-[Here is a link](https://tigris-nextjs-starter-kit.vercel.app/) to working example of the To-do application
-that you will build. The source code is available on [GitHub repo][tigris-todo-repo-url] if you feel
-like exploring on your own, else follow along the tutorial.
-
-## Prerequisites
-
-<Installation />
-
-## Generating the project
-
-Let's get started, open the terminal and run following command:
+Create a Next.js project using the Tigris starter template:
 
 ```shell
 npx create-next-app@latest --example https://github.com/tigrisdata/tigris-vercel-starter/tree/main-scaffold
 ```
 
-This is a simple command to quickly start building a new Next.js application based off a template.
-It may ask you a project name to download the project resources. We chose `starter-todo-app` as our
-project name.
+Choose `starter-todo-app` as your project name and wait for the package installation.
 
 ```mdx-code-block
 <TerminalWindow>
@@ -64,56 +40,12 @@ has some missing parts which you will complete in this tutorial and then after t
 will be able to to build, run and deploy your To-do list application.
 :::
 
-## Project structure
+Now change into the newly created `starter-todo-app` directory.
 
-`cd` into the our project directory
+### Add Tigris Cloud Credentials
 
-```shell
-cd starter-todo-app # or the project name you provided in previous step
-```
-
-Here are some important components in our project. We will briefly talk about a few files/directories
-
-```text
-starter-todo-app
-├── package.json
-├── scripts
-│   └── setup.ts
-├── lib
-│   ├── tigris.ts
-├── models
-│   └── tigris
-│       └── todoStarterApp
-│           └── todoItems.ts
-└── pages
-    ├── index.tsx
-    └── api
-        ├── item
-        │   ├── [id].ts
-        └── items
-            ├── index.ts
-            └── search.ts
-```
-
-- `package.json` - Configuration for our Node project
-- `scripts/setup.ts` - Script that will bootstrap databases and collections automatically at build time
-- `lib/tigris.ts` - Client to interact with Tigris. The client is responsible to make all requests
-  to Tigris
-- `models/tigris/` - This directory has our Tigris schema definitions and models
-- `pages/` - Directory used by Next.js to create routes. This is where all our application code lives
-- `pages/api/` - All API endpoints for Next.js application are defined in this directory
-
-## Update the application
-
-We will be adding code incrementally to our application. First step would be to define the data model
-for our application.
-
-### Add the Tigris cloud credentials
-
-Our application requires credentials to be able to use Tigris. Let's generate the credentials and
-add them to the environment file.
-
-#### Generating application credentials
+Generate the Tigris credentials and add them to an environment file to allow your application use Tigris:
+add them to the environment file:
 
 ```shell
 tigris create application starter-todo-app "Starter todo application"
@@ -127,26 +59,25 @@ This command will create the credentials and print it on the terminal screen
 </TerminalWindow>
 ```
 
-We will use the `id` and `secret` from the output and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`
-respectively in the file `.env.development.local`. Now, let's create the environment file
-`.env.development.local` and add the application credentials generated above to it
+`starter-todo-app` and `Starter todo application` arguments are your application name and description. Use the `id` and `secret` from the output and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`
+respectively in the file `.env.development.local` file:
 
 ```dotenv title=.env.development.local
 TIGRIS_CLIENT_ID=client_id_here
 TIGRIS_CLIENT_SECRET=client_secret_here
 ```
 
-### Defining the data model{#data-model}
+### Defining the Data Model{#data-model}
 
 Tigris stores data records as documents. Documents are analogous to JSON objects grouped together in
-a [Collection](/overview/databases). Our to-do list app has a single collection `todoItems` that
+a [Collection](/overview/databases). The starter app has a single collection `todoItems` that
 stores to-do items as documents.
 
-This to-do app follows a convention of having models and schemas in `models/tigris` directory. Within
+Tigris applications follows a convention of having models and schemas in `models/tigris` directory. Within
 the directory we have `todoStarterApp` directory that will be our database name and the file
 `todoItems.ts` describes the schema for collection named `todoItems`.
 
-Let's add following highlighted code to `models/tigris/todoStarterApp/todoItems.ts`:
+Add the following highlighted code to the `models/tigris/todoStarterApp/todoItems.ts`:
 
 ```ts title=models/tigris/todoStarterApp/todoItems.ts
 import {
@@ -175,17 +106,13 @@ export const TodoItemSchema: TigrisSchema<TodoItem> = {
 // highlight-end
 ```
 
-We defined a data model named `TodoItem` to use in our application and created `TodoItemSchema` as a
-`TigrisSchema` for the data model. In the next section we show how these data models are used to
-automatically define databases and collections, and how the schemas are kept in sync with the models.
+You have defined a data model named `TodoItem` to use in our application and created `TodoItemSchema` as a
+`TigrisSchema` for the data model.
 
-### Setting up automatic schema management
+### Setting Up Automatic Schema Management
 
 Tigris makes it really easy to [automate schema management](/typescript/documents/schema-bootstrap)
-by using the models defined in your project.
-In this section we will setup the code that is responsible for automatically managing schemas
-corresponding to the [data model defined above](#data-model).
-Let's see how this works by adding following code to
+by using the models defined in your project. To automatically manage your schemas, add following highlighted code to
 `scripts/setup.ts` file:
 
 ```ts title=scripts/setup.ts
@@ -212,7 +139,7 @@ async function main() {
 main();
 ```
 
-The main thing to see here is the `registerSchemas()` method that accepts a path which is then scanned to
+The main thing to point out here is the `registerSchemas()` method that accepts a path which is then scanned to
 derive databases and collections that need to be created. We registered `models/tigris` directory with
 Tigris client that includes a `todoStarterApp` directory and `todoItems.ts` file with `TodoItemSchema`
 defined.
@@ -242,8 +169,8 @@ Let's further automate this process by always executing the script at build time
   }
 ```
 
-We added a `setup` command to run `scripts/setup.ts` and then added a `predev` hook to setup
-schemas right before `dev` command is executed. Additionally, we added a `postbuild` hook to
+Here a `setup` command was added to run `scripts/setup.ts` and a `predev` hook to setup
+schemas right before `dev` command is executed. Additionally, a `postbuild` hook was added to
 setup schemas in production environment right after `build`. Now, all your databases and
 collections will be in sync with model definitions in code.
 
@@ -252,17 +179,17 @@ You don't have to worry about applying schema changes anymore, managing schema i
 development workflow. Read more about this automated schema management [here](/typescript/documents/schema-bootstrap).
 :::
 
-### API endpoints to access data in Tigris
+### Create API Endpoints
 
-Let's write some REST endpoints to execute CRUD operations against `todoItems` collection. These
-endpoints will be used by the client component of to-do app to perform data operations in Tigris.
+You can now create REST endpoints to execute CRUD operations against `todoItems` collection. These
+endpoints will be used by the client component of starter app to perform data operations in Tigris.
 Next.js convention is to define API endpoints inside `pages/api/` directory. Any file or folder
 inside `pages/api/` is mapped to `/api/*` route.
 
 #### ⌲ GET `/api/items` to fetch all to-do items
 
 For our convenience, `pages/api/items/index.ts` is included in our template that maps to `/api/items`
-API route for our Next.js application. Let's implement `handleGet()` function in this file that will
+API route for our Next.js application. Implement a `handleGet()` function in this file that will
 fetch the available to-do items from Tigris collection.
 
 ```ts title=pages/api/items/index.ts
@@ -316,7 +243,7 @@ identifier for the item that is being updated.
 
 Next.js supports [dynamic routes](https://nextjs.org/docs/api-routes/dynamic-api-routes) by naming
 file as a **url slug**. In this case, the file `pages/api/item/[id].ts` can map to `/api/item/1`,
-`/api/item/abc` etc. Let's implement `handlePut()` method in this file.
+`/api/item/abc` etc. Implement a `handlePut()` method in this file to update the todoItems collection:
 
 ```ts title=pages/api/item/[id].ts
 async function handlePut(req: NextApiRequest, res: NextApiResponse<Data>) {
@@ -409,7 +336,7 @@ Tigris makes it really easy to implement [search](/typescript/documents/search) 
 by providing an embedded search engine that makes all your data instantly searchable.
 :::
 
-## Explore user interface
+### Explore User Interface
 
 All the browser rendered pages are to be defined in `pages/` directory in Next.js. In this section,
 we will only explore some of the included front end code of our application.
@@ -463,7 +390,7 @@ const addToDoItem = () => {
 
 Feel free to explore the code or continue along as we put together the final pieces of our application.
 
-## Run the app
+### Run the App
 
 Let's reap the rewards. Start the Tigris development environment using `tigris dev start` if not
 started already and then Next.js app by executing `npm run dev` in terminal.
@@ -476,17 +403,17 @@ You should see following output:
 </TerminalWindow>
 ```
 
-Voila! there you have it. To-do application is accessible on [http://localhost:3000](http://localhost:3000)
+Your application is accessible on [http://localhost:3000](http://localhost:3000)
 on your browser, go ahead and play around.
 
 ![Next.js todo app tutorial screenshot](/img/screenshots/nextjs-todo-app-tutorial.jpg)
 
 [You can also login to the Tigris Cloud Console and explore the data there.](https://console.preview.tigrisdata.cloud/explorer/todoStarterApp/todoItems)
 
-## Deploy the application
+### Deploy the Application
 
 So far we have built a Next.js application and connected it to Tigris backend. We are now ready to take
-the next step and deploy it to production. Next.js and Tigris can be deployed to multiple
+the next step and deploy it to production. Nextjs and Tigris can be deployed to multiple
 platforms and services, let's look at a few available options:
 
 <Section className="two-cols">
@@ -503,16 +430,6 @@ platforms and services, let's look at a few available options:
 </Section>
 
 > Note: If you would like deployment instructions for a service not on this list, let us know!
-
-## Summary
-
-In this tutorial, you built a to-do list Next.js app that uses Tigris as the backend. You saw all
-the powerful functionality that Tigris provides, and how easy it is to use. Now, its time to
-[tweet your success][tweet-intent] :smile:
-
-Stay, tuned as we publish more tutorials and reach out to the team to learn what we are building next.
-
-Happy learning!
 
 <!-- MARKDOWN LINKS -->
 

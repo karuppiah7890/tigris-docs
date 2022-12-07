@@ -301,10 +301,6 @@ const sidebars = {
   ],
   guides: [
     {
-      type: "doc",
-      id: "guides/guides",
-    },
-    {
       type: "category",
       label: "Next.js",
       link: {
@@ -312,7 +308,10 @@ const sidebars = {
         id: "guides/nextjs/index",
       },
       collapsed: false,
-      items: ["guides/nextjs/todo-app/index"],
+      items: [
+        "guides/nextjs/app-with-next/index",
+        "guides/nextjs/add-existing-app/index",
+      ],
     },
     {
       type: "category",
