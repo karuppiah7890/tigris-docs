@@ -34,6 +34,7 @@ interface Catalog extends TigrisCollectionType {
   popularity: number;
   attributes: object;
   description: string;
+  creationDate: Date;
 }
 
 // schema definition
@@ -65,6 +66,9 @@ const catalogSchema: TigrisSchema<Catalog> = {
   },
   description: {
     type: TigrisDataTypes.STRING,
+  },
+  creationDate: {
+    type: TigrisDataTypes.DATE_TIME,
   },
 };
 ```

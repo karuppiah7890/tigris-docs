@@ -3,7 +3,7 @@
 Tigris supports the majority of the primitive TypeScript types while also
 providing support for custom types.
 
-- primitive types: `string`, `boolean`, `number`, `bigint`, `object`.
+- primitive types: `string`, `boolean`, `number`, `bigint`, `Date`, `object`.
 - Custom types: user-defined class to define custom types.
 - Array and object of all of above is supported.
 
