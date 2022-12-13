@@ -110,7 +110,6 @@ const sidebars = {
       items: [
         "self-host/deploy-tigris-on-eks",
         "self-host/deploy-tigris-on-gke",
-        "self-host/deploy-tigris-on-laptop",
       ],
     },
     {
