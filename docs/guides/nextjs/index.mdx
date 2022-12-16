@@ -18,30 +18,13 @@ serverless functions.
 
 <Installation />
 
-### Initialize your Next.js app
+### Create Tigris Project
 
-Next.js allows you to bootstrap apps using [create-next-app](https://nextjs.org/docs/api-reference/create-next-app)
-utility:
+Every Tigris application is a project that with a dedicated database and cloud credentials. A project can have only one database assortiated with it. 
+To create a Tigris project, [Login/Signup](https://tigris-webconsole-develop.vercel.app/) to your Tigris console and create a new project.
 
-```shell
-npx create-next-app --example with-tigris
-```
+![create-project-result-output](img/gifs/create-project-output.gif)
 
-This will prompt for the project name. Enter `my-tigris-app` and hit the Enter key.
-
-<details>
-  <summary>Output</summary>
-  <TerminalWindow>
-    <CodeBlock language="shell">{createNextAppOutput}</CodeBlock>
-  </TerminalWindow>
-</details>
-
-Finally, navigate into the project directory and run the application:
-
-```
-cd my-tigris-app
-npm run dev
-```
 
 ### Add the Tigris cloud credentials
 
@@ -71,6 +54,31 @@ Now, create the environment file `.env.development.local` and add the applicatio
 TIGRIS_URI=api.preview.tigrisdata.cloud
 TIGRIS_CLIENT_ID=client_id_here
 TIGRIS_CLIENT_SECRET=client_secret_here
+```
+
+### Initialize your Next.js app
+
+Next.js allows you to bootstrap apps using [create-next-app](https://nextjs.org/docs/api-reference/create-next-app)
+utility:
+
+```shell
+npx create-next-app --example with-tigris
+```
+
+This will prompt for the project name. Enter `my-tigris-app` and hit the Enter key.
+
+<details>
+  <summary>Output</summary>
+  <TerminalWindow>
+    <CodeBlock language="shell">{createNextAppOutput}</CodeBlock>
+  </TerminalWindow>
+</details>
+
+Finally, navigate into the project directory and run the application:
+
+```
+cd my-tigris-app
+npm run dev
 ```
 
 ### Run
