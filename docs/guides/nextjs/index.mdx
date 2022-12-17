@@ -20,13 +20,12 @@ serverless functions.
 
 ### Create Tigris Project
 
-Every Tigris application is a project with a dedicated database and cloud credentials. 
+Every Tigris application is a project with a dedicated database and cloud credentials.
 To create a Todo application, Login or Signup to your Tigris console and create a new project.
 
 ![create-project-result-output](/img/gifs/create-project-output.gif)
 
 > Your project name is automatically your database name. So you do not need to create a database.
-
 
 ### Create the Tigris cloud credentials
 
@@ -44,16 +43,15 @@ Then your application `Client ID` and `Client Secret` will be generated.
 
 > Keep those credentials confidential to avoid unauthorized access to your application.
 
-
 ### Scaffold your Next.js app
 
-Tigris allows you to bootstrap Next.js apps using the Tigris CLI tool. 
+Tigris allows you to bootstrap Next.js apps using the Tigris CLI tool.
 
 ```shell
 latest command goes here
 ```
 
-This will prompt the project name. Enter `todo` and hit the Enter key. Then you will be prompted to pick the template for your project; select the `nextjs-api-routes` template and hit Enter key: 
+This will prompt the project name. Enter `todo` and hit the Enter key. Then you will be prompted to pick the template for your project; select the `nextjs-api-routes` template and hit Enter key:
 
 <details>
   <summary>Output</summary>
@@ -63,9 +61,10 @@ This will prompt the project name. Enter `todo` and hit the Enter key. Then you 
 </details>
 
 ### Add the Tigris cloud credentials
-You must add the Tigris credentials you created to your application environment file for your Tigris application to work. 
 
-Use the `Client ID` and `Client Secret` you created and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET` respectively. Then specify your project in `TIGRIS_PROJECT`  in the file `.env.development.local` in `todo` directory.
+You must add the Tigris credentials you created to your application environment file for your Tigris application to work.
+
+Use the `Client ID` and `Client Secret` you created and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET` respectively. Then specify your project in `TIGRIS_PROJECT` in the file `.env.development.local` in `todo` directory.
 
 Now, create the environment file `.env.development.local` and add the application credentials generated above to it:
 
