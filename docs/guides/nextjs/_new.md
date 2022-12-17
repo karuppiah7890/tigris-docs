@@ -1,7 +1,7 @@
 $ ➔ npx @tigrisdata/create-tigris-app@dev
 ✔ What is your project named? … todo
-✔ What is the clientId? … ....
-✔ What is the clientSecret? … ....
+✔ What is the clientId? … s
+✔ What is the clientSecret? … *
 ✔ Pick the template › nextjs-api-routes
 Creating a new app in /Users/zioncodev/Desktop/Tigris-Samples/todo.
 

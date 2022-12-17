@@ -20,52 +20,39 @@ serverless functions.
 
 ### Create Tigris Project
 
-Every Tigris application is a project that with a dedicated database and cloud credentials. A project can have only one database assortiated with it. 
-To create a Tigris project, [Login/Signup](https://tigris-webconsole-develop.vercel.app/) to your Tigris console and create a new project.
+Every Tigris application is a project with a dedicated database and cloud crendentials. To create a Todo application, [Login/Signup](https://tigris-webconsole-develop.vercel.app/) to your Tigris console and create a new project.
 
-![create-project-result-output](img/gifs/create-project-output.gif)
+![create-project-result-output](/img/gifs/create-project-output.gif)
+
+> Your project name is automatically your database name. So you do not need to create a database
 
 
-### Add the Tigris cloud credentials
+### Create the Tigris cloud credentials
 
-Your application requires credentials to be able to use Tigris. Let's generate the credentials and
-add them to the environment file.
+Your application requires credentials to be able to use Tigris. To create Tigris cloud credentials for your application, click on `Todo > Application Keys > New Key`.
 
-```shell
-tigris create application starter-todo-app "Starter todo application"
-```
+![create-project-crendentials-output](/img/gifs/create-project-credential-output.gif)
 
-The this will create the credentials and print it on the terminal screen:
+Then enter the details for your Application Keys in the input boxes and hit the Create button:
 
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">{tigrisCreateAppOutput}</CodeBlock>
-</TerminalWindow>
-```
+![create-token-output](/img/screenshots/create-project-keys.png)
 
-> Change `starter-todo-app` argument to your project name and the `"Starter todo application"` argument to your project description.
+Then your application `Client ID` and `Client Secret` will be generated.
 
-We will use the `id` and `secret` from the output and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`
-respectively in the file `.env.development.local` in `my-tigris-app` directory.
+![project-keys](/img/screenshots/project-keys.png)
 
-Now, create the environment file `.env.development.local` and add the application credentials generated above to it:
+> Keep those crendentials confidential, to avoid unauthorized access to your application.
 
-```dotenv title=.env.development.local
-TIGRIS_URI=api.preview.tigrisdata.cloud
-TIGRIS_CLIENT_ID=client_id_here
-TIGRIS_CLIENT_SECRET=client_secret_here
-```
 
-### Initialize your Next.js app
+### Scaffold your Next.js app
 
-Next.js allows you to bootstrap apps using [create-next-app](https://nextjs.org/docs/api-reference/create-next-app)
-utility:
+Tigris allows you to bootstrap Next.js apps using the Tigris CLI tool. 
 
 ```shell
-npx create-next-app --example with-tigris
+npx @tigrisdata/create-tigris-app@beta
 ```
 
-This will prompt for the project name. Enter `my-tigris-app` and hit the Enter key.
+This will prompt for the project name. Enter `todo` and hit the Enter key. Then you will be prompted to pick the template for your project, select the `nextjs-api-routes` template and hit Enter key: 
 
 <details>
   <summary>Output</summary>
@@ -74,10 +61,15 @@ This will prompt for the project name. Enter `my-tigris-app` and hit the Enter k
   </TerminalWindow>
 </details>
 
+## Add the Tigris cloud credentials
+You need to add the Tigris crendentials you created to your application environment file for your project work and use Tigris. Copy the CLient ID and Client Secret you created and add them to the environment file.
+
+
+
 Finally, navigate into the project directory and run the application:
 
 ```
-cd my-tigris-app
+cd todo
 npm run dev
 ```
 
