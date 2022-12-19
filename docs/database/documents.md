@@ -30,37 +30,40 @@ Below is an example of defining a schema for a collection named `catalog`.
 All the documents in this collection will follow the defined schema.
 
 ```ts
-interface Catalog extends TigrisCollectionType {
-  id?: string;
-  name: string;
-  price: number;
-  attributes: object;
+import {
+  Field,
+  PrimaryKey,
+  Tigris,
+  TigrisCollection,
+  TigrisDataTypes,
+} from "@tigrisdata/core";
+
+export class ProductAttributes {
+  name!: string;
+  value!: string;
 }
 
-// schema definition
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT64,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  attributes: {
-    type: TigrisDataTypes.OBJECT,
-  },
-};
+@TigrisCollection("catalog")
+export class Catalog {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id!: bigint;
 
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
-  "catalog",
-  catalogSchema
-);
+  @Field()
+  name!: string;
+
+  @Field()
+  price!: number;
+
+  @Field({ elements: ProductAttributes })
+  attributes!: Array<ProductAttributes>;
+}
+
+(async () => {
+  const client = new Tigris();
+  const db = client.getDatabase();
+
+  await db.createOrUpdateCollection<Catalog>(Catalog);
+})();
 ```
 
 ### Supported field types

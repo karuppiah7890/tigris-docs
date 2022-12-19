@@ -31,46 +31,36 @@ that there are no partial updates in the database if a transaction fails.
 ```ts
 await db.transact(async (tx) => {
   // read user 1
-  const user1: User | undefined = await users.findOne(
-    {
-      userId: 1,
-    },
-    tx
-  );
+  const user1 = await users.findOne({ userId: 1 }, undefined, tx);
 
   // read user 2
-  const user2: User | undefined = await users.findOne(
-    {
-      userId: 2,
-    },
-    tx
-  );
+  const user2 = await users.findOne({ userId: 2 }, undefined, tx);
 
   if (user1 === undefined || users2 === undefined) {
     throw new Error("User(s) not found"); // This will auto-rollback transaction
   }
 
   // deduct balance from user1
-  await users.update(
-    {
-      userId: user1.userId,
-    },
-    {
-      balance: user1.balance - 100,
-    },
+  let result = await users.updateOne(
+    { userId: user1.userId },
+    { balance: user1.balance - 100 },
     tx
   );
 
+  if (!result?.modifiedCount) {
+    throw new Error(`Failed to update user's balance: ${result}`); // This will auto-rollback transaction
+  }
+
   // add balance to user2
-  await users.update(
-    {
-      userId: user2.userId,
-    },
-    {
-      balance: user2.balance + 100,
-    },
+  result = await users.updateOne(
+    { userId: user2.userId },
+    { balance: user2.balance + 100 },
     tx
   );
+
+  if (!result?.modifiedCount) {
+    throw new Error(`Failed to update user's balance: ${result}`); // This will auto-rollback transaction
+  }
 });
 ```
 

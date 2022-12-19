@@ -1,11 +1,15 @@
 # Database
 
+Every Tigris projects comes with a transactional document database built on
+[FoundationDB](https://blog.tigrisdata.com/building-a-database-using-foundationdb),
+one of the most resilient and battle-tested open source distributed
+key-value store.
+
 Tigris stores data records as documents. Documents are analogous to JSON
 objects but Tigris stores them in an optimized binary format. Documents are
 grouped together in collections. Collections are grouped together in database.
 
-Database is tied to your cloud project. It is created automatically
-for you when you create a project.
+A database is created automatically for you when you create a project.
 
 ## Collections
 
@@ -24,22 +28,30 @@ A collection is created as follows. This will create the collection if it
 does not exist. If the collection exists, it updates its schema.
 
 ```ts
-interface Review extends TigrisCollectionType {
-  author: string;
-  rating: number;
+import {
+  Field,
+  PrimaryKey,
+  Tigris,
+  TigrisCollection,
+  TigrisDataTypes,
+} from "@tigrisdata/core";
+
+@TigrisCollection("reviews")
+export class Review {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id!: bigint;
+
+  @Field()
+  author!: string;
+
+  @Field()
+  rating!: number;
 }
 
-const reviewSchema: TigrisSchema<Review> = {
-  author: {
-    type: TigrisDataTypes.STRING,
-  },
-  rating: {
-    type: TigrisDataTypes.NUMBER,
-  },
-};
+(async () => {
+  const client = new Tigris();
+  const db = client.getDatabase();
 
-const reviews: Collection<Review> = await db.createOrUpdateCollection(
-  "reviews",
-  reviewSchema
-);
+  await db.createOrUpdateCollection<Review>(Review);
+})();
 ```

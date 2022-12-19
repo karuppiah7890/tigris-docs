@@ -30,73 +30,60 @@ The following schema changes are currently not supported:
 
 ## How to modify the schema
 
-Suppose you have the following collection schema defined:
+Suppose you have the following data model defined:
 
-```ts title="Existing Schema Definition"
-interface Catalog extends TigrisCollectionType {
-  id?: string;
-  name: string;
-  price: number;
-  attributes: object;
+```ts title="./db/models/catalog.ts"
+export class ProductAttributes {
+  name!: string;
+  value!: string;
 }
 
-// schema definition
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT64,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  attributes: {
-    type: TigrisDataTypes.OBJECT,
-  },
-};
+@TigrisCollection("catalog")
+export class Catalog {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id!: bigint;
+
+  @Field()
+  name!: string;
+
+  @Field()
+  price!: number;
+
+  @Field({ elements: ProductAttributes })
+  attributes!: Array<ProductAttributes>;
+}
 ```
 
-And you would like to modify the schema and add a new field `brand` of type
+And you would like to modify the model and add a new field `brand` of type
 `string`. The steps to make this change are as follows:
 
-### 1. Update the schema definition in your application code
+### 1. Update the data model in your application code
 
-```ts title="New Schema Definition"
-interface Catalog extends TigrisCollectionType {
-  id?: string;
-  name: string;
-  price: number;
-  attributes: object;
-  brand: string;
+```diff
+// ./db/models/catalog.ts
+
+export class ProductAttributes {
+  name!: string;
+  value!: string;
 }
 
-// schema definition
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT64,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  attributes: {
-    type: TigrisDataTypes.OBJECT,
-  },
-  brand: {
-    type: TigrisDataTypes.STRING,
-  },
-};
+@TigrisCollection("catalog")
+export class Catalog {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id!: bigint;
+
+  @Field()
+  name!: string;
+
+  @Field()
+  price!: number;
+
+  @Field({ elements: ProductAttributes })
+  attributes!: Array<ProductAttributes>;
++
++  @Field()
++  brand!: string;
+}
 ```
 
 ### 2. Use the createOrUpdateCollection API in your application code
@@ -106,10 +93,7 @@ to create the collection. The same API will update the schema of the
 collection to reflect the new schema.
 
 ```ts
-const catalog: Collection<Catalog> = await db.createOrUpdateCollection(
-  "catalog",
-  catalogSchema
-);
+await db.createOrUpdateCollection<Catalog>(Catalog);
 ```
 
 At this point, the collection's schema is modified. The collection is
