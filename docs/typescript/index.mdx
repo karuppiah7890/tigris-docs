@@ -14,10 +14,26 @@ You define the data model as part of the application code, which then drives
 the database infrastructure without you having to configure and provision
 database resources.
 
-## 1. Install package
+## 1. Installation
+
+> Install the npm package
 
 ```shell
-npm install @tigrisdata/core
+npm install @tigrisdata/core --save
+```
+
+> Install `reflect-metadata` that enables automatic type inference using reflection
+
+```shell
+npm install reflect-metadata --save
+```
+
+> Ensure that you are on Typescript version **4.5 or above** and have following settings enabled in
+> `compilerOptions` section of `tsconfig.json`:
+
+```json
+"emitDecoratorMetadata": true,
+"experimentalDecorators": true,
 ```
 
 <span style={{textAlign: "right"}}>
