@@ -1,24 +1,11 @@
-# Databases
+# Database
 
 Tigris stores data records as documents. Documents are analogous to JSON
 objects but Tigris stores them in an optimized binary format. Documents are
-grouped together in collections. Collections are grouped together in databases.
+grouped together in collections. Collections are grouped together in database.
 
-## Databases
-
-A database is a group of one or more collections. Tigris supports two
-types of collections (you will read about this below), and a database can
-store any number of collections regardless of the type.
-
-![Databases](/img/databases.jpg)
-
-### Creating a database
-
-A database can be created in an idempotent way as follows:
-
-```ts
-const db: DB = await tigris.createDatabaseIfNotExists("catalogdb");
-```
+Database is tied to your cloud project. It is created automatically
+for you when you create a project.
 
 ## Collections
 
@@ -27,11 +14,9 @@ to tables in a relational database. A collection always has a
 pre-defined schema that enables you to structure the data. The schema can be
 easily evolved in a lightweight way without costly rebuild operations. You interact with it using CRUD APIs.
 Tigris provides strictly serializable transactions, enabling you to perform consistent
-operations on your data records. See the [Documents](../documents) section to learn more about collections.
+operations on your data records.
 
 ![Collections](/img/collections.jpg)
-
-See the [Documents](../documents) section to learn more about collections.
 
 ### Creating a collection
 
