@@ -12,18 +12,138 @@
       "extensions": [],
       "messages": [
         {
-          "name": "BeginTransactionRequest",
-          "longName": "BeginTransactionRequest",
-          "fullName": "tigrisdata.v1.BeginTransactionRequest",
-          "description": "Start new transaction in database specified by \"db\".",
+          "name": "AppKey",
+          "longName": "AppKey",
+          "fullName": "tigrisdata.v1.AppKey",
+          "description": "An user AppKey",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name this transaction belongs to.",
+              "name": "id",
+              "description": "Generated client id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "A human readable app name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "A human readable app description",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "secret",
+              "description": "Generated app secret",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_at",
+              "description": "Created at",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "created_by",
+              "description": "Created by",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_at",
+              "description": "Updated at",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "updated_by",
+              "description": "Updated by",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "Project it belongs to",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "BeginTransactionRequest",
+          "longName": "BeginTransactionRequest",
+          "fullName": "tigrisdata.v1.BeginTransactionRequest",
+          "description": "Start new transaction in project specified by \"project\".",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Project name whose DB this transaction belongs to.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -40,6 +160,18 @@
               "type": "TransactionOptions",
               "longType": "TransactionOptions",
               "fullType": "tigrisdata.v1.TransactionOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a project branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -224,8 +356,20 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name this transaction belongs to.",
+              "name": "project",
+              "description": "Project name whose DB this transaction belongs to.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -262,18 +406,18 @@
           ]
         },
         {
-          "name": "CreateDatabaseRequest",
-          "longName": "CreateDatabaseRequest",
-          "fullName": "tigrisdata.v1.CreateDatabaseRequest",
-          "description": "",
+          "name": "CreateAppKeyRequest",
+          "longName": "CreateAppKeyRequest",
+          "fullName": "tigrisdata.v1.CreateAppKeyRequest",
+          "description": "Request creation of user app key",
           "hasExtensions": false,
           "hasFields": true,
           "hasOneofs": false,
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Create database with this name.",
+              "name": "name",
+              "description": "A human readable app name",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -284,12 +428,24 @@
               "defaultValue": ""
             },
             {
-              "name": "options",
-              "description": "",
+              "name": "description",
+              "description": "A human readable app description",
               "label": "",
-              "type": "DatabaseOptions",
-              "longType": "DatabaseOptions",
-              "fullType": "tigrisdata.v1.DatabaseOptions",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "Project name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -298,9 +454,69 @@
           ]
         },
         {
-          "name": "CreateDatabaseResponse",
-          "longName": "CreateDatabaseResponse",
-          "fullName": "tigrisdata.v1.CreateDatabaseResponse",
+          "name": "CreateAppKeyResponse",
+          "longName": "CreateAppKeyResponse",
+          "fullName": "tigrisdata.v1.CreateAppKeyResponse",
+          "description": "CreateAppKeyResponse returns created app keys",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "created_app_key",
+              "description": "created app object",
+              "label": "",
+              "type": "AppKey",
+              "longType": "AppKey",
+              "fullType": "tigrisdata.v1.AppKey",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateBranchRequest",
+          "longName": "CreateBranchRequest",
+          "fullName": "tigrisdata.v1.CreateBranchRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Create a database branch in this project",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Name of the database branch to be created.\n\u003cp\u003e\u003c/p\u003e**Note**: `main` is a reserved branch name for primary database and is automatically created with CreateProject",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateBranchResponse",
+          "longName": "CreateBranchResponse",
+          "fullName": "tigrisdata.v1.CreateBranchResponse",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -344,8 +560,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name where to create collection.",
+              "name": "project",
+              "description": "Project name whose db is under target to create or update collection.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -369,7 +585,7 @@
             },
             {
               "name": "schema",
-              "description": "The schema specifications are same as\nJSON schema specification defined \u003ca href=\"https://json-schema.org/specification.html\" title=\"here\"\u003ehere\u003c/a\u003e.\nThe schema of the `documents` collection differs from the schema of `messages` collection as `messages` collection does not\nhave any concept of `primary_key`. The server recognizes type of the collection by the `collection_type` set in\nthe schema.\n\u003cp\u003e\u003c/p\u003e\nSchema example of `documents`:\n`{\n \"title\": \"user\",\n \"description\": \"Collection of documents with details of users\",\n \"properties\": {\n   \"id\": {\n     \"description\": \"A unique identifier for the user\",\n     \"type\": \"integer\"\n   },\n   \"name\": {\n     \"description\": \"Name of the user\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   },\n   \"balance\": {\n     \"description\": \"User account balance\",\n     \"type\": \"number\"\n   }\n },\n \"primary_key\": [\"id\"]\n}`\n\u003cp\u003e\u003c/p\u003e*Note: The `collection_type` is not set as default is documents.*\n\u003cp\u003e\u003c/p\u003eSchema example of `messages`:\n`{\n \"title\": \"user_events\",\n \"description\": \"Topic for user events\",\n \"properties\": {\n   \"event_id\": {\n     \"description\": \"A id for the event\",\n     \"type\": \"integer\"\n   },\n   \"event_type\": {\n     \"description\": \"Type of the Event\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   }\n   \"event_details\": {\n     \"description\": \"Details about the Event\",\n     \"type\": \"string\"\n   }\n },\n \"collection_type\": \"messages\"\n}`\n\u003cp\u003e\u003c/p\u003e *Note: The `collection_type` is set as \"messages\".*",
+              "description": "The schema specifications are same as\nJSON schema specification defined \u003ca href=\"https://json-schema.org/specification.html\" title=\"here\"\u003ehere\u003c/a\u003e.\nThe schema of the `documents` collection differs from the schema of `topic` collection as `topic` collection does not\nhave any concept of `primary_key`. The server recognizes type of the collection by the `collection_type` set in\nthe schema.\n\u003cp\u003e\u003c/p\u003e\nSchema example of `documents`:\n`{\n \"title\": \"user\",\n \"description\": \"Collection of documents with details of users\",\n \"properties\": {\n   \"id\": {\n     \"description\": \"A unique identifier for the user\",\n     \"type\": \"integer\"\n   },\n   \"name\": {\n     \"description\": \"Name of the user\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   },\n   \"balance\": {\n     \"description\": \"User account balance\",\n     \"type\": \"number\"\n   }\n },\n \"primary_key\": [\"id\"]\n}`\n\u003cp\u003e\u003c/p\u003e*Note: The `collection_type` is not set as default is documents.*\n\u003cp\u003e\u003c/p\u003eSchema example of `topic`:\n`{\n \"title\": \"user_events\",\n \"description\": \"Topic for user events\",\n \"properties\": {\n   \"event_id\": {\n     \"description\": \"A id for the event\",\n     \"type\": \"integer\"\n   },\n   \"event_type\": {\n     \"description\": \"Type of the Event\",\n     \"type\": \"string\",\n     \"maxLength\": 100\n   }\n   \"event_details\": {\n     \"description\": \"Details about the Event\",\n     \"type\": \"string\"\n   }\n },\n \"collection_type\": \"topic\"\n}`\n\u003cp\u003e\u003c/p\u003e *Note: The `collection_type` is set as \"topic\".*",
               "label": "",
               "type": "bytes",
               "longType": "bytes",
@@ -398,6 +614,18 @@
               "type": "CollectionOptions",
               "longType": "CollectionOptions",
               "fullType": "tigrisdata.v1.CollectionOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -442,20 +670,9 @@
           ]
         },
         {
-          "name": "DatabaseDescription",
-          "longName": "DatabaseDescription",
-          "fullName": "tigrisdata.v1.DatabaseDescription",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": false,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": []
-        },
-        {
-          "name": "DatabaseInfo",
-          "longName": "DatabaseInfo",
-          "fullName": "tigrisdata.v1.DatabaseInfo",
+          "name": "CreateProjectRequest",
+          "longName": "CreateProjectRequest",
+          "fullName": "tigrisdata.v1.CreateProjectRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -463,8 +680,32 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name.",
+              "name": "project",
+              "description": "Create project with this name.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "CreateProjectResponse",
+          "longName": "CreateProjectResponse",
+          "fullName": "tigrisdata.v1.CreateProjectResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "A detailed response message.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -475,12 +716,12 @@
               "defaultValue": ""
             },
             {
-              "name": "metadata",
-              "description": "Metadata about the database.",
+              "name": "status",
+              "description": "An enum with value set as \"created\".",
               "label": "",
-              "type": "DatabaseMetadata",
-              "longType": "DatabaseMetadata",
-              "fullType": "tigrisdata.v1.DatabaseMetadata",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -511,6 +752,198 @@
           "fields": []
         },
         {
+          "name": "DeleteAppKeyRequest",
+          "longName": "DeleteAppKeyRequest",
+          "fullName": "tigrisdata.v1.DeleteAppKeyRequest",
+          "description": "Request deletion of an app key",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "app_key id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "project name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteAppKeyResponse",
+          "longName": "DeleteAppKeyResponse",
+          "fullName": "tigrisdata.v1.DeleteAppKeyResponse",
+          "description": "AppKeys returns the flag to convey if app key was deleted",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "deleted",
+              "description": "status flag for delete operation",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteBranchRequest",
+          "longName": "DeleteBranchRequest",
+          "fullName": "tigrisdata.v1.DeleteBranchRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Delete a database branch in this project",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Name of the database branch to delete.\n\u003cp\u003e\u003c/p\u003e**Note**: `main` branch cannot be deleted, use DeleteProject instead",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteBranchResponse",
+          "longName": "DeleteBranchResponse",
+          "fullName": "tigrisdata.v1.DeleteBranchResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "A detailed response message.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "status",
+              "description": "An enum with value set as \"deleted\".",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteProjectRequest",
+          "longName": "DeleteProjectRequest",
+          "fullName": "tigrisdata.v1.DeleteProjectRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Delete Project with this name.\n\u003cp\u003e\u003c/p\u003e**Note**: Deletes all resources under this project. Use with caution.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "DeleteProjectResponse",
+          "longName": "DeleteProjectResponse",
+          "fullName": "tigrisdata.v1.DeleteProjectResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "message",
+              "description": "A detailed response message.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "status",
+              "description": "An enum with value set as \"dropped\".",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "DeleteRequest",
           "longName": "DeleteRequest",
           "fullName": "tigrisdata.v1.DeleteRequest",
@@ -521,8 +954,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name where to insert documents.",
+              "name": "project",
+              "description": "Project name whose db is under target to delete documents.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -567,6 +1000,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -599,6 +1044,18 @@
               "type": "Collation",
               "longType": "Collation",
               "fullType": "tigrisdata.v1.Collation",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "limit",
+              "description": "Limit the number of documents to be deleted",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -653,8 +1110,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Name of the database.",
+              "name": "project",
+              "description": "Project name whose db is under target to get description of its collection.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -677,12 +1134,36 @@
               "defaultValue": ""
             },
             {
+              "name": "schema_format",
+              "description": "Return schema in the requested format.\nFormat can be JSON, Go, TypeScript, Java.\nDefault is JSON.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
               "name": "options",
               "description": "Collection options.",
               "label": "",
               "type": "CollectionOptions",
               "longType": "CollectionOptions",
               "fullType": "tigrisdata.v1.CollectionOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -761,8 +1242,32 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Name of the database.",
+              "name": "project",
+              "description": "Project name whose db is under target to get description.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "schema_format",
+              "description": "Return schema in the requested format.\nFormat can be JSON, Go, TypeScript, Java.\nDefault is JSON.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -784,18 +1289,6 @@
           "hasOneofs": false,
           "extensions": [],
           "fields": [
-            {
-              "name": "db",
-              "description": "Name of the database.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
             {
               "name": "metadata",
               "description": "Metadata about the database.",
@@ -831,6 +1324,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "branches",
+              "description": "List of all the branches in this database",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -845,8 +1350,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name of the collection.",
+              "name": "project",
+              "description": "Project name whose db is under target to delete collection.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -858,7 +1363,7 @@
             },
             {
               "name": "collection",
-              "description": "Collection name to drop.",
+              "description": "Collection name to delete.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -875,6 +1380,18 @@
               "type": "CollectionOptions",
               "longType": "CollectionOptions",
               "fullType": "tigrisdata.v1.CollectionOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a project branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -911,161 +1428,6 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "DropDatabaseRequest",
-          "longName": "DropDatabaseRequest",
-          "fullName": "tigrisdata.v1.DropDatabaseRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "db",
-              "description": "Drop database with this name. **Note**: Deletes all the collections in the database.\nUse with caution.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "DatabaseOptions",
-              "longType": "DatabaseOptions",
-              "fullType": "tigrisdata.v1.DatabaseOptions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "DropDatabaseResponse",
-          "longName": "DropDatabaseResponse",
-          "fullName": "tigrisdata.v1.DropDatabaseResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "message",
-              "description": "A detailed response message.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "status",
-              "description": "An enum with value set as \"dropped\".",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "EventsRequest",
-          "longName": "EventsRequest",
-          "fullName": "tigrisdata.v1.EventsRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "db",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collection",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "EventsRequestOptions",
-              "longType": "EventsRequestOptions",
-              "fullType": "tigrisdata.v1.EventsRequestOptions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "EventsRequestOptions",
-          "longName": "EventsRequestOptions",
-          "fullName": "tigrisdata.v1.EventsRequestOptions",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": false,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": []
-        },
-        {
-          "name": "EventsResponse",
-          "longName": "EventsResponse",
-          "fullName": "tigrisdata.v1.EventsResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "event",
-              "description": "",
-              "label": "",
-              "type": "StreamEvent",
-              "longType": "StreamEvent",
-              "fullType": "tigrisdata.v1.StreamEvent",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1182,6 +1544,186 @@
           ]
         },
         {
+          "name": "ImportRequest",
+          "longName": "ImportRequest",
+          "fullName": "tigrisdata.v1.ImportRequest",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Project name whose db is under target to import documents.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "collection",
+              "description": "Collection name where to import documents.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "documents",
+              "description": "Array of documents to import. Each document is a JSON object.",
+              "label": "repeated",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "options",
+              "description": "",
+              "label": "",
+              "type": "ImportRequestOptions",
+              "longType": "ImportRequestOptions",
+              "fullType": "tigrisdata.v1.ImportRequestOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "create_collection",
+              "description": "Allow to create collection if it doesn't exists",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "primary_key",
+              "description": "List of fields which constitutes primary key of the collection\n\nIf not specified and field with name 'id' is present,\nit's used as a primary key, further if inferred type is\nUUID, then it's set as autogenerated.",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "autogenerated",
+              "description": "The list of autogenerated fields of the collection",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ImportRequestOptions",
+          "longName": "ImportRequestOptions",
+          "fullName": "tigrisdata.v1.ImportRequestOptions",
+          "description": "additional options for import requests.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "write_options",
+              "description": "",
+              "label": "",
+              "type": "WriteOptions",
+              "longType": "WriteOptions",
+              "fullType": "tigrisdata.v1.WriteOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ImportResponse",
+          "longName": "ImportResponse",
+          "fullName": "tigrisdata.v1.ImportResponse",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "metadata",
+              "description": "Has metadata related to the documents stored.",
+              "label": "",
+              "type": "ResponseMetadata",
+              "longType": "ResponseMetadata",
+              "fullType": "tigrisdata.v1.ResponseMetadata",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "status",
+              "description": "An enum with value set as \"inserted\"",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "keys",
+              "description": "an array returns the value of the primary keys.",
+              "label": "repeated",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "InsertRequest",
           "longName": "InsertRequest",
           "fullName": "tigrisdata.v1.InsertRequest",
@@ -1192,8 +1734,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name where to insert documents.",
+              "name": "project",
+              "description": "Project name whose db is under target to insert documents.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1234,6 +1776,18 @@
               "type": "InsertRequestOptions",
               "longType": "InsertRequestOptions",
               "fullType": "tigrisdata.v1.InsertRequestOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1314,6 +1868,54 @@
           ]
         },
         {
+          "name": "ListAppKeysRequest",
+          "longName": "ListAppKeysRequest",
+          "fullName": "tigrisdata.v1.ListAppKeysRequest",
+          "description": "Request listing of all the app keys those are visible to requesting actor",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "project",
+              "description": "Project name filter",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "ListAppKeysResponse",
+          "longName": "ListAppKeysResponse",
+          "fullName": "tigrisdata.v1.ListAppKeysResponse",
+          "description": "ListAppKeysResponse returns one or more visible app keys to user",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "app_keys",
+              "description": "",
+              "label": "repeated",
+              "type": "AppKey",
+              "longType": "AppKey",
+              "fullType": "tigrisdata.v1.AppKey",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "ListCollectionsRequest",
           "longName": "ListCollectionsRequest",
           "fullName": "tigrisdata.v1.ListCollectionsRequest",
@@ -1324,8 +1926,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "List collection in this database.",
+              "name": "project",
+              "description": "Project name whose db is under target to list collections.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1346,6 +1948,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -1359,18 +1973,6 @@
           "hasOneofs": false,
           "extensions": [],
           "fields": [
-            {
-              "name": "db",
-              "description": "Name of the database.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
             {
               "name": "collections",
               "description": "List of the collections info in the database.",
@@ -1386,9 +1988,9 @@
           ]
         },
         {
-          "name": "ListDatabasesRequest",
-          "longName": "ListDatabasesRequest",
-          "fullName": "tigrisdata.v1.ListDatabasesRequest",
+          "name": "ListProjectsRequest",
+          "longName": "ListProjectsRequest",
+          "fullName": "tigrisdata.v1.ListProjectsRequest",
           "description": "",
           "hasExtensions": false,
           "hasFields": false,
@@ -1397,9 +1999,9 @@
           "fields": []
         },
         {
-          "name": "ListDatabasesResponse",
-          "longName": "ListDatabasesResponse",
-          "fullName": "tigrisdata.v1.ListDatabasesResponse",
+          "name": "ListProjectsResponse",
+          "longName": "ListProjectsResponse",
+          "fullName": "tigrisdata.v1.ListProjectsResponse",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -1407,12 +2009,12 @@
           "extensions": [],
           "fields": [
             {
-              "name": "databases",
-              "description": "List of the databases.",
+              "name": "projects",
+              "description": "List of the projects.",
               "label": "repeated",
-              "type": "DatabaseInfo",
-              "longType": "DatabaseInfo",
-              "fullType": "tigrisdata.v1.DatabaseInfo",
+              "type": "ProjectInfo",
+              "longType": "ProjectInfo",
+              "fullType": "tigrisdata.v1.ProjectInfo",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1457,9 +2059,20 @@
           ]
         },
         {
-          "name": "PublishRequest",
-          "longName": "PublishRequest",
-          "fullName": "tigrisdata.v1.PublishRequest",
+          "name": "ProjectDescription",
+          "longName": "ProjectDescription",
+          "fullName": "tigrisdata.v1.ProjectDescription",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "ProjectInfo",
+          "longName": "ProjectInfo",
+          "fullName": "tigrisdata.v1.ProjectInfo",
           "description": "",
           "hasExtensions": false,
           "hasFields": true,
@@ -1467,8 +2080,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name where to publish messages.",
+              "name": "project",
+              "description": "Project name.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1478,115 +2091,30 @@
               "oneofdecl": "",
               "defaultValue": ""
             },
-            {
-              "name": "collection",
-              "description": "Topic name where to publish messages.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "messages",
-              "description": "An array of JSON messages to publish.",
-              "label": "repeated",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "PublishRequestOptions",
-              "longType": "PublishRequestOptions",
-              "fullType": "tigrisdata.v1.PublishRequestOptions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "PublishRequestOptions",
-          "longName": "PublishRequestOptions",
-          "fullName": "tigrisdata.v1.PublishRequestOptions",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": true,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "partition",
-              "description": "",
-              "label": "optional",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": true,
-              "oneofdecl": "_partition",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "PublishResponse",
-          "longName": "PublishResponse",
-          "fullName": "tigrisdata.v1.PublishResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
             {
               "name": "metadata",
-              "description": "",
+              "description": "Metadata about the Project.",
               "label": "",
-              "type": "ResponseMetadata",
-              "longType": "ResponseMetadata",
-              "fullType": "tigrisdata.v1.ResponseMetadata",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "status",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "keys",
-              "description": "",
-              "label": "repeated",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
+              "type": "ProjectMetadata",
+              "longType": "ProjectMetadata",
+              "fullType": "tigrisdata.v1.ProjectMetadata",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
             }
           ]
+        },
+        {
+          "name": "ProjectMetadata",
+          "longName": "ProjectMetadata",
+          "fullName": "tigrisdata.v1.ProjectMetadata",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
         },
         {
           "name": "ReadRequest",
@@ -1599,8 +2127,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name to read documents from.",
+              "name": "project",
+              "description": "Project name whose db is under target to read documents from.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1653,6 +2181,30 @@
               "type": "ReadRequestOptions",
               "longType": "ReadRequestOptions",
               "fullType": "tigrisdata.v1.ReadRequestOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "sort",
+              "description": "Array of fields and corresponding sort orders to order the results. Ex: 1 `[{ \"salary\": \"$desc\" }]`, Ex: 2  `[{ \"salary\": \"$asc\"}]`",
+              "label": "",
+              "type": "bytes",
+              "longType": "bytes",
+              "fullType": "bytes",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1779,8 +2331,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name where to replace documents.",
+              "name": "project",
+              "description": "Project name whose db is under target to replace documents.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1821,6 +2373,18 @@
               "type": "ReplaceRequestOptions",
               "longType": "ReplaceRequestOptions",
               "fullType": "tigrisdata.v1.ReplaceRequestOptions",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -1959,8 +2523,20 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name this transaction belongs to.",
+              "name": "project",
+              "description": "Project name whose DB this transaction belongs to.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -1989,6 +2565,66 @@
               "type": "string",
               "longType": "string",
               "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RotateAppKeyRequest",
+          "longName": "RotateAppKeyRequest",
+          "fullName": "tigrisdata.v1.RotateAppKeyRequest",
+          "description": "Request rotation of an app key secret",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "app key id",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "project name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "RotateAppKeyResponse",
+          "longName": "RotateAppKeyResponse",
+          "fullName": "tigrisdata.v1.RotateAppKeyResponse",
+          "description": "RotateAppKeyResponse returns the new app key with rotated secret",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "app_key",
+              "description": "A new app key with rotated secret.",
+              "label": "",
+              "type": "AppKey",
+              "longType": "AppKey",
+              "fullType": "tigrisdata.v1.AppKey",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -2163,8 +2799,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name to read documents from.",
+              "name": "project",
+              "description": "Project name whose db is under target to search documents from.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2176,7 +2812,7 @@
             },
             {
               "name": "collection",
-              "description": "Collection name to read documents from.",
+              "description": "Collection name to search documents from.",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2305,6 +2941,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -2393,222 +3041,6 @@
           ]
         },
         {
-          "name": "StreamEvent",
-          "longName": "StreamEvent",
-          "fullName": "tigrisdata.v1.StreamEvent",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "tx_id",
-              "description": "",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collection",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "op",
-              "description": "",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "key",
-              "description": "",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "lkey",
-              "description": "",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "rkey",
-              "description": "",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "data",
-              "description": "",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "last",
-              "description": "",
-              "label": "",
-              "type": "bool",
-              "longType": "bool",
-              "fullType": "bool",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SubscribeRequest",
-          "longName": "SubscribeRequest",
-          "fullName": "tigrisdata.v1.SubscribeRequest",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "db",
-              "description": "Database name.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "collection",
-              "description": "Topic name.",
-              "label": "",
-              "type": "string",
-              "longType": "string",
-              "fullType": "string",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "options",
-              "description": "",
-              "label": "",
-              "type": "SubscribeRequestOptions",
-              "longType": "SubscribeRequestOptions",
-              "fullType": "tigrisdata.v1.SubscribeRequestOptions",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            },
-            {
-              "name": "filter",
-              "description": "Filter allows you to subscribe only for events that you need. Filter syntax is similar to `ReadRequest.filter`.",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SubscribeRequestOptions",
-          "longName": "SubscribeRequestOptions",
-          "fullName": "tigrisdata.v1.SubscribeRequestOptions",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "partitions",
-              "description": "",
-              "label": "repeated",
-              "type": "int32",
-              "longType": "int32",
-              "fullType": "int32",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
-          "name": "SubscribeResponse",
-          "longName": "SubscribeResponse",
-          "fullName": "tigrisdata.v1.SubscribeResponse",
-          "description": "",
-          "hasExtensions": false,
-          "hasFields": true,
-          "hasOneofs": false,
-          "extensions": [],
-          "fields": [
-            {
-              "name": "message",
-              "description": "",
-              "label": "",
-              "type": "bytes",
-              "longType": "bytes",
-              "fullType": "bytes",
-              "ismap": false,
-              "isoneof": false,
-              "oneofdecl": "",
-              "defaultValue": ""
-            }
-          ]
-        },
-        {
           "name": "TransactionCtx",
           "longName": "TransactionCtx",
           "fullName": "tigrisdata.v1.TransactionCtx",
@@ -2656,6 +3088,90 @@
           "fields": []
         },
         {
+          "name": "UpdateAppKeyRequest",
+          "longName": "UpdateAppKeyRequest",
+          "fullName": "tigrisdata.v1.UpdateAppKeyRequest",
+          "description": "To update the description of the app key",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "id",
+              "description": "app key id - this is not allowed to update",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "project",
+              "description": "project name -  this is not allowed to update",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "name",
+              "description": "A new human readable app name",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "description",
+              "description": "A new human readable app description",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "UpdateAppKeyResponse",
+          "longName": "UpdateAppKeyResponse",
+          "fullName": "tigrisdata.v1.UpdateAppKeyResponse",
+          "description": "Returns response for updating the app key description",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "updated_app_key",
+              "description": "updated app key object",
+              "label": "",
+              "type": "AppKey",
+              "longType": "AppKey",
+              "fullType": "tigrisdata.v1.AppKey",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "UpdateRequest",
           "longName": "UpdateRequest",
           "fullName": "tigrisdata.v1.UpdateRequest",
@@ -2666,8 +3182,8 @@
           "extensions": [],
           "fields": [
             {
-              "name": "db",
-              "description": "Database name where to update documents",
+              "name": "project",
+              "description": "Project name whose db is under target  to update documents",
               "label": "",
               "type": "string",
               "longType": "string",
@@ -2724,6 +3240,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "branch",
+              "description": "Optionally specify a database branch name to perform operation on",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -2756,6 +3284,18 @@
               "type": "Collation",
               "longType": "Collation",
               "fullType": "tigrisdata.v1.Collation",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "limit",
+              "description": "Limit the number of documents to be updated",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -2846,7 +3386,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/transactions/begin",
+                      "pattern": "/v1/projects/{project}/database/transactions/begin",
                       "body": "*"
                     }
                   ]
@@ -2855,7 +3395,7 @@
             },
             {
               "name": "CommitTransaction",
-              "description": "Atomically commit all the changes performed in the context of the transaction. Commit provides all\nor nothing semantics by ensuring no partial updates are in the database due to a transaction failure.",
+              "description": "Atomically commit all the changes performed in the context of the transaction. Commit provides all\nor nothing semantics by ensuring no partial updates are in the project due to a transaction failure.",
               "requestType": "CommitTransactionRequest",
               "requestLongType": "CommitTransactionRequest",
               "requestFullType": "tigrisdata.v1.CommitTransactionRequest",
@@ -2869,7 +3409,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/transactions/commit",
+                      "pattern": "/v1/projects/{project}/database/transactions/commit",
                       "body": "*"
                     }
                   ]
@@ -2892,7 +3432,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/transactions/rollback",
+                      "pattern": "/v1/projects/{project}/database/transactions/rollback",
                       "body": "*"
                     }
                   ]
@@ -2915,7 +3455,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/insert",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/insert",
                       "body": "*"
                     }
                   ]
@@ -2938,7 +3478,7 @@
                   "rules": [
                     {
                       "method": "PUT",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/replace",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/replace",
                       "body": "*"
                     }
                   ]
@@ -2961,7 +3501,7 @@
                   "rules": [
                     {
                       "method": "DELETE",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/delete",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/delete",
                       "body": "*"
                     }
                   ]
@@ -2984,7 +3524,7 @@
                   "rules": [
                     {
                       "method": "PUT",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/update",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/update",
                       "body": "*"
                     }
                   ]
@@ -3007,12 +3547,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/read",
-                      "body": "*"
-                    },
-                    {
-                      "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/read",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/read",
                       "body": "*"
                     }
                   ]
@@ -3035,12 +3570,30 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/documents/search",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/search",
                       "body": "*"
-                    },
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Import",
+              "description": "Imports documents into the collection.\n\nIt automatically:\n * Detects the schema of the documents in the batch\n * Evolves the schema as soon as it's backward compatible\n * Creates collection with inferred schema (if requested)",
+              "requestType": "ImportRequest",
+              "requestLongType": "ImportRequest",
+              "requestFullType": "tigrisdata.v1.ImportRequest",
+              "requestStreaming": false,
+              "responseType": "ImportResponse",
+              "responseLongType": "ImportResponse",
+              "responseFullType": "tigrisdata.v1.ImportResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/search",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/documents/import",
                       "body": "*"
                     }
                   ]
@@ -3063,7 +3616,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/createOrUpdate",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/createOrUpdate",
                       "body": "*"
                     }
                   ]
@@ -3072,7 +3625,7 @@
             },
             {
               "name": "DropCollection",
-              "description": "Drop the collection inside this database. This API deletes all of the documents inside this collection and any metadata associated with it.",
+              "description": "Drops the collection inside this project. This API deletes all of the\ndocuments inside this collection and any metadata associated with it.",
               "requestType": "DropCollectionRequest",
               "requestLongType": "DropCollectionRequest",
               "requestFullType": "tigrisdata.v1.DropCollectionRequest",
@@ -3086,7 +3639,7 @@
                   "rules": [
                     {
                       "method": "DELETE",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/drop",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/drop",
                       "body": "*"
                     }
                   ]
@@ -3094,22 +3647,22 @@
               }
             },
             {
-              "name": "ListDatabases",
-              "description": "List returns all the databases.",
-              "requestType": "ListDatabasesRequest",
-              "requestLongType": "ListDatabasesRequest",
-              "requestFullType": "tigrisdata.v1.ListDatabasesRequest",
+              "name": "ListProjects",
+              "description": "List returns all the projects.",
+              "requestType": "ListProjectsRequest",
+              "requestLongType": "ListProjectsRequest",
+              "requestFullType": "tigrisdata.v1.ListProjectsRequest",
               "requestStreaming": false,
-              "responseType": "ListDatabasesResponse",
-              "responseLongType": "ListDatabasesResponse",
-              "responseFullType": "tigrisdata.v1.ListDatabasesResponse",
+              "responseType": "ListProjectsResponse",
+              "responseLongType": "ListProjectsResponse",
+              "responseFullType": "tigrisdata.v1.ListProjectsResponse",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
-                      "method": "POST",
-                      "pattern": "/v1/databases/list"
+                      "method": "GET",
+                      "pattern": "/v1/projects"
                     }
                   ]
                 }
@@ -3117,7 +3670,7 @@
             },
             {
               "name": "ListCollections",
-              "description": "List all the collections present in the database passed in the request.",
+              "description": "List all the collections present in the project passed in the request.",
               "requestType": "ListCollectionsRequest",
               "requestLongType": "ListCollectionsRequest",
               "requestFullType": "tigrisdata.v1.ListCollectionsRequest",
@@ -3130,31 +3683,30 @@
                 "google.api.http": {
                   "rules": [
                     {
-                      "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/list",
-                      "body": "*"
+                      "method": "GET",
+                      "pattern": "/v1/projects/{project}/database/collections"
                     }
                   ]
                 }
               }
             },
             {
-              "name": "CreateDatabase",
-              "description": "Creates a new database. Returns an AlreadyExists error with a status code 409 if the database already exists.",
-              "requestType": "CreateDatabaseRequest",
-              "requestLongType": "CreateDatabaseRequest",
-              "requestFullType": "tigrisdata.v1.CreateDatabaseRequest",
+              "name": "CreateProject",
+              "description": "Creates a new project. Returns an AlreadyExists error with a status code 409 if the project already exists.",
+              "requestType": "CreateProjectRequest",
+              "requestLongType": "CreateProjectRequest",
+              "requestFullType": "tigrisdata.v1.CreateProjectRequest",
               "requestStreaming": false,
-              "responseType": "CreateDatabaseResponse",
-              "responseLongType": "CreateDatabaseResponse",
-              "responseFullType": "tigrisdata.v1.CreateDatabaseResponse",
+              "responseType": "CreateProjectResponse",
+              "responseLongType": "CreateProjectResponse",
+              "responseFullType": "tigrisdata.v1.CreateProjectResponse",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/create",
+                      "pattern": "/v1/projects/{project}/create",
                       "body": "*"
                     }
                   ]
@@ -3162,22 +3714,22 @@
               }
             },
             {
-              "name": "DropDatabase",
-              "description": "Drop database deletes all the collections in this database along with all of the documents, and associated metadata for these collections.",
-              "requestType": "DropDatabaseRequest",
-              "requestLongType": "DropDatabaseRequest",
-              "requestFullType": "tigrisdata.v1.DropDatabaseRequest",
+              "name": "DeleteProject",
+              "description": "Delete Project deletes all the collections in this project along with all of the documents, and associated metadata for these collections.",
+              "requestType": "DeleteProjectRequest",
+              "requestLongType": "DeleteProjectRequest",
+              "requestFullType": "tigrisdata.v1.DeleteProjectRequest",
               "requestStreaming": false,
-              "responseType": "DropDatabaseResponse",
-              "responseLongType": "DropDatabaseResponse",
-              "responseFullType": "tigrisdata.v1.DropDatabaseResponse",
+              "responseType": "DeleteProjectResponse",
+              "responseLongType": "DeleteProjectResponse",
+              "responseFullType": "tigrisdata.v1.DeleteProjectResponse",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "DELETE",
-                      "pattern": "/v1/databases/{db}/drop",
+                      "pattern": "/v1/projects/{project}/delete",
                       "body": "*"
                     }
                   ]
@@ -3186,7 +3738,7 @@
             },
             {
               "name": "DescribeDatabase",
-              "description": "This API returns information related to the database along with all the collections inside the database.\nThis can be used to retrieve the size of the database or to retrieve schemas and the size of all the collections present in this database.",
+              "description": "This API returns information related to the project along with all the collections inside the project.\nThis can be used to retrieve the size of the project or to retrieve schemas, branches and the size of all the collections present in this project.",
               "requestType": "DescribeDatabaseRequest",
               "requestLongType": "DescribeDatabaseRequest",
               "requestFullType": "tigrisdata.v1.DescribeDatabaseRequest",
@@ -3200,7 +3752,53 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/describe",
+                      "pattern": "/v1/projects/{project}/database/describe",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "CreateBranch",
+              "description": "Creates a new database branch, if not already existing.",
+              "requestType": "CreateBranchRequest",
+              "requestLongType": "CreateBranchRequest",
+              "requestFullType": "tigrisdata.v1.CreateBranchRequest",
+              "requestStreaming": false,
+              "responseType": "CreateBranchResponse",
+              "responseLongType": "CreateBranchResponse",
+              "responseFullType": "tigrisdata.v1.CreateBranchResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/projects/{project}/database/branches/{branch}/create",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "DeleteBranch",
+              "description": "Deletes a database branch, if exists.\nThrows 400 Bad Request if \"main\" branch is being deleted",
+              "requestType": "DeleteBranchRequest",
+              "requestLongType": "DeleteBranchRequest",
+              "requestFullType": "tigrisdata.v1.DeleteBranchRequest",
+              "requestStreaming": false,
+              "responseType": "DeleteBranchResponse",
+              "responseLongType": "DeleteBranchResponse",
+              "responseFullType": "tigrisdata.v1.DeleteBranchResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/v1/projects/{project}/database/branches/{branch}/delete",
                       "body": "*"
                     }
                   ]
@@ -3223,7 +3821,7 @@
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/describe",
+                      "pattern": "/v1/projects/{project}/database/collections/{collection}/describe",
                       "body": "*"
                     }
                   ]
@@ -3231,45 +3829,22 @@
               }
             },
             {
-              "name": "Events",
-              "description": "Stream real-time events for mutations made to the collections in the database. Each stream will have a transaction\nidentifier attached to it and will have a boolean flag “last” set to the last event of the transaction which will be useful\nif a transaction performed more than one operation in the collection.",
-              "requestType": "EventsRequest",
-              "requestLongType": "EventsRequest",
-              "requestFullType": "tigrisdata.v1.EventsRequest",
+              "name": "CreateAppKey",
+              "description": "Create an app key.",
+              "requestType": "CreateAppKeyRequest",
+              "requestLongType": "CreateAppKeyRequest",
+              "requestFullType": "tigrisdata.v1.CreateAppKeyRequest",
               "requestStreaming": false,
-              "responseType": "EventsResponse",
-              "responseLongType": "EventsResponse",
-              "responseFullType": "tigrisdata.v1.EventsResponse",
-              "responseStreaming": true,
-              "options": {
-                "google.api.http": {
-                  "rules": [
-                    {
-                      "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/events",
-                      "body": "*"
-                    }
-                  ]
-                }
-              }
-            },
-            {
-              "name": "Publish",
-              "description": "Endpoint for publishing messages to a topic.",
-              "requestType": "PublishRequest",
-              "requestLongType": "PublishRequest",
-              "requestFullType": "tigrisdata.v1.PublishRequest",
-              "requestStreaming": false,
-              "responseType": "PublishResponse",
-              "responseLongType": "PublishResponse",
-              "responseFullType": "tigrisdata.v1.PublishResponse",
+              "responseType": "CreateAppKeyResponse",
+              "responseLongType": "CreateAppKeyResponse",
+              "responseFullType": "tigrisdata.v1.CreateAppKeyResponse",
               "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/publish",
+                      "pattern": "/v1/projects/{project}/apps/keys/create",
                       "body": "*"
                     }
                   ]
@@ -3277,22 +3852,90 @@
               }
             },
             {
-              "name": "Subscribe",
-              "description": "Endpoint for subscribing to a topic to receive a stream of messages. The `partition` can be set to stream only\nfrom a specific partition.",
-              "requestType": "SubscribeRequest",
-              "requestLongType": "SubscribeRequest",
-              "requestFullType": "tigrisdata.v1.SubscribeRequest",
+              "name": "UpdateAppKey",
+              "description": "Update the description of an app key.",
+              "requestType": "UpdateAppKeyRequest",
+              "requestLongType": "UpdateAppKeyRequest",
+              "requestFullType": "tigrisdata.v1.UpdateAppKeyRequest",
               "requestStreaming": false,
-              "responseType": "SubscribeResponse",
-              "responseLongType": "SubscribeResponse",
-              "responseFullType": "tigrisdata.v1.SubscribeResponse",
-              "responseStreaming": true,
+              "responseType": "UpdateAppKeyResponse",
+              "responseLongType": "UpdateAppKeyResponse",
+              "responseFullType": "tigrisdata.v1.UpdateAppKeyResponse",
+              "responseStreaming": false,
               "options": {
                 "google.api.http": {
                   "rules": [
                     {
                       "method": "POST",
-                      "pattern": "/v1/databases/{db}/collections/{collection}/messages/subscribe",
+                      "pattern": "/v1/projects/{project}/apps/keys/update",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "DeleteAppKey",
+              "description": "Delete an app key.",
+              "requestType": "DeleteAppKeyRequest",
+              "requestLongType": "DeleteAppKeyRequest",
+              "requestFullType": "tigrisdata.v1.DeleteAppKeyRequest",
+              "requestStreaming": false,
+              "responseType": "DeleteAppKeyResponse",
+              "responseLongType": "DeleteAppKeyResponse",
+              "responseFullType": "tigrisdata.v1.DeleteAppKeyResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "DELETE",
+                      "pattern": "/v1/projects/{project}/apps/keys/delete",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "ListAppKeys",
+              "description": "Lists all app keys visible to requesting actor.",
+              "requestType": "ListAppKeysRequest",
+              "requestLongType": "ListAppKeysRequest",
+              "requestFullType": "tigrisdata.v1.ListAppKeysRequest",
+              "requestStreaming": false,
+              "responseType": "ListAppKeysResponse",
+              "responseLongType": "ListAppKeysResponse",
+              "responseFullType": "tigrisdata.v1.ListAppKeysResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "GET",
+                      "pattern": "/v1/projects/{project}/apps/keys"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "RotateAppKeySecret",
+              "description": "Endpoint is used to rotate the secret for the app key.",
+              "requestType": "RotateAppKeyRequest",
+              "requestLongType": "RotateAppKeyRequest",
+              "requestFullType": "tigrisdata.v1.RotateAppKeyRequest",
+              "requestStreaming": false,
+              "responseType": "RotateAppKeyResponse",
+              "responseLongType": "RotateAppKeyResponse",
+              "responseFullType": "tigrisdata.v1.RotateAppKeyResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/projects/{project}/apps/keys/rotate",
                       "body": "*"
                     }
                   ]
@@ -4277,6 +4920,160 @@
           ]
         },
         {
+          "name": "QuotaLimitsRequest",
+          "longName": "QuotaLimitsRequest",
+          "fullName": "tigrisdata.observability.v1.QuotaLimitsRequest",
+          "description": "Request current namespace quota limits",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "QuotaLimitsResponse",
+          "longName": "QuotaLimitsResponse",
+          "fullName": "tigrisdata.observability.v1.QuotaLimitsResponse",
+          "description": "Contains current quota limits",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "ReadUnits",
+              "description": "Number of allowed read units per second",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "WriteUnits",
+              "description": "Number of allowed write units per second",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "StorageSize",
+              "description": "Maximum number of bytes allowed to store",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "QuotaUsageRequest",
+          "longName": "QuotaUsageRequest",
+          "fullName": "tigrisdata.observability.v1.QuotaUsageRequest",
+          "description": "Request current namespace quota usage",
+          "hasExtensions": false,
+          "hasFields": false,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": []
+        },
+        {
+          "name": "QuotaUsageResponse",
+          "longName": "QuotaUsageResponse",
+          "fullName": "tigrisdata.observability.v1.QuotaUsageResponse",
+          "description": "Contains current quota usage",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "ReadUnits",
+              "description": "Number of read units used per second",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "WriteUnits",
+              "description": "Number of write units used per second",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "StorageSize",
+              "description": "Number of bytes stored",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "ReadUnitsThrottled",
+              "description": "Number of read units throttled per second.\nUnits which was rejected with \"resource exhausted error\".",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "WriteUnitsThrottled",
+              "description": "Number of write units throttled per second.\nUnits which was rejected with \"resource exhausted error\".",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "StorageSizeThrottled",
+              "description": "Number of bytes throttled.\nNumber of bytes which were attempted to write in excess of quota and were rejected.",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "RetryInfo",
           "longName": "RetryInfo",
           "fullName": "tigrisdata.observability.v1.RetryInfo",
@@ -4361,6 +5158,52 @@
                     {
                       "method": "POST",
                       "pattern": "/v1/observability/metrics/timeseries/query",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "QuotaLimits",
+              "description": "Returns current namespace quota limits",
+              "requestType": "QuotaLimitsRequest",
+              "requestLongType": "QuotaLimitsRequest",
+              "requestFullType": "tigrisdata.observability.v1.QuotaLimitsRequest",
+              "requestStreaming": false,
+              "responseType": "QuotaLimitsResponse",
+              "responseLongType": "QuotaLimitsResponse",
+              "responseFullType": "tigrisdata.observability.v1.QuotaLimitsResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/observability/quota/limits",
+                      "body": "*"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "QuotaUsage",
+              "description": "Returns current namespace quota limits",
+              "requestType": "QuotaUsageRequest",
+              "requestLongType": "QuotaUsageRequest",
+              "requestFullType": "tigrisdata.observability.v1.QuotaUsageRequest",
+              "requestStreaming": false,
+              "responseType": "QuotaUsageResponse",
+              "responseLongType": "QuotaUsageResponse",
+              "responseFullType": "tigrisdata.observability.v1.QuotaUsageResponse",
+              "responseStreaming": false,
+              "options": {
+                "google.api.http": {
+                  "rules": [
+                    {
+                      "method": "POST",
+                      "pattern": "/v1/observability/quota/usage",
                       "body": "*"
                     }
                   ]
