@@ -1,8 +1,3 @@
----
-id: tags
-slug: observability/tags
----
-
 # Tags
 
 Each metric and tracing span is annotated with one or more tags. This is to help identifying the request in an environment. Many metrics share tags, so this chapter describes all the possible tags across all metrics, so these tags can be referenced by the various metrics. If a tag has no known value, and it is still present, the value will be unknown, unless it's indicated otherwise here. For example the ListDatabases request will always have an `unknown` `collection` and `db` tags.

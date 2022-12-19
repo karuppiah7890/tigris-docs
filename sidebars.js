@@ -80,31 +80,38 @@ const sidebars = {
       id: "searching/search",
     },
     {
-      type: "doc",
-      label: "Authentication",
-      id: "auth/auth",
-    },
-    {
       type: "category",
-      label: "Observability",
+      label: "Platform",
       link: {
         type: "doc",
-        id: "observability/observability",
-      },
-      collapsed: true,
-      items: ["observability/metrics", "observability/tags"],
-    },
-    {
-      type: "category",
-      label: "Self-host",
-      link: {
-        type: "doc",
-        id: "self-host/self-host",
+        id: "platform/platform",
       },
       collapsed: true,
       items: [
-        "self-host/deploy-tigris-on-eks",
-        "self-host/deploy-tigris-on-gke",
+        {
+          type: "category",
+          label: "Metrics and Tracing",
+          link: {
+            type: "doc",
+            id: "platform/metrics",
+          },
+          collapsed: true,
+          items: ["platform/metrics-tags"],
+        },
+        "platform/auth/auth",
+        {
+          type: "category",
+          label: "Self-host",
+          link: {
+            type: "doc",
+            id: "platform/self-host/self-host",
+          },
+          collapsed: true,
+          items: [
+            "platform/self-host/deploy-tigris-on-eks",
+            "platform/self-host/deploy-tigris-on-gke",
+          ],
+        },
       ],
     },
     {
