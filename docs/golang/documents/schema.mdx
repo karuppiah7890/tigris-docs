@@ -40,5 +40,5 @@ type Catalog struct {
 Updates the collection with the new model and any new operation will see the changes.
 
 ```go
-db, err := client.OpenDatabase(ctx, "catalogdb", &Catalog{})
+db, err := client.OpenDatabase(ctx, &Catalog{})
 ```
