@@ -18,14 +18,14 @@ with the same primary key already exists.
 Tigris TypeScript SDK provides the following two APIs to insert documents
 into a collection:
 
-- [insertOne()](../typescript/documents/insert#insert-a-single-document):
+- [insertOne()](../typescript/database/insert#insert-a-single-document):
   insert single document
-- [insertMany()](../typescript/documents/insert#insert-multiple-documents):
+- [insertMany()](../typescript/database/insert#insert-multiple-documents):
   batch insert documents
 
 See the language-specific sections for more examples of Insert operations:
 
-- [Insert Document in TypeScript](../typescript/documents/insert)
+- [Insert Document in TypeScript](../typescript/database/insert)
 - [Insert Document in Go](../golang/database/insert)
 - [Insert Document in Java](../java/insert)
 
@@ -41,14 +41,14 @@ Replace operations provide the following behavior:
 Tigris TypeScript SDK provides the following two APIs to replace documents
 in a collection:
 
-- [insertOrReplaceOne()](../typescript/documents/insert#upsert-a-single-document):
+- [insertOrReplaceOne()](../typescript/database/insert#upsert-a-single-document):
   replace single document
-- [insertOrReplaceMany()](../typescript/documents/insert#upsert-multiple-documents):
+- [insertOrReplaceMany()](../typescript/database/insert#upsert-multiple-documents):
   batch replace documents
 
 See the language-specific sections for more examples of Replace operations:
 
-- [Replace Document in TypeScript](../typescript/documents/insert)
+- [Replace Document in TypeScript](../typescript/database/insert)
 - [Replace Document in Go](../golang/database/insert)
 - [Replace Document in Java](../java/insert)
 
@@ -63,8 +63,8 @@ matching zero or more conditions on any field.
 Tigris TypeScript SDK provides the following two APIs to read documents
 from a collection:
 
-- [findOne()](../typescript/documents/query#simple-read-query): read a single document
-- [findMany()](../typescript/documents/query#filtering-on-multiple-fields): read
+- [findOne()](../typescript/database/query#simple-read-query): read a single document
+- [findMany()](../typescript/database/query#filtering-on-multiple-fields): read
   multiple documents
 
 See the [Filters](filters) section to learn more about the filters supported in
@@ -72,7 +72,7 @@ read operations.
 
 See the language-specific sections for more examples of Read operations:
 
-- [Read Document in TypeScript](../typescript/documents/query)
+- [Read Document in TypeScript](../typescript/database/query)
 - [Read Document in Go](../golang/database/query)
 - [Read Document in Java](../java/query)
 
@@ -87,7 +87,7 @@ any field.
 Tigris TypeScript SDK provides the following API to update documents in a
 collection:
 
-- [update()](../typescript/documents/update#simple-update): update one or more
+- [update()](../typescript/database/update#simple-update): update one or more
   documents that match the filtering condition
 
 See the [Filters](filters) section to learn more about the filters supported in
@@ -95,7 +95,7 @@ update operations.
 
 See the language-specific sections for more examples of Update operations:
 
-- [Update Document in TypeScript](../typescript/documents/update)
+- [Update Document in TypeScript](../typescript/database/update)
 - [Update Document in Go](../golang/database/update)
 - [Update Document in Java](../java/update)
 
@@ -109,13 +109,13 @@ you the flexibility to delete documents matching conditions on any field.
 Tigris TypeScript SDK provides the following API to delete documents from a
 collection:
 
-- [delete()](../typescript/documents/delete#simple-delete)
+- [delete()](../typescript/database/delete#simple-delete)
 
 See the [Filters](filters) section to learn more about the filters supported in
 delete operations.
 
 See the language-specific sections for more examples of Delete operations:
 
-- [Delete Document in TypeScript](../typescript/documents/delete)
+- [Delete Document in TypeScript](../typescript/database/delete)
 - [Delete Document in Go](../golang/database/delete)
 - [Delete Document in Java](../java/database/delete)

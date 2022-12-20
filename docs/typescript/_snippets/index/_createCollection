@@ -1,10 +1,11 @@
 const tigris = new Tigris({
   serverUrl: "api.preview.tigrisdata.cloud",
   clientId: 'xxx',
-  clientSecret: 'xxx'
+  clientSecret: 'xxx',
+  projectName: 'my-ecommerce-project'
 });
 
-const db = await tigris.createDatabaseIfNotExists("catalogdb");
+const db = await tigris.getDatabase();
 
 interface Catalog extends TigrisCollectionType {
   id?: string;

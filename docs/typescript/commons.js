@@ -1,2 +1,2 @@
 export const cursorOps = "findMany()";
-export const cursorDocLink = "/typescript/documents/cursor";
+export const cursorDocLink = "/typescript/database/cursor";
