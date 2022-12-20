@@ -20,76 +20,30 @@ serverless functions.
 
 ### Create Tigris Project
 
-Every Tigris application is a project with a dedicated database and cloud credentials.
-To create a Todo application, Login or Signup to your Tigris console and create a new project.
+Once you have signup into the Tigris console, click on the `Create a new project` button to create a new project from your Tigris Cloud dashboard.
 
-![create-project-result-output](/img/gifs/create-project-output.gif)
+![create-project-result-output](/img/screenshots/create-new-project.png)
 
-> Your project name is automatically your database name. So you do not need to create a database.
+Enter `todo` as your project name and click on the `Create` button. Tigris will generate the Cloud credentials for your application with a command to create your application using the credentials.
 
-### Create the Tigris cloud credentials
-
-Your application requires credentials to be able to use Tigris. To create Tigris cloud credentials for your application, click on `Todo > Application Keys > New Key`.
-
-![create-project-crendentials-output](/img/gifs/create-project-credential-output.gif)
-
-Then enter the details for your Application Keys in the input boxes and hit the `Create` button:
-
-![create-token-output](/img/screenshots/create-project-keys.png)
-
-Then your application `Client ID` and `Client Secret` will be generated.
-
-![project-keys](/img/screenshots/project-keys.png)
-
-> Keep those credentials confidential to avoid unauthorized access to your application.
+Tigris uses your project name as the database name of your project, saving the time of having to set one up.
 
 ### Scaffold your Next.js app
 
-Tigris allows you to bootstrap Next.js apps using the Tigris CLI tool.
+To scaffold your application, copy the `create-tigris-app` command generated in your Tigris console.
 
-```shell
-npx @tigrisdata/create-tigris-app@beta
-```
+![create-tigirs-app-command](/img/screenshots/create-tigris-app-command.png)
 
-This will prompt the project name. Enter `todo` and hit the Enter key. Then you will be prompted to pick the template for your project; select the `nextjs-api-routes` template and hit Enter key:
-
-<details>
-  <summary>Output</summary>
-  <TerminalWindow>
-    <CodeBlock language="shell">{createNextAppOutput}</CodeBlock>
-  </TerminalWindow>
-</details>
-
-### Add the Tigris cloud credentials
-
-You must add the Tigris credentials you created to your application environment file for your Tigris application to work.
-
-Use the `Client ID` and `Client Secret` you created and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET` respectively. Then specify your project in `TIGRIS_PROJECT` in the file `.env.development.local` in `todo` directory.
-
-Now, create the environment file `.env.development.local` and add the application credentials generated above to it:
-
-```dotenv title=.env.development.local
-TIGRIS_URI=api.preview.tigrisdata.cloud
-TIGRIS_PROJECT=project_here
-TIGRIS_CLIENT_ID=client_id_here
-TIGRIS_CLIENT_SECRET=client_secret_here
-```
+This will prompt them to pick the template for your project, select the `nextjs-api-routes` template, and click enter.
 
 ### Run
 
-Run the app and see it automatically create your databases and collections
+Run the app and see it automatically create your collections.
 
 ```shell
 cd todo
 npm run dev
 ```
-
-<details>
-  <summary>Output</summary>
-  <TerminalWindow>
-    <CodeBlock language="shell">{runNextAppOutput}</CodeBlock>
-  </TerminalWindow>
-</details>
 
 :tada: Your full-stack web app is ready and accessible on `localhost:3000` in the browser.
 
