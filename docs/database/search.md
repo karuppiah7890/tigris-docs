@@ -25,5 +25,5 @@ search operations.
 See the language-specific sections for more examples of Search operations:
 
 - [Search in TypeScript](../typescript/documents/search)
-- [Search in Go](../golang/documents/search)
-- [Search in Java](../java/search)
+- [Search in Go](../golang/database/search)
+- [Search in Java](../java/database/search)

@@ -26,7 +26,7 @@ into a collection:
 See the language-specific sections for more examples of Insert operations:
 
 - [Insert Document in TypeScript](../typescript/documents/insert)
-- [Insert Document in Go](../golang/documents/insert)
+- [Insert Document in Go](../golang/database/insert)
 - [Insert Document in Java](../java/insert)
 
 ### Replace
@@ -49,7 +49,7 @@ in a collection:
 See the language-specific sections for more examples of Replace operations:
 
 - [Replace Document in TypeScript](../typescript/documents/insert)
-- [Replace Document in Go](../golang/documents/insert)
+- [Replace Document in Go](../golang/database/insert)
 - [Replace Document in Java](../java/insert)
 
 ## Read Operations
@@ -73,7 +73,7 @@ read operations.
 See the language-specific sections for more examples of Read operations:
 
 - [Read Document in TypeScript](../typescript/documents/query)
-- [Read Document in Go](../golang/documents/query)
+- [Read Document in Go](../golang/database/query)
 - [Read Document in Java](../java/query)
 
 ## Update Operations
@@ -96,7 +96,7 @@ update operations.
 See the language-specific sections for more examples of Update operations:
 
 - [Update Document in TypeScript](../typescript/documents/update)
-- [Update Document in Go](../golang/documents/update)
+- [Update Document in Go](../golang/database/update)
 - [Update Document in Java](../java/update)
 
 ## Delete Operations
@@ -117,5 +117,5 @@ delete operations.
 See the language-specific sections for more examples of Delete operations:
 
 - [Delete Document in TypeScript](../typescript/documents/delete)
-- [Delete Document in Go](../golang/documents/delete)
-- [Delete Document in Java](../java/delete)
+- [Delete Document in Go](../golang/database/delete)
+- [Delete Document in Java](../java/database/delete)

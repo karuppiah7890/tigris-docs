@@ -117,7 +117,7 @@ export default function Homepage() {
             <Card
               title="Java"
               description="Integrate Tigris in your Java App"
-              to="/java/"
+              to="/java/database"
               icon={<JavaIcon />}
             />
           </Section>

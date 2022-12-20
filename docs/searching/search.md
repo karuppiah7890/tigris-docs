@@ -67,5 +67,5 @@ Checkout the language-specific reference sections to learn more about
 using search in your favorite language.
 
 - [Search in TypeScript](../typescript/documents/search)
-- [Search in Go](../golang/documents/search)
-- [Search in Java](../java/search)
+- [Search in Go](../golang/database/search)
+- [Search in Java](../java/database/search)
