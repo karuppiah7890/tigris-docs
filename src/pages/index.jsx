@@ -70,33 +70,21 @@ export default function Homepage() {
 
           <Section title="Core Features" id="core-features" HeadingTag="h3">
             <Card
-              title="Scalable Document Store"
-              description="Built employing cloud native architecture and distributed by default. No painful transition points when the applications begin to scale. Core data storage built on FoundationDB, a distributed data store that enables nearly limitless scalability."
-              to="/documents/"
+              title="Scalable Document Database"
+              description="Supports a wide variety of applications with JSON-like structure that makes it easy to map to the objects in your code. Core data storage built on FoundationDB, a distributed data store that enables nearly limitless scalability."
+              to="/database/"
               icon={<YellowStar />}
             />
             <Card
-              title="Real-time Search Engine"
-              description="Seamlessly implement search within your application with the embedded search engine. Search across all your data stores automatically using full text or faceted search. Eliminate the need to run a separate search platform and synchronize data."
+              title="Full-text Search Engine"
+              description="By integrating the database, search engine, and sync mechanism into a unified, and fully managed platform, Tigris Search is the fastest and easiest way to build search capabilities into your applications."
               to="/searching/"
               icon={<YellowStar />}
             />
             <Card
               title="Transactions"
-              description="Transactions work across collections and documents without any restrictions. Strictly serializable isolation by default. Unlike some other document databases, there are no confusing read / write concerns to configure, and no cross-shard restrictions."
-              to="/documents/transaction"
-              icon={<GreenStar />}
-            />
-            <Card
-              title="Flexible Document Model"
-              description="Support a wide variety of applications. JSON-like structure makes it easy to map to the objects in your code, and its flexibility makes it easy to evolve your data structures together with your application."
-              to="/documents/datamodel"
-              icon={<GreenStar />}
-            />
-            <Card
-              title="Automatic Indexing of Data"
-              description="Query all your data. The system makes query tuning a thing of the past with automatic index management and maintenance, meaning you will never have to worry about slow queries due to missing indexes."
-              to="/events/search-query"
+              description="Transactions that work across collections and documents without any restrictions. Unlike MongoDB, there are no confusing read/write concerns to configure, no cross-shard restrictions, and no data inconsistencies."
+              to="/database/transaction"
               icon={<GreenStar />}
             />
           </Section>
@@ -125,8 +113,14 @@ export default function Homepage() {
           <Section title="Tools">
             <Card
               title="Tigris CLI"
-              description="A command line tool to get things done quick!"
+              description="A command line tool to get things done quick"
               to="/cli/"
+              icon={<TerminalIcon />}
+            />
+            <Card
+              title="Create Tigris App"
+              description="The easiest way to get started in TypeScript"
+              to="/create-tigris-app/"
               icon={<TerminalIcon />}
             />
           </Section>

@@ -8,11 +8,13 @@ as a Developer, you would want to focus on your application, not Operations.
 This is why we have built Tigris. Tigris is an open source developer data
 platform that provides a cohesive, flexible set of data management services with
 an API-like approach to interact with data just as apps interact with other
-services such as Stripe.
+services such as Stripe. This allows you to build dynamic, data-driven applications
+in an infrastructure-less way.
 
-Tigris provides an instantaneous, on-demand, and infrastructure-less experience.
-For example, if your application needs a database, it is made available
-instantaneously without you having to step out from your application code.
+Tigris provides an instantaneous and code-first experience. For example,
+suppose your application needs a database. In that case, all you need is the
+following two lines of code, and the database is made available instantaneously
+without you having to step out from your application code.
 
 ```ts
 const client = new Tigris();

@@ -309,6 +309,11 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: "doc",
+      label: "Create Tigris App",
+      id: "create-tigris-app/create-tigris-app",
+    },
   ],
   guides: [
     {
