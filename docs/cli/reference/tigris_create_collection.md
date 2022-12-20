@@ -11,7 +11,7 @@ Creates collection(s)
 Creates collections with provided schema.
 
 ```shell
-tigris create collection {db} {schema}...|- [flags]
+tigris create collection --project={tigris-project} {schema}...|- [flags]
 ```
 
 ### Examples
@@ -19,7 +19,7 @@ tigris create collection {db} {schema}...|- [flags]
 ```shell
 
   # Pass the schema as a string
-  tigris create collection testdb '{
+  tigris create collection --project=test_project '{
 	"title": "users",
 	"description": "Collection of documents with details of users",
 	"properties": {

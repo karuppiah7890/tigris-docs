@@ -9,8 +9,24 @@ The Tigris client is compatible with Node version 12 onwards.
 
 ## Installation
 
+> Install the npm package
+
 ```shell
-npm install @tigrisdata/core
+npm install @tigrisdata/core --save
+```
+
+> Install `reflect-metadata` that enables automatic type inference using reflection
+
+```shell
+npm install reflect-metadata --save
+```
+
+> Ensure that you are on Typescript version **4.5 or above** and have following settings enabled in
+> `compilerOptions` section of `tsconfig.json`:
+
+```json
+"emitDecoratorMetadata": true,
+"experimentalDecorators": true,
 ```
 
 ## Create Connection
@@ -26,6 +42,7 @@ const tigris = new Tigris({
   serverUrl: "api.preview.tigrisdata.cloud",
   clientId: "paste client_id here",
   clientSecret: "paste client_secret here",
+  projectName: "paste project name here",
 });
 ```
 
@@ -90,19 +107,14 @@ const catalogSchema: TigrisSchema<Catalog> = {
 ```
 
 For detailed documentation on schema representation refer to the
-[data modeling](documents/datamodel) section.
+[data modeling](database/datamodel) section.
 
-## Create Database and Collection
+## Create a Collection
 
-### 1. Create database (if not exists)
-
-```ts
-const db = await tigris.createDatabaseIfNotExists("catalogdb");
-```
-
-### 2. Create collection
+### 1. Create a Collection (if not exists)
 
 ```ts
+const db = await tigris.getDatabase();
 const catalog = await db.createOrUpdateCollection<Catalog>(
   "catalog",
   catalogSchema

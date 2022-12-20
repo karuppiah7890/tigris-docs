@@ -4,10 +4,10 @@ title: List applications
 slug: /cli/list-applications
 ---
 
-Lists applications
+Lists app keys
 
 ```shell
-tigris list applications [flags]
+tigris list app_keys [flags]
 ```
 
 ### Options

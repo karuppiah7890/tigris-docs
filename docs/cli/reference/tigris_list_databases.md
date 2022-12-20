@@ -1,17 +1,17 @@
 ---
-id: list-databases
-title: List Databases
-slug: /cli/list-databases
+id: list-projects
+title: List Projects}
+slug: /cli/list-projects
 ---
 
-Lists databases
+Lists projects
 
 ```shell
-tigris list databases [flags]
+tigris list projects [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for databases
+  -h, --help   help for projects
 ```

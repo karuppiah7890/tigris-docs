@@ -11,7 +11,7 @@ Updates collection schema
 Updates collection schema.
 
 ```shell
-tigris alter collection {db} {schema} [flags]
+tigris alter collection --project={tigris-project} {schema} [flags]
 ```
 
 ### Examples
@@ -19,7 +19,7 @@ tigris alter collection {db} {schema} [flags]
 ```shell
 
   # Pass the schema as a string
-  tigris alter collection testdb '{
+  tigris alter collection --project=test_project '{
 	"title": "users",
 	"description": "Collection of documents with details of users",
 	"properties": {

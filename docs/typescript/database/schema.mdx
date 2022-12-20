@@ -1,0 +1,85 @@
+# Schema
+
+A schema defines all the fields that make up the document in a collection. All documents stored in a collection must conform to the collection's schema
+
+## Schema Validation
+
+The validation happens during the inserts or updates to the collection. The validation performed like this:
+
+<li>Newly inserted documents are checked for validation.</li>
+<li>
+  During update, the new fields values are checked for the validation. As during
+  insertion we are validating the document so we only need to validate the
+  input.
+</li>
+
+## Modifying the Schema
+
+After creating the collection, you can update the schema at any time. For example, in the previous Catalog model you
+need to add a `description` field to store product description. This can be achieve by just calling `createOrUpdateCollection`
+with a new model.
+
+### Step 1: Update the Model
+
+Add the new field in your model.
+
+```ts
+// data container
+interface Catalog extends TigrisCollectionType {
+  id?: string;
+  name: string;
+  price: number;
+  brand: string;
+  labels: string;
+  popularity: number;
+  attributes: object;
+  description: string;
+  creationDate: Date;
+}
+
+// schema definition
+const catalogSchema: TigrisSchema<Catalog> = {
+  id: {
+    type: TigrisDataTypes.INT64,
+    primary_key: {
+      order: 1,
+      autoGenerate: true,
+    },
+  },
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  price: {
+    type: TigrisDataTypes.NUMBER,
+  },
+  brand: {
+    type: TigrisDataTypes.STRING,
+  },
+  labels: {
+    type: TigrisDataTypes.STRING,
+  },
+  popularity: {
+    type: TigrisDataTypes.INT32,
+  },
+  attribute: {
+    type: TigrisDataTypes.OBJECT,
+  },
+  description: {
+    type: TigrisDataTypes.STRING,
+  },
+  creationDate: {
+    type: TigrisDataTypes.DATE_TIME,
+  },
+};
+```
+
+### Step 2: Update the Collection
+
+Updates the collection with the new model and any new operation will see the changes.
+
+```ts
+const catalog = await db.createOrUpdateCollection<Catalog>(
+  "catalog",
+  catalogSchema
+);
+```

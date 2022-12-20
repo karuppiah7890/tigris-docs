@@ -11,7 +11,7 @@ Describes collection
 Returns collection schema including metadata
 
 ```shell
-tigris describe collection {db} {collection} [flags]
+tigris describe collection --project={tigris_project} {collection} [flags]
 ```
 
 ### Options

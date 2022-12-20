@@ -1,6 +1,10 @@
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { clientTabGroupId, syncClientLabel, asyncClientLabel } from "./commons";
+import {
+  clientTabGroupId,
+  syncClientLabel,
+  asyncClientLabel,
+} from "./database/commons";
 
 # Getting Started
 
@@ -66,8 +70,10 @@ Tigris URL, ClientID and ClientSecret need to be set as follows,
 in order to connect to the hosted platform:
 
 ```java
-TigrisConfiguration configuration = TigrisConfiguration.newBuilder("api.preview.tigrisdata.cloud")
-    .withAuthConfig(new TigrisConfiguration.AuthConfig("paste client_id here", "paste client_secret here"))
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder(
+        "api.preview.tigrisdata.cloud",
+        "<your-tigris-project-name>"
+    ).withAuthConfig(new TigrisConfiguration.AuthConfig("paste client_id here", "paste client_secret here"))
     .build();
 ```
 
@@ -97,7 +103,8 @@ TigrisClient client = StandardTigrisClient.getInstance(tigrisConfiguration);
 
 ```java
 // configuration
-TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:8081").build();
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder
+    ("localhost:8081", "your-tigris-project").build();
 
 // client
 TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configuration);
@@ -106,44 +113,28 @@ TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configurat
 </TabItem>
 </Tabs>
 
-### Create database
+### Create Project
 
-Creating a database is fairly easy and safe using _if not exists_ protocol. This will throw an exception
-if a database with given name already exists.
-
-<Tabs groupId={clientTabGroupId}>
-<TabItem value={syncClientLabel} label={syncClientLabel}>
-
-```java
-TigrisDatabase db = client.createDatabaseIfNotExists("sampledb");
-```
-
-</TabItem>
-<TabItem value={asyncClientLabel} label={asyncClientLabel}>
-
-```java
-CompletableFuture<TigrisAsyncDatabase> future = asyncClient.createDatabaseIfNotExists("sampledb");
-```
-
-</TabItem>
-</Tabs>
+Use Tigris web-console or CLI to create a Tigris project. Creation of
+project will create the database automatically.
 
 ### Retrieve database
 
-Retrieve the database instance.
+Once the project is created. It automatically creates the database. You can
+retrieve the database instance.
 
 <Tabs groupId={clientTabGroupId}>
 <TabItem value={syncClientLabel} label={syncClientLabel}>
 
 ```java
-TigrisDatabase db = client.getDatabase("sampledb");
+TigrisDatabase db = client.getDatabase();
 ```
 
 </TabItem>
 <TabItem value={asyncClientLabel} label={asyncClientLabel}>
 
 ```java
-TigrisAsyncDatabase db = asyncClient.getDatabase("sampledb");
+TigrisAsyncDatabase db = asyncClient.getDatabase();
 ```
 
 </TabItem>

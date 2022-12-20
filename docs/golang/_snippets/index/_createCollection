@@ -1,6 +1,6 @@
 type Reviews struct {
-    Author  string
-    Ratings float64
+	Author  string
+	Ratings float64
 }
 
 type Catalog struct {
@@ -12,6 +12,10 @@ type Catalog struct {
 	Popularity int
 }
 
-db, err := tigris.OpenDatabase(ctx,
-	&config.Database{Driver: config.Driver{URL: "localhost:8081"}},
-    "catalogdb", &Catalog{})
+cfg := &tigris.Config{
+	URL:     "localhost:8081",
+	Project: "your-tigris-project-name",
+}
+
+client, err := tigris.NewClient(ctx, cfg)
+db, err := tigris.OpenDatabase(ctx, cfg, &User{}, &Product{}, &Order{})

@@ -7,7 +7,7 @@ import {
   clientTabGroupId,
   syncClientLabel,
   asyncClientLabel,
-} from "../java/commons";
+} from "../java/database/commons";
 import { cursorOps, cursorDocLink } from "../typescript/commons";
 
 // eslint-disable-next-line react/prop-types

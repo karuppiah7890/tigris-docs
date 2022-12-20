@@ -32,7 +32,7 @@ For this quickstart we will model a simple ecommerce app. The data would be
 stored in three collections _products_, _users_ and _orders_.
 
 Let's use the CLI to generate the sample schema and create the three
-collections in the database named _sampledb_.
+collections in the Tigris project named _myproject_.
 
 ```shell
 tigris generate sample-schema --create
@@ -41,7 +41,7 @@ tigris generate sample-schema --create
 The schema of the collections created can be fetched as follows
 
 ```shell
-tigris describe collection sampledb orders
+tigris describe collection --project=myproject orders
 ```
 
 ### Insert data
@@ -59,7 +59,7 @@ the data.
 #### Insert some data into the user and product collections
 
 ```shell
-tigris insert sampledb users \
+tigris insert --project=myproject users \
 '[
     {"id": 1, "name": "Jania McGrory", "balance": 6045.7},
     {"id": 2, "name": "Bunny Instone", "balance": 2948.87}
@@ -67,7 +67,7 @@ tigris insert sampledb users \
 ```
 
 ```shell
-tigris insert sampledb products \
+tigris insert --project=myproject products \
 '[
     {"id": 1, "name": "Vanilla Beans", "quantity": 6358, "price": 4.39},
     {"id": 2, "name": "Cheese - Provolone", "quantity": 5726, "price": 16.74},
@@ -78,27 +78,27 @@ tigris insert sampledb products \
 ### Read the data that was inserted by the Primary key field
 
 ```shell
-tigris read sampledb users '{"id": 1}'
+tigris read --project=myproject users '{"id": 1}'
 ```
 
 ```shell
-tigris read sampledb products '{"id": 3}'
+tigris read --project=myproject products '{"id": 3}'
 ```
 
 ### Read the data that was inserted by any field in the schema
 
 ```shell
-tigris read sampledb users '{"name": "Jania McGrory"}'
+tigris read --project=myproject users '{"name": "Jania McGrory"}'
 ```
 
 ```shell
-tigris read sampledb products '{"name": "Vanilla Beans"}'
+tigris read --project=myproject products '{"name": "Vanilla Beans"}'
 ```
 
 ### Perform a transaction that modifies all three collections
 
 ```shell
-tigris transact sampledb \
+tigris transact --project=myproject \
 '[
   {
     "insert": {
@@ -124,7 +124,7 @@ tigris transact sampledb \
 ### Search for a product
 
 ```shell
-tigris search sampledb products -q "vanilla"
+tigris search --project=myproject products -q "vanilla"
 ```
 
 ## Shutting down the local Tigris

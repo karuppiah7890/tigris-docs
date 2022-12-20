@@ -12,7 +12,7 @@ Executes a set of operations in a transaction.
 All the read, write and schema operations are supported.
 
 ```shell
-tigris transact {db} {operation}...|- [flags]
+tigris transact --project={tigris_project} {operation}...|- [flags]
 ```
 
 ### Examples
@@ -20,7 +20,7 @@ tigris transact {db} {operation}...|- [flags]
 ```shell
 
   # Perform a transaction that inserts and updates in three collections
-  tigris tigris transact testdb \
+  tigris tigris transact --project=test_project \
   '[
     {
       "insert": {

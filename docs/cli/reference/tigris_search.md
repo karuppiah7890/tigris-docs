@@ -11,38 +11,38 @@ Tigris offers a realtime search for documents in a collection.
 Executes a search query against a collection and returns the search results.
 
 ```shell
-tigris search {db} {collection} [flags]
+tigris search --project={tigris_project} {collection} [flags]
 ```
 
 ### Examples
 
 ```shell
 # Default search without any parameters will return all documents
-tigris search testdb users
+tigris search --project=test_project users
 
 # Search for a text "Alice" in collection
-tigris search testdb users -q "Alice"
+tigris search --project=test_project users -q "Alice"
 
 # Search for a text "Alice" either in "firstName" or "lastName" fields
-tigris search testdb users -q "Alice" -f "firstName,lastName"
+tigris search --project=test_project users -q "Alice" -f "firstName,lastName"
 
 # Filter for users with age > 23
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}'
+tigris search --project=test_project users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}'
 
 # Aggregate results by current city and get top 10 cities
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}'
+tigris search --project=test_project users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}'
 
 # Sort the results by age in increasing order
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]'
+tigris search --project=test_project users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]'
 
 # Exclude sensitive information from results
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]' -x "phoneNumber,address"
+tigris search --project=test_project users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]' -x "phoneNumber,address"
 
 # Paginate the results, with 15 per page
-tigris search testdb users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]' -x "phoneNumber,address" -p 1 -c 15
+tigris search --project=test_project users -q "Alice" -f "firstName,lastName" --filter '{"age": {"$gt": 23}}' --facet '{"currentCity": {"size": 10}}' --sort '[{"age": "$asc"}]' -x "phoneNumber,address" -p 1 -c 15
 
 # Find users with last name exactly matching "Wong"
-tigris search testdb users --filter '{"lastName": "Wong"}'
+tigris search --project=test_project users --filter '{"lastName": "Wong"}'
 
 ```
 

@@ -11,7 +11,7 @@ Deletes document(s)
 Deletes documents according to the provided filter.
 
 ```shell
-tigris delete {db} {collection} {filter} [flags]
+tigris delete --project={tigris_project} {collection} {filter} [flags]
 ```
 
 ### Examples
@@ -19,10 +19,10 @@ tigris delete {db} {collection} {filter} [flags]
 ```shell
 
   # Delete a user where the value of the id field is 2
-  tigris delete testdb users '{"id": 2}'
+  tigris delete --project=test_project users '{"id": 2}'
 
   # Delete users where the value of id field is 1 or 3
-  tigris delete testdb users '{"$or": [{"id": 1}, {"id": 3}]}'
+  tigris delete --project=test_project users '{"$or": [{"id": 1}, {"id": 3}]}'
 
 ```
 

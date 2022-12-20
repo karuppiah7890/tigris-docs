@@ -1,15 +1,34 @@
 # Overview
 
-Tigris is the data platform built for developers. Use it as a
-scalable, ACID transactional, real-time backend for your serverless
-applications. Build data-rich features without worrying about slow
-queries or missing indexes. Seamlessly implement search within your
-applications with its embedded search engine. Connect serverless
-functions with its event streams to build highly responsive
-applications that scale automatically.
+As developers ourselves, we have always wanted just to be able to focus on
+building applications and scale up those services and not spend time maintaining
+infrastructure. DevOps sure made "maintaining infrastructure" cool again. But
+as a Developer, you would want to focus on your application, not Operations.
+
+This is why we have built Tigris. Tigris is an open source developer data
+platform that provides a cohesive, flexible set of data management services with
+an API-like approach to interact with data just as apps interact with other
+services such as Stripe. This allows you to build dynamic, data-driven applications
+in an infrastructure-less way.
+
+Tigris provides an instantaneous and code-first experience. For example,
+suppose your application needs a database. In that case, all you need is the
+following two lines of code, and the database is made available instantaneously
+without you having to step out from your application code.
+
+```ts
+const client = new Tigris();
+const db = client.getDatabase();
+```
+
+Today, we provide a transactional document database and a full-text search
+engine for every project on Tigris. At the same time, we are working on adding
+more commonly used data services to the platform.
 
 Tigris is licensed under the terms of the
-[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
+[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0) and is
+available as a hosted platform through [Tigris Cloud](https://console.preview.tigrisdata.cloud/)
+so that you don't have to manage any infrastructure.
 
 ### Features
 

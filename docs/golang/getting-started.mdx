@@ -26,12 +26,11 @@ Tigris URL, ClientID and ClientSecret need to be set as follows,
 in order to connect to the hosted platform:
 
 ```go
-cfg := &config.Database{
-	Driver: config.Driver{
-		URL: "api.preview.tigrisdata.cloud"
-		ClientID: "paste client_id here"
-		ClientSecret: "paste client_secret here"
-	}
+cfg := &tigris.Config{
+    URL:          "api.preview.tigrisdata.cloud:443",
+    ClientID:     "your-tigris-app-id",
+    ClientSecret: "your-tigris-app-secret",
+    Project:      "your-tigris-project-name",
 }
 
 client, err := tigris.NewClient(ctx, cfg)
@@ -44,7 +43,11 @@ in the [CLI](../cli/authentication.md#application-credentials) or UI.
 <TabItem value="Development Environment" label="Development Environment">
 
 ```go
-cfg := &config.Database{Driver: config.Driver{URL: "localhost:8081"}}
+cfg := &tigris.Config{
+    URL:          "localhost:8081",
+    Project:      "your-tigris-project-name",
+}
+
 client, err := tigris.NewClient(ctx, cfg)
 ```
 
@@ -77,11 +80,13 @@ This declaration will create a collection named `catalogs`.
 For detailed documentation on data modeling refer to the
 [data modeling](documents/datamodel.mdx) section.
 
-### Create Database and Collections
+### Create Collections
 
-The `OpenDatabase` creates the database and collections if they don't exist,
-otherwise updates the schema of the collections if they already exist.
+The `OpenDatabase` creates the collections if they don't exist,
+otherwise updates the schema of the collections if they already exist. Note:
+the project is already expected to be created at this point (from Web-Console
+or CLI)
 
 ```go
-db, err := client.OpenDatabase(ctx, "catalogdb", &Catalog{})
+db, err := client.OpenDatabase(ctx, &Catalog{})
 ```

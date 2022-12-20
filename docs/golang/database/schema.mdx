@@ -1,0 +1,44 @@
+# Schema
+
+A schema defines all the fields that make up the document in a collection. All documents stored in a collection must conform to the collection's schema
+
+## Schema Validation
+
+The validation happens during the inserts or updates to the collection. The validation performed like this:
+
+<li>Newly inserted documents are checked for validation.</li>
+<li>
+  During update, the new fields values are checked for the validation. As during
+  insertion we are validating the document so we only need to validate the
+  input.
+</li>
+
+## Modifying the Schema
+
+After creating the collection, you can update the schema at any time. For example, in the previous Catalog model you
+need to add a `description` field to store product description. This can be achieve by just calling `createOrUpdateCollection`
+with a new model.
+
+### Step 1: Update the Model
+
+Add the new field in your model.
+
+```go
+type Catalog struct {
+	Id         int `tigris:"primary_key,autoGenerate"`
+	Name       string
+	Price      float64
+	Brand      string
+	Labels     string
+	Popularity int
+	Description string
+}
+```
+
+### Step 2: Update the Collection
+
+Updates the collection with the new model and any new operation will see the changes.
+
+```go
+db, err := client.OpenDatabase(ctx, &Catalog{})
+```
