@@ -21,7 +21,7 @@ tigris generate sample-schema [flags]
   # Generate sample schema files in current directory orders.json, products.json and users.json
   tigris generate sample-schema
 
-  # Create the database sampledb and sample collections
+  # Create the project sampledb and sample collections
   tigris generate sample-schema --create
 
   # Generate sample schema and output it to stdout

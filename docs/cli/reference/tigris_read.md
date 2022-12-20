@@ -13,7 +13,7 @@ If filter is not provided or an empty json document {} is passed as a filter, al
 If fields are not provided or an empty json document {} is passed as fields, all the fields of the documents are selected.
 
 ```shell
-tigris read {db} {collection} {filter} {fields} [flags]
+tigris read --project={tigris_project} {collection} {filter} {fields} [flags]
 ```
 
 ### Examples
@@ -23,13 +23,13 @@ tigris read {db} {collection} {filter} {fields} [flags]
   # Read a user document where id is 20
   # The output would be
   #  {"id": 20, "name": "Jania McGrory"}
-  tigris read testdb users '{"id": 20}'
+  tigris read --project=test_project users '{"id": 20}'
 
   # Read user documents where id is 2 or 4
   # The output would be
   #  {"id": 2, "name": "Alice Wong"}
   #  {"id": 4, "name": "Jigar Joshi"}
-  tigris read testdb users '{"$or": [{"id": 2}, {"id": 4}]}'
+  tigris read --project=test_project users '{"$or": [{"id": 2}, {"id": 4}]}'
 
   # Read all documents in the user collection
   # The output would be
@@ -37,7 +37,7 @@ tigris read {db} {collection} {filter} {fields} [flags]
   #  {"id": 4, "name": "Jigar Joshi"}
   #  {"id": 20, "name": "Jania McGrory"}
   #  {"id": 21, "name": "Bunny Instone"}
-  tigris read testdb users
+  tigris read --project=test_project users
 
 ```
 

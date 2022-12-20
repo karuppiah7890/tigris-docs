@@ -4,8 +4,8 @@ title: Command Line Interface
 slug: /cli
 ---
 
-Create databases and collections, read and write data, perform transactions,
-stream events and setup Tigris locally, all from the command line.
+Manages Tigris project and collections, read and write data, perform
+transactions and setup Tigris locally, all from the command line.
 
 ## Tigris Installation
 
@@ -14,39 +14,45 @@ Here is [instructions](installation.mdx) how to install the `tigris` utility.
 ### Usage
 
 ```shell
+tigris is a command line interface of Tigris data platform
+
 Usage:
   tigris [command]
 
 Available Commands:
-  alter       Alters collection
-  completion  Generates completion script for shell
-  config      Configuration commands
-  create      Creates database or collection
-  delete      Deletes document(s)
-  describe    Describes database or collection
-  dev         Starts and stops local development Tigris server
-  docs        Generates CLI documentation in Markdown format
-  drop        Drops database or collection
-  generate    Generating helper assets such as sample schema
-  help        Help about any command
-  insert      Inserts document(s)
-  list        Lists databases or collections
-  login       Authenticate on the Tigris instance
-  logout      Logout from Tigris instance
-  ping        Checks connection to Tigris
-  publish     Publish message(s)
-  read        Reads and outputs documents
-  replace     Inserts or replaces document(s)
-  scaffold    Scaffold a project for specified language
-  search      Searches a collection for documents matching the query
-  server      Tigris server related commands
-  subscribe   Subscribes to published messages
-  transact    Executes a set of operations in a transaction
-  update      Updates document(s)
-  version     Shows tigris cli version
+  alter          Alters collection
+  backup         Dumps documents and schemas to JSON files
+  completion     Generates completion script for shell
+  config         Configuration commands
+  create         Creates project, collection, namespace or app_key
+  delete         Deletes document(s)
+  delete-project Deletes project
+  describe       Describes database or collection
+  dev            Starts and stops local development Tigris server
+  docs           Generates CLI documentation in Markdown format
+  drop           Drops collection or application
+  generate       Generating helper assets such as sample schema
+  help           Help about any command
+  import         Import documents into collection
+  insert         Inserts document(s)
+  list           Lists projects, collections or namespaces
+  login          Authenticate on the Tigris instance
+  logout         Logout from Tigris instance
+  ping           Checks connection to Tigris
+  quota          Quota related commands
+  read           Reads and outputs documents
+  replace        Inserts or replaces document(s)
+  restore        restores documents and schemas from JSON files
+  scaffold       Scaffold new application for project
+  search         Searches a collection for documents matching the query
+  server         Tigris server related commands
+  transact       Executes a set of operations in a transaction
+  update         Updates document(s)
+  version        Shows tigris cli version
 
 Flags:
-  -h, --help   help for tigris
+  -h, --help    help for tigris
+  -q, --quiet   Suppress informational messages
 
 Use "tigris [command] --help" for more information about a command.
 ```

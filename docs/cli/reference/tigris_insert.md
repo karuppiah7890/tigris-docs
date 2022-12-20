@@ -11,7 +11,7 @@ Inserts document(s)
 Inserts one or more documents into a collection.
 
 ```shell
-tigris insert {db} {collection} {document}...|- [flags]
+tigris insert --project={tigris_project} {collection} {document}...|- [flags]
 ```
 
 ### Examples
@@ -19,10 +19,10 @@ tigris insert {db} {collection} {document}...|- [flags]
 ```shell
 
   # Insert a single document into the users collection
-  tigris insert testdb users '{"id": 1, "name": "Alice Alan"}'
+  tigris insert --project=test_project users '{"id": 1, "name": "Alice Alan"}'
 
   # Insert multiple documents into the users collection
-  tigris insert testdb users \
+  tigris insert --project=test_project users \
   '[
     {"id": 20, "name": "Jania McGrory"},
     {"id": 21, "name": "Bunny Instone"}

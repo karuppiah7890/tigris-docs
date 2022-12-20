@@ -4,17 +4,17 @@ title: Alter Application
 slug: /cli/alter-application
 ---
 
-Alter application credentials
+Alter app key credentials
 
 ```shell
-tigris alter application {id} {name} {description} [flags]
+tigris alter app_key {id} {name} {description} [flags]
 ```
 
 ### Examples
 
 ```
 
-./tigris alter application <client id> new_name1 "new descr1"
+./tigris alter app_key <client id> new_name1 "new descr1"
 
 Output:
 {

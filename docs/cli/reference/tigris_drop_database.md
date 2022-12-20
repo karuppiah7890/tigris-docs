@@ -1,17 +1,17 @@
 ---
-id: drop-database
-title: Drop Database
-slug: /cli/drop-database
+id: delete-project
+title: Delete project
+slug: /cli/delete-project
 ---
 
-Drops database
+Delete Project
 
 ```shell
-tigris drop database {db} [flags]
+tigris delete-project {tigris_project} [flags]
 ```
 
 ### Options
 
 ```
-  -h, --help   help for database
+  -h, --help   help for projects
 ```

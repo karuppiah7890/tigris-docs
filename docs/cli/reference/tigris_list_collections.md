@@ -4,10 +4,10 @@ title: List Collections
 slug: /cli/list-collections
 ---
 
-Lists database collections
+Lists project's DB's collections
 
 ```shell
-tigris list collections {db} [flags]
+tigris list collections --project={tigris_project} [flags]
 ```
 
 ### Options

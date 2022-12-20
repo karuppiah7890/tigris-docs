@@ -4,10 +4,10 @@ title: Drop Application
 slug: /cli/drop-application
 ---
 
-Drop application credentials
+Drop app key credentials
 
 ```shell
-tigris drop application {id} [flags]
+tigris drop app_key {id} [flags]
 ```
 
 ### Options

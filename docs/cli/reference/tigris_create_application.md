@@ -4,17 +4,17 @@ title: Create Application
 slug: /cli/create-application
 ---
 
-Create application credentials
+Create app key credentials
 
 ```shell
-tigris create application {name} {description} [flags]
+tigris create app_key {name} {description} [flags]
 ```
 
 ### Examples
 
 ```
 
-./tigris create application new_name1 "new descr1"
+./tigris create app_key new_name1 "new descr1"
 
 Output:
 {
