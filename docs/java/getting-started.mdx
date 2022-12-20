@@ -103,7 +103,8 @@ TigrisClient client = StandardTigrisClient.getInstance(tigrisConfiguration);
 
 ```java
 // configuration
-TigrisConfiguration configuration = TigrisConfiguration.newBuilder("localhost:8081").build();
+TigrisConfiguration configuration = TigrisConfiguration.newBuilder
+    ("localhost:8081", "your-tigris-project").build();
 
 // client
 TigrisAsyncClient asyncClient = StandardTigrisAsyncClient.getInstance(configuration);
