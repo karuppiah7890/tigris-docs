@@ -52,7 +52,6 @@ const sidebars = {
         },
       ],
     },
-    "overview/why-tigris",
     "overview/architecture",
     {
       type: "category",
