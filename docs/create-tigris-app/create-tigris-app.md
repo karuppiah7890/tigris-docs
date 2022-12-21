@@ -13,8 +13,8 @@ You can create a new project interactively by running:
 npx create-tigris-app@latest
 ```
 
-You will be asked for the name of your project, and the clientID and
-clientSecret to connect with Tigris.
+You will be asked for the name of your project, the clientID and
+clientSecret to connect with Tigris, which you can get by Signing up and creating a project from the Tigris [console.preview.tigrisdata.cloud](https://console.preview.tigrisdata.cloud/).
 
 ```text
 ✔ What is your project named? … myapp
