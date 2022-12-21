@@ -28,6 +28,15 @@ go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 
 ```shell
 npm install
+git submodule update --init --recursive
+```
+
+## Configuration
+
+Copy the example local configuration for use in development.
+
+```shell
+cp .env.local.example .env.local
 ```
 
 ## Local development

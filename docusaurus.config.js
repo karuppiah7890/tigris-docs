@@ -153,11 +153,6 @@ const config = {
             position: "right",
           },
           {
-            href: "https://join.slack.com/t/tigrisdatacommunity/shared_invite/zt-16fn5ogio-OjxJlgttJIV0ZDywcBItJQ",
-            label: "Slack Community",
-            position: "right",
-          },
-          {
             type: "search",
             position: "right",
           },
