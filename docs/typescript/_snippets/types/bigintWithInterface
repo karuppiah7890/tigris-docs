@@ -1,0 +1,23 @@
+const tigris = new Tigris({
+  serverUrl: "api.preview.tigrisdata.cloud",
+  clientId: "paste client_id here",
+  clientSecret: "paste client_secret here",
+  projectName: "paste project name here",
+  supportBigInt: true
+});
+
+// data container
+export interface CatalogCategory {
+  name: string;
+  code: bigint;
+}
+
+// schema definition
+export const categorySchema: TigrisSchema<CatalogCategory> = {
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  code: {
+    type: TigrisDataTypes.NUMBER_BIGINT,
+  },
+};

@@ -65,45 +65,30 @@ const tigris = new Tigris({
 
 ## Set up the data model
 
-Tigris client uses interface for data container and developers define the schema
-of their data container using TigrisSchema
-
-```ts title=DataContainer
-interface Catalog extends TigrisCollectionType {
-  id?: string;
-  name: string;
-  price: number;
-  brand: string;
-  labels: string;
-  popularity: number;
-}
-```
+Tigris lets developers define the schema as TypeScript classes using `@TigrisCollection`
+decorator.
 
 ```ts title=SchemaDefinition
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT64,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  brand: {
-    type: TigrisDataTypes.STRING,
-  },
-  labels: {
-    type: TigrisDataTypes.STRING,
-  },
-  popularity: {
-    type: TigrisDataTypes.INT32,
-  },
-};
+@TigrisCollection("catalog")
+class Catalog implements TigrisCollectionType {
+  @PrimaryKey({ order: 1, autoGenerate: true })
+  id?: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  price: number;
+
+  @Field()
+  brand: string;
+
+  @Field()
+  labels: string;
+
+  @Field(TigrisDataTypes.INT32)
+  popularity: number;
+}
 ```
 
 For detailed documentation on schema representation refer to the
@@ -111,12 +96,7 @@ For detailed documentation on schema representation refer to the
 
 ## Create a Collection
 
-### 1. Create a Collection (if not exists)
-
 ```ts
 const db = await tigris.getDatabase();
-const catalog = await db.createOrUpdateCollection<Catalog>(
-  "catalog",
-  catalogSchema
-);
+const catalog = await db.createOrUpdateCollection<Catalog>(Catalog);
 ```

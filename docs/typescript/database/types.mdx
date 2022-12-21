@@ -1,0 +1,43 @@
+import { TSDataModels } from "../../templates/commons";
+import decoratorCollectionSource from "!!raw-loader!../_snippets/types/collectionWithDecorator";
+import interfaceCollectionSource from "!!raw-loader!../_snippets/types/collectionWithInterface";
+import decoratorBigIntString from "!!raw-loader!../_snippets/types/bigintStringWithDecorator";
+import interfaceBigIntString from "!!raw-loader!../_snippets/types/bigintStringWithInterface";
+import decoratorBigInt from "!!raw-loader!../_snippets/types/bigintWithDecorator";
+import interfaceBigInt from "!!raw-loader!../_snippets/types/bigintWithInterface";
+
+# Field Types
+
+Tigris supports the majority of the primitive TypeScript types while also
+providing support for custom types.
+
+- primitive types: `string`, `boolean`, `number`, `bigint`, `Date`, `object`.
+- Custom types: user-defined class to define custom types.
+- Array and object of all of above is supported.
+
+<TSDataModels
+  decoratorExample={decoratorCollectionSource}
+  interfaceExample={interfaceCollectionSource}
+/>
+
+## Working with 64-bit integers (BigInt) {#bigint}
+
+Javascript [number](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) type
+can only represent integer values from `-9007199254740991` to `9007199254740991`. If your collection
+field has a use-case for 64-bit integers, we recommend using `bigint` or `string` field type to represent
+your integers. If chose to use `bigint` primitive type, please enable `{supportBigInt: true}` flag
+in the client configuration.
+
+### 64-bit integers using String
+
+<TSDataModels
+  decoratorExample={decoratorBigIntString}
+  interfaceExample={interfaceBigIntString}
+/>
+
+### 64-bit integers using [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt)
+
+<TSDataModels
+  decoratorExample={decoratorBigInt}
+  interfaceExample={interfaceBigInt}
+/>

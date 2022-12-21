@@ -1,0 +1,15 @@
+// data container
+export interface CatalogCategory {
+  name: string;
+  code: string;
+}
+
+// schema definition
+export const categorySchema: TigrisSchema<CatalogCategory> = {
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  code: {
+    type: TigrisDataTypes.NUMBER_BIGINT,
+  },
+};

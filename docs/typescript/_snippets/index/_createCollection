@@ -5,43 +5,30 @@ const tigris = new Tigris({
   projectName: 'my-ecommerce-project'
 });
 
-const db = await tigris.getDatabase();
+@TigrisCollection("catalog")
+class Catalog implements TigrisCollectionType {
 
-interface Catalog extends TigrisCollectionType {
+  @PrimaryKey({order: 1, autoGenerate: true})
   id?: string;
+
+  @Field()
   name: string;
+
+  @Field()
   price: number;
+
+  @Field()
   brand: string;
+
+  @Field()
   labels: string;
+
+  @Field(TigrisDataTypes.INT32)
   popularity: number;
 }
 
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT64,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  brand: {
-    type: TigrisDataTypes.STRING,
-  },
-  labels: {
-    type: TigrisDataTypes.STRING,
-  },
-  popularity: {
-    type: TigrisDataTypes.INT32,
-  },
-};
+const db = await tigris.getDatabase();
 
 const catalog = await db.createOrUpdateCollection<Catalog>(
-  "catalog",
-  catalogSchema
+  Catalog
 );

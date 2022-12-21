@@ -1,0 +1,44 @@
+// data containers
+export interface ProductAttributes {
+  name: string;
+  value: string;
+}
+
+export interface Catalog extends TigrisCollectionType {
+  id: bigint;
+  name: string;
+  price: number;
+  attributes: Array<ProductAttributes>;
+}
+
+// schema definitions
+const attributesSchema: TigrisSchema<ProductAttributes> {
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  value: {
+    type: TigrisDataTypes.STRING,
+  }
+}
+
+const catalogSchema: TigrisSchema<Catalog> {
+  id: {
+    type: TigrisDataTypes.INT64,
+    primary_key: {
+      order: 1,
+      autoGenerate: true,
+    },
+  },
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  price: {
+    type: TigrisDataTypes.NUMBER,
+  },
+  attributes: {
+    type: TigrisDataTypes.ARRAY,
+    items: {
+      attributesSchema
+    }
+  }
+}

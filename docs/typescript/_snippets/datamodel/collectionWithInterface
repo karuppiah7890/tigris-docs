@@ -1,0 +1,43 @@
+// data container
+interface Catalog extends TigrisCollectionType {
+  id?: string;
+  name: string;
+  price: number;
+  brand: string;
+  labels: string;
+  popularity: number;
+  entryDate: Date;
+  enabled: boolean;
+}
+
+// schema definition
+const catalogSchema: TigrisSchema<Catalog> = {
+  id: {
+    type: TigrisDataTypes.INT64,
+    primary_key: {
+      order: 1,
+      autoGenerate: true,
+    },
+  },
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+  price: {
+    type: TigrisDataTypes.NUMBER,
+  },
+  brand: {
+    type: TigrisDataTypes.STRING,
+  },
+  labels: {
+    type: TigrisDataTypes.STRING,
+  },
+  popularity: {
+    type: TigrisDataTypes.INT32,
+  },
+  entryDate: {
+    type: TigrisDataTypes.DATE_TIME,
+  },
+  enabled: {
+    type: TigrisDataTypes.BOOLEAN,
+  },
+};

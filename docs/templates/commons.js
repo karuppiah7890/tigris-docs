@@ -1,16 +1,22 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import Admonition from "@theme/Admonition";
 import TabItem from "@theme/TabItem";
 import Tabs from "@theme/Tabs";
 import CodeBlock from "@theme/CodeBlock";
 import {
+  asyncClientLabel,
   clientTabGroupId,
   syncClientLabel,
-  asyncClientLabel,
 } from "../java/database/commons";
-import { cursorOps, cursorDocLink } from "../typescript/commons";
+import {
+  cursorDocLink,
+  cursorOps,
+  dataModelTabGroupId,
+  decoratorModelLabel,
+  interfaceModelLabel,
+} from "../typescript/commons";
 
-// eslint-disable-next-line react/prop-types
 export function AsyncCodeBlock({ codeLang, defaultExample, asyncExample }) {
   if (codeLang === "java") {
     return (
@@ -28,7 +34,6 @@ export function AsyncCodeBlock({ codeLang, defaultExample, asyncExample }) {
   }
 }
 
-// eslint-disable-next-line react/prop-types
 export function CursorFundamentalsBox({ codeLang }) {
   if (codeLang === "typescript") {
     return (
@@ -45,4 +50,26 @@ export function CursorFundamentalsBox({ codeLang }) {
   } else {
     return "";
   }
+}
+
+// helper to create tabbed group of decorator and interface based schemas in TS
+export function DataModels({ codeLang, decoratorExample, interfaceExample }) {
+  return (
+    <Tabs groupId={dataModelTabGroupId}>
+      <TabItem value={decoratorModelLabel} label={decoratorModelLabel}>
+        <CodeBlock language={codeLang}>{decoratorExample}</CodeBlock>
+      </TabItem>
+      <TabItem value={interfaceModelLabel} label={interfaceModelLabel}>
+        <CodeBlock language={codeLang}>{interfaceExample}</CodeBlock>
+      </TabItem>
+    </Tabs>
+  );
+}
+
+export function TSDataModels({ decoratorExample, interfaceExample }) {
+  return DataModels({
+    codeLang: "typescript",
+    decoratorExample: decoratorExample,
+    interfaceExample: interfaceExample,
+  });
 }

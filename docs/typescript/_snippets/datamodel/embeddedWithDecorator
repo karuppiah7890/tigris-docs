@@ -1,0 +1,22 @@
+export class ProductItem {
+  @Field()
+  productId: string;
+
+  @Field()
+  quantity: number;
+}
+
+@TigrisCollection("orders")
+export class Order implements TigrisCollectionType {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  orderId?: string;
+
+  @Field()
+  userId: bigint;
+
+  @Field()
+  orderTotal: number;
+
+  @Field({ elements: ProductItem })
+  productItems: Array<ProductItem>
+}

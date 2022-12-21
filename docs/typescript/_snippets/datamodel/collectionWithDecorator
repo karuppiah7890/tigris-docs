@@ -1,0 +1,29 @@
+export const CATALOG_COLLECTION_NAME = "catalog";
+
+@TigrisCollection(CATALOG_COLLECTION_NAME)
+class Catalog implements TigrisCollectionType {
+
+  @PrimaryKey({ order: 1, autoGenerate: true })
+  id?: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  price: number;
+
+  @Field()
+  brand: string;
+
+  @Field()
+  labels: string;
+
+  @Field(TigrisDataTypes.INT32)
+  popularity: number;
+
+  @Field(TigrisDataTypes.DATE_TIME)
+  entryDate: string;
+
+  @Field()
+  enabled: boolean;
+}

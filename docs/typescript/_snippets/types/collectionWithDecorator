@@ -1,0 +1,37 @@
+export class CatalogCategory {
+  @Field()
+  name: string;
+
+  @Field()
+  code: string;
+}
+
+@TigrisCollection("catalog")
+export class Catalog implements TigrisCollectionType {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id?: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  enabled: boolean;
+
+  @Field(TigrisDataTypes.INT32)
+  popularity: number;
+
+  @Field()
+  price: number;
+
+  @Field(TigrisDataTypes.DATE_TIME)
+  entryDate: string;
+
+  @Field(TigrisDataTypes.UUID)
+  uuid: string;
+
+  @Field({ elements: TigrisDataTypes.STRING })
+  labels: string[];
+
+  @Field()
+  category: CatalogCategory;
+}

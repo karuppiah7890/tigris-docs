@@ -1,0 +1,7 @@
+export class CatalogCategory {
+  @Field()
+  name: string;
+
+  @Field(TigrisDataTypes.NUMBER_BIGINT)
+  code: string;
+}

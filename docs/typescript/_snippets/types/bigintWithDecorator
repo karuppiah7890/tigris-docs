@@ -1,0 +1,15 @@
+const tigris = new Tigris({
+  serverUrl: "api.preview.tigrisdata.cloud",
+  clientId: "paste client_id here",
+  clientSecret: "paste client_secret here",
+  projectName: "paste project name here",
+  supportBigInt: true
+});
+
+export class CatalogCategory {
+  @Field()
+  name: string;
+
+  @Field()
+  code: bigint;
+}

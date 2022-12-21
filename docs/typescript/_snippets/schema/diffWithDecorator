@@ -1,0 +1,25 @@
+export class ProductAttributes {
+  @Field()
+  name: string;
+
+  @Field()
+  value: string;
+}
+
+@TigrisCollection("catalog")
+export class Catalog {
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id: bigint;
+
+  @Field()
+  name: string;
+
+  @Field()
+  price: number;
+
+  @Field({ elements: ProductAttributes })
+  attributes: Array<ProductAttributes>;
++
++  @Field()
++  brand: string;
+}

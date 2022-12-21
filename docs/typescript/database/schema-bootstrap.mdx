@@ -14,108 +14,88 @@ change control as simple as a "Code review". Let's see how this works.
 
 ## How does this work?
 
-Define your data models as usual in your TypeScript project. Register the directory with the Tigris
-client during build time and let the Tigris SDK automatically synchronize your data models
-with the database. This includes creating databases and collections that do not exist, as well as
+Define your data models [using decorators](datamodel#declare-using-decorators) in your TypeScript project.
+Register them with the Tigris client during build time and let the Tigris SDK automatically synchronize your
+data models with the database. This includes creating collections that do not exist, as well as
 applying schema changes if the data model has evolved.
 
-For example, let's use `<project root>/models/tigris` as a standalone directory to define our models.
+For example, let's use following `Product` and `User` data model:
 
-### Directories and Files inside `<project root>/models/tigris`
-
-Let's take a look at following directory structure:
-
-```text
-<project root>
-└── models
-    └── tigris
-        └── catalog
-            ├── products.ts
-            └── orders.ts
-```
-
-- **Directories** are used to define databases. In this example, a database name is derived from the
-  directory immediately under `<project root>/models/tigris`, which in this case is `catalog`.
-- **Files** inside directories are used to represent collections in the respective database. From the
-  example, two collections named `products` and `orders` will be created inside `catalog`.
-  Following is an example schema definition in `products.ts`
-
-```ts title="models/tigris/catalog/products.ts"
+```ts title="models/tigris/product.ts"
 import {
   TigrisCollectionType,
+  TigrisCollection,
   TigrisDataTypes,
-  TigrisSchema,
-} from "@tigrisdata/core/dist/types";
+  PrimaryKey,
+  Field,
+} from "@tigrisdata/core";
 
-export interface Product extends TigrisCollectionType {
+export const PRODUCTS_COLLECTION_NAME = "products";
+
+@TigrisCollection(PRODUCTS_COLLECTION_NAME)
+export class Product implements TigrisCollectionType {
+  @PrimaryKey(TigrisDataTypes.INT32, { order: 1, autoGenerate: true })
   id?: number;
+
+  @Field()
   title: string;
+
+  @Field()
   description: string;
+
+  @Field()
   price: number;
 }
-
-export const ProductSchema: TigrisSchema<Product> = {
-  id: {
-    type: TigrisDataTypes.INT32,
-    primary_key: { order: 1, autoGenerate: true },
-  },
-  title: {
-    type: TigrisDataTypes.STRING,
-  },
-  description: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-};
 ```
 
-A file can only have 1 exported value of `TigrisSchema` type. If you are using embedded schemas, only
-export the schema you want to use for Collection. Here is an example of embedded collection schema:
+```ts title="models/tigris/user.ts"
+import {
+  TigrisCollectionType,
+  TigrisCollection,
+  TigrisDataTypes,
+  PrimaryKey,
+  Field,
+} from "@tigrisdata/core";
 
-```ts title="User model"
-export interface Status {
+export const USERS_COLLECTION_NAME = "users";
+
+export class Status {
+  @Field(TigrisDataTypes.DATE_TIME)
   lastSeenAt: string;
+
+  @Field(TigrisDataTypes.DATE_TIME)
   memberSince: string;
 }
 
-const statusSchema: TigrisSchema<Status> = {
-  lastSeenAt: { type: TigrisDataTypes.DATE_TIME },
-  memberSince: { type: TigrisDataTypes.DATE_TIME },
-};
+@TigrisCollection(USERS_COLLECTION_NAME)
+export class User implements TigrisCollectionType {
+  @PrimaryKey({ order: 1 })
+  name: number;
 
-export interface User extends TigrisCollectionType {
-  name: string;
+  @Field()
   status: Status;
 }
-
-export const userSchema: TigrisSchema<User> = {
-  name: { type: TigrisDataTypes.STRING },
-  status: { type: statusSchema },
-};
 ```
-
-Note, how we are only exporting `userSchema` and not using `export const statusSchema` to ensure this
-file represents a single collection.
 
 ### Use this script to register models
 
-Now, let's write a script that can trigger build time to automatically scan the models directory
-and create the resources.
+Now, let's write a script that can trigger build time to automatically create or update the collections
 
 ```ts title="scripts/setup.ts"
 import { Tigris } from "@tigrisdata/core";
+import { Product } from "../models/product";
+import { User } from "../models/user";
 
 async function main() {
   const tigris = new Tigris({
     serverUrl: "api.preview.tigrisdata.cloud",
     clientId: "Your client_id here",
     clientSecret: "Your client_secret here",
+    projectName: "Your project name here",
   });
 
   //highlight-start
-  await tigris.registerSchemas("models/tigris");
+  await tigris.registerSchemas([Product, User]);
   //highlight-end
 }
 ```
@@ -226,13 +206,6 @@ your development workflow.
 ## FAQs
 
 <details>
-  <summary>Q - Will a database be created if it already exists?</summary>
-
-- No, Tigris automatically detects if the database already exists.
-
-</details>
-
-<details>
   <summary>Q - Will a new collection be created if it already exists?</summary>
 
 - No, a new collection will not be created. However, Tigris will attempt to modify the existing
@@ -241,16 +214,9 @@ your development workflow.
 </details>
 
 <details>
-  <summary>Q - What happens if there are no valid schema files in database directory?</summary>
+  <summary>Q - Will a collection be deleted if corresponding model is removed?</summary>
 
-- A database will still be created. Empty or invalid collection schema definitions will be ignored.
-
-</details>
-
-<details>
-  <summary>Q - Will a database/collection be deleted if corresponding directory/file is removed?</summary>
-
-- No, that would be an unsafe operation. Users have to explicitly delete databases and collections.
+- No, that would be an unsafe operation. Users have to explicitly delete collection(s).
 
 </details>
 

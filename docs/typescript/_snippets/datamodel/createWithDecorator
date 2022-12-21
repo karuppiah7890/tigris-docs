@@ -1,0 +1,3 @@
+const catalog = await db.createOrUpdateCollection<Catalog>(
+  Catalog
+);

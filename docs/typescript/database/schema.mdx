@@ -1,6 +1,15 @@
+import { DataModels, TSDataModels } from "../../templates/commons";
+import decoratorCollectionSource from "!!raw-loader!../_snippets/schema/collectionWithDecorator";
+import interfaceCollectionSource from "!!raw-loader!../_snippets/schema/collectionWithInterface";
+import decoratorCreateSource from "!!raw-loader!../_snippets/schema/createWithDecorator";
+import interfaceCreateSource from "!!raw-loader!../_snippets/schema/createWithInterface";
+import decoratorDiffSource from "!!raw-loader!../_snippets/schema/diffWithDecorator";
+import interfaceDiffSource from "!!raw-loader!../_snippets/schema/diffWithInterface";
+
 # Schema
 
-A schema defines all the fields that make up the document in a collection. All documents stored in a collection must conform to the collection's schema
+A schema defines all the fields that make up the document in a collection. All documents stored in a
+collection must conform to the collection's schema.
 
 ## Schema Validation
 
@@ -13,73 +22,61 @@ The validation happens during the inserts or updates to the collection. The vali
   input.
 </li>
 
-## Modifying the Schema
+## Modifying Schema
 
-After creating the collection, you can update the schema at any time. For example, in the previous Catalog model you
-need to add a `description` field to store product description. This can be achieve by just calling `createOrUpdateCollection`
-with a new model.
+Tigris provides a lightweight way to modify the schema. Within Tigris, the
+schema change is a metadata operation and hence doesn't require rebuilding
+the entire collection. The updated schema is made available immediately to
+new write operations.
 
-### Step 1: Update the Model
+However, there are certain restrictions on the type of modifications allowed.
+These restrictions are in place to ensure that we don't need to rebuild
+collections on schema changes.
 
-Add the new field in your model.
+### Allowed modifications
 
-```ts
-// data container
-interface Catalog extends TigrisCollectionType {
-  id?: string;
-  name: string;
-  price: number;
-  brand: string;
-  labels: string;
-  popularity: number;
-  attributes: object;
-  description: string;
-  creationDate: Date;
-}
+The following schema changes are currently supported:
 
-// schema definition
-const catalogSchema: TigrisSchema<Catalog> = {
-  id: {
-    type: TigrisDataTypes.INT64,
-    primary_key: {
-      order: 1,
-      autoGenerate: true,
-    },
-  },
-  name: {
-    type: TigrisDataTypes.STRING,
-  },
-  price: {
-    type: TigrisDataTypes.NUMBER,
-  },
-  brand: {
-    type: TigrisDataTypes.STRING,
-  },
-  labels: {
-    type: TigrisDataTypes.STRING,
-  },
-  popularity: {
-    type: TigrisDataTypes.INT32,
-  },
-  attribute: {
-    type: TigrisDataTypes.OBJECT,
-  },
-  description: {
-    type: TigrisDataTypes.STRING,
-  },
-  creationDate: {
-    type: TigrisDataTypes.DATE_TIME,
-  },
-};
-```
+- Adding a new field to an existing collection
+- Defining a maximum length constraint on existing string or byte type
+  fields. The constraint will only apply to documents added after the
+  constraint is defined
+- Increasing the maximum length constraint on existing string or byte type
+  fields.
 
-### Step 2: Update the Collection
+### Unsupported modifications
+
+The following schema changes are currently not supported:
+
+- Changing the data type of a field
+- Removing a field from the schema
+- Adding or removing a field from the primary key definition
+
+### How to modify the schema
+
+Suppose you have the following data model defined:
+
+<TSDataModels
+  decoratorExample={decoratorCollectionSource}
+  interfaceExample={interfaceCollectionSource}
+/>
+
+And you would like to modify the model and add a new field `brand` of type
+`string`. The steps to make this change are as follows:
+
+#### Step 1: Update the data model in your application code
+
+<DataModels
+  codeLang="diff"
+  decoratorExample={decoratorDiffSource}
+  interfaceExample={interfaceDiffSource}
+/>
+
+#### Step 2: Update the Collection
 
 Updates the collection with the new model and any new operation will see the changes.
 
-```ts
-const catalog = await db.createOrUpdateCollection<Catalog>(
-  "catalog",
-  catalogSchema
-);
-```
+<TSDataModels
+  decoratorExample={decoratorCreateSource}
+  interfaceExample={interfaceCreateSource}
+/>
