@@ -36,7 +36,7 @@ This is a simple command to quickly start building a new Next.js application bas
 It may ask you a project name to download the project resources. We choose `my-nextjs-blog` as our
 project name.
 
-Change to `my-nextjs-blog` directory and install the the Tigris SDK:
+Change to `my-nextjs-blog` directory and install the Tigris SDK:
 
 ```shell
 cd my-nextjs-blog
@@ -51,7 +51,8 @@ Click on the `Create a new project` button from the
 
 ![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
 
-We will be using `MyNextjsBlog` as the project name.
+Use `MyNextjsBlog` as the project name.
+
 Tigris will generate the credentials for your application, and you will be shown
 a command to generate application code with Tigris pre-configured.
 
@@ -262,7 +263,7 @@ collection and returned them as json.
 
 #### ⌲ POST `/api/comments` to add a new blog data.
 
-Now, create a `POST` handler in the same file `pages/api/comments/index.ts` where
+Next, create a `POST` handler in the same file `pages/api/comments/index.ts` where
 we added the `GET` handler above. This will store a new comment in the
 `Comments` collection.
 
@@ -281,7 +282,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse<Response>) {
 //...
 ```
 
-Now add the handler function to define the routes for the API endpoints:
+Finally, add the handler function to define the routes for the API endpoints:
 
 ```ts title=pages/api/comments/index.ts
 //...
@@ -310,7 +311,7 @@ The search endpoint will allow users to find comments in the collection. Let's
 add this endpoint that accepts a query parameter and responds with matching
 results. Eg. GET `/api/comments/search?q="query"`
 
-Now create a `search.ts` file in the `pages/api/comments` directory and add the code:
+Create a `search.ts` file in the `pages/api/comments` directory and add the code:
 
 ```ts title=pages/api/comments/search.ts
 import { NextApiRequest, NextApiResponse } from "next";
@@ -543,7 +544,7 @@ export default function Post({ ... }: ... {
 
 ## Run the application
 
-Now our blog application is ready with the shiny new comments functionality.
+Our blog application is now ready with the shiny new comments functionality.
 Let's run the application.
 
 ```shell
