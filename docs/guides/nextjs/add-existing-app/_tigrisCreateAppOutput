@@ -1,9 +1,0 @@
-$ tigris create application my-awesome-blog "My blog using Tigris"
-{
-  "id": "client_id_here",
-  "name": "my-awesome-blog",
-  "description": "My blog using Tigris",
-  "secret": "client_secret_here",
-  "created_at": 1668649071000,
-  "created_by": "auth0|xxx"
-}

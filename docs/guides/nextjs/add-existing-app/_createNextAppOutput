@@ -1,17 +1,18 @@
-$ ➔ npx create-next-app --example https://github.com/tigrisdata/tigris-vercel-starter/tree/main-scaffold
+$ npx create-next-app@latest --example blog-starter
 Need to install the following packages:
-  create-next-app
+  create-next-app@13.0.7
 Ok to proceed? (y) y
 ✔ What is your project named? … my-nextjs-blog
 Creating a new Next.js app in <Current directory>/my-nextjs-blog.
 
-Downloading files from repo https://github.com/tigrisdata/tigris-vercel-starter/tree/main-scaffold. This might take a moment.
+Downloading files for example blog-starter. This might take a moment.
 
 Installing packages. This might take a couple of minutes.
 
-added 289 packages, and audited 290 packages in 4s
 
-88 packages are looking for funding
+added 180 packages, and audited 181 packages in 13s
+
+82 packages are looking for funding
   run `npm fund` for details
 
 found 0 vulnerabilities
@@ -34,4 +35,3 @@ We suggest that you begin by typing:
 
   cd my-nextjs-blog
   npm run dev
-

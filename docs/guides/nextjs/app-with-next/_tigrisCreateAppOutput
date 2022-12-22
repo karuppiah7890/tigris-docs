@@ -1,9 +1,0 @@
-$ tigris create application starter-todo-app "Starter todo application"
-{
-  "id": "client_id_here",
-  "name": "starter-todo-app",
-  "description": "Starter todo application",
-  "secret": "client_secret_here",
-  "created_at": 1668649071000,
-  "created_by": "auth0|xxx"
-}

@@ -2,241 +2,243 @@
 title: Add Tigris to an existing Next.js Application
 ---
 
-import {
-  HomepageCard as Card,
-  HomepageSection as Section,
-} from "../../../../src/components/HomepageComponents";
 import TerminalWindow from "@site/src/components/TerminalWindow/index";
 import CodeBlock from "@theme/CodeBlock";
 import createNextAppOutput from "!!raw-loader!./_createNextAppOutput";
 import runDevOutput from "!!raw-loader!./_runDevOutput";
-import loginOutput from "!!raw-loader!./_loginOutput";
-import tigrisCreateAppOutput from "!!raw-loader!./_tigrisCreateAppOutput";
 import Installation from "../../../includes/_install_cloud_login.mdx";
 
 # Add Tigris to an existing Next.js Application
 
-This guide discusses the concepts behind using Tigris in your existing Next.js project and configuring your application to integrate with Tigris.
+In this guide we will take an existing Next.js [blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)
+application. This application is static in nature. We will make it dynamic by
+adding comments feature that will use Tigris for data storage and retrieval.
 
 ![add_to_existing_app_result](/img/gifs/add_to_existing_app_result.gif)
 
-### Installation
+## Prerequisites
 
 <Installation />
 
-Then, clone the Next.js blog-starter application:
+## Create Next.js app using blog-starter template
+
+Then, create a new Next.js application using the blog-starter template
 
 ```shell
 npx create-next-app@latest --example blog-starter
 ```
 
-```mdx-code-block
 <TerminalWindow>
-<CodeBlock language="shell">{createNextAppOutput}</CodeBlock>
+  <CodeBlock language="shell">{createNextAppOutput}</CodeBlock>
 </TerminalWindow>
-```
 
 This is a simple command to quickly start building a new Next.js application based off a template.
 It may ask you a project name to download the project resources. We choose `my-nextjs-blog` as our
 project name.
 
-Change to `my-nextjs-blog` directory and install the dependencies:
+Change to `my-nextjs-blog` directory and install the the Tigris SDK:
 
 ```shell
 cd my-nextjs-blog
-npm install
-```
-
-Now, install the Tigris SDK:
-
-```shell
 npm install @tigrisdata/core@latest --save
 ```
 
-### Setup Tigris account
+### Create Tigris Project
 
-Next, sign in to your existing Tigris account or signup for a new account:
+Now let's create a Tigris project for our blogging application.
+Click on the `Create a new project` button from the
+[Tigris Cloud dashboard](https://console.preview.tigrisdata.cloud/).
 
-```shell
-tigris login
-```
+![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
 
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">{loginOutput}</CodeBlock>
-</TerminalWindow>
-```
+We will be using `MyNextjsBlog` as the project name.
+Tigris will generate the credentials for your application, and you will be shown
+a command to generate application code with Tigris pre-configured.
 
-### Add Tigris Cloud Credentials
+![The create-tigirs-app terminal command displayed within a dialog within the Tigris web console](/img/screenshots/create-new-project-dialog-2.jpg)
 
-For your application to connect with Tigris, you need to generate some credentials and
-add them to the environment file.
+As we are not creating a new application, rather adding Tigris to an existing
+application, we don't need to run this command.
 
-```shell
-tigris create application <YOUR_APP_NAME> "<YOUR_APP_DESCRIPTION>"
-```
+Let's copy the `project name`, `clientId` and `clientSecret` from the command shown
+and close the modal.
 
-Replace `<YOUR_APP_NAME>` and `<YOUR_APP_DESCRIPTION>` arguments with your application's name and description, respectively. Then this will create the credentials and print them on the terminal screen:
+### Configure environment variables
 
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">{tigrisCreateAppOutput}</CodeBlock>
-</TerminalWindow>
-```
+Now that we have created the project, lets set up the environment variables
+which will allow the blog application to connect with Tigris.
 
-You will use the `id` and `secret` from the output and add them as `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`
-respectively in the file `.env.development.local` in your project.
+We will use the project name, clientId and clientSecret from the previous step
 
-Now, create a `.env.development.local` file in your project root directory and add the application credentials generated above to it:
-
-```dotenv title=.env.development.local
+```dotenv title=.env.local
 TIGRIS_URI=api.preview.tigrisdata.cloud
-TIGRIS_CLIENT_ID=client_id_here
-TIGRIS_CLIENT_SECRET=client_secret_here
+TIGRIS_PROJECT=MyNextjsBlog
+TIGRIS_CLIENT_ID=ftSUj9B5czFW79s9M6YUkxKE3H4WeRyY
+TIGRIS_CLIENT_SECRET=DOxxx
 ```
 
-### Configure Tigris DB
+### Configure tsconfig.json
 
-Create a `tigris.ts` file in the `lib` folder to configure Tigris database for development and production:
+Let's ensure that the required settings are enabled in `tsconfig.json`.
 
-```ts title=lib/tigris.ts
-import { DB, Tigris } from "@tigrisdata/core";
-
-const DB_NAME = "Comment";
-
-declare global {
-  // eslint-disable-next-line no-var
-  var tigrisDb: DB;
+```json title=tsconfig.json
+{
+  "compilerOptions": {
+    // highlight-next-line
+    "experimentalDecorators": true,
+    // highlight-next-line
+    "emitDecoratorMetadata": true,
+    "target": "es5",
+    "module": "esnext",
+    "jsx": "preserve",
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true
+  },
+  // highlight-start
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
+  // highlight-end
+  "exclude": ["node_modules"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
-
-let tigrisDb: DB;
-
-// Caching the client because `next dev` would otherwise create a
-// new connection on every file save while previous connection is active due to
-// hot reloading. However, in production, Next.js would completely tear down before
-// restarting, thus, disconnecting and reconnecting to Tigris.
-if (process.env.NODE_ENV !== "production") {
-  if (!global.tigrisDb) {
-    const tigrisClient = new Tigris();
-    global.tigrisDb = tigrisClient.getDatabase(DB_NAME);
-  }
-  tigrisDb = global.tigrisDb;
-} else {
-  const tigrisClient = new Tigris();
-  tigrisDb = tigrisClient.getDatabase(DB_NAME);
-}
-
-// export to share DB across modules
-export default tigrisDb;
 ```
 
-### Define Models{#data-model}
+### Create a Tigris Collection
 
-Tigris stores data records as documents. Documents are analogous to JSON objects grouped in
-a [Collection](/overview/databases). Tigris follows a convention of having models and schemas in `models/tigris` directory. Your model's structure should look like `models/tigris/<COLLECTION_NAME>.ts`
+Every Tigris project comes with a pre-configured database and stores data
+records as documents. Documents are analogous to JSON objects grouped in
+a [Collection](/overview/databases).
 
-For example, create a `models/tigris/comments.ts` file in the project's root directory and add the code:
+Let's create a data model to define the collection. We will be storing the data
+models in the directory `db/models`.
 
-```ts title=models/tigris/comments.ts
+```ts title=db/models/comments.ts
 import {
-  TigrisCollectionType,
+  Field,
+  PrimaryKey,
+  TigrisCollection,
   TigrisDataTypes,
-  TigrisSchema,
-} from "@tigrisdata/core/dist/types";
+} from "@tigrisdata/core";
 
-export const COLLECTION_NAME = "comments";
+@TigrisCollection("comments")
+export class Comments {
+  @PrimaryKey(TigrisDataTypes.INT32, { order: 1, autoGenerate: true })
+  id!: number;
 
-export interface Comments extends TigrisCollectionType {
-  id: number;
+  @Field()
   name: string;
+
+  @Field()
   content: string;
+
+  @Field(TigrisDataTypes.DATE_TIME)
   date: string;
 }
-
-export const CommentsSchema: TigrisSchema<Comments> = {
-  id: {
-    type: TigrisDataTypes.INT32,
-    primary_key: { order: 1, autoGenerate: true },
-  },
-  name: { type: TigrisDataTypes.STRING },
-  content: { type: TigrisDataTypes.STRING },
-  date: { type: TigrisDataTypes.DATE_TIME },
-};
 ```
 
-You've imported the Tigris `TigrisCollectionType` type, which is extended to define a model for your collections, the `TigrisDataTypes` type that gives you access to the Tigris data types, and the `TigrisSchema` which is used to define the schema for collections.
+Let's see what is going on here. You've imported the Tigris `@TigrisCollection`
+decorator, which accepts a collection name as an argument to create a collection.
+The `TigrisDataTypes` type gives you access to the Tigris data types.
+`@Field` decorator defines the collection fields and the `@PrimaryKey` decorator
+define the primary of the collection.
 
-### Tigris Automatic schema management
+### Create a setup script
 
-Now let's set up Tigris automatic schema management, which will convert your data models to databases and collections. First, create the file `sripts/setup.ts` and add the following code:
+Now we will create a setup script which will take care of creating the
+collection for the data model defined above.
 
-```ts title=scripts/setup.ts
-import { Tigris } from "@tigrisdata/core";
+```ts title=setup.ts
 import { loadEnvConfig } from "@next/env";
-
-// Run the config loader only when not executing within next runtime
-if (process.env.NODE_ENV === undefined) {
-  if (process.env.APP_ENV === "development") {
-    loadEnvConfig(process.cwd(), true);
-  } else if (process.env.APP_ENV === "production") {
-    loadEnvConfig(process.cwd());
-  }
-}
+import { Tigris } from "@tigrisdata/core";
+import { Comments } from "./db/models/comments";
 
 async function main() {
-  // setup client and register schemas
+  // load environment variables
+  loadEnvConfig(process.cwd());
+
+  // create collections
   const tigrisClient = new Tigris();
-  await tigrisClient.registerSchemas("models/tigris");
+  await tigrisClient.registerSchemas([Comments]);
 }
 
-main();
+main()
+  .then(async () => {
+    console.log("Setup complete ...");
+    process.exit(0);
+  })
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  });
 ```
 
-Here we used the `registerSchemas()` method, which accepts the path to the databases and collections that need to be created. Then you register all the collections in your `models/tigris` directory with
-Tigris client that includes a `comment.ts` file with the `CommentsSchema` you defined.
+Here we have used the `registerSchemas` method, which takes in an array of all
+the model classes defined in your `db/model` directory. In our case we have a
+single model class `Comments`.
+When this script is executed Tigris will create a collection named `comments`
+corresponding to the model class `Comments`.
 
-Once the script runs, a database named `Comment` (as specified the in the `DB_NAME` variable in the `lib/tigris.ts` file) and a collection called `comments` (as defined in the `COLLECTION_NAME` variable in the `models/tigris/comment.ts` file) will be created, conforming to `CommentsSchema`. If the collection already exists, it will apply schema changes, if any, to that collection.
-
-Next, automate this process by consistently executing the script at build time. Update your
-`package.json` file with highlighted scripts:
+Next, let's add `setup.ts` as one of the scripts in `package.json`.
 
 ```json title=package.json
   "scripts": {
     // highlight-next-line
-    "predev": "APP_ENV=development npm run setup",
-    "dev": "next dev",
+    "predev": "npm run setup",
+    "dev": "next",
     "build": "next build",
     // highlight-next-line
-    "postbuild": "APP_ENV=production npm run setup",
-    "start": "next start",
-    "clean": "rm -rf node_modules .next",
+    "postbuild": "npm run setup",
     // highlight-next-line
-    "setup": "npx ts-node scripts/setup.ts"
+    "setup": "npx ts-node setup.ts",
+    "start": "next start",
+    "typecheck": "tsc"
   }
 ```
 
-You have added a `setup` command to run `scripts/setup.ts` and then added a `predev` hook to setup
-schemas right before `dev` command is executed. Additionally, we added a `postbuild` hook to
-set up schemas in the production environment right after `build`. Now, all your databases and
-collections will sync with model definitions in the code.
+Now, whenever you run your application your collections will always be in sync
+with the data models defined in the application.
 
-:::tip No more schema management
-You don't have to worry about applying schema changes anymore, managing schema is now a part of your
-development workflow. Read more about this automated schema management [here](/typescript/documents/schema-bootstrap).
-:::
+### Instantiate the Tigris client
+
+Next, initialize the Tigris client and export it to share it across all the
+modules.
+
+```ts title=lib/tigris.ts
+import { DB, Tigris } from "@tigrisdata/core";
+
+const tigrisClient = new Tigris();
+const tigrisDB: DB = tigrisClient.getDatabase();
+
+// export to share DB across modules
+export default tigrisDB;
+```
 
 ### Create CRUD Operations
 
-You can now create and execute CRUD operations against the `comments` collection. These
-endpoints will be used by the client component of your application to perform CRUD operations in Tigris. Create an `api/comments/index.ts` file in the `pages` folder to
-define your API endpoints.
+You can now create and execute CRUD operations against the `comments`
+collection. These endpoints will be used by the client component of your
+application to perform CRUD operations in Tigris. Create a
+`api/comments/index.ts` file in the `pages` directory to define your API
+endpoints.
 
-#### ⌲ GET `/api/comments` to fetch all the comments.
+#### ⌲ GET `/api/comments` to fetch all blogs.
 
 ```ts title=pages/api/comments/index.ts
-import { NextApiRequest, NextApiResponse } from "next";
-import { COLLECTION_NAME, Comments } from "../../../models/tigris/comment";
-import tigrisDb from "../../../lib/tigris";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { Comments } from "../../../db/models/comments";
+import tigrisDB from "../../../lib/tigris";
 
 type Response = {
   result?: Array<Comments>;
@@ -245,45 +247,41 @@ type Response = {
 
 async function handleGet(req: NextApiRequest, res: NextApiResponse<Response>) {
   try {
-    const commentsCollection =
-      tigrisDb.getCollection<Comments>(COLLECTION_NAME);
+    const commentsCollection = tigrisDB.getCollection<Comments>(Comments);
     const cursor = commentsCollection.findMany();
     const comments = await cursor.toArray();
     res.status(200).json({ result: comments });
   } catch (err) {
-    const error = err as Error;
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: err.message });
   }
 }
 ```
 
-Here we used a simple `findMany()` construct to read documents from a Tigris collection and returned
-them as json.
+Here we used a simple `findMany()` function to read documents from a Tigris
+collection and returned them as json.
 
-#### ⌲ POST `/api/comments` to add new comment to the collection.
+#### ⌲ POST `/api/comments` to add a new blog data.
 
-Now, create a `POST` method in `pages/api/comments/index.ts` create a new comment with the code:
+Now, create a `POST` handler in the same file `pages/api/comments/index.ts` where
+we added the `GET` handler above. This will store a new comment in the
+`Comments` collection.
 
 ```ts title=pages/api/comments/index.ts
 //...
 async function handlePost(req: NextApiRequest, res: NextApiResponse<Response>) {
   try {
     const comment = JSON.parse(req.body) as Comments;
-    const commentsCollection =
-      tigrisDb.getCollection<Comments>(COLLECTION_NAME);
-    const inserted = await commentsCollection.insertOne(blog);
+    const commentsCollection = tigrisDB.getCollection<Comments>(Comments);
+    const inserted = await commentsCollection.insertOne(comment);
     res.status(200).json({ result: [inserted] });
   } catch (err) {
-    const error = err as Error;
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: err.message });
   }
 }
 //...
 ```
 
-Here we implemented a function that enables the user to insert a new comment into the collection using the `insertOne()` constructor.
-
-Now add the `handler` function to define the routes for the API endpoints:
+Now add the handler function to define the routes for the API endpoints:
 
 ```ts title=pages/api/comments/index.ts
 //...
@@ -308,14 +306,15 @@ export default async function handler(
 
 #### ⌲ GET `/api/comments/search` to find a comment matching the given query
 
-The search endpoint will allow users to find comments in the collection. Let's add this endpoint that
-accepts a query parameter and responds with matching results. Eg. GET `/api/comments/search?q="input query"`
+The search endpoint will allow users to find comments in the collection. Let's
+add this endpoint that accepts a query parameter and responds with matching
+results. Eg. GET `/api/comments/search?q="query"`
 
-Now create a `search.ts` file in the `pages/api/comments` folder and add the code:
+Now create a `search.ts` file in the `pages/api/comments` directory and add the code:
 
 ```ts title=pages/api/comments/search.ts
 import { NextApiRequest, NextApiResponse } from "next";
-import { COLLECTION_NAME, Comments } from "../../../models/tigris/comment";
+import { Comments } from "../../../db/models/comments";
 import { SearchRequest } from "@tigrisdata/core/dist/search/types";
 import tigrisDb from "../../../lib/tigris";
 
@@ -334,7 +333,7 @@ export default async function handler(
     return;
   }
   try {
-    const commentCollection = tigrisDb.getCollection<Comments>(COLLECTION_NAME);
+    const commentCollection = tigrisDb.getCollection<Comments>(Comments);
     const searchRequest: SearchRequest<Comments> = { q: query as string };
     const searchResult = await commentCollection.search(searchRequest);
     const comment = new Array<Comments>();
@@ -343,27 +342,31 @@ export default async function handler(
     }
     res.status(200).json({ result: comment });
   } catch (err) {
-    const error = err as Error;
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: err.message });
   }
 }
 ```
 
 :::tip Built-in search
-Tigris makes it really easy to implement [search](/typescript/documents/search) within your applications
-by providing an embedded search engine that makes all your data instantly searchable.
+Tigris makes it really easy to implement [search](/typescript/database/search)
+within your applications by providing a serverless full-text search engine that
+makes all your data instantly searchable.
 :::
 
-### Use in the Components
+### Use in the components
 
-Now you can request the API to fetch and manipulate the data from your Tigris database in clients components.
-First, create a `comment.tsx` and `each-comments.tsx` files in the `components` folder to create the components for the comments. Inside the `each-comments.tsx` file, add the code:
+Now you can request the API to fetch and manipulate the data from your Tigris
+database in clients components. First, create `comment.tsx` and
+`each-comments.tsx` files in the `components` directory to create the
+components for the comments.
+
+Inside the `components/each-comments.tsx` file, add the following code:
 
 ```tsx title=components/each-comments.tsx
-import { Comments } from "../models/tigris/comment";
+import { Comments } from "../db/models/comments";
 
 type Props = {
-  comment: CommentType;
+  comment: Comments;
 };
 const EachComments = ({ comment }: Props) => {
   return (
@@ -395,17 +398,24 @@ const EachComments = ({ comment }: Props) => {
 export default EachComments;
 ```
 
-Next, add the code below to the `comment.tsx` file:
+Next, let's define the React component that is rendered on the browser using the
+API endpoints we created in the previous section.
+Add the code below to the `components/comment.tsx` file:
 
 ```tsx title=components/comment.tsx
 import { useEffect, useState } from "react";
-import { Comments } from "../models/tigris/comment";
+import { Comments } from "../db/models/comments";
 import EachComments from "./each-comments";
 
 const Comment = () => {
   const [comments, setComments] = useState<Comments[]>([]);
   const [isError, setIsError] = useState(false);
+  const [nameInput, setNameInput] = useState("");
+  const [commentInput, setCommentInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
+  // fetch list of comments from `/api/comments` endpoint which in turn
+  // reads from the comments collection
   const fetchComments = () => {
     fetch("/api/comments")
       .then((response) => response.json())
@@ -421,138 +431,138 @@ const Comment = () => {
       });
   };
 
+  // create a new comment by sending a POST request to `/api/comments` endpoint
+  const addComment = () => {
+    fetch("/api/comments", {
+      method: "POST",
+      body: JSON.stringify({
+        name: nameInput,
+        content: commentInput,
+        date: new Date().toJSON(),
+      }),
+    }).then(() => {
+      setCommentInput("");
+      setNameInput("");
+      fetchComments();
+    });
+  };
+
+  // query the collection for a comments by sending a GET request to
+  // the `/api/comments/search` endpoint
+  const searchQuery = () => {
+    fetch(`/api/comments/search?q=${encodeURI(searchInput)}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          setComments(data.result);
+        }
+      });
+  };
+
   useEffect(() => {
     fetchComments();
   }, []);
+
+  // render the comments and add the functions defined above to their
+  // respective event handlers
+  return (
+    <div className="max-w-2xl mx-auto">
+      <input
+        className="border border-gray-300 text-gray-900 dark:text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 mb-6"
+        placeholder="Search..."
+        onChange={(e) => setSearchInput(e.target.value)}
+        onKeyUp={searchQuery}
+      />
+
+      {comments.length ? (
+        comments.map((comment) => (
+          <EachComments comment={comment} key={comment.id} />
+        ))
+      ) : (
+        <p className="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
+          No comments...
+        </p>
+      )}
+      <h3>Leave a comment</h3>
+      <div className="mb-6 mt-6">
+        <input
+          className="border border-gray-300 text-gray-900 dark:text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Name:"
+          onChange={(e) => setNameInput(e.target.value)}
+          value={nameInput}
+        />
+      </div>
+      <div className="mb-6 mt-6">
+        <textarea
+          className="border border-gray-300 text-gray-900 dark:text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Say something..."
+          onChange={(e) => setCommentInput(e.target.value)}
+          value={commentInput}
+        />
+      </div>
+      <button
+        type="submit"
+        className="bg-gray-600 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium text-white rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3"
+        onClick={addComment}
+      >
+        Post comment
+      </button>
+      {isError && (
+        <p className="text-red-600">Something went wrong: {isError}</p>
+      )}
+    </div>
+  );
 };
 
 export default Comment;
 ```
 
-Here we defined the React component that is rendered on the browser using the API endpoints we created in the previous section. The `fetchComments()` function renders the list by loading comments from `/api/comments` endpoint:
+Lastly, render the `<Comment/>` component inside the `<Container>` component in
+the `pages/posts/[slug].tsx` file:
 
-Similarly, create a `addComment()`, to create a new comment by sending a POST request to `/api/comments` endpoint:
-
-```tsx title=components/comment.tsx
+```tsx title=pages/posts/[slug].tsx
 //...
-const [nameInput, setNameInput] = useState("");
-const [commentInput, setCommentInput] = useState("");
-
-//...
-const addComment = () => {
-  fetch("/api/comments", {
-    method: "POST",
-    body: JSON.stringify({
-      name: nameInput,
-      content: commentInput,
-      date: new Date().toJSON(),
-    }),
-  }).then(() => {
-    setCommentInput("");
-    setNameInput("");
-    fetchComments();
-  });
-};
-//...
-```
-
-Next, add a `searchQuery()` function to query the collection for a comments by sending a GET request to the `/api/comments/search` endpoint:
-
-```tsx title=components/comment.tsx
-//...
-const [searchInput, setSearchInput] = useState("");
-
-//...
-const searchQuery = () => {
-  console.log("dd");
-  fetch(`/api/comments/search?q=${encodeURI(searchInput)}`, {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.result) {
-        setComments(data.result);
-      }
-    });
-};
-//...
-```
-
-Then, render the comments and add the defined functions to their respective event handlers:
-
-```tsx title=components/comment.tsx
-//...
-return (
-  <div className="max-w-2xl mx-auto">
-    <input
-      className="border border-gray-300 text-gray-900 dark:text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2 mb-6"
-      placeholder="Search..."
-      onChange={(e) => setSearchInput(e.target.value)}
-      onKeyUp={searchQuery}
-    />
-
-    {comments.length ? (
-      comments.map((comment) => (
-        <EachComments comment={comment} key={comment.id} />
-      ))
-    ) : (
-      <p className="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
-        No comments...
-      </p>
-    )}
-    <h3>Leave a comment</h3>
-    <div className="mb-6 mt-6">
-      <input
-        className="border border-gray-300 text-gray-900 dark:text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Name:"
-        onChange={(e) => setNameInput(e.target.value)}
-        value={nameInput}
-      />
-    </div>
-    <div className="mb-6 mt-6">
-      <textarea
-        className="border border-gray-300 text-gray-900 dark:text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Say something..."
-        onChange={(e) => setCommentInput(e.target.value)}
-        value={commentInput}
-      />
-    </div>
-    <button
-      type="submit"
-      className="bg-gray-600 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3"
-      onClick={addComment}
-    >
-      Post comment
-    </button>
-    {isError && <p className="text-red-600">Something went wrong: {isError}</p>}
-  </div>
-);
-//...
-```
-
-Lastly, render the `<Comment/>` component inside the `<Container>` component in the `posts/[slug].tsx` file:
-
-```tsx title=posts/[slug].tsx
-//...
-import Comment from "../../components/comment"
+import Comment from '../../components/comment'
 
 //...
 export default function Post({ ... }: ... {
 
   return (
-  //...
+  <Layout preview={preview}>
    <Container>
      //...
      <Comment/>
    </Container>
-   //...
+   </Layout>
   )
 }
 //...
 ```
 
-<!-- MARKDOWN LINKS -->
+## Run the application
 
-[nextjs-url]: https://nextjs.org/
-[tigris-todo-repo-url]: https://github.com/tigrisdata/tigris-vercel-starter
-[tweet-intent]: https://twitter.com/intent/tweet?url=https%3A%2F%2Ftigrisdata.com%2Fnextjs%2F&text=I%20learned%20how%20easy%20it%20is%20to%20build%20%23data%20rich%20applications%20using%20@nextjs%20and%20@TigrisData
+Now our blog application is ready with the shiny new comments functionality.
+Let's run the application.
+
+```shell
+npm run dev
+```
+
+<TerminalWindow>
+  <CodeBlock language="shell">{runDevOutput}</CodeBlock>
+</TerminalWindow>
+
+This should startup the application and make it available on
+[http://localhost:3000](http://localhost:3000)
+
+![blog-starter application running in dev](/img/screenshots/nextjs-blog-starter.jpg)
+
+Head over to one of the blog posts and you will see the comments form.
+
+![blog-starter application post with comments form](/img/screenshots/nextjs-blog-starter-comments.jpg)
+
+Now, if you go back to your [Tigris Cloud console](https://console.preview.tigrisdata.cloud/project/MyNextjsBlog/database),
+you will see the collection for the project and as you will add the comments you
+will see the data show up.

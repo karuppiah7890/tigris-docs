@@ -324,10 +324,7 @@ const sidebars = {
         id: "guides/nextjs/index",
       },
       collapsed: false,
-      items: [
-        "guides/nextjs/app-with-next/index",
-        "guides/nextjs/add-existing-app/index",
-      ],
+      items: ["guides/nextjs/add-existing-app/index"],
     },
     {
       type: "category",
