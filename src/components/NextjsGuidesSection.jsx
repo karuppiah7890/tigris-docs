@@ -10,9 +10,9 @@ export default function NextjsGuidesSection({ title, className }) {
     <div>
       <Section title="Tutorials" className={className}>
         <Card
-          title="Building your first Next.js + Tigris app"
-          description="A to-do list application using Tigris as the backend"
-          to="/guides/nextjs/todo-app"
+          title="Add Tigris to an existing Next.js Application"
+          description="This guide will help you add Tigris to an existing Next.js application"
+          to="/guides/nextjs/add-existing-app/"
         />
       </Section>
 
