@@ -12,7 +12,7 @@ be checked by running node -v).
 
 ### Protocol Buffer Compiler
 
-Install protoc. Change for your OS as necessary
+Install protoc. Below is how you would install on macOS
 
 ```shell
 brew install protobuf
