@@ -15,13 +15,14 @@ const config = {
   title: "Tigris",
   tagline:
     "For developers who want to build scalable web and mobile apps fast!",
-  url: "https://docs.tigrisdata.com",
-  baseUrl: "/",
+  url: "https://www.tigrisdata.com",
+  baseUrl: "/docs/",
   favicon: "img/favicon.ico",
   organizationName: "tigrisdata",
   projectName: "tigris-docs",
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "warn",
+  trailingSlash: true,
 
   presets: [
     [
@@ -117,7 +118,7 @@ const config = {
       navbar: {
         hideOnScroll: false,
         logo: {
-          href: "/",
+          href: "https://www.tigrisdata.com/",
           src: "/logo/light.png",
           srcDark: "/logo/dark.png",
           alt: "Tigris Docs",
@@ -140,7 +141,7 @@ const config = {
             position: "left",
           },
           {
-            href: "https://blog.tigrisdata.com/",
+            href: "https://www.tigrisdata.com/blog/",
             label: "Blog",
             position: "left",
           },
@@ -179,7 +180,7 @@ const config = {
       },
       footer: {
         logo: {
-          href: "/",
+          href: "https://www.tigrisdata.com/",
           src: "/logo/light.png",
           srcDark: "/logo/dark.png",
           alt: "Tigris Docs",
