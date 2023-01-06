@@ -1,7 +1,3 @@
----
-slug: /documents/documents
----
-
 # Documents
 
 A collection is analogous to tables in a relational database.
@@ -19,7 +15,7 @@ features such as automatic indexing and real-time search.
 
 Tigris enforces that all documents in a collection must conform to a schema.
 The schema is defined as part of creating the collection. See the
-section [Modifying Schema](schema-modification) to learn more about the
+section [Modifying Schema](/docs/database/schema-modification) to learn more about the
 schema can be evolved.
 
 Since schemas are a way to structure your data according to the application
@@ -100,8 +96,8 @@ part of the document, then simply skip setting them to any value.
 Tigris enables you to perform rich set of operations on documents. The
 supported operations are covered below:
 
-| Operations      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **CRUD**        | All the standard CRUD operations are supported: <li><b>Insert</b>: Insert a document by primary key</li> <li><b>Replace</b>: Insert or Replace a document by primary key</li> <li><b>Update</b>: Update documents by filtering on any field</li> <li><b>Delete</b>: Delete documents by filtering on any field</li> <li><b>Read</b>: Read documents by filtering on any field of the document</li> See the [CRUD](crud) section to learn more. |
-| **Transaction** | You can group multiple CRUD operations together and perform them as part of a transaction. Transactions can be performed interactively, such as when performing read-modify-write operations. There are no restrictions on which collections or documents are allowed to be modified in a transaction. See the [Transactions](transaction) section to learn more.                                                                              |
-| **Search**      | Documents in collections are searchable in real-time. Search operations, similar to what are provided by standalone search platforms such as Elasticsearch, are supported out of the box. See the [Search](/searching/) section to learn more.                                                                                                                                                                                                 |
+| Operations      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CRUD**        | All the standard CRUD operations are supported: <li><b>Insert</b>: Insert a document by primary key</li> <li><b>Replace</b>: Insert or Replace a document by primary key</li> <li><b>Update</b>: Update documents by filtering on any field</li> <li><b>Delete</b>: Delete documents by filtering on any field</li> <li><b>Read</b>: Read documents by filtering on any field of the document</li> See the [CRUD](/docs/database/crud) section to learn more. |
+| **Transaction** | You can group multiple CRUD operations together and perform them as part of a transaction. Transactions can be performed interactively, such as when performing read-modify-write operations. There are no restrictions on which collections or documents are allowed to be modified in a transaction. See the [Transactions](/docs/database/transaction) section to learn more.                                                                              |
+| **Search**      | Documents in collections are searchable in real-time. Search operations, similar to what are provided by standalone search platforms such as Elasticsearch, are supported out of the box. See the [Search](/docs/searching/) section to learn more.                                                                                                                                                                                                           |

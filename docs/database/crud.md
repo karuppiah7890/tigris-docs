@@ -1,6 +1,6 @@
 # CRUD Operations
 
-CRUD operations create, read, update and delete [documents](documents). The
+CRUD operations create, read, update and delete [documents](/docs/database/documents). The
 operations are all atomic and provide strong data consistency guarantees.
 
 ## Create operations
@@ -18,16 +18,16 @@ with the same primary key already exists.
 Tigris TypeScript SDK provides the following two APIs to insert documents
 into a collection:
 
-- [insertOne()](../typescript/database/insert#insert-a-single-document):
+- [insertOne()](/docs/typescript/database/insert#insert-a-single-document):
   insert single document
-- [insertMany()](../typescript/database/insert#insert-multiple-documents):
+- [insertMany()](/docs/typescript/database/insert#insert-multiple-documents):
   batch insert documents
 
 See the language-specific sections for more examples of Insert operations:
 
-- [Insert Document in TypeScript](../typescript/database/insert)
-- [Insert Document in Go](../golang/database/insert)
-- [Insert Document in Java](../java/insert)
+- [Insert Document in TypeScript](/docs/typescript/database/insert)
+- [Insert Document in Go](/docs/golang/database/insert)
+- [Insert Document in Java](/docs/java/database/insert)
 
 ### Replace
 
@@ -41,16 +41,16 @@ Replace operations provide the following behavior:
 Tigris TypeScript SDK provides the following two APIs to replace documents
 in a collection:
 
-- [insertOrReplaceOne()](../typescript/database/insert#upsert-a-single-document):
+- [insertOrReplaceOne()](/docs/typescript/database/insert#upsert-a-single-document):
   replace single document
-- [insertOrReplaceMany()](../typescript/database/insert#upsert-multiple-documents):
+- [insertOrReplaceMany()](/docs/typescript/database/insert#upsert-multiple-documents):
   batch replace documents
 
 See the language-specific sections for more examples of Replace operations:
 
-- [Replace Document in TypeScript](../typescript/database/insert)
-- [Replace Document in Go](../golang/database/insert)
-- [Replace Document in Java](../java/insert)
+- [Replace Document in TypeScript](/docs/typescript/database/insert)
+- [Replace Document in Go](/docs/golang/database/insert)
+- [Replace Document in Java](/docs/java/database/insert)
 
 ## Read Operations
 
@@ -63,18 +63,18 @@ matching zero or more conditions on any field.
 Tigris TypeScript SDK provides the following two APIs to read documents
 from a collection:
 
-- [findOne()](../typescript/database/query#simple-read-query): read a single document
-- [findMany()](../typescript/database/query#filtering-on-multiple-fields): read
+- [findOne()](/docs/typescript/database/query#simple-read-query): read a single document
+- [findMany()](/docs/typescript/database/query#filtering-on-multiple-fields): read
   multiple documents
 
-See the [Filters](filters) section to learn more about the filters supported in
+See the [Filters](filters.md) section to learn more about the filters supported in
 read operations.
 
 See the language-specific sections for more examples of Read operations:
 
-- [Read Document in TypeScript](../typescript/database/query)
-- [Read Document in Go](../golang/database/query)
-- [Read Document in Java](../java/query)
+- [Read Document in TypeScript](/docs/typescript/database/query)
+- [Read Document in Go](/docs/golang/database/query)
+- [Read Document in Java](/docs/java/database/query)
 
 ## Update Operations
 
@@ -87,17 +87,17 @@ any field.
 Tigris TypeScript SDK provides the following API to update documents in a
 collection:
 
-- [update()](../typescript/database/update#simple-update): update one or more
+- [update()](/docs/typescript/database/update#simple-update): update one or more
   documents that match the filtering condition
 
-See the [Filters](filters) section to learn more about the filters supported in
+See the [Filters](filters.md) section to learn more about the filters supported in
 update operations.
 
 See the language-specific sections for more examples of Update operations:
 
-- [Update Document in TypeScript](../typescript/database/update)
-- [Update Document in Go](../golang/database/update)
-- [Update Document in Java](../java/update)
+- [Update Document in TypeScript](/docs/typescript/database/update)
+- [Update Document in Go](/docs/golang/database/update)
+- [Update Document in Java](/docs/java/database/update)
 
 ## Delete Operations
 
@@ -109,13 +109,13 @@ you the flexibility to delete documents matching conditions on any field.
 Tigris TypeScript SDK provides the following API to delete documents from a
 collection:
 
-- [delete()](../typescript/database/delete#simple-delete)
+- [delete()](/docs/typescript/database/delete#simple-delete)
 
-See the [Filters](filters) section to learn more about the filters supported in
+See the [Filters](filters.md) section to learn more about the filters supported in
 delete operations.
 
 See the language-specific sections for more examples of Delete operations:
 
-- [Delete Document in TypeScript](../typescript/database/delete)
-- [Delete Document in Go](../golang/database/delete)
-- [Delete Document in Java](../java/database/delete)
+- [Delete Document in TypeScript](/docs/typescript/database/delete)
+- [Delete Document in Go](/docs/golang/database/delete)
+- [Delete Document in Java](/docs/java/database/delete)

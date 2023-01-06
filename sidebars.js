@@ -271,6 +271,11 @@ const sidebars = {
         {
           type: "category",
           label: "Reference",
+          link: {
+            type: "doc",
+            id: "cli/reference/index",
+          },
+          collapsed: true,
           items: [
             "cli/reference/alter-application",
             "cli/reference/alter-collection",

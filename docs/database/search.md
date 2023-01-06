@@ -16,14 +16,14 @@ Search operations support the following features:
 Tigris TypeScript SDK provides the following API to search documents
 in a collection:
 
-- [search()](../typescript/database/search#searching-for-documents): search for one
+- [search()](../typescript/database/search.mdx#searching-for-documents): search for one
   or more documents in a collection
 
-See the [Filters](filters) section to learn more about the filters supported in
+See the [Filters](filters.md) section to learn more about the filters supported in
 search operations.
 
 See the language-specific sections for more examples of Search operations:
 
-- [Search in TypeScript](../typescript/database/search)
-- [Search in Go](../golang/database/search)
-- [Search in Java](../java/database/search)
+- [Search in TypeScript](../typescript/database/search.mdx)
+- [Search in Go](../golang/database/search.mdx)
+- [Search in Java](../java/database/search.mdx)

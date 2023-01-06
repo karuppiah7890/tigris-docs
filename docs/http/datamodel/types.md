@@ -19,7 +19,7 @@ restrictions on what data types can be used for primary key fields.
 The full list of supported `type` and `format` are listed below.
 
 :::tip
-Note that the [client libraries](/category/client-libraries) that we provide
+Note that the client libraries that we provide
 use language-idiomatic types for the types and formats below. For example,
 while a 64-bit integer is represented as type _integer_ in JSON requests and
 responses, but our Java client library uses the Java _long_ type.

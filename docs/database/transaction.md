@@ -66,6 +66,6 @@ await db.transact(async (tx) => {
 
 See the language-specific sections for more examples of Transactions:
 
-- [Transactions in TypeScript](../typescript/database/transactions)
-- [Transactions in Go](../golang/database/transactions)
-- [Transactions in Java](../java/database/transactions)
+- [Transactions in TypeScript](../typescript/database/transactions.md)
+- [Transactions in Go](../golang/database/transactions.md)
+- [Transactions in Java](../java/database/transactions.mdx)
