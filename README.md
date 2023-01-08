@@ -7,8 +7,10 @@ static website generator.
 
 ## Prerequisites
 
-[Node.js](https://nodejs.org/en/download/) version >= 14 or above (which can
-be checked by running node -v).
+- [Node.js](https://nodejs.org/en/download/) version >= 14 or above (which can
+  be checked by running node -v).
+- [Python](https://www.python.org/downloads/)
+- [pip](https://pip.pypa.io/en/stable/installation/)
 
 ### Protocol Buffer Compiler
 
@@ -63,7 +65,50 @@ npm run serve
 This command generates static content into the `build` directory and can be
 served using any static contents hosting service.
 
-## Updating API documentation
+## Contributing
+
+### Linting with Prettier
+
+The coding style rules are defined by [Prettier](https://prettier.io/) and
+enforced by [Eslint](https://eslint.org)
+
+For VSCode you can enable [format on save](https://github.com/prettier/prettier-vscode#format-on-save)
+within the Prettier VSCode extension.
+
+Ensure that any files you edited are formatted with Prettier's default formating.
+
+### Linting with ESLint
+
+We use [ESlink](https://eslint.org/) for static code analysis.
+
+### Git Hooks
+
+We use [pre-commit](https://pre-commit.com/index.html) to automatically
+setup and run git hooks.
+
+On every `git commit` we check the code quality using Prettier and ESlint.
+
+### Markdown links
+
+Prefer markdown links that link to files including the file extension
+(e.g. `[Filter](./docs/database/database.md)`) over absolute links.
+
+Also, be mindful that the Tigris docs Docusaurus has `trailingSlash`
+set to `true` so links are always from a directory.
+
+```
+└── database
+    ├── architecture.md
+    └── filters.md
+```
+
+In the above scenario, a link from `/docs/database/filters` to
+`/docs/database/architecture` would need to be `../architecture` when not
+linking using a file extension. This is another reason why it is better
+and simpler to have links that include a file extension
+(e.g. this in the above case the link is simply `architecture.md`).
+
+### Updating API documentation
 
 [tigris-api](https://github.com/tigrisdata/tigris-api) is included as a
 submodule. After updating the submodule to pull in new proto changes, the
@@ -74,17 +119,3 @@ npm run generate
 ```
 
 Move `Services` section before `Messages` section in protodocs/server/v1/api.proto.mdx
-
-# Code Quality
-
-## 1. Linting
-
-The coding style rules are defined by [Prettier](https://prettier.io/) and
-enforced by [Eslint](https://eslint.org)
-
-## 2. Git Hooks
-
-We use [pre-commit](https://pre-commit.com/index.html) to automatically
-setup and run git hooks.
-
-On every `git commit` we check the code quality using prettier and eslint.

@@ -20,8 +20,8 @@ const config = {
   favicon: "img/favicon.ico",
   organizationName: "tigrisdata",
   projectName: "tigris-docs",
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   trailingSlash: true,
 
   presets: [

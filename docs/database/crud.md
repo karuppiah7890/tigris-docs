@@ -1,6 +1,6 @@
 # CRUD Operations
 
-CRUD operations create, read, update and delete [documents](/docs/database/documents). The
+CRUD operations create, read, update and delete [documents](documents.md). The
 operations are all atomic and provide strong data consistency guarantees.
 
 ## Create operations
@@ -18,16 +18,16 @@ with the same primary key already exists.
 Tigris TypeScript SDK provides the following two APIs to insert documents
 into a collection:
 
-- [insertOne()](/docs/typescript/database/insert#insert-a-single-document):
+- [insertOne()](../typescript/database/insert.mdx#insert-a-single-document):
   insert single document
-- [insertMany()](/docs/typescript/database/insert#insert-multiple-documents):
+- [insertMany()](../typescript/database/insert.mdx#insert-multiple-documents):
   batch insert documents
 
 See the language-specific sections for more examples of Insert operations:
 
-- [Insert Document in TypeScript](/docs/typescript/database/insert)
-- [Insert Document in Go](/docs/golang/database/insert)
-- [Insert Document in Java](/docs/java/database/insert)
+- [Insert Document in TypeScript](../typescript/database/insert.mdx)
+- [Insert Document in Go](../golang/database/insert.mdx)
+- [Insert Document in Java](../java/database/insert.mdx)
 
 ### Replace
 
@@ -48,9 +48,9 @@ in a collection:
 
 See the language-specific sections for more examples of Replace operations:
 
-- [Replace Document in TypeScript](/docs/typescript/database/insert)
-- [Replace Document in Go](/docs/golang/database/insert)
-- [Replace Document in Java](/docs/java/database/insert)
+- [Replace Document in TypeScript](../typescript/database/insert.mdx)
+- [Replace Document in Go](../golang/database/insert.mdx)
+- [Replace Document in Java](../java/database/insert.mdx)
 
 ## Read Operations
 
@@ -63,8 +63,8 @@ matching zero or more conditions on any field.
 Tigris TypeScript SDK provides the following two APIs to read documents
 from a collection:
 
-- [findOne()](/docs/typescript/database/query#simple-read-query): read a single document
-- [findMany()](/docs/typescript/database/query#filtering-on-multiple-fields): read
+- [findOne()](../typescript/database/query.mdx#simple-read-query): read a single document
+- [findMany()](../typescript/database/query.mdx#filtering-on-multiple-fields): read
   multiple documents
 
 See the [Filters](filters.md) section to learn more about the filters supported in
@@ -72,9 +72,9 @@ read operations.
 
 See the language-specific sections for more examples of Read operations:
 
-- [Read Document in TypeScript](/docs/typescript/database/query)
-- [Read Document in Go](/docs/golang/database/query)
-- [Read Document in Java](/docs/java/database/query)
+- [Read Document in TypeScript](../typescript/database/query.mdx)
+- [Read Document in Go](../golang/database/query.mdx)
+- [Read Document in Java](../java/database/query.mdx)
 
 ## Update Operations
 
@@ -87,7 +87,7 @@ any field.
 Tigris TypeScript SDK provides the following API to update documents in a
 collection:
 
-- [update()](/docs/typescript/database/update#simple-update): update one or more
+- [update()](../typescript/database/update.mdx#simple-update): update one or more
   documents that match the filtering condition
 
 See the [Filters](filters.md) section to learn more about the filters supported in
@@ -95,9 +95,9 @@ update operations.
 
 See the language-specific sections for more examples of Update operations:
 
-- [Update Document in TypeScript](/docs/typescript/database/update)
-- [Update Document in Go](/docs/golang/database/update)
-- [Update Document in Java](/docs/java/database/update)
+- [Update Document in TypeScript](../typescript/database/update.mdx)
+- [Update Document in Go](../golang/database/update.mdx)
+- [Update Document in Java](../java/database/update.mdx)
 
 ## Delete Operations
 
@@ -109,13 +109,13 @@ you the flexibility to delete documents matching conditions on any field.
 Tigris TypeScript SDK provides the following API to delete documents from a
 collection:
 
-- [delete()](/docs/typescript/database/delete#simple-delete)
+- [delete()](../typescript/database/delete.mdx#simple-delete)
 
 See the [Filters](filters.md) section to learn more about the filters supported in
 delete operations.
 
 See the language-specific sections for more examples of Delete operations:
 
-- [Delete Document in TypeScript](/docs/typescript/database/delete)
-- [Delete Document in Go](/docs/golang/database/delete)
-- [Delete Document in Java](/docs/java/database/delete)
+- [Delete Document in TypeScript](../typescript/database/delete.mdx)
+- [Delete Document in Go](../golang/database/delete.mdx)
+- [Delete Document in Java](../java/database/delete.mdx)
