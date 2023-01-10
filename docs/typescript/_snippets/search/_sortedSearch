@@ -1,10 +1,10 @@
-const request: SearchRequest<Catalog> = {
+const query: SearchQuery<Catalog> = {
   q: "running",
   searchFields: ["name", "labels"],
   sort: [
     {
       field: "popularity",
-      order: SortOrder.DESC
-    }
-  ]
+      order: SortOrder.DESC,
+    },
+  ],
 };

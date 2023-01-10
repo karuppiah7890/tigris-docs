@@ -1,15 +1,8 @@
-const options = new ReadRequestOptions();
-options.collation = {
-    case: "ci",
-};
-
-const productsCursor = catalog.findMany(
-    { brand: "Adidas" },
-    undefined,
-    undefined,
-    options
-);
+const productsCursor = catalog.findMany({
+  filter: { brand: "Adidas" },
+  options: { collation: Case.CaseInsensitive },
+});
 
 for await (const product of productsCursor) {
-    console.log(product);
+  console.log(product);
 }

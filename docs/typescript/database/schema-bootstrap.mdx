@@ -23,7 +23,6 @@ For example, let's use following `Product` and `User` data model:
 
 ```ts title="models/tigris/product.ts"
 import {
-  TigrisCollectionType,
   TigrisCollection,
   TigrisDataTypes,
   PrimaryKey,
@@ -33,7 +32,7 @@ import {
 export const PRODUCTS_COLLECTION_NAME = "products";
 
 @TigrisCollection(PRODUCTS_COLLECTION_NAME)
-export class Product implements TigrisCollectionType {
+export class Product {
   @PrimaryKey(TigrisDataTypes.INT32, { order: 1, autoGenerate: true })
   id?: number;
 
@@ -50,7 +49,6 @@ export class Product implements TigrisCollectionType {
 
 ```ts title="models/tigris/user.ts"
 import {
-  TigrisCollectionType,
   TigrisCollection,
   TigrisDataTypes,
   PrimaryKey,
@@ -68,7 +66,7 @@ export class Status {
 }
 
 @TigrisCollection(USERS_COLLECTION_NAME)
-export class User implements TigrisCollectionType {
+export class User {
   @PrimaryKey({ order: 1 })
   name: number;
 

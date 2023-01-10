@@ -1,40 +1,42 @@
-const logicalFilter: LogicalFilter <Catalog> = {
-    op: LogicalOperator.OR,
-    selectorFilters: [
+const rangeFilter: LogicalFilter<Catalog> = {
+  op: LogicalOperator.OR,
+  selectorFilters: [
+    {
+      op: SelectorFilterOperator.LT,
+      fields: {
+        price: 50,
+      },
+    },
+    {
+      op: SelectorFilterOperator.GTE,
+      fields: {
+        popularity: 8,
+      },
+    },
+  ],
+  logicalFilters: [
+    {
+      op: LogicalOperator.AND,
+      selectorFilters: [
         {
-            op: SelectorFilterOperator.LT,
-            fields: {
-                price: 50
-            }
+          op: SelectorFilterOperator.LT,
+          fields: {
+            price: 50,
+          },
         },
         {
-            op: SelectorFilterOperator.GTE,
-            fields: {
-                popularity: 8
-            }
-        }
-    ],
-    logicalFilters: [{
-        op: LogicalOperator.AND,
-        selectorFilters: [
-            {
-                op: SelectorFilterOperator.LT,
-                fields: {
-                    price: 50
-                }
-            },
-            {
-                op: SelectorFilterOperator.GTE,
-                fields: {
-                    popularity: 8
-                }
-            }
-        ]
-    }],
+          op: SelectorFilterOperator.GTE,
+          fields: {
+            popularity: 8,
+          },
+        },
+      ],
+    },
+  ],
 };
 
-const productsCursor = catalog.findMany(logicalFilter);
+const productsCursor = catalog.findMany({ filter: rangeFilter });
 
 for await (const product of productsCursor) {
-    console.log(product);
+  console.log(product);
 }

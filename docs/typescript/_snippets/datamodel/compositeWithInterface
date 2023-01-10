@@ -7,7 +7,7 @@ interface Catalog extends TigrisCollectionType {
 // schema definition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
-    type: TigrisDataTypes.INT64,
+    type: TigrisDataTypes.INT32,
     primary_key: {
       order: 1,
       autoGenerate: true,

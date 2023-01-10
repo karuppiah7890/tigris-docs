@@ -10,7 +10,7 @@ export interface Catalog extends TigrisCollectionType {
   enabled: boolean;
   popularity: number;
   price: number;
-  entryDate: string;
+  entryDate: Date;
   uuid: string;
   labels: string[];
   category: CatalogCategory;
@@ -48,6 +48,7 @@ export const catalogSchema: TigrisSchema<Catalog> = {
   },
   entryDate: {
     type: TigrisDataTypes.DATE_TIME,
+    timestamp: "createdAt",
   },
   uuid: {
     type: TigrisDataTypes.UUID,

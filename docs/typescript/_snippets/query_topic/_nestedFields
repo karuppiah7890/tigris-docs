@@ -1,12 +1,9 @@
 const eventsCursor = topic.findMany({
-    op: SelectorFilterOperator.EQ,
-    fields: {
-        metadata: {
-            account: "jane"
-        }
-    }
+  metadata: {
+    account: "jane",
+  },
 });
 
 for await (const event of eventsCursor) {
-    console.log(event);
+  console.log(event);
 }

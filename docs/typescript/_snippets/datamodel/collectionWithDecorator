@@ -1,8 +1,7 @@
 export const CATALOG_COLLECTION_NAME = "catalog";
 
 @TigrisCollection(CATALOG_COLLECTION_NAME)
-class Catalog implements TigrisCollectionType {
-
+class Catalog {
   @PrimaryKey({ order: 1, autoGenerate: true })
   id?: string;
 
@@ -21,9 +20,9 @@ class Catalog implements TigrisCollectionType {
   @Field(TigrisDataTypes.INT32)
   popularity: number;
 
-  @Field(TigrisDataTypes.DATE_TIME)
-  entryDate: string;
+  @Field({ timestamp: "createdAt" })
+  entryDate: Date;
 
-  @Field()
-  enabled: boolean;
+  @Field({ default: false })
+  available: boolean;
 }

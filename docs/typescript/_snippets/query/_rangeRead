@@ -1,21 +1,23 @@
 const productsCursor = catalog.findMany({
+  filter: {
     op: LogicalOperator.AND,
     selectorFilters: [
-        {
-            op: SelectorFilterOperator.LT,
-            fields: {
-                price: 50
-            }
+      {
+        op: SelectorFilterOperator.LT,
+        fields: {
+          price: 50,
         },
-        {
-            op: SelectorFilterOperator.GTE,
-            fields: {
-                popularity: 8
-            }
-        }
-    ]
+      },
+      {
+        op: SelectorFilterOperator.GTE,
+        fields: {
+          popularity: 8,
+        },
+      },
+    ],
+  },
 });
 
 for await (const product of productsCursor) {
-    console.log(product);
+  console.log(product);
 }

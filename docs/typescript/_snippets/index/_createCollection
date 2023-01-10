@@ -6,7 +6,7 @@ const tigris = new Tigris({
 });
 
 @TigrisCollection("catalog")
-class Catalog implements TigrisCollectionType {
+class Catalog {
 
   @PrimaryKey({order: 1, autoGenerate: true})
   id?: string;

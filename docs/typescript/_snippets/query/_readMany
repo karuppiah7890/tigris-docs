@@ -1,10 +1,9 @@
 const productsCursor = catalog.findMany({
-    op: SelectorFilterOperator.EQ,
-    fields: {
-        brand: "adidas"
-    }
+  filter: {
+    brand: "adidas",
+  },
 });
 
 for await (const product of productsCursor) {
-    console.log(product);
+  console.log(product);
 }

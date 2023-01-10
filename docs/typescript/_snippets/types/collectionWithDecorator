@@ -7,7 +7,7 @@ export class CatalogCategory {
 }
 
 @TigrisCollection("catalog")
-export class Catalog implements TigrisCollectionType {
+export class Catalog {
   @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
   id?: string;
 
@@ -23,8 +23,8 @@ export class Catalog implements TigrisCollectionType {
   @Field()
   price: number;
 
-  @Field(TigrisDataTypes.DATE_TIME)
-  entryDate: string;
+  @Field({ timestamp: "createdAt" })
+  entryDate: Date;
 
   @Field(TigrisDataTypes.UUID)
   uuid: string;

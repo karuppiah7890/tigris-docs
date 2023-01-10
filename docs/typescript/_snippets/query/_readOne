@@ -1,2 +1,2 @@
-const product = await catalog.findOne({ brand: "adidas" });
+const product = await catalog.findOne({ filter: { brand: "adidas" } });
 console.log(product);

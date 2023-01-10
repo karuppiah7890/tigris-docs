@@ -7,13 +7,13 @@ interface Catalog extends TigrisCollectionType {
   labels: string;
   popularity: number;
   entryDate: Date;
-  enabled: boolean;
+  available: boolean;
 }
 
 // schema definition
 const catalogSchema: TigrisSchema<Catalog> = {
   id: {
-    type: TigrisDataTypes.INT64,
+    type: TigrisDataTypes.STRING,
     primary_key: {
       order: 1,
       autoGenerate: true,
@@ -36,8 +36,10 @@ const catalogSchema: TigrisSchema<Catalog> = {
   },
   entryDate: {
     type: TigrisDataTypes.DATE_TIME,
+    timestamp: "createdAt"
   },
-  enabled: {
+  available: {
     type: TigrisDataTypes.BOOLEAN,
+    default: false
   },
 };

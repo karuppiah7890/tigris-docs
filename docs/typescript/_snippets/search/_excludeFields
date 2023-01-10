@@ -1,4 +1,4 @@
-const request: SearchRequest<Catalog> = {
+const query: SearchQuery<Catalog> = {
   q: "running",
   excludeFields: ["id", "reviews"]
 };

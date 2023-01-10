@@ -1,15 +1,9 @@
-const request: SearchRequest<Catalog> = {
+const query: SearchQuery<Catalog> = {
   q: "running",
 };
 
-catalog.search(request, {
-  onEnd() {
-    // when search completes
-  },
-  onNext(result: SearchResult<Catalog>) {
-    // when a search result is fetched
-  },
-  onError(error: Error) {
-    // in case of an error
-  },
-});
+const results = catalog.search(query);
+
+for await (const result of results) {
+  console.log(result);
+}

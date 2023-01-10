@@ -31,10 +31,20 @@ that there are no partial updates in the database if a transaction fails.
 ```ts
 await db.transact(async (tx) => {
   // read user 1
-  const user1 = await users.findOne({ userId: 1 }, undefined, tx);
+  const user1 = await users.findOne(
+    {
+      filter: { userId: 1 },
+    },
+    tx
+  );
 
   // read user 2
-  const user2 = await users.findOne({ userId: 2 }, undefined, tx);
+  const user2 = await users.findOne(
+    {
+      filter: { userId: 2 },
+    },
+    tx
+  );
 
   if (user1 === undefined || users2 === undefined) {
     throw new Error("User(s) not found"); // This will auto-rollback transaction
@@ -42,8 +52,10 @@ await db.transact(async (tx) => {
 
   // deduct balance from user1
   let result = await users.updateOne(
-    { userId: user1.userId },
-    { balance: user1.balance - 100 },
+    {
+      filter: { userId: user1.userId },
+      fields: { balance: user1.balance - 100 },
+    },
     tx
   );
 
@@ -53,8 +65,10 @@ await db.transact(async (tx) => {
 
   // add balance to user2
   result = await users.updateOne(
-    { userId: user2.userId },
-    { balance: user2.balance + 100 },
+    {
+      filter: { userId: user2.userId },
+      fields: { balance: user2.balance + 100 },
+    },
     tx
   );
 

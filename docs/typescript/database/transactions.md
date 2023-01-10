@@ -14,7 +14,9 @@ await db.transact(async (tx) => {
   // read user 1
   const user1: User | undefined = await users.findOne(
     {
-      userId: 1,
+      filter: {
+        userId: 1,
+      },
     },
     tx
   );
@@ -22,7 +24,9 @@ await db.transact(async (tx) => {
   // read user 2
   const user2: User | undefined = await users.findOne(
     {
-      userId: 2,
+      filter: {
+        userId: 2,
+      },
     },
     tx
   );
@@ -34,10 +38,12 @@ await db.transact(async (tx) => {
   // deduct balance from user1
   await users.update(
     {
-      userId: user1.userId,
-    },
-    {
-      balance: user1.balance - 100,
+      filter: {
+        userId: user1.userId,
+      },
+      fields: {
+        balance: user1.balance - 100,
+      },
     },
     tx
   );
@@ -45,10 +51,12 @@ await db.transact(async (tx) => {
   // add balance to user2
   await users.update(
     {
-      userId: user2.userId,
-    },
-    {
-      balance: user2.balance + 100,
+      filter: {
+        userId: user2.userId,
+      },
+      fields: {
+        balance: user2.balance + 100,
+      },
     },
     tx
   );

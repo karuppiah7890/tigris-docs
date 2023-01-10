@@ -70,7 +70,7 @@ decorator.
 
 ```ts title=SchemaDefinition
 @TigrisCollection("catalog")
-class Catalog implements TigrisCollectionType {
+class Catalog {
   @PrimaryKey({ order: 1, autoGenerate: true })
   id?: string;
 

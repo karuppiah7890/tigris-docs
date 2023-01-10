@@ -7,7 +7,7 @@ export class ProductItem {
 }
 
 @TigrisCollection("orders")
-export class Order implements TigrisCollectionType {
+export class Order {
   @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
   orderId?: string;
 

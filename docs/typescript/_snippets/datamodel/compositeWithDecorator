@@ -1,7 +1,7 @@
 @TigrisCollection("catalog")
-export class Catalog implements TigrisCollectionType {
+export class Catalog {
 
-  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autogenerate: true })
+  @PrimaryKey(TigrisDataTypes.INT32, { order: 1, autogenerate: true })
   id?: number;
 
   @PrimaryKey({order: 2})

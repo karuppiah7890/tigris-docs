@@ -1,8 +1,4 @@
-const updateResponse = await catalog.updateOne(
-  {
-    id: 1,
-  },
-  {
-    price: 65, // set the price of this product to 65
-  }
-);
+const updateResponse = await catalog.updateOne({
+  filter: { id: 1 },
+  fields: { price: 65}, // set the price of this product to 65
+});
