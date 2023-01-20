@@ -1,3 +1,100 @@
 {
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/docs/overview/",
+      "destination": "/docs/concepts/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/searching/",
+      "destination": "/docs/concepts/searching/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/overview/architecture/",
+      "destination": "/docs/concepts/architecture/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/quickstart/",
+      "destination": "/docs/quickstarts/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/quickstart/:match*/",
+      "destination": "/docs/quickstarts/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/typescript/",
+      "destination": "/docs/sdkstools/typescript/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/typescript/:match*/",
+      "destination": "/docs/sdkstools/typescript/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/golang/",
+      "destination": "/docs/sdkstools/golang/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/golang/:match*/",
+      "destination": "/docs/sdkstools/golang/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/java/",
+      "destination": "/docs/sdkstools/java/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/java/:match*/",
+      "destination": "/docs/sdkstools/java/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/http/",
+      "destination": "/docs/references/http/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/http/:match*/",
+      "destination": "/docs/references/http/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/reference/http-code/",
+      "destination": "/docs/reference/http-codes/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/cli/",
+      "destination": "/docs/sdkstools/cli/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/cli/:match*/",
+      "destination": "/docs/sdkstools/cli/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/cli/reference/",
+      "destination": "/docs/sdkstools/cli/commands/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/cli/reference/:match*/",
+      "destination": "/docs/sdkstools/cli/commands/:match*/",
+      "permanent": true
+    },
+    {
+      "source": "/docs/apidocs/",
+      "destination": "/docs/references/api/",
+      "permanent": true
+    }
+  ]
 }

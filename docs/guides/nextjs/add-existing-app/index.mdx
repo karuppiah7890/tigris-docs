@@ -2,11 +2,13 @@
 title: Add Tigris to an existing Next.js Application
 ---
 
+import tigrisConfig from "@site/tigris.config.js";
+
 import TerminalWindow from "@site/src/components/TerminalWindow/index";
 import CodeBlock from "@theme/CodeBlock";
 import createNextAppOutput from "!!raw-loader!./_createNextAppOutput";
 import runDevOutput from "!!raw-loader!./_runDevOutput";
-import Installation from "../../../includes/_install_cloud_login.mdx";
+import Installation from "@site/docs/includes/_install_cloud_login.mdx";
 
 # Add Tigris to an existing Next.js Application
 
@@ -47,7 +49,8 @@ npm install @tigrisdata/core@latest --save
 
 Now let's create a Tigris project for our blogging application.
 Click on the `Create a new project` button from the
-[Tigris Cloud dashboard](https://console.preview.tigrisdata.cloud/).
+
+<a href={tigrisConfig.consoleUrl}>Tigris Cloud dashboard</a>.
 
 ![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
 
@@ -120,7 +123,7 @@ Let's ensure that the required settings are enabled in `tsconfig.json`.
 
 Every Tigris project comes with a pre-configured database and stores data
 records as documents. Documents are analogous to JSON objects grouped in
-a [Collection](/docs/database).
+a [Collection](/docs/concepts/database).
 
 Let's create a data model to define the collection. We will be storing the data
 models in the directory `db/models`.
@@ -349,7 +352,7 @@ export default async function handler(
 ```
 
 :::tip Built-in search
-Tigris makes it really easy to implement [search](/typescript/database/search)
+Tigris makes it really easy to implement [search](/docs/sdkstools/typescript/database/search)
 within your applications by providing a serverless full-text search engine that
 makes all your data instantly searchable.
 :::
@@ -564,6 +567,6 @@ Head over to one of the blog posts and you will see the comments form.
 
 ![blog-starter application post with comments form](/img/screenshots/nextjs-blog-starter-comments.jpg)
 
-Now, if you go back to your [Tigris Cloud console](https://console.preview.tigrisdata.cloud/project/MyNextjsBlog/database),
+Now, if you go back to your <a href={`${tigrisConfig.consoleUrl}/project/MyNextjsBlog/database`}>Tigris Cloud console</a>,
 you will see the collection for the project and as you will add the comments you
 will see the data show up.

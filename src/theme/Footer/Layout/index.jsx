@@ -1,3 +1,5 @@
+import tigrisConfig from "@site/tigris.config.js";
+
 /* eslint-disable react/prop-types */
 import React from "react";
 import clsx from "clsx";
@@ -24,10 +26,8 @@ export default function FooterLayout({ style, links, logo, copyright }) {
         <div className="footer__row">
           <div className="footer__data">
             <div className="footer__cta">
-              <p>Signup to get get early access!</p>
-              <Link href="https://www.tigrisdata.com/beta#signup-form">
-                Sign Up
-              </Link>
+              <p>Signup to get early access!</p>
+              <Link href={tigrisConfig.signupUrl}>Sign Up</Link>
             </div>
           </div>
           <div className="links">{links}</div>

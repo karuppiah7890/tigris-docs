@@ -1,0 +1,27 @@
+---
+title: Update Documents
+---
+
+import UpdateTemplate, {
+  toc as updateToc,
+} from "@site/docs/templates/_updating-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!../_snippets/update/_createCollection";
+import asyncCreateCollectionSource from "!!raw-loader!../_snippets/update/_asyncCreateCollection";
+import simpleUpdateSource from "!!raw-loader!../_snippets/update/_simpleUpdate";
+import asyncSimpleUpdateSource from "!!raw-loader!../_snippets/update/_asyncSimpleUpdate";
+import orUpdateSource from "!!raw-loader!../_snippets/update/_OrUpdate";
+import rangeUpdateSource from "!!raw-loader!../_snippets/update/_rangeUpdate";
+import nonPKUpdateSource from "!!raw-loader!../_snippets/update/_nonPKUpdate";
+
+<UpdateTemplate
+  codeLang="java"
+  createCollection={createCollectionSource}
+  asyncCreateCollection={asyncCreateCollectionSource}
+  simpleUpdate={simpleUpdateSource}
+  asyncSimpleUpdate={asyncSimpleUpdateSource}
+  orUpdate={orUpdateSource}
+  rangeUpdate={rangeUpdateSource}
+  updateNonPK={nonPKUpdateSource}
+/>
+
+export const toc = [...updateToc];

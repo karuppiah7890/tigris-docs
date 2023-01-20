@@ -1,0 +1,46 @@
+---
+title: Query Events
+---
+
+import QueryTemplate, {
+  toc as queryToc,
+} from "@site/docs/templates/_queryingTopic-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!../_snippets/query_topic/_createCollection";
+import readOneSource from "!!raw-loader!../_snippets/query_topic/_readOne";
+import multipleFieldsSource from "!!raw-loader!../_snippets/query_topic/_multipleFields";
+import readFieldsSource from "!!raw-loader!../_snippets/query_topic/_readFields";
+import rangeReadSource from "!!raw-loader!../_snippets/query_topic/_rangeRead";
+import metaFilterSource from "!!raw-loader!../_snippets/query_topic/_metadataFilter";
+import logicalFiltersSource from "!!raw-loader!../_snippets/query_topic/_logicalFilters";
+import nestedFieldsSources from "!!raw-loader!../_snippets/query_topic/_nestedFields";
+import timestampAndStatusSource from "!!raw-loader!../_snippets/query_topic/_timestampAndStatus";
+import readAllSource from "!!raw-loader!../_snippets/query_topic/_readAll";
+import readUsingCollationSource from "!!raw-loader!../_snippets/query_topic/_readUsingCollation";
+
+export const filterSyntax = {
+  eq: "filter.Eq",
+  lt: "filter.Lt",
+  lte: "filter.Lte",
+  gt: "filter.Gt",
+  gte: "filter.Gte",
+  or: "filter.Or",
+  and: "filter.And",
+};
+
+<QueryTemplate
+  codeLang="go"
+  filters={filterSyntax}
+  createCollection={createCollectionSource}
+  readOne={readOneSource}
+  multipleFields={multipleFieldsSource}
+  readFields={readFieldsSource}
+  rangeRead={rangeReadSource}
+  metadataFilter={metaFilterSource}
+  logicalFilters={logicalFiltersSource}
+  nestedFields={nestedFieldsSources}
+  timestampAndStatus={timestampAndStatusSource}
+  readAll={readAllSource}
+  readUsingCollation={readUsingCollationSource}
+/>
+
+export const toc = [...queryToc];

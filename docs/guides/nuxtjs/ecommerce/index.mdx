@@ -2,6 +2,8 @@
 title: "Tutorial: E-Commerce Store"
 ---
 
+import tigrisConfig from "@site/tigris.config.js";
+
 import TerminalWindow from "@site/src/components/TerminalWindow/index";
 import CodeBlock from "@theme/CodeBlock";
 import envDevOutput from "!!raw-loader!./_envFileInput";
@@ -32,7 +34,7 @@ You'll need a few things installed
 - [npm](https://www.npmjs.com/) 7 or greater
 - Tigris
   - For **macOS**: `brew install tigrisdata/tigris/tigris-cli`
-  - Other operating systems: [See installation instructions here](/cli/installation)
+  - Other operating systems: [See installation instructions here](docs/sdkstools/cli/installation.mdx)
 - [Netlify CLI](https://www.npmjs.com/package/netlify-cli)
 
 ## Getting Started
@@ -421,7 +423,7 @@ on your browser, go ahead and play around.
 
 In this tutorial, we have added search functionality to a Nuxt app using Tigris search. As we can see it is
 super easy, and everything happened in the code. You can also check out your database and collection in
-Tigris [console](https://console.preview.tigrisdata.cloud/). Now, it's time to [tweet your success][tweet-intent] :smile:
+Tigris <a href={tigrisConfig.consoleUrl}>console</a>. Now, it's time to [tweet your success][tweet-intent] :smile:
 
 Stay, tuned as we publish more tutorials and reach out to the team to learn what we are building next.
 

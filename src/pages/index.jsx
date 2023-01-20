@@ -7,7 +7,6 @@ import {
   HomepageSection as Section,
 } from "../components/HomepageComponents";
 import {
-  RedStar,
   APIReferenceIcon,
   YellowStar,
   GreenStar,
@@ -15,7 +14,6 @@ import {
   JavaIcon,
   TSIcon,
   TerminalIcon,
-  GreenCheck,
 } from "../icons";
 import GuidesSection from "../components/GuidesSection";
 
@@ -39,17 +37,17 @@ export default function Homepage() {
               build highly responsive applications that scale automatically.
             </p>
             <p>
-              <Link className="homepage-button" href="/overview">
-                Get Started
+              <Link className="homepage-button" href="/concepts">
+                Learn more
               </Link>
             </p>
           </div>
 
           <Section title="Get to know Tigris">
             <Card
-              title="Quickstart"
-              description="Essential guide to get you up and running quickly"
-              to="/quickstart"
+              title="Quickstarts"
+              description="Essential guides to get you up and running quickly"
+              to="/quickstarts"
             />
             <Card
               title="Guides"
@@ -72,19 +70,19 @@ export default function Homepage() {
             <Card
               title="Scalable Document Database"
               description="Supports a wide variety of applications with JSON-like structure that makes it easy to map to the objects in your code. Core data storage built on FoundationDB, a distributed data store that enables nearly limitless scalability."
-              to="/database/"
+              to="/concepts/database/"
               icon={<YellowStar />}
             />
             <Card
               title="Full-text Search Engine"
               description="By integrating the database, search engine, and sync mechanism into a unified, and fully managed platform, Tigris Search is the fastest and easiest way to build search capabilities into your applications."
-              to="/searching/"
+              to="/concepts/searching/"
               icon={<YellowStar />}
             />
             <Card
               title="Transactions"
               description="Transactions that work across collections and documents without any restrictions. Unlike MongoDB, there are no confusing read/write concerns to configure, no cross-shard restrictions, and no data inconsistencies."
-              to="/database/transaction"
+              to="/concepts/database/transaction"
               icon={<GreenStar />}
             />
           </Section>
@@ -93,19 +91,19 @@ export default function Homepage() {
             <Card
               title="TypeScript"
               description="Integrate Tigris in your TypeScript App"
-              to="/typescript/"
+              to="/sdkstools/typescript/"
               icon={<TSIcon />}
             />
             <Card
               title="Golang"
               description="Integrate Tigris in your Golang App"
-              to="/golang/"
+              to="/sdkstools/golang/"
               icon={<GoIcon />}
             />
             <Card
               title="Java"
               description="Integrate Tigris in your Java App"
-              to="/java/database"
+              to="/sdkstools/java/database"
               icon={<JavaIcon />}
             />
           </Section>
@@ -114,13 +112,13 @@ export default function Homepage() {
             <Card
               title="Tigris CLI"
               description="A command line tool to get things done quick"
-              to="/cli/"
+              to="/sdkstools/cli/"
               icon={<TerminalIcon />}
             />
             <Card
               title="Create Tigris App"
               description="The easiest way to get started in TypeScript"
-              to="/create-tigris-app/"
+              to="/sdkstools/create-tigris-app/"
               icon={<TerminalIcon />}
             />
           </Section>
@@ -128,8 +126,8 @@ export default function Homepage() {
           <Section title="API Reference">
             <Card
               title="API Reference"
-              description="Tigris HTTP API Reference"
-              to="/apidocs/"
+              description="Tigris API Reference"
+              to="/references/api/"
               icon={<APIReferenceIcon />}
             />
           </Section>

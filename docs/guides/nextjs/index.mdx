@@ -1,5 +1,7 @@
+import tigrisConfig from "@site/tigris.config.js";
+
 import NextjsGuidesSection from "@site/src/components/NextjsGuidesSection";
-import Installation from "../../includes/_install_cloud_login.mdx";
+import Installation from "@site/docs/includes/_install_cloud_login.mdx";
 
 # Using Tigris with Next.js
 
@@ -15,7 +17,8 @@ serverless functions.
 
 Once you have signup into the Tigris console, click on the `Create a new project`
 button to create a new project from your
-[Tigris Cloud dashboard](https://console.preview.tigrisdata.cloud/).
+
+<a href={tigrisConfig.consoleUrl}>Tigris Cloud dashboard</a>.
 
 ![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
 

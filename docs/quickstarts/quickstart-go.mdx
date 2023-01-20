@@ -1,0 +1,153 @@
+import TigrisCloud from "@site/docs/includes/_tigris_cloud.mdx";
+import QuickstartFooter from "./_quickstart_footer.mdx";
+
+# Quickstart: Go
+
+The following guide will get you up and running with Tigris. It covers
+data modeling, creating database and collection, writing queries to read and
+write data, and performing search all without touching any infrastructure.
+
+## Prerequisites
+
+All you'll need is any computer running macOS or Linux, with
+[Golang 1.18 or newer](https://go.dev/dl/) installed.
+
+<TigrisCloud />
+
+## Quickstart
+
+### Create and initialize project directory
+
+```shell
+mkdir tigris_quickstart
+cd tigris_quickstart
+go mod init
+```
+
+### Code
+
+Create main.go file with the following content:
+
+```go title=main.go
+package main
+
+import (
+	"context"
+	"fmt"
+	"time"
+
+	"github.com/tigrisdata/tigris-client-go/config"
+	"github.com/tigrisdata/tigris-client-go/fields"
+	"github.com/tigrisdata/tigris-client-go/filter"
+	"github.com/tigrisdata/tigris-client-go/search"
+	"github.com/tigrisdata/tigris-client-go/tigris"
+)
+
+// User is a declaration of the model for the collection
+type User struct {
+	tigris.Model
+	Name    string
+	Balance float64
+}
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	defer cancel()
+
+	// Connect to the Tigris backend, create the database and collection if they don't exist,
+	// otherwise update the schema of the collection if it already exists
+	cfg := &config.Database{
+		Driver: config.Driver{
+          URL: "api.preview.tigrisdata.cloud"
+          ClientID: "your_client_id_here"
+          ClientSecret: "your_client_secret_here"
+		}
+	}
+	db, err := tigris.OpenDatabase(ctx, cfg}, "hello_db", &User{})
+	if err != nil {
+		panic(err)
+	}
+
+	// Get the collection object, all the CRUD operations on the collection will be performed
+	// through this collection object
+	users := tigris.GetCollection[User](db)
+
+	// Insert
+	userJ := User{Name: "Jania McGrory", Balance: 6045.7}
+	userB := User{Name: "Bunny Instone", Balance: 2948.87}
+	users.Insert(ctx, &userJ, &userB)
+
+	// Read
+	var user *User
+	user, err = users.ReadOne(ctx, filter.Eq("ID", userJ.ID)) // find user with primary key field
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Name: %v, Balance: %v\n", user.Name, user.Balance)
+
+	user, err = users.ReadOne(ctx, filter.Eq("Name", "Jania McGrory")) // find user with Name Jania McGrory
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Name: %v, Balance: %v\n", user.Name, user.Balance)
+
+	// Update - update user's name
+	users.Update(ctx, filter.Eq("ID", userJ.ID), fields.Set("Name", "Jania McGrover"))
+
+	// Transaction - transfer balance between users
+	db.Tx(ctx, func(txCtx context.Context) error {
+		// update their balance
+		if _, err = users.Update(txCtx, filter.Eq("ID", userJ.ID),
+			fields.Set("Balance", userJ.Balance-100)); err != nil {
+			return err
+		}
+		if _, err = users.Update(txCtx, filter.Eq("ID", userB.ID),
+			fields.Set("Balance", userB.Balance+100)); err != nil {
+			return err
+		}
+
+		return nil
+	})
+
+	// Search for users with `Name` like "bunny" and `Balance` greater than 500
+	searchRequest := search.NewRequestBuilder().
+		WithQuery("bunny").
+		WithSearchFields("Name").
+		WithFilter(filter.Gt("Balance", 500)).
+		Build()
+	iterator, err := users.Search(ctx, searchRequest)
+	if err != nil {
+		panic(err)
+	}
+
+	var result search.Result[User]
+	for iterator.Next(&result) {
+		for _, v := range result.Hits {
+			fmt.Printf("Name: %v, Balance: %v\n", v.Document.Name, v.Document.Balance)
+		}
+	}
+
+	// Delete - delete users with IDs 1 or 2
+	users.Delete(ctx, filter.Or(filter.Eq("ID", userJ.ID), filter.Eq("ID", userB.ID)))
+}
+```
+
+### Build and run
+
+```shell
+go mod tidy
+go build .
+./tigris_quickstart
+```
+
+#### Output
+
+```
+Name: Jania McGrory, Balance: 6045.7
+Name: Jania McGrory, Balance: 6045.7
+Name: Bunny Instone, Balance: 3048.87
+```
+
+## Where to go from here?
+
+<QuickstartFooter />

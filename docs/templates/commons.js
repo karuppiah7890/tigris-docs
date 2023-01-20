@@ -8,14 +8,14 @@ import {
   asyncClientLabel,
   clientTabGroupId,
   syncClientLabel,
-} from "../java/database/commons";
+} from "@site/docs/sdkstools/java/database/commons";
 import {
   cursorDocLink,
   cursorOps,
   dataModelTabGroupId,
   decoratorModelLabel,
   interfaceModelLabel,
-} from "../typescript/commons";
+} from "@site/docs/sdkstools/typescript/commons";
 
 export function AsyncCodeBlock({ codeLang, defaultExample, asyncExample }) {
   if (codeLang === "java") {

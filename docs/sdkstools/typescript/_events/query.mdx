@@ -1,0 +1,44 @@
+---
+title: Query Events
+---
+
+import QueryTemplate, {
+  toc as queryToc,
+} from "@site/docs/templates/_queryingTopic-language-reference.template.mdx";
+import createCollectionSource from "!!raw-loader!../_snippets/query_topic/_createTopic";
+import readOneSource from "!!raw-loader!../_snippets/query_topic/_readOne";
+import multipleFieldsSource from "!!raw-loader!../_snippets/query_topic/_multipleFields";
+import readFieldsSource from "!!raw-loader!../_snippets/query_topic/_readFields";
+import rangeReadSource from "!!raw-loader!../_snippets/query_topic/_rangeRead";
+import metaFilterSource from "!!raw-loader!../_snippets/query_topic/_metadataFilter";
+import timestampAndStatusSource from "!!raw-loader!../_snippets/query_topic/_readTimestampAndStatus";
+import nestedFieldsSources from "!!raw-loader!../_snippets/query_topic/_nestedFields";
+import readAllSource from "!!raw-loader!../_snippets/query_topic/_readAll";
+import readUsingCollationSource from "!!raw-loader!../_snippets/query_topic/_readUsingCollation";
+
+export const filterSyntax = {
+  eq: "SelectorFilterOperator.EQ",
+  lt: "SelectorFilterOperator.LT",
+  lte: "SelectorFilterOperator.LTE",
+  gt: "SelectorFilterOperator.GT",
+  gte: "SelectorFilterOperator.GTE",
+  or: "LogicalOperator.OR",
+  and: "LogicalOperator.AND",
+};
+
+<QueryTemplate
+  codeLang="typescript"
+  filters={filterSyntax}
+  createCollection={createCollectionSource}
+  readOne={readOneSource}
+  multipleFields={multipleFieldsSource}
+  readFields={readFieldsSource}
+  rangeRead={rangeReadSource}
+  metadataFilter={metaFilterSource}
+  timestampAndStatus={timestampAndStatusSource}
+  nestedFields={nestedFieldsSources}
+  readAll={readAllSource}
+  readUsingCollation={readUsingCollationSource}
+/>
+
+export const toc = [...queryToc];

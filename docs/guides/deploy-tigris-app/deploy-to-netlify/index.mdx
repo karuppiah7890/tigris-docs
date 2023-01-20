@@ -1,3 +1,5 @@
+import tigrisConfig from "@site/tigris.config.js";
+
 # Deploying to Netlify
 
 In this guide, we will demonstrate how easy it is to deploy an app built with Next.js and Tigris to Netlify.
@@ -10,12 +12,12 @@ In this guide, we will demonstrate how easy it is to deploy an app built with Ne
 - Netlify account, ([signup](https://netlify.com) for a free account if you
   don't have one.)
 
-- Tigris account, ([signup](https://www.tigrisdata.com/nextjs#signup-form) for a
+- Tigris account, (<a href={tigrisConfig.signupUrl}>signup</a>) for a
   free account if you don't have one.)
 
 ## Setup
 
-- Login to the [Tigris console](https://console.preview.tigrisdata.cloud) and
+- Login to the <a href={tigrisConfig.loginUrl}>Tigris console</a> and
   follow the video instruction to
   register a new application under `My Settings` > `Application Keys`.
   In the next step, we will use the generated `Client ID` and `Client Secret`

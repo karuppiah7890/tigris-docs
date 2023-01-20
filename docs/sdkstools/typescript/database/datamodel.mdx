@@ -1,0 +1,163 @@
+import { TSDataModels } from "@site/docs/templates/commons";
+import decoratorCollectionSource from "!!raw-loader!../_snippets/datamodel/collectionWithDecorator";
+import interfaceCollectionSource from "!!raw-loader!../_snippets/datamodel/collectionWithInterface";
+import decoratorCreateSource from "!!raw-loader!../_snippets/datamodel/createWithDecorator";
+import interfaceCreateSource from "!!raw-loader!../_snippets/datamodel/createWithInterface";
+import decoratorEmbeddedSource from "!!raw-loader!../_snippets/datamodel/embeddedWithDecorator";
+import interfaceEmbeddedSource from "!!raw-loader!../_snippets/datamodel/embeddedWithInterface";
+import decoratorCompositeSource from "!!raw-loader!../_snippets/datamodel/compositeWithDecorator";
+import interfaceCompositeSource from "!!raw-loader!../_snippets/datamodel/compositeWithInterface";
+
+# Data Modeling
+
+Tigris enables the data models to be declared as part of the
+application code. These data models are then converted to appropriate
+objects, such as collections, on the backend.
+
+## Declaring Models
+
+With the Tigris TypeScript client you can define your data models using [Decorated class](#declare-using-decorators)
+or [Interface](#declare-using-interface). Tigris collection definitions would look like this:
+
+<TSDataModels
+  decoratorExample={decoratorCollectionSource}
+  interfaceExample={interfaceCollectionSource}
+/>
+
+### Classes and Decorators {#declare-using-decorators}
+
+Tigris client uses `@TigrisCollection("collection_name")` decorator on a class to identify a
+`Collection` schema. Following decorators are available to annotate Class and its properties:
+
+1. `@TigrisCollection()` - Annotates a class as Tigris Collection. Requires a `string` input as
+   the name of Collection.
+
+```ts
+@TigrisCollection("catalog")
+export class Catalog {}
+```
+
+2. `@PrimaryKey()` - Annotates a class propery as Collection's primary key. The data type is determined
+   using "reflection" if the optional `type` parameter is not specified. More on primary key
+   [here](#primary-key).
+
+```ts
+@TigrisCollection("catalog")
+export class Catalog {
+  @PrimaryKey({ order: 1, autogenerate: true })
+  id?: number;
+
+  @PrimaryKey(TigrisDataTypes.STRING, { order: 2 })
+  name: string;
+}
+```
+
+3. `Field()` - Annotates a class property as Collection's field. The data type is determined using
+   "reflection" if the optional `type` parameter is not specified. A `@Field()` decorator accepts options
+   to further describe the field.
+
+```ts
+@TigrisCollection("products")
+export class Product {
+  @PrimaryKey({ order: 1, autogenerate: true })
+  id?: number;
+
+  @PrimaryKey({ order: 2 })
+  name: string;
+
+  @Field({ default: 1 })
+  quantity: number;
+
+  @Field({ maxLength: 128, default: "" })
+  description: string;
+}
+```
+
+:::info
+Properties not decorated with `@Field()` or `@PrimaryKey()` will be ignored in schema. Hence, it is
+required that a class property be decorated to store it in Collection.
+:::
+
+The [Tigris TypeScript client repository](https://github.com/tigrisdata/tigris-client-ts/tree/main/src/__tests__/fixtures/schema)
+has more examples for defining complex schemas.
+
+### Interface and `TigrisSchema` {#declare-using-interface}
+
+1. Data containers - interface that holds the data model
+2. Schema of Data containers - TigrisSchema definition of these data containers.
+
+```ts
+// data container
+interface Catalog extends TigrisCollectionType {
+  id?: string;
+  name: string;
+}
+
+// schema definition
+const catalogSchema: TigrisSchema<Catalog> = {
+  id: {
+    type: TigrisDataTypes.INT64,
+    primary_key: {
+      order: 1,
+      autoGenerate: true,
+    },
+  },
+  name: {
+    type: TigrisDataTypes.STRING,
+  },
+};
+```
+
+:::info
+
+You must keep the data container and schema definition in sync.
+
+:::
+
+## Create the Collection
+
+Creates the collection with the model and any new operation will see the changes.
+
+<TSDataModels
+  decoratorExample={decoratorCreateSource}
+  interfaceExample={interfaceCreateSource}
+/>
+
+## Embedded Data Model
+
+Tigris offers rich documents that enable embedding related data in a single
+document. Embedded models allow applications to complete database operations
+with fewer queries or updates, thus reducing query activity and increasing
+efficiency.
+
+Below is an example of embedded data model. We first define the `ProductItem`
+type and then embed it inside the `Order` type.
+
+<TSDataModels
+  decoratorExample={decoratorEmbeddedSource}
+  interfaceExample={interfaceEmbeddedSource}
+/>
+
+## Primary Key {#primary-key}
+
+A primary key uniquely identifies a document in the collection and enforces
+the unique constraint. In the absence of a user-defined primary key, it is
+auto-generated.
+
+### Defining a Primary Key
+
+The example above demonstrates how primary key is defined. The `order`
+attribute in `primaryKey` represents the order of the field in the primary key.
+While `autoGenerate: true` represents that the values for this field will be
+automatically generated by the Tigris server.
+
+### Composite Primary Key
+
+Composite primary keys are also supported but in case of composite keys
+order of the fields is important. The example below demonstrates
+how the order of the fields are defined in case of a composite primary key
+
+<TSDataModels
+  decoratorExample={decoratorCompositeSource}
+  interfaceExample={interfaceCompositeSource}
+/>
