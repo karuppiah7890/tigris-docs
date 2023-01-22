@@ -1,3 +1,5 @@
 TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_PROJECT=<copy project from above></copy>
 TIGRIS_CLIENT_ID=<copy id from above>
 TIGRIS_CLIENT_SECRET=<copy secret from above>
+TIGRIS_DB_BRANCH=<your DB branch>

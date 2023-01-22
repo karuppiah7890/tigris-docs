@@ -89,11 +89,19 @@ tigris-netlify-ecommerce
 ## Create a database, collection and load the dataset
 
 We will connect to Tigris Cloud to run this application. Let's first create an application key for your project to get
-`TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`.
+the Tigris configuration.
 
 ```mdx-code-block
 <TerminalWindow>
 <CodeBlock language="shell">tigris create application ecommerce_search "search tutorial"</CodeBlock>
+</TerminalWindow>
+```
+
+Once the project has been created, create an application key for the project:
+
+```mdx-code-block
+<TerminalWindow>
+<CodeBlock language="shell">tigris create app_key "my app key" --project=ecommerce_search</CodeBlock>
 </TerminalWindow>
 ```
 
@@ -102,15 +110,15 @@ this will have the following output
 ```json
 {
   "id": "dummy-id",
-  "name": "ecommerce_search",
-  "description": "search tutorial",
+  "name": "my app key",
   "secret": "dummy-secret",
   "created_at": 1668493288000,
-  "created_by": "google-oauth2|107496644751065904534"
+  "created_by": "google-oauth2|107496644751065904534",
+  "project": "ecommerce_search"
 }
 ```
 
-Once done, you can create a `.env` and copy "id" to `TIGRIS_CLIENT_ID` and "secret" to `TIGRIS_CLIENT_SECRET` from above.
+Once done, you can create a `.env` and copy the values from above.
 
 ```mdx-code-block
 <TerminalWindow>

@@ -46,10 +46,11 @@ Environment variables have precedence over configuration files.
 ## Example environment configuration
 
 ```shell
+export TIGRIS_URI="tigris.example.com:8081"
+export TIGRIS_PROJECT="your_tigris_project"
 export TIGRIS_CLIENT_ID="your_client_id"
 export TIGRIS_CLIENT_SECRET="your_client_secret"
-export TIGRIS_URL="tigris.example.com:8081"
-export TIGRIS_PRPOJECT="your_tigris_project"
+export TIGRIS_DB_BRANCH="main"
 ```
 
 ## Available configuration variables
