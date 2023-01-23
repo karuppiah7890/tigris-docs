@@ -1,15 +1,93 @@
-# Integrating Tigris into an application deployed to Vercel
+---
+title: Integrating Tigris into an application deployed to Vercel
+---
 
-This guide focuses on demonstrating the different methods for deploying an existing Next.js application that is built using Tigris to Vercel. There are two main options available: integrating Tigris into the project deployed on Vercel, or manually adding the Tigris project credentials during the deployment process. The guide covers both methods in detail, with step-by-step instructions
+import failedBuildOutput from "!!raw-loader!./_failedBuildOutput";
+
+This guide focuses on demonstrating the different methods for deploying an existing Next.js application that is built using Tigris to Vercel. There are two main options available: [manually adding the Tigris project credentials](#manually-adding-the-tigris-project-credentials) during the deployment process or [integrating Tigris into the project deployed on Vercel](#integrating-tigris-into-the-project-deployed-on-vercel). The guide covers both methods in detail, with step-by-step instructions.
 
 ## Prerequisites
 
 - [Vercel account](https://vercel.com/)
 - Sign up on [Tigris console](https://console.preview.tigrisdata.cloud/)
 - [GitHub account](https://github.com/)
-- Fork the [Next.js Tigris blog comment](https://github.com/tigrisdata-community/next.js-tigris-blog-comment) repository.
+- Fork the [Next.js starter blog comments](https://github.com/tigrisdata-community/next.js-tigris-blog-comment) repository.
 
 ## Create New Vercel Project
 
 On your Vecel dashboard, click on `Add New > Project` button at the right hand-side to create a new Vercel site for your project.
-![dd](/img/screenshots/create-new-vercel-project.png)
+
+![create-new-vercel-project](/img/screenshots/create-new-vercel-project.png)
+
+Then enter your project name in the search box to locate the project `next.js-tigris-blog-comment` project and click on the `Import` button.
+
+> If you are deploying your own project, enter the name of the project in the search field instead.
+
+![import-git-repository](/img/screenshots/import-git-repository.png)
+
+## Manually adding the Tigris project credentials
+
+Let's move on to configure your project's environment variables with your Tigris project credentials. To do this, first, collapse the environment variables box, and then copy and add your Tigris project credentials and their corresponding values from your `.env.local` file. To save a credential, click on the 'Add' button and repeat the process for the next one.
+
+![configure-vercel-project](/img/screenshots/configure-vercel-project.png)
+
+After you have added all the necessary credentials, click the `Deploy` button to initiate the deployment process. Allow some time for the build and deployment process to complete as Vercel works on deploying your project.
+
+![deployed-vercel-project](/img/screenshots/deployed-vercel-project.png)
+
+## Preview the deployed project
+
+Congratulations, your Tigris project deployment is successful. Click on `Continue to Dashboard > Visit` button to prewiew your application.
+
+![nextjs-blog-starter](/img/screenshots/nextjs-blog-starter.jpg)
+
+Head over to one of the blog posts and you will see the comment form.
+
+![nextjs-blog-starter-comments](/img/screenshots/nextjs-blog-starter-comments.jpg)
+
+## Integrating Tigris into the project deployed on Vercel
+
+An alternative approach is to first deploy your application without including Tigris project credentials. Then, use the Vercel Tigris integration to add your credentials to the project. To begin, complete the steps in the [Create New Vercel Project](#create-new-vercel-project) section, and click the `Deploy` button.
+
+> Your build will not be successful as the Tigris credentials have yet to added into your Vercel project.
+
+## Add Tigris Integration
+
+Now return to your Vercel dashboard, identify and select the project you previously intended to deploy. Navigate to the `Settings > Integrations` page.
+
+![vercel-project-integrations](/img/screenshots/vercel-project-integrations.png)
+
+## Search for Tigris
+
+Click on the `Browse Marketplace` button, then search for `Tigris` in the input field. Locate and select the Vercel integration for Tigris.
+
+![vercel-tigris-integration](/img/screenshots/vercel-tigris-integration.png)
+
+## Adding Vercel Tigris Integration
+
+For your Tigris project to be integrated with Vercel, you need to authorize Vercel to access it. To begin, click on the `Add Integration` button.
+
+![tigris-integration-page](/img/screenshots/tigris-integration-page.png)
+
+Then choose a Vercel account to integrate with and click on the `CONTINUE` button.
+
+![select-vercel-account](/img/screenshots/select-vercel-account.png)
+
+Next, proceed by selecting the Vercel project you want to integrate with Tigris, then click on the `CONTINUE` button.
+
+![select-vercel-projec](/img/screenshots/select-vercel-project.png)
+
+## Integrating Tigris with Vercel
+
+Once you have chosen the Vercel account and project you wish to use for the integration, click on the `ADD INTEGRATION ` button. Then, choose the Tigris project you want to integrate with Vercel from the drop-down menu and click `Continue` or create a new project.
+
+![integrating-tigris-project-with-vercel](/img/screenshots/integrating-tigris-project-with-vercel.png)
+
+Once the Integration process is completed, you'll be redirected to the success page.
+
+![vercel-tigris-integration-successful](/img/screenshots/vercel-tigris-integration-successful.png)
+
+## Redeploy the Project
+
+Head back to your project, navigate to the `Deployments` section, where you will find the failed build. Click on it and select the `Reploy` button to redeploy your project.
+Once the redeployment is complete, continue on with the steps outlined in the [Preview the deployed project](#preview-the-deployed-project) section to preview your deployed project.

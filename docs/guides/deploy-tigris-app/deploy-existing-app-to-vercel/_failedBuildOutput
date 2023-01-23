@@ -1,0 +1,12 @@
+Error: Unable to resolve TIGRIS_PROJECT environment variable
+    at new Tigris (/vercel/path0/node_modules/@tigrisdata/core/dist/tigris.js:131:23)
+    at /vercel/path0/setup.ts:10:24
+    at step (/vercel/path0/setup.ts:33:23)
+    at Object.next (/vercel/path0/setup.ts:14:53)
+    at /vercel/path0/setup.ts:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/vercel/path0/setup.ts:4:12)
+    at main (/vercel/path0/setup.ts:43:12)
+    at Object.<anonymous> (/vercel/path0/setup.ts:14:1)
+    at Module._compile (node:internal/modules/cjs/loader:1159:14)
+Error: Command "npm run build" exited with 1
