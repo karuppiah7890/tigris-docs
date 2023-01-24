@@ -1,7 +1,7 @@
 ---
 id: version
 title: Version
-slug: /cli/version
+slug: /sdkstools/cli/version
 ---
 
 Shows tigris cli version

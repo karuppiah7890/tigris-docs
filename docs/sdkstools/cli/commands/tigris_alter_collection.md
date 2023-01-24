@@ -1,7 +1,7 @@
 ---
 id: alter-collection
 title: Alter Collection
-slug: /cli/alter-collection
+slug: /sdkstools/cli/alter-collection
 ---
 
 Updates collection schema

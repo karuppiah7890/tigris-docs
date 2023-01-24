@@ -1,7 +1,7 @@
 ---
 id: login
 title: Login
-slug: /cli/login
+slug: /sdkstools/cli/login
 ---
 
 Authenticate on the Tigris instance

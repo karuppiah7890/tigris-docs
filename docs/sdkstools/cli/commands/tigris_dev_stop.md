@@ -1,7 +1,7 @@
 ---
 id: dev-stop
 title: Local dev stop
-slug: /cli/dev-stop
+slug: /sdkstools/cli/dev-stop
 ---
 
 Stops local Tigris instance

@@ -1,7 +1,7 @@
 ---
 id: delete-project
 title: Delete project
-slug: /cli/delete-project
+slug: /sdkstools/cli/delete-project
 ---
 
 Delete Project

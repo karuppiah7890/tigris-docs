@@ -1,7 +1,7 @@
 ---
 id: search
 title: Search
-slug: /cli/search
+slug: /sdkstools/cli/search
 ---
 
 Tigris offers a realtime search for documents in a collection.

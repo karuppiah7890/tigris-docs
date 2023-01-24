@@ -1,7 +1,7 @@
 ---
 id: alter-application
 title: Alter Application
-slug: /cli/alter-application
+slug: /sdkstools/cli/alter-application
 ---
 
 Alter app key credentials

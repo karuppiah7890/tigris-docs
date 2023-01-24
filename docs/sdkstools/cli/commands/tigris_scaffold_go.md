@@ -1,7 +1,7 @@
 ---
 id: scaffold-go
 title: Scaffold Go project
-slug: /cli/scaffold-go
+slug: /sdkstools/cli/scaffold-go
 ---
 
 Scaffold a new Go project

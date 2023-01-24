@@ -1,7 +1,7 @@
 ---
 id: ping
 title: Ping
-slug: /cli/ping
+slug: /sdkstools/cli/ping
 ---
 
 Checks connection to Tigris

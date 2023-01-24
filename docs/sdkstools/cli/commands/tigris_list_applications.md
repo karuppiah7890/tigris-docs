@@ -1,7 +1,7 @@
 ---
 id: list-applications
 title: List applications
-slug: /cli/list-applications
+slug: /sdkstools/cli/list-applications
 ---
 
 Lists app keys
