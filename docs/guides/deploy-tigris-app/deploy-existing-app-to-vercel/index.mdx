@@ -1,10 +1,10 @@
 ---
-title: Integrating Tigris into an application deployed to Vercel
+title: Deploying an existing Next.js Tigris Application to Vercel
 ---
 
 import failedBuildOutput from "!!raw-loader!./_failedBuildOutput";
 
-This guide focuses on demonstrating the different methods for deploying an existing Next.js application that is built using Tigris to Vercel. There are two main options available: [manually adding the Tigris project credentials](#manually-adding-the-tigris-project-credentials) during the deployment process or [integrating Tigris into the project deployed on Vercel](#integrating-tigris-into-the-project-deployed-on-vercel). The guide covers both methods in detail, with step-by-step instructions.
+This guide focuses on demonstrating the different methods for deploying an existing Next.js application built using Tigris to Vercel. There are two main options available: [manually adding the Tigris project credentials](#manually-adding-the-tigris-project-credentials) during the deployment process or [integrating Tigris into the project deployed on Vercel](#integrating-tigris-into-the-project-deployed-on-vercel). The guide covers both methods in detail, with step-by-step instructions.
 
 ## Prerequisites
 
@@ -27,7 +27,8 @@ Then enter your project name in the search box to locate the project `next.js-ti
 
 ## Manually adding the Tigris project credentials
 
-Let's move on to configure your project's environment variables with your Tigris project credentials. To do this, first, collapse the environment variables box, and then copy and add your Tigris project credentials and their corresponding values from your `.env.local` file. To save a credential, click on the 'Add' button and repeat the process for the next one.
+Let's move on to configure your project's environment variables with your Tigris project credentials. To do this, first, collapse the environment variables box, and then copy and add your Tigris project credentials and their corresponding values from your `.env.local` file.
+To save a credential, click on the `Add` button and repeat the process for the next one.
 
 ![configure-vercel-project](/img/screenshots/configure-vercel-project.png)
 
