@@ -1,0 +1,54 @@
+---
+title: Deploying an existing Next.js Tigris Application to Netlify
+---
+
+This guide will demonstrate how to deploy an existing app built with Next.js and Tigris to Netlify. There are two options for this process: Manually adding the Tigris Project credentials during deployment or Using the Netlify Tigris integration. We'll cover the two methods in detail:
+
+## Prerequisites
+
+- [Netlify account](https://netlify.com/)
+- Sign up on [Tigris console](https://console.preview.tigrisdata.cloud/)
+- [GitHub account](https://github.com/)
+- Fork the [Next.js starter blog comments](https://github.com/tigrisdata-community/next.js-tigris-blog-comment) repository.
+
+## Create New Netlify site
+
+To begin, navigate to the Sites page on your Netlify dashboard. Once there, click the "Add new site" button and choose the option "Import an existing project" from the dropdown menu.
+
+![import-git-repository](/img/screenshots/creating-netlify-site.png)
+
+## Importing project from a Git repository
+
+Next, import your project from GitHub by clicking on the GitHub button and give authorization to Netlify to access your GitHub repositories.
+
+![import-git-repository](/img/screenshots/importing-tigris-existing-project.png)
+
+Now, use the search input field to locate the next.js-blog-starter-comments repository you previously cloned and select it by clicking on it.
+
+![import-git-repository](/img/screenshots/search-for-next.js-starter-blog-comment.png)
+
+## Manually adding the Tigris Project credentials
+
+Let's configure your project's environment variables with your Tigris project credentials. To do this, click on the "Show advanced" button and the "New variable" button.
+Copy and paste your Tigris project credentials and their corresponding values from your .env.local file. Continue to use the "New Variable" button to add all the necessary certificates.
+
+![import-git-repository](/img/screenshots/manually-adding-tigris-credentials.png)
+
+### Deploy the project
+
+Finally, click on the "Deploy site" button to start the deployment process. Please note that it may take some time for the build and deployment process to finish.
+
+Congratulations, your Tigris project has been successfully deployed.
+Copy and paste your Tigris project credentials and their corresponding values from your .env.local file. Continue to use the "New Variable" button to add all the necessary certificates.
+
+![import-git-repository](/img/screenshots/next.js-tigris-project-deployed.png)
+
+### Preview the deployed project
+
+You can preview your project by clicking on the provided URL at the top left-hand side of your Netlify `Site overview` page.
+
+![nextjs-blog-starter](/img/screenshots/nextjs-blog-starter.jpg)
+
+Head over to one of the blog posts and you will see the comment form.
+
+![nextjs-blog-starter-comments](/img/screenshots/nextjs-blog-starter-comments.jpg)
