@@ -1,7 +1,7 @@
 ---
 id: dev-logs
 title: Local dev logs
-slug: /cli/dev-logs
+slug: /sdkstools/cli/dev-logs
 ---
 
 Shows logs from local Tigris instance

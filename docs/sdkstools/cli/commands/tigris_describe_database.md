@@ -1,7 +1,7 @@
 ---
 id: describe-database
 title: Describe Database
-slug: /cli/describe-database
+slug: /sdkstools/cli/describe-database
 ---
 
 Describes database

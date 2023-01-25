@@ -1,7 +1,7 @@
 ---
 id: completion
 title: Auto-completion for Shell
-slug: /cli/completion
+slug: /sdkstools/cli/completion
 ---
 
 Generates completion script for shell

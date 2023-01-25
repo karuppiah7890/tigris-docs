@@ -1,7 +1,7 @@
 ---
 id: drop-application
 title: Drop Application
-slug: /cli/drop-application
+slug: /sdkstools/cli/drop-application
 ---
 
 Drop app key credentials

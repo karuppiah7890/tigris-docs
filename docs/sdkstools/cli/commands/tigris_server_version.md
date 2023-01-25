@@ -1,7 +1,7 @@
 ---
 id: server-version
 title: Server info
-slug: /cli/server-version
+slug: /sdkstools/cli/server-version
 ---
 
 Returns server's version

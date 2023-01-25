@@ -1,7 +1,7 @@
 ---
 id: create-project
 title: Create Project
-slug: /cli/create-project
+slug: /sdkstools/cli/create-project
 ---
 
 Creates project

@@ -1,7 +1,7 @@
 ---
 id: list-projects
 title: List Projects}
-slug: /cli/list-projects
+slug: /sdkstools/cli/list-projects
 ---
 
 Lists projects

@@ -36,7 +36,7 @@ In the terminal you'll see success message as well:
 
 ![Successfully authenticated](/img/screenshots/auth_success_terminal.png "Select authenticated")
 
-You are authenticated now and can start executing CLI [commands](/docs/sdkstools/cli/commands/index.mdx) against the Tigris instance.
+You are authenticated now and can start executing CLI [commands](./commands/index.mdx) against the Tigris instance.
 
 ## Checking current authentication information
 
