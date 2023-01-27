@@ -367,38 +367,6 @@ const sidebars = {
           href: "/references/api",
         },
         {
-          type: "category",
-          label: "HTTP Reference",
-          collapsed: true,
-          link: {
-            type: "doc",
-            id: "references/http/index",
-          },
-          items: [
-            "references/http/getting-started",
-            {
-              type: "category",
-              label: "Data Modeling",
-              link: {
-                type: "doc",
-                id: "references/http/datamodel/overview",
-              },
-              collapsed: false,
-              items: [
-                "references/http/datamodel/declare",
-                "references/http/datamodel/primary-key",
-                "references/http/datamodel/embedded",
-                "references/http/datamodel/types",
-              ],
-            },
-            "references/http/insert",
-            "references/http/update",
-            "references/http/delete",
-            "references/http/query",
-            "references/http/search",
-          ],
-        },
-        {
           label: "HTTP status codes",
           type: "doc",
           id: "references/http-code",
