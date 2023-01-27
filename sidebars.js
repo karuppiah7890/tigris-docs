@@ -129,14 +129,16 @@ const sidebars = {
         id: "guides/nextjs/index",
       },
       collapsed: false,
-      items: ["guides/nextjs/add-existing-app/index"],
+      items: [
+        "guides/nextjs/add-existing-app/index",
+        "guides/nextjs/nextjs-tigris-vercel-quickstart/index",
+      ],
     },
     {
       type: "category",
       label: "Deploying Apps built with Tigris",
       collapsed: false,
       items: [
-        "guides/deploy-tigris-app/deploy-to-vercel/index",
         "guides/deploy-tigris-app/deploy-existing-app-to-vercel/index",
         "guides/deploy-tigris-app/deploy-to-netlify/index",
       ],
