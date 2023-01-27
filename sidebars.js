@@ -31,22 +31,27 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Quickstart: TypeScript",
+          label: "TypeScript",
           id: "quickstarts/quickstart",
         },
         {
           type: "doc",
-          label: "Quickstart: Go",
+          label: "Next.js & Vercel",
+          id: "quickstarts/quickstart-nextjs-vercel",
+        },
+        {
+          type: "doc",
+          label: "Go",
           id: "quickstarts/quickstart-go",
         },
         {
           type: "doc",
-          label: "Quickstart: Java",
+          label: "Java",
           id: "quickstarts/quickstart-java",
         },
         {
           type: "doc",
-          label: "Quickstart: HTTP",
+          label: "HTTP API",
           id: "quickstarts/quickstart-http",
         },
       ],
@@ -129,10 +134,7 @@ const sidebars = {
         id: "guides/nextjs/index",
       },
       collapsed: false,
-      items: [
-        "guides/nextjs/add-existing-app/index",
-        "guides/nextjs/nextjs-tigris-vercel-quickstart/index",
-      ],
+      items: ["guides/nextjs/add-existing-app/index"],
     },
     {
       type: "category",

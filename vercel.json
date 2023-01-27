@@ -98,7 +98,7 @@
     },
     {
       "source": "/docs/guides/deploy-tigris-app/deploy-to-vercel/",
-      "destination": "/docs/guides/nextjs/nextjs-tigris-vercel-quickstart/"
+      "destination": "/docs/quickstarts/quickstart-nextjs-vercel/"
     },
     {
       "source": "/docs/create-tigris-app/",
