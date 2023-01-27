@@ -95,6 +95,11 @@
       "source": "/docs/apidocs/",
       "destination": "/docs/references/api/",
       "permanent": true
+    },
+    {
+      "source": "/docs/create-tigris-app/",
+      "destination": "/docs/sdkstools/create-tigris-app/",
+      "permanent": true
     }
   ]
 }
