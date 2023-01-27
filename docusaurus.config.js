@@ -160,7 +160,7 @@ const config = {
             className: "disable-external-icon",
           },
           {
-            href: "http://discord.tigrisdata.com",
+            href: tigrisConfig.discordUrl,
             className: "pseudo-icon discord-icon",
             position: "right",
           },
@@ -260,7 +260,7 @@ const config = {
               },
               {
                 label: "Community",
-                href: "http://discord.tigrisdata.com",
+                href: tigrisConfig.discordUrl,
               },
             ],
           },
