@@ -31,22 +31,27 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          label: "Quickstart: TypeScript",
+          label: "TypeScript",
           id: "quickstarts/quickstart",
         },
         {
           type: "doc",
-          label: "Quickstart: Go",
+          label: "Next.js & Vercel",
+          id: "quickstarts/quickstart-nextjs-vercel",
+        },
+        {
+          type: "doc",
+          label: "Go",
           id: "quickstarts/quickstart-go",
         },
         {
           type: "doc",
-          label: "Quickstart: Java",
+          label: "Java",
           id: "quickstarts/quickstart-java",
         },
         {
           type: "doc",
-          label: "Quickstart: HTTP",
+          label: "HTTP API",
           id: "quickstarts/quickstart-http",
         },
       ],
@@ -136,7 +141,6 @@ const sidebars = {
       label: "Deploying Apps built with Tigris",
       collapsed: false,
       items: [
-        "guides/deploy-tigris-app/deploy-to-vercel/index",
         "guides/deploy-tigris-app/deploy-existing-app-to-vercel/index",
         "guides/deploy-tigris-app/deploy-to-netlify/index",
       ],
@@ -365,38 +369,6 @@ const sidebars = {
           label: "API Reference",
           type: "link",
           href: "/references/api",
-        },
-        {
-          type: "category",
-          label: "HTTP Reference",
-          collapsed: true,
-          link: {
-            type: "doc",
-            id: "references/http/index",
-          },
-          items: [
-            "references/http/getting-started",
-            {
-              type: "category",
-              label: "Data Modeling",
-              link: {
-                type: "doc",
-                id: "references/http/datamodel/overview",
-              },
-              collapsed: false,
-              items: [
-                "references/http/datamodel/declare",
-                "references/http/datamodel/primary-key",
-                "references/http/datamodel/embedded",
-                "references/http/datamodel/types",
-              ],
-            },
-            "references/http/insert",
-            "references/http/update",
-            "references/http/delete",
-            "references/http/query",
-            "references/http/search",
-          ],
         },
         {
           label: "HTTP status codes",
