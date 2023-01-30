@@ -11,15 +11,16 @@ import {
   HomepageCard as Card,
   HomepageSection as Section,
 } from "../../../../src/components/HomepageComponents";
+import Installation from "@site/docs/includes/_install_cloud_login.mdx";
 
 # Building an E-Commerce Store with Tigris Search
 
 Search is a fundamental part of an application especially when we build retail and e-commerce applications. Search
 provides your customers a great shopping experience. This tutorial will demonstrate how [Tigris](https://docs.tigrisdata.com/)
-makes it super easy to add real-time and relevance-based search to your application. Tigris has an embedded search engine
+makes it super easy to add real-time and relevance-based full-text search to your application. Tigris has an embedded search engine
 which automatically makes all your data searchable.
 
-The article will be focusing mainly on integrating full-text search capabilities using Tigris and Nuxt.js and may skip
+The guide will be focusing mainly on integrating full-text search capabilities using Tigris and Nuxt.js and may skip
 over few things like styling etc. which will be pre-generated in the template used for this tutorial.
 
 [Here is a link](https://nuxt-ecommerce-netlify.netlify.app/) to working example of this e-commerce store
@@ -28,14 +29,7 @@ like exploring on your own, else follow along the tutorial.
 
 ## Prerequisites
 
-You'll need a few things installed
-
-- [Node.js](https://nodejs.org/) version 16+
-- [npm](https://www.npmjs.com/) 7 or greater
-- Tigris
-  - For **macOS**: `brew install tigrisdata/tigris/tigris-cli`
-  - Other operating systems: [See installation instructions here](docs/sdkstools/cli/installation.mdx)
-- [Netlify CLI](https://www.npmjs.com/package/netlify-cli)
+<Installation />
 
 ## Getting Started
 
@@ -43,7 +37,7 @@ The first step is to clone the repository that contains the starting source code
 
 ```mdx-code-block
 <TerminalWindow>
-<CodeBlock language="shell">git clone -b ecommerce-search-scaffold git@github.com:tigrisdata/tigris-netlify-ecommerce.git</CodeBlock>
+<CodeBlock language="shell">git clone https://github.com/tigrisdata/tigris-netlify-ecommerce</CodeBlock>
 </TerminalWindow>
 ```
 
@@ -72,89 +66,72 @@ tigris-netlify-ecommerce
     ├── read-all-products.ts
     ├── create-payment-intent.ts
     └── handle-payment-succeeded.ts
-├── models
-│   └── tigris
-│       └── catalog
-│           └── products.ts
+|── lib
+    └── tigris.ts
+├── db
+│   └── models
+|       └── products.ts
+|── scripts
+    └── setup.ts
 └── store
     └── index.js
 ```
 
-- `package.json` - Configuration for the Node project
-- `pages/` - This is where all the vue files that encapsulate the template, logic, and styling of a Vue component
-- `functions/` - All serverless functions(API endpoints) for the application are defined in this directory
-- `models/tigris/catalog/` - To manage schema of this application. Database is `catalog` and collection is `products`
-- `store/` - Vuex store
+- `db/models/products.ts` - Defines the product collection schema.
+- `scripts/setup.ts` - Initializes the database and creates collections.
+- `lib/tigris` - Initializes and exports the Tigris client for use in other modules.
+- `store/` - The Vuex store folder.
+- `package.json` - Node project configuration file.
+- `pages/` - Holds all Vue component files (template, logic, and styling).
+- `functions/` - Contains all the serverless function definitions (API endpoints) for the app.
 
-## Create a database, collection and load the dataset
+## Create a Tigris Project
 
-We will connect to Tigris Cloud to run this application. Let's first create an application key for your project to get
-the Tigris configuration.
+To connect your e-commerce store app with a Tigris database, you need to create a Tigris project.
+To create one, go to your <a href={tigrisConfig.consoleUrl}>Tigris Cloud Console</a>, click "Create a new project," name it "catalog," and click "Create."
+
+![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
+
+Select **Go to Project** in the next dialog.
+
+### Configure environment variables
+
+After creating a project, Tigris generates an app key with necessary credentials automatically.
+Go to **Application Keys**, click the eye icon for the listed key, and a dialog will appear with values to configure your local app using environment variables.
+
+- `TIGRIS_URI` - the URL for your Tigris platform setup. If you're using Tigris Cloud, it should be "api.preview.tigrisdata.cloud."
+- `TIGRIS_PROJECT` - name of your project in Tigris, not to be confused with your application key name.
+- `TIGRIS_CLIENT_ID` - a client ID for your application key.
+- `TIGRIS_CLIENT_SECRET` - a secret for your application key.
+- `TIGRIS_DB_BRANCH` - The database branch name. We recommend using the **main** branch for a production environment, while other branches can be used for development.
+
+Update the `.env.development` file with values for `TIGRIS_URI`, `TIGRIS_PROJECT`, `TIGRIS_CLIENT_ID`, and `TIGRIS_CLIENT_SECRET` from the Tigris web console.
+Set the `TIGRIS_DB_BRANCH` to specify a branch for the Tigris database.
+
+```dotenv title=.env.development
+TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_PROJECT=catalog
+TIGRIS_CLIENT_ID=ftSxxx
+TIGRIS_CLIENT_SECRET=DOxxx
+TIGRIS_DB_BRANCH=develop
+```
+
+After this, run the `setup` script and that will automatically create your database collection and load
+the product data is defined present [here](https://github.com/tigrisdata/tigris-netlify-ecommerce/blob/ecommerce-search-scaffold/static/storedata.json).
 
 ```mdx-code-block
 <TerminalWindow>
-<CodeBlock language="shell">tigris create application ecommerce_search "search tutorial"</CodeBlock>
-</TerminalWindow>
-```
-
-Once the project has been created, create an application key for the project:
-
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">tigris create app_key "my app key" --project=ecommerce_search</CodeBlock>
-</TerminalWindow>
-```
-
-this will have the following output
-
-```json
-{
-  "id": "dummy-id",
-  "name": "my app key",
-  "secret": "dummy-secret",
-  "created_at": 1668493288000,
-  "created_by": "google-oauth2|107496644751065904534",
-  "project": "ecommerce_search"
-}
-```
-
-Once done, you can create a `.env` and copy the values from above.
-
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">{envDevOutput}</CodeBlock>
-</TerminalWindow>
-```
-
-After this just run the `load` target and that will automatically create your database and collection and will load
-the data present [here](https://github.com/tigrisdata/tigris-netlify-ecommerce/blob/ecommerce-search-scaffold/static/storedata.json).
-
-```mdx-code-block
-<TerminalWindow>
-<CodeBlock language="shell">npm run load</CodeBlock>
+<CodeBlock language="shell">npm run setup</CodeBlock>
 </TerminalWindow>
 ```
 
 ```text
-> ecommerce-netlify@1.0.0 load
-> npm run setup:dev
-
-
-> ecommerce-netlify@1.0.0 setup:dev
-> NODE_ENV=development npm run setup
-
-
 > ecommerce-netlify@1.0.0 setup
 > npx ts-node scripts/setup.ts
 
-event - Scanning /Users/himank/tigris-netlify-ecommerce/models/tigris for Tigris schema definitions
-info - Found DB definition catalog
-info - Found Schema file products.ts in catalog
-info - Found schema definition: ProductSchema
-debug - Generated Tigris Manifest: [{"dbName":"catalog","collections":[{"collectionName":"products","schema":{"id":{"type":"string","primary_key":{"order":1}},"color":{"type":"string"},"description":{"type":"string"},"gender":{"type":"string"},"name":{"type":"string"},"review":{"type":"string"},"starrating":{"type":"number"},"price":{"type":"number"},"sizes":{"type":"array","items":{"type":"string"}},"img":{"type":"string"}},"schemaName":"ProductSchema"}]}]
-event - Created database: catalog
-debug - {"title":"products","additionalProperties":false,"type":"object","properties":{"id":{"type":"string"},"color":{"type":"string"},"description":{"type":"string"},"gender":{"type":"string"},"name":{"type":"string"},"review":{"type":"string"},"starrating":{"type":"number"},"price":{"type":"number"},"sizes":{"type":"array","items":{"type":"string"}},"img":{"type":"string"}},"collection_type":"documents","primary_key":["id"]}
-event - Created collection: products from schema: ProductSchema in db: catalog
+info - Using Tigris at: api.preview.tigrisdata.cloud:443
+info - Using database branch: 'main'
+event - Creating collection: 'products' in project: 'catalog'
 Inserted 30 documents
 Setup complete ...
 ```
@@ -176,10 +153,8 @@ serverless function will be used by the vuex store to power search functionality
 
 ```ts title=functions/search-products.ts
 import { Handler } from "@netlify/functions";
-import { Tigris } from "@tigrisdata/core";
-import { Product } from "~/models/tigris/catalog/products";
-
-const tigris = new Tigris();
+import { Product } from "../db/models/product";
+import tigrisDb from "../lib/tigris";
 
 const handler: Handler = async (event, context) => {
   const searchReq = JSON.parse(event.body);
@@ -195,15 +170,13 @@ const handler: Handler = async (event, context) => {
   }
 
   try {
-    const products = tigris
-      .getDatabase("catalog")
-      .getCollection<Product>("products");
+    const products = tigrisDb.getCollection<Product>(Product);
 
     const searchResult = await products.search(searchReq);
 
-    const productHits = new Array();
-    for (const hit of searchResult.hits) {
-      productHits.push(hit.document);
+    const productHits = [];
+    for await (const res of searchResult) {
+      res.hits.forEach((hit) => productHits.push(hit.document));
     }
     return {
       statusCode: 200,
