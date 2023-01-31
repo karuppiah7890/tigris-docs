@@ -1,14 +1,11 @@
 # TypeScript RESTful Web App
 
-import Installation from "@site/docs/includes/_install_cloud_login.mdx";
-
 In this guide we will build a RESTful web application that demonstrates the
 following features of Tigris:
 
 - Flexible Document Model
 - Full-text Search
 - Automatic Indexing
-- Event Streaming
 - Transactions
 - Simple APIs
 
@@ -21,13 +18,11 @@ The application uses the [Express](https://expressjs.com/) framework.
 
 :::
 
-## Prerequisites
-
-<Installation />
+Now let's get started with Tigris.
 
 ## Getting Started
 
-Clone the application code repository
+Clone the application code repository:
 
 ```shell
 git clone https://github.com/tigrisdata/tigris-starter-ts.git
@@ -39,17 +34,40 @@ And navigate to the directory created
 cd tigris-starter-ts
 ```
 
-## Create a Tigris Project
+import StartupLocally from "@site/docs/includes/_startup_tigris_locally.mdx";
 
-To connect your e-commerce store app with a Tigris database, you need to create a Tigris project.
-To create one, go to your, click **Create a new project**, name it `restapi`, and click **Create**.
+<StartupLocally />
 
-![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
+### Create a Tigris Project
 
-### Configure environment variables
+Create a Tigris project for your TypeScript RESTful web application:
 
-After creating a project, Tigris generates an app key with necessary credentials automatically.
-Click on the **Go to Project** button and go to **Application Keys**, click the eye icon for the listed key, and a dialog will appear with values to configure your local app using environment variables.
+```shell
+tigris create project tigris_starter_ts "TypeScript RESTful App"
+```
+
+### Create a Project Application Key
+
+After the project is created, generate an application key for it:
+
+```shell
+tigris create app_key "my app key" --project=tigris_starter_ts
+```
+
+The result will be as follows:
+
+```
+{
+  "id": "dummy-id",
+  "name": "my app key",
+  "secret": "dummy-secret",
+  "created_at": 1668493288000,
+  "created_by": "google-oauth2|107496644751065904534",
+  "project": "ecommerce_search"
+}
+```
+
+The following table illustrates the correlation between the JSON property ID and the environment variable:
 
 | Dialog        | Environment variable   |
 | ------------- | ---------------------- |
@@ -58,15 +76,14 @@ Click on the **Go to Project** button and go to **Application Keys**, click the 
 | Client Secret | `TIGRIS_CLIENT_SECRET` |
 | Name          | `TIGRIS_PROJECT`       |
 
-Create a `.env` file and add the values for `TIGRIS_URI`, `TIGRIS_PROJECT`, `TIGRIS_CLIENT_ID`, and `TIGRIS_CLIENT_SECRET` from the Tigris web console.
-To specify a branch for the Tigris database, set the `TIGRIS_DB_BRANCH` environment variable. It is recommended to use the **main** branch in a production environment, and another branch such as **develop** in a development environment.
+Create a `.env` file in the root directory of your project and add the credentials to it. Your `.env` file will look as follows:
 
-```dotenv title=.env.development
+```dotenv title=.env
 TIGRIS_URI=api.preview.tigrisdata.cloud
-TIGRIS_PROJECT=catalog
+TIGRIS_PROJECT=nextjs_blog_starter_comments
 TIGRIS_CLIENT_ID=ftSxxx
 TIGRIS_CLIENT_SECRET=DOxxx
-TIGRIS_DB_BRANCH=develop
+TIGRIS_DB_BRANCH=main
 ```
 
 ## Starting the application
@@ -86,21 +103,6 @@ npm run dev
 ```
 
 ## Using the application
-
-### Event streaming
-
-Every time a new user is created we publish a new event. Take a look at the
-code inside [src/controllers/user-controller.ts](https://github.com/tigrisdata/tigris-starter-ts/blob/main/src/controllers/user-controller.ts#L90).
-
-Let's subscribe to this event stream. Open a new terminal window and run the
-following command
-
-```shell
-curl -N -X POST localhost:8080/users/subscribe
-```
-
-Keep this terminal window open so that you can watch the events live. Use a
-separate terminal window for the remainder of the tutorial.
 
 ### CRUD operations
 
@@ -190,7 +192,7 @@ curl http://localhost:8080/users
 curl http://localhost:8080/products
 ```
 
-### Global search
+### Full-text search
 
 Tigris comes with an integrated search engine that eliminates the need to
 run a separate search platform and synchronize data.
@@ -201,7 +203,7 @@ Let's search for users named "Jane"
 curl http://localhost:8080/users/search \
     -X POST \
     -H 'Content-Type: application/json' \
-    -d '{"q": "jane"}'
+    -d '{"query": "jane"}'
 ```
 
 Or, search for products named "avocado" and price less than 50
@@ -211,7 +213,7 @@ curl localhost:8080/products/search \
     -X POST \
     -H 'Content-Type: application/json' \
     -d '{
-        "q": "avocado",
+        "query": "avocado",
         "searchFields": ["name"],
         "filter": {"price": {"$lt": 50}}
       }'
@@ -238,83 +240,87 @@ import { Product } from "../models/product";
 
 ```typescript title="order-controller.ts"
 public createOrder = async (req: Request, res: Response) => {
-  this.db.transact(async tx => {
     // get user
-    const user: (User | undefined) = await this.db.getCollection<User>('users').findOne({
-      userId: req.params.userId
-    }, tx);
+    const user: User | undefined = await this.db
+      .getCollection<User>(User)
+      .findOne({
+        filter: {
+          userId: req.params.userId,
+        },
+      });
     if (user === undefined) {
-      res.status(404).json({error: 'User not found'});
+      res.status(404).json({ error: "User not found" });
       return;
     }
 
     // get product
-    const product: (Product | undefined) = await this.db.getCollection<Product>('products').findOne({
-          productId: req.params.productId
+    const product: Product | undefined = await this.db
+      .getCollection<Product>(Product)
+      .findOne({
+        filter: {
+          productId: req.params.productId,
         },
-        tx
-    );
+      });
     if (product === undefined) {
-      res.status(404).json({error: 'Product not found'});
+      res.status(404).json({ error: "Product not found" });
       return;
     }
 
     // read quantity for order
-    const qty: number = Number.parseInt(req.params.quantity);
+    const qty = Number.parseInt(req.params.quantity);
 
     // check quantity available
     if (qty > product.quantity) {
-      res.status(412).json({error: 'Insufficient product quantity'});
+      res.status(412).json({ error: "Insufficient product quantity" });
       return;
     }
     const orderTotal: number = qty * product.price;
 
     // check balance available
     if (user.balance < orderTotal) {
-      res.status(412).json({error: 'Insufficient user balance'});
+      res.status(412).json({ error: "Insufficient user balance" });
       return;
     }
 
     // deduct balance
-    await this.db.getCollection<User>('users').update(
-        {
-          userId: user.userId
-        },
-        {
-          balance: user.balance - orderTotal
-        },
-        tx
-    );
-    console.log('deducted user balance');
+    await this.db.getCollection<User>(User).updateOne({
+      filter: {
+        userId: user.userId,
+      },
+      fields: {
+        balance: user.balance - orderTotal,
+      },
+    });
+    console.log("deducted user balance");
 
     // deduct product quantity
-    await this.db.getCollection<Product>('products').update(
-        {
-          productId: product.productId
-        },
-        {
-          quantity: product.quantity - qty
-        },
-        tx
-    );
+    await this.db.getCollection<Product>(Product).updateOne({
+      filter: {
+        productId: product.productId,
+      },
+      fields: {
+        quantity: product.quantity - qty,
+      },
+    });
     // create order
     const order: Order = {
       orderTotal: orderTotal,
-      userId: user.userId,
+      userId: Number.parseInt(user.userId),
       productItems: [
         {
           productId: product.productId,
-          quantity: qty
-        }
-      ]
+          quantity: qty,
+          name: product.name,
+          price: product.price,
+        },
+      ],
     };
 
-    await this.orders.insert(order, tx);
-    console.log('order created');
+    await this.orders.insertOne(order);
+    console.log("order created");
 
-    res.status(200).json({status: 'Order placed successfully'});
-  });
-};
+    res.status(200).json({ status: "Order placed successfully" });
+  };
 ```
 
 #### Configure HTTP route
@@ -348,14 +354,12 @@ curl http://localhost:8080/orders
 
 ## Understanding what just happened
 
-When you launched the application, code located in `App.initializeTigris`
-created a database named **tigris_starter_ts**. It then created the
-collections for storing the documents **users**, **products**, **orders**,
-and **user_events** for storing the events. All of this was done
+When you executed the `create project` command, a database named **tigris_starter_ts** was created. Upon running the `create app_key` command, your application's credentials were generated in the **tigris_starter_ts** database.
+Launching the application triggered the instant creation of the collections, users, products, and orders, through code located in `App.initializeTigris`. All of this was done
 instantaneously in true serverless fashion.
 
 The model definitions for these collections are located
-inside [src/models/](https://github.com/tigrisdata/tigris-starter-ts/tree/main/src/models).
+inside [src/db/models/](https://github.com/tigrisdata/tigris-starter-ts/tree/main/src/db/models) folder.
 
-You also leveraged the event streaming and search features through code
+You also leveraged the search features through code
 without having to setup any complicated infrastructure.
