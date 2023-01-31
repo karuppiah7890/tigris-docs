@@ -90,7 +90,7 @@ TIGRIS_DB_BRANCH=main
 
 ### Build the project
 
-The next step is to build project
+The next step is to build project:
 
 ```shell
 npm run build
@@ -118,7 +118,7 @@ Let's create user and product records, and then read them back.
 
 #### Insert users
 
-Run following commands to create two user records
+Run following commands to create two user records:
 
 ```shell
 curl localhost:8080/users/create \
@@ -140,12 +140,9 @@ curl localhost:8080/users/create \
         }'
 ```
 
-Now if you go back to the terminal window where you ran the
-`curl .... subscribe` command you will notice two events displayed.
-
 #### Insert products
 
-Run the following commands to insert some product records
+Run the following commands to insert some product records:
 
 ```shell
 curl localhost:8080/products/create \
@@ -182,7 +179,7 @@ curl localhost:8080/products/create \
 
 #### Read the records
 
-Now go ahead and confirm that the data has been persisted
+Now go ahead and confirm that the data has been persisted:
 
 ```shell
 curl http://localhost:8080/users
@@ -197,7 +194,7 @@ curl http://localhost:8080/products
 Tigris comes with an integrated search engine that eliminates the need to
 run a separate search platform and synchronize data.
 
-Let's search for users named "Jane"
+Let's search for users named "Jane":
 
 ```shell
 curl http://localhost:8080/users/search \
@@ -206,7 +203,7 @@ curl http://localhost:8080/users/search \
     -d '{"query": "jane"}'
 ```
 
-Or, search for products named "avocado" and price less than 50
+Or, search for products named "avocado" and price less than 50:
 
 ```shell
 curl localhost:8080/products/search \
@@ -325,7 +322,7 @@ public createOrder = async (req: Request, res: Response) => {
 
 #### Configure HTTP route
 
-Add the following new route to the `OrderController.setupRoutes` function
+Add the following new route to the `OrderController.setupRoutes` function:
 
 ```typescript title="order-controller.ts"
 this.router.post(`${this.path}/:userId/:productId/:quantity`, this.createOrder);
@@ -338,7 +335,7 @@ order record.
 
 Replace `{user-id}`, and `{product-id}` below with IDs of the records you
 see when running the commands in the [Read the records](#read-the-records)
-section.
+section:
 
 ```shell
 curl -X 'POST' 'http://localhost:8080/orders/{user-id}/{product-id}/4'
@@ -346,7 +343,7 @@ curl -X 'POST' 'http://localhost:8080/orders/{user-id}/{product-id}/4'
 
 #### Read all order records
 
-Now go ahead and confirm that the order record has been persisted
+Now go ahead and confirm that the order record has been persisted:
 
 ```shell
 curl http://localhost:8080/orders
