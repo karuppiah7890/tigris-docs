@@ -1,10 +1,12 @@
 # TypeScript RESTful Web App
 
+import Installation from "@site/docs/includes/_install_cloud_login.mdx";
+
 In this guide we will build a RESTful web application that demonstrates the
 following features of Tigris:
 
 - Flexible Document Model
-- Global Search
+- Full-text Search
 - Automatic Indexing
 - Event Streaming
 - Transactions
@@ -19,7 +21,9 @@ The application uses the [Express](https://expressjs.com/) framework.
 
 :::
 
-Now let's get started with Tigris.
+## Prerequisites
+
+<Installation />
 
 ## Getting Started
 
@@ -35,11 +39,35 @@ And navigate to the directory created
 cd tigris-starter-ts
 ```
 
-### Startup Tigris local development environment
+## Create a Tigris Project
 
-import StartupLocally from "@site/docs/includes/_startup_tigris_locally.mdx";
+To connect your e-commerce store app with a Tigris database, you need to create a Tigris project.
+To create one, go to your, click **Create a new project**, name it `restapi`, and click **Create**.
 
-<StartupLocally />
+![The create a project dialog within the Tigris console web application](/img/screenshots/create-new-project-dialog.jpg)
+
+### Configure environment variables
+
+After creating a project, Tigris generates an app key with necessary credentials automatically.
+Click on the **Go to Project** button and go to **Application Keys**, click the eye icon for the listed key, and a dialog will appear with values to configure your local app using environment variables.
+
+| Dialog        | Environment variable   |
+| ------------- | ---------------------- |
+| URL           | `TIGRIS_URI`           |
+| Client ID     | `TIGRIS_CLIENT_ID`     |
+| Client Secret | `TIGRIS_CLIENT_SECRET` |
+| Name          | `TIGRIS_PROJECT`       |
+
+Create a `.env` file and add the values for `TIGRIS_URI`, `TIGRIS_PROJECT`, `TIGRIS_CLIENT_ID`, and `TIGRIS_CLIENT_SECRET` from the Tigris web console.
+To specify a branch for the Tigris database, set the `TIGRIS_DB_BRANCH` environment variable. It is recommended to use the **main** branch in a production environment, and another branch such as **develop** in a development environment.
+
+```dotenv title=.env.development
+TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_PROJECT=catalog
+TIGRIS_CLIENT_ID=ftSxxx
+TIGRIS_CLIENT_SECRET=DOxxx
+TIGRIS_DB_BRANCH=develop
+```
 
 ## Starting the application
 
