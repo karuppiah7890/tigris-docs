@@ -63,24 +63,24 @@ The result will be as follows:
   "secret": "dummy-secret",
   "created_at": 1668493288000,
   "created_by": "google-oauth2|107496644751065904534",
-  "project": "ecommerce_search"
+  "project": "tigris_starter_ts"
 }
 ```
 
 The following table illustrates the correlation between the JSON property ID and the environment variable:
 
-| Dialog        | Environment variable   |
-| ------------- | ---------------------- |
-| URL           | `TIGRIS_URI`           |
-| Client ID     | `TIGRIS_CLIENT_ID`     |
-| Client Secret | `TIGRIS_CLIENT_SECRET` |
-| Name          | `TIGRIS_PROJECT`       |
+| API KEY | Environment variable   |
+| ------- | ---------------------- |
+| id      | `TIGRIS_CLIENT_ID`     |
+| secret  | `TIGRIS_CLIENT_SECRET` |
+| name    | `TIGRIS_PROJECT`       |
 
+You must add `TIGRIS_URI` and `TIGRIS_DB_BRANCH` to your environment file. Use `api.preview.tigrisdata.cloud` for TIGRIS_URI and `TIGRIS_DB_BRANCH`, use **main** for a production app and **develop** or another branch name for development.
 Create a `.env` file in the root directory of your project and add the credentials to it. Your `.env` file will look as follows:
 
 ```dotenv title=.env
 TIGRIS_URI=api.preview.tigrisdata.cloud
-TIGRIS_PROJECT=nextjs_blog_starter_comments
+TIGRIS_PROJECT=tigris_starter_ts
 TIGRIS_CLIENT_ID=ftSxxx
 TIGRIS_CLIENT_SECRET=DOxxx
 TIGRIS_DB_BRANCH=main
