@@ -1,5 +1,7 @@
 # TypeScript RESTful Web App
 
+import Installation from "@site/docs/includes/_install_cloud_login.mdx";
+
 In this guide we will build a RESTful web application that demonstrates the
 following features of Tigris:
 
@@ -17,6 +19,10 @@ feature rich web application.
 The application uses the [Express](https://expressjs.com/) framework.
 
 :::
+
+## Prerequisites
+
+<Installation />
 
 Now let's get started with Tigris.
 
@@ -316,7 +322,7 @@ public createOrder = async (req: Request, res: Response) => {
     await this.orders.insertOne(order);
     console.log("order created");
 
-    res.status(200).json({ status: "Order placed successfully" });
+    res.status(201).json({ status: "Order placed successfully" });
   };
 ```
 
