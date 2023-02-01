@@ -281,7 +281,14 @@ const config = {
         indexName: "tigrisdata",
         contextualSearch: true,
       },
+      mermaid: {
+        theme: { light: "neutral", dark: "dark" },
+      },
     }),
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
 };
 
 module.exports = config;

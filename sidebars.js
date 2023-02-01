@@ -75,6 +75,7 @@ const sidebars = {
       items: [
         "concepts/database/documents",
         "concepts/database/datamodel",
+        "concepts/database/branching",
         "concepts/database/schema-validation",
         "concepts/database/schema-modification",
         "concepts/database/crud",
@@ -187,7 +188,7 @@ const sidebars = {
           },
           collapsed: true,
           items: [
-            "sdkstools/typescript/getting-started",
+            "sdkstools/typescript/index",
             {
               type: "category",
               label: "Database",
@@ -201,6 +202,7 @@ const sidebars = {
                 "sdkstools/typescript/database/types",
                 "sdkstools/typescript/database/schema",
                 "sdkstools/typescript/database/schema-bootstrap",
+                "sdkstools/typescript/database/branching",
                 "sdkstools/typescript/database/insert",
                 "sdkstools/typescript/database/update",
                 "sdkstools/typescript/database/delete",
