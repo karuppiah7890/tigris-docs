@@ -12,7 +12,7 @@ The `main` branch is created by default in your Tigris Project's database, and y
 branches are created from `main` branch. A new branch is essentially an isolated [copy-on-write](https://en.wikipedia.org/wiki/Copy-on-write)
 clone of the schema on the `main` branch at the creation time.
 
-A database branch can evolve its schema and data independently, and you cannot delete it.
+A database branch can evolve its schema and data independently.
 You can have any number of branches, and creating a branch does not increase the load on the `main` branch,
 so you can quickly branch your database for development, staging, testing, and to segregate
 data for CI/CD pipelines.
