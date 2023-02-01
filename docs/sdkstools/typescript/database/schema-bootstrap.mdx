@@ -14,14 +14,13 @@ change control as simple as a "Code review". Let's see how this works.
 
 ## How does this work?
 
-Define your data models [using decorators](datamodel.mdx#declare-using-decorators) in your TypeScript project.
-Register them with the Tigris client during build time and let the Tigris SDK automatically synchronize your
-data models with the database. This includes creating collections that do not exist, as well as
-applying schema changes if the data model has evolved.
+Define your data models in your TypeScript project. Register them with the Tigris client during build
+time and let the Tigris SDK automatically synchronize your data models with the database. This includes
+creating collections that do not exist, as well as applying schema changes if the data model has evolved.
 
 For example, let's use following `Product` and `User` data model:
 
-```ts title="models/tigris/product.ts"
+```ts title="./db/models/product.ts"
 import {
   TigrisCollection,
   TigrisDataTypes,
@@ -29,12 +28,10 @@ import {
   Field,
 } from "@tigrisdata/core";
 
-export const PRODUCTS_COLLECTION_NAME = "products";
-
-@TigrisCollection(PRODUCTS_COLLECTION_NAME)
+@TigrisCollection("products")
 export class Product {
-  @PrimaryKey(TigrisDataTypes.INT32, { order: 1, autoGenerate: true })
-  id?: number;
+  @PrimaryKey(TigrisDataTypes.INT64, { order: 1, autoGenerate: true })
+  id?: string;
 
   @Field()
   title: string;
@@ -47,15 +44,13 @@ export class Product {
 }
 ```
 
-```ts title="models/tigris/user.ts"
+```ts title="./db/models/user.ts"
 import {
   TigrisCollection,
   TigrisDataTypes,
   PrimaryKey,
   Field,
 } from "@tigrisdata/core";
-
-export const USERS_COLLECTION_NAME = "users";
 
 export class Status {
   @Field(TigrisDataTypes.DATE_TIME)
@@ -65,7 +60,7 @@ export class Status {
   memberSince: string;
 }
 
-@TigrisCollection(USERS_COLLECTION_NAME)
+@TigrisCollection("users")
 export class User {
   @PrimaryKey({ order: 1 })
   name: number;
@@ -75,28 +70,44 @@ export class User {
 }
 ```
 
-### Use this script to register models
+### Use this script to register models {#build-script}
 
 Now, let's write a script that can trigger build time to automatically create or update the collections
 
-```ts title="scripts/setup.ts"
+```ts title=setup.ts
 import { Tigris } from "@tigrisdata/core";
-import { Product } from "../models/product";
-import { User } from "../models/user";
+import { Product } from "./db/models/product";
+import { User } from "./db/models/user";
 
 async function main() {
-  const tigris = new Tigris({
-    serverUrl: "api.preview.tigrisdata.cloud",
-    clientId: "Your client_id here",
-    clientSecret: "Your client_secret here",
-    projectName: "Your project name here",
-  });
-
-  //highlight-start
-  await tigris.registerSchemas([Product, User]);
-  //highlight-end
+  // setup client
+  const tigrisClient = new Tigris();
+  // ensure branch exists, create it if it needs to be created dynamically
+  await tigrisClient.getDatabase().initializeBranch();
+  // register schemas
+  await tigrisClient.registerSchemas([Product, User]);
 }
+
+main()
+  .then(async () => {
+    console.log("Setup complete ...");
+    process.exit(0);
+  })
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  });
 ```
+
+The script depends on the following environment variables to be set
+
+| Environment variable name | Value                                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------------------------ |
+| TIGRIS_URI                | The URI to your Tigris deployment. For Tigris Cloud this is https://api.preview.tigrisdata.cloud |
+| TIGRIS_PROJECT            | your project name                                                                                |
+| TIGRIS_CLIENT_ID          | your production app key client ID                                                                |
+| TIGRIS_CLIENT_SECRET      | your production app key client secret                                                            |
+| TIGRIS_DB_BRANCH          | main                                                                                             |
 
 ### Execute setup script at build time
 
@@ -104,15 +115,6 @@ Include this script in `package.json` of your **npm** project and register trigg
 project builds. Here are some examples for popular frameworks:
 
 <Tabs>
-<TabItem value="cli" label="CLI">
-
-```shell
-$> cd <project root>
-$> npx ts-node scripts/setup.ts
-```
-
-</TabItem>
-
 <TabItem value="nextjs" label="Next.js">
 
 ```json title="package.json"
@@ -215,12 +217,5 @@ your development workflow.
   <summary>Q - Will a collection be deleted if corresponding model is removed?</summary>
 
 - No, that would be an unsafe operation. Users have to explicitly delete collection(s).
-
-</details>
-
-<details>
-  <summary>Q - Is using Tigris schema manager required?</summary>
-
-- No, this is just one convenient method to simplify your development workflow.
 
 </details>

@@ -2,7 +2,8 @@ const tigris = new Tigris({
   serverUrl: "api.preview.tigrisdata.cloud",
   clientId: 'xxx',
   clientSecret: 'xxx',
-  projectName: 'my-ecommerce-project'
+  projectName: 'my-ecommerce-project',
+  branch: 'my-db-branch'
 });
 
 @TigrisCollection("catalog")

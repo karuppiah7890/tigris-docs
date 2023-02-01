@@ -1,0 +1,131 @@
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Database Branching
+
+All database operations in Tigris are performed in the context of a branch.
+Every database comes with the `main` branch by default. Tigris allows you to
+branch your database and create an isolated copy of your database schema with all the collections.
+
+## Using a branch
+
+To use a database branch in TypeScript projects, initialize the Tigris
+client with the branch name.
+
+<Tabs>
+<TabItem value="Using env file" label="Using environment">
+
+Initialize Tigris client using a `.env` file and environment variables:
+
+```shell
+TIGRIS_URI="api.preview.tigrisdata.cloud"
+TIGRIS_CLIENT_ID="xxx"
+TIGRIS_CLIENT_SECRET="xxx"
+TIGRIS_PROJECT="my-ecommerce-project"
+TIGRIS_DB_BRANCH="development"
+```
+
+By instantiating a `Tigris` client without passing any configuration, the client will attempt to pull
+configuration from environment variables:
+
+```ts
+const tigrisClient = new Tigris();
+```
+
+</TabItem>
+<TabItem value="Using config" label="Using config">
+
+Initialize the Tigris client by passing configuration to the `Tigris` constructor:
+
+```ts
+const tigrisClient = new Tigris({
+  serverUrl: "api.preview.tigrisdata.cloud",
+  clientId: "xxx",
+  clientSecret: "xxx",
+  projectName: "my-ecommerce-project",
+  branch: "development",
+});
+```
+
+</TabItem>
+</Tabs>
+
+By setting the branch as `development`, all the schema changes and database queries would be against the `development` branch.
+When you create a database, a `main` branch always exists, which essentially is the primary database
+and only intended to be used in production.
+
+### Initializing the branch automatically {#initialize-branch}
+
+A branch needs to exist for any operations to succeed. You can automate the creation of the configured
+database branch:
+
+```ts
+const db = tigrisClient.getDatabase();
+await db.initializeBranch();
+```
+
+In the code above, the `db.initializeBranch()` call creates a new branch with the name defined in
+the environment flag `TIGRIS_DB_BRANCH` if a branch with that name does not already exist.
+
+## Create a database branch
+
+We recommend using branch initialization, as shown above. However, if you need
+to explicitly control branch creation, use the `createBranch()` function.
+
+```ts
+const db = tigrisClient.getDatabase();
+await db.createBranch("new-branch-name");
+```
+
+Unlike `initializeBranch`, the `createBranch` function throws an error if the branch you are trying to create already exists.
+
+## Delete a database branch
+
+Deleting a branch will delete all the collections and data in that branch. This operation cannot be undone.
+
+```ts
+const db = tigrisClient.getDatabase();
+await db.deleteBranch("existing-branch-name");
+```
+
+If you only want to delete some data or drop an entire collection, use [collection operations](delete.mdx).
+
+:::note
+The `main` database branch can never be deleted.
+:::
+
+## Automating your development workflow
+
+With [database branching](../../../../concepts/database/branching/), Tigris allows you to protect your production data from any unwanted changes
+by having your `main` branch configured to be used only in the production environment. You can use a
+[setup script](schema-bootstrap.mdx#build-script) in the project to keep your branch up to date with
+models in your code.
+
+Below is an example of a setup script:
+
+```ts title=setup.ts
+import { Tigris } from "@tigrisdata/core";
+import { Catalog } from "./db/models/catalog";
+import { User } from "./db/models/user";
+
+async function main() {
+  // setup client
+  const tigrisClient = new Tigris();
+  // ensure branch exists, create it if it needs to be created dynamically
+  await tigrisClient.getDatabase().initializeBranch();
+  // register schemas
+  await tigrisClient.registerSchemas([Catalog, User]);
+}
+
+main()
+  .then(async () => {
+    console.log("Setup complete ...");
+    process.exit(0);
+  })
+  .catch(async (e) => {
+    console.error(e);
+    process.exit(1);
+  });
+```
+
+By triggering this setup script during build time, you always have an up-to-date schema in your branch.
