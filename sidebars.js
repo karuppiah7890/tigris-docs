@@ -143,7 +143,6 @@ const sidebars = {
       items: [
         "guides/deploy-tigris-app/deploy-existing-app-to-vercel/index",
         "guides/deploy-tigris-app/deploy-to-netlify/index",
-        "guides/deploy-tigris-app/deploy-existing-app-to-vercel/index",
         "guides/deploy-tigris-app/deploy-existing-app-to-netlify/index",
       ],
     },
