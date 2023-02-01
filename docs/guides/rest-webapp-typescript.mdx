@@ -24,11 +24,9 @@ The application uses the [Express](https://expressjs.com/) framework.
 
 <Installation />
 
-Now let's get started with Tigris.
-
 ## Getting Started
 
-Clone the application code repository:
+Now let's get started with Tigris, clone the application code repository:
 
 ```shell
 git clone https://github.com/tigrisdata/tigris-starter-ts.git
@@ -124,7 +122,7 @@ Let's create user and product records, and then read them back.
 
 #### Insert users
 
-Run following commands to create two user records:
+Run the following commands to create two user records:
 
 ```shell
 curl localhost:8080/users/create \
@@ -185,7 +183,7 @@ curl localhost:8080/products/create \
 
 #### Read the records
 
-Now go ahead and confirm that the data has been persisted:
+Now, go ahead and confirm that the data has been persisted:
 
 ```shell
 curl http://localhost:8080/users
@@ -209,7 +207,7 @@ curl http://localhost:8080/users/search \
     -d '{"query": "jane"}'
 ```
 
-Or, search for products named "avocado" and price less than 50:
+Or, search for products named "avocado" with a `price` less than `50`:
 
 ```shell
 curl localhost:8080/products/search \
