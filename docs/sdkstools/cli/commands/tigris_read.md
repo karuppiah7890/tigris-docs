@@ -1,7 +1,7 @@
 ---
 id: read
 title: Read
-slug: /cli/read
+slug: /sdkstools/cli/read
 ---
 
 Reads and outputs documents

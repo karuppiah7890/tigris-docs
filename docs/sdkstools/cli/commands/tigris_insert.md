@@ -1,7 +1,7 @@
 ---
 id: insert
 title: Insert
-slug: /cli/insert
+slug: /sdkstools/cli/insert
 ---
 
 Inserts document(s)

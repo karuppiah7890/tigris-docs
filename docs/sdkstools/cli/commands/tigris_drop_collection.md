@@ -1,7 +1,7 @@
 ---
 id: drop-collection
 title: Drop Collection
-slug: /cli/drop-collection
+slug: /sdkstools/cli/drop-collection
 ---
 
 Drops collection

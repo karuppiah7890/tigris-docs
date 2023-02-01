@@ -1,7 +1,7 @@
 ---
 id: create-application
 title: Create Application
-slug: /cli/create-application
+slug: /sdkstools/cli/create-application
 ---
 
 Create app key credentials

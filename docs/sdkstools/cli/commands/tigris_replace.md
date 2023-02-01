@@ -1,7 +1,7 @@
 ---
 id: replace
 title: Replace
-slug: /cli/replace
+slug: /sdkstools/cli/replace
 ---
 
 Inserts or replaces document(s)

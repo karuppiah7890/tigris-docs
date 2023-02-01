@@ -1,94 +1,185 @@
 ---
-title: Deploying an existing Next.js Tigris Application to Vercel
+title: Deploying a Next.js Tigris Application to Vercel
 ---
 
-import failedBuildOutput from "!!raw-loader!./_failedBuildOutput";
+import tigrisConfig from "@site/tigris.config.js";
 
-This guide focuses on demonstrating the different methods for deploying an existing Next.js application built using Tigris to Vercel. There are two main options available: [manually adding the Tigris project credentials](#manually-adding-the-tigris-project-credentials) during the deployment process or [integrating Tigris into the project deployed on Vercel](#integrating-tigris-into-the-project-deployed-on-vercel). The guide covers both methods in detail, with step-by-step instructions.
+This guide demonstrates two approaches to deploying an existing Next.js application built using Tigris to [Vercel](https://vercel.com).
+
+In order for Tigris to work within a Next.js application (or any other type of application) on Vercel, the Tigris environment variables must be set.
 
 ## Prerequisites
 
-- [Vercel account](https://vercel.com/)
-- Sign up on [Tigris console](https://console.preview.tigrisdata.cloud/)
-- [GitHub account](https://github.com/)
-- Fork the [Next.js starter blog comments](https://github.com/tigrisdata-community/next.js-tigris-blog-comment) repository.
+This guide assumes you have the following:
 
-## Create New Vercel Project
+<ul>
+  <li>
+    A <a href="https://vercel.com">Vercel account</a>
+  </li>
+  <li>
+    A <a href="https://github.com">GitHub account</a> and your application
+    source code in a GitHub repository
+  </li>
+  <li>
+    A <a href={tigrisConfig.signupUrl}>Tigris account</a> and a Tigris project
+    created for your application running in development
+  </li>
+  <li>
+    A Next.js application built using Tigris running in your development
+    environment and your credentials stored in a <code>.env.local</code> file
+  </li>
+</ul>
 
-On your Vecel dashboard, click on `Add New > Project` button at the right hand-side to create a new Vercel site for your project.
+If you haven't already created a project in Vercel and configured it to use your application source from your GitHub repo, you'll need to do that before proceeding.
 
-![create-new-vercel-project](/img/screenshots/create-new-vercel-project.png)
+<details>
+  <summary>Create a new Vercel Project</summary>
+On your Vercel dashboard, click on **Add New > Project** button on the right-hand side to create a new Vercel site for your project.
 
-Then enter your project name in the search box to locate the project `next.js-tigris-blog-comment` project and click on the `Import` button.
+![create new vercel project](/img/screenshots/create-new-vercel-project.png)
 
-> If you are deploying your own project, enter the name of the project in the search field instead.
+Then enter the Git repo name corresponding to the project in the search box and click on the **Import** button next to the project listed in the results.
 
-![import-git-repository](/img/screenshots/import-git-repository.png)
+![import git repository](/img/screenshots/import-git-repository.png)
 
-## Manually adding the Tigris project credentials
+</details>
 
-Let's move on to configure your project's environment variables with your Tigris project credentials. To do this, first, collapse the environment variables box, and then copy and add your Tigris project credentials and their corresponding values from your `.env.local` file.
-To save a credential, click on the `Add` button and repeat the process for the next one.
+:::info
 
-![configure-vercel-project](/img/screenshots/configure-vercel-project.png)
+The build for a Next.js codebase deployed to Vercel configured to use Tigris will initially fail. This is because the required Tigris project environment variables need to be added to the Vercel project.
 
-After you have added all the necessary credentials, click the `Deploy` button to initiate the deployment process. Allow some time for the build and deployment process to complete as Vercel works on deploying your project.
+:::
 
-![deployed-vercel-project](/img/screenshots/deployed-vercel-project.png)
+There are two methods to deploying your Next.js and Tigris application to Vercel:
 
-## Preview the deployed project
+1. [Use the Tigris Vercel integration with your Vercel project](#vercel-tigris-integration)
+2. [Manually add the Tigris project configuration as Vercel project environment variables](#manual-env-vars)
 
-Congratulations, your Tigris project deployment is successful. Click on `Continue to Dashboard > Visit` button to prewiew your application.
+## Use the Tigris Vercel integration with your Vercel project {#vercel-tigris-integration}
 
-![nextjs-blog-starter](/img/screenshots/nextjs-blog-starter.jpg)
+Within the Vercel dashboard, find your project and navigate to the **configuration > Integrations** page.
 
-Head over to one of the blog posts and you will see the comment form.
+![vercel project integrations](/img/screenshots/vercel-project-integrations.png)
 
-![nextjs-blog-starter-comments](/img/screenshots/nextjs-blog-starter-comments.jpg)
+Click on the **Browse Marketplace** button, then search for **Tigris** in the input field. Next, locate and select the Vercel integration for Tigris.
 
-## Integrating Tigris into the project deployed on Vercel
+![vercel tigris integration](/img/screenshots/vercel-tigris-integration.png)
 
-An alternative approach is to first deploy your application without including Tigris project credentials. Then, use the Vercel Tigris integration to add your credentials to the project. To begin, complete the steps in the [Create New Vercel Project](#create-new-vercel-project) section, and click the `Deploy` button.
+For your Tigris project to be integrated with Vercel, you must authorize Vercel to access it. To begin, click on the **Add Integration** button.
 
-> Your build will not be successful as the Tigris credentials have yet to added into your Vercel project.
+![tigris integration page](/img/screenshots/tigris-integration-page.png)
 
-## Add Tigris Integration
+Then choose a Vercel account to authorize the integration and click on the **CONTINUE** button.
 
-Now return to your Vercel dashboard, identify and select the project you previously intended to deploy. Navigate to the `Settings > Integrations` page.
+![select vercel account](/img/screenshots/select-vercel-account.png)
 
-![vercel-project-integrations](/img/screenshots/vercel-project-integrations.png)
+Next, select the Vercel project you want to integrate with Tigris and click on the **CONTINUE** button.
 
-## Search for Tigris
+![select vercel projec](/img/screenshots/select-vercel-project.png)
 
-Click on the `Browse Marketplace` button, then search for `Tigris` in the input field. Locate and select the Vercel integration for Tigris.
+On the next screen, click on the **ADD INTEGRATION** button. Then, choose the Tigris project you want to connect the Vercel project with.
 
-![vercel-tigris-integration](/img/screenshots/vercel-tigris-integration.png)
+![integrating tigris project with vercel](/img/screenshots/integrating-tigris-project-with-vercel.png)
 
-## Adding Vercel Tigris Integration
+Once the Integration process is completed, you will be redirected to the success page.
 
-For your Tigris project to be integrated with Vercel, you need to authorize Vercel to access it. To begin, click on the `Add Integration` button.
+![vercel tigris integration successful](/img/screenshots/vercel-tigris-integration-successful.png)
 
-![tigris-integration-page](/img/screenshots/tigris-integration-page.png)
+Head back to your Vercel project, and navigate to the **Deployments** section, where you will find the failed build. Click on it to view the deployment details, and then select the **Redeploy** button to redeploy your project.
 
-Then choose a Vercel account to integrate with and click on the `CONTINUE` button.
+With the Tigris environment variables now in place via the integration flow, your Tigris project will build and deploy successfully. Click on **Continue to Dashboard > Visit** button to preview your application.
 
-![select-vercel-account](/img/screenshots/select-vercel-account.png)
+## Manually add the Tigris project configuration as Vercel project environment variables {#manual-env-vars}
 
-Next, proceed by selecting the Vercel project you want to integrate with Tigris, then click on the `CONTINUE` button.
+A Next.js Tigris application needs the following environment variables:
 
-![select-vercel-projec](/img/screenshots/select-vercel-project.png)
+- TIGRIS_URI - the URI to your Tigris platform deployment. If you are using Tigris Cloud, this is `api.preview.tigrisdata.cloud`.
+- TIGRIS_PROJECT - the name of your project in Tigris. Do not confuse this with the name of your application key.
+- TIGRIS_CLIENT_ID - an application key client ID.
+- TIGRIS_CLIENT_SECRET - an application key client secret.
+- TIGRIS_DB_BRANCH - The name of the database branch. Locally you may use `develop,` and we recommend `main` for production. However, you can set this to any name you like, as you do with Git branches.
 
-## Integrating Tigris with Vercel
+You can get your Tigris project configuration for your environment variables from two places:
 
-Once you have chosen the Vercel account and project you wish to use for the integration, click on the `ADD INTEGRATION ` button. Then, choose the Tigris project you want to integrate with Vercel from the drop-down menu and click `Continue` or create a new project.
+1. The **Application Keys** section of your Tigris project within the Tigris Console (recommended)
+2. The `.env.local` file in your local development environment (not recommended for a production app)
 
-![integrating-tigris-project-with-vercel](/img/screenshots/integrating-tigris-project-with-vercel.png)
+### Getting Tigris project configuration from the Tigris Console
 
-Once the Integration process is completed, you'll be redirected to the success page.
+To get the configuration from the Tigris console, navigate to your project and select **Application Keys**.
 
-![vercel-tigris-integration-successful](/img/screenshots/vercel-tigris-integration-successful.png)
+![Tigris project application keys within the Tigris Console](/img/screenshots/tigris-project-configuration.png)
 
-## Redeploy the Project
+Tigris database branching streamlines your developer experience and reduces the likelihood of you accidentally making changes to any data or schema in production. However, we still recommend you create a different application key development and production environments.
 
-Head back to your project, navigate to the `Deployments` section, where you will find the failed build. Click on it and select the `Reploy` button to redeploy your project.
-Once the redeployment is complete, continue on with the steps outlined in the [Preview the deployed project](#preview-the-deployed-project) section to preview your deployed project.
+![Tigris project application key dialog within the Tigris Console](/img/screenshots/tigris-app-key-dialog.png)
+
+With an application key created, click on the eye icon on the right of a key to open a dialog. You can then copy the following:
+
+- **URL** for the `TIGRIS_URI`
+- **Client ID** for the `TIGRIS_CLIENT_ID`
+- **Client Secret** for the `TIGRIS_CLIENT_SECRET`
+- **Name** for the `TIGRIS_PROJECT`
+
+The value for `TIGRIS_DB_BRANCH` isn't listed here since the branch name is up to you. We'll cover this further in the [Setting the Vercel Environment Variables section](#vercel-env-vars).
+
+### Getting your environment variables from your development `.env.local` file
+
+:::caution
+
+We recommend that you use different application keys for local development and production. This means you will have different values for `TIGRIS_CLIENT_ID` and `TIGRIS_CLIENT_SECRET`. So, this approach is **not recommended** for production apps.
+
+:::
+
+Within your local development environment, you will have a `.env.local` file. It will look as follows:
+
+```dotenv title=.env
+TIGRIS_URI=api.preview.tigrisdata.cloud
+TIGRIS_PROJECT=nextjs_blog_starter_comments
+TIGRIS_CLIENT_ID=ftSxxx
+TIGRIS_CLIENT_SECRET=DOxxx
+TIGRIS_DB_BRANCH=main
+```
+
+These are the environment variables you need to set in your Vercel project.
+
+See [Next.js environment variables](https://nextjs.org/docs/basic-features/environment-variables) for more general information and other available file naming conventions.
+
+### Setting the Vercel Environment Variables {#vercel-env-vars}
+
+Now that you have your Tigris project configuration, you can add them to your project in Vercel.
+
+If you are within the Vercel project set up flow, you can set environment variables there.
+
+![configure vercel project](/img/screenshots/configure-vercel-project.png)
+
+If your project has already been set up, then go to your project, select the **Settings** tab and then select **Environment Variables**. You can then set the required environment variables for the different Vercel environments.
+
+We recommend the following:
+
+| Environment variable name | Value                                                                                            | Environment(s)      |
+| ------------------------- | ------------------------------------------------------------------------------------------------ | ------------------- |
+| TIGRIS_URI                | The URI to your Tigris deployment. For Tigris Cloud this is https://api.preview.tigrisdata.cloud | Production, Preview |
+| TIGRIS_PROJECT            | your project name                                                                                | Production, Preview |
+| TIGRIS_CLIENT_ID          | your production app key client ID                                                                | Production, Preview |
+| TIGRIS_CLIENT_SECRET      | your production app key client secret                                                            | Production, Preview |
+| TIGRIS_DB_BRANCH          | preview\_${VERCEL_GIT_COMMIT_REF}                                                                | Preview             |
+| TIGRIS_DB_BRANCH          | main                                                                                             | Production          |
+
+For `TIGRIS_DB_BRANCH`, the convention is to use `main` for your Vercel **Production** environment. We recommend a dynamic value for the **Preview** environment. For example, `preview_${VERCEL_GIT_COMMIT_REF}` for a database branch per Git commit or `preview_${GIT_BRANCH}` for one per Git branch.
+
+:::tip
+
+You can also set environment variables in Vercel using the Vercel CLI and the [`vercel env` command](https://vercel.com/docs/cli/env).
+
+:::
+
+When complete, the Vercel environmental variable configuration will look as follows:
+
+![Vercel Tigris project environment variables configuration within the Vercel dashboard](/img/screenshots/tigris-vercel-env-vars.png)
+
+After you have added all the necessary environment variables, you will need to trigger a deployment.
+
+If you are in the Vercel project set up flow, click the **Deploy** button.
+
+Otherwise, head to the **Deployments** section of your project within the Vercel dashboard, select a deployment, and then click **Redeploy**. The new deployment will pick up the newly set environment variables.

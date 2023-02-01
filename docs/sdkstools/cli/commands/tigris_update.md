@@ -1,7 +1,7 @@
 ---
 id: update
 title: Update
-slug: /cli/update
+slug: /sdkstools/cli/update
 ---
 
 Updates document(s)

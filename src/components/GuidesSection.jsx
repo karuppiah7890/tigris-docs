@@ -19,9 +19,9 @@ export default function GuidesSection({ title, className }) {
         to="/guides/nuxtjs/"
       />
       <Card
-        title="Deploying apps built with Tigris"
-        description="Learn how easy it is to deploy applications built with Tigris"
-        to="/guides/deploy-tigris-app/deploy-to-vercel/"
+        title="Deploying a Next.js Tigris Application to Vercel"
+        description="Learn how to deploy a Next.js application built with Tigris to Vercel"
+        to="/guides/deploy-tigris-app/deploy-existing-app-to-vercel/"
       />
       <Card
         title="Building a REST web app in TypeScript"

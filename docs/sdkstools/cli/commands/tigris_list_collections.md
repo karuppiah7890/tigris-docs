@@ -1,7 +1,7 @@
 ---
 id: list-collections
 title: List Collections
-slug: /cli/list-collections
+slug: /sdkstools/cli/list-collections
 ---
 
 Lists project's DB's collections

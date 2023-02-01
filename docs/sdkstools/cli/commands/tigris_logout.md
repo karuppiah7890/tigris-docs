@@ -1,7 +1,7 @@
 ---
 id: logout
 title: Logout
-slug: /cli/logout
+slug: /sdkstools/cli/logout
 ---
 
 Logout from Tigris instance

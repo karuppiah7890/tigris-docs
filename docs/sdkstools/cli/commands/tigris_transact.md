@@ -1,7 +1,7 @@
 ---
 id: transact
 title: Transact
-slug: /cli/transact
+slug: /sdkstools/cli/transact
 ---
 
 Executes a set of operations in a transaction

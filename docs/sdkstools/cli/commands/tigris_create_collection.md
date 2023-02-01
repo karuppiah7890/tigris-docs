@@ -1,7 +1,7 @@
 ---
 id: create-collection
 title: Create Collection
-slug: /cli/create-collection
+slug: /sdkstools/cli/create-collection
 ---
 
 Creates collection(s)

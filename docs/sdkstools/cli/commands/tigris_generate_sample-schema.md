@@ -1,7 +1,7 @@
 ---
 id: generate-sample-schema
 title: Generate Sample Schema
-slug: /cli/generate-sample-schema
+slug: /sdkstools/cli/generate-sample-schema
 ---
 
 Generates sample schema

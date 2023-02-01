@@ -1,7 +1,7 @@
 ---
 id: config-show
 title: Show config
-slug: /cli/config-show
+slug: /sdkstools/cli/config-show
 ---
 
 Returns effective CLI configuration

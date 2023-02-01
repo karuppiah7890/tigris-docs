@@ -1,7 +1,7 @@
 ---
 id: dev-start
 title: Local dev start
-slug: /cli/dev-start
+slug: /sdkstools/cli/dev-start
 ---
 
 Starts an instance of Tigris for local development

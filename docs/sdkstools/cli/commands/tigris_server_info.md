@@ -1,7 +1,7 @@
 ---
 id: server-info
 title: Server info
-slug: /cli/server-info
+slug: /sdkstools/cli/server-info
 ---
 
 Returns server information

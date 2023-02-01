@@ -1,7 +1,7 @@
 ---
 id: delete
 title: Delete
-slug: /cli/delete
+slug: /sdkstools/cli/delete
 ---
 
 Deletes document(s)

@@ -95,6 +95,15 @@
       "source": "/docs/apidocs/",
       "destination": "/docs/references/api/",
       "permanent": true
+    },
+    {
+      "source": "/docs/guides/deploy-tigris-app/deploy-to-vercel/",
+      "destination": "/docs/quickstarts/quickstart-nextjs-vercel/"
+    },
+    {
+      "source": "/docs/create-tigris-app/",
+      "destination": "/docs/sdkstools/create-tigris-app/",
+      "permanent": true
     }
   ]
 }

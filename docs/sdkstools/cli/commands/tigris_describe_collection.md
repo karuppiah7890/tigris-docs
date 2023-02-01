@@ -1,7 +1,7 @@
 ---
 id: describe-collection
 title: Describe Collection
-slug: /cli/describe-collection
+slug: /sdkstools/cli/describe-collection
 ---
 
 Describes collection
