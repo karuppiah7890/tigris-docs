@@ -229,7 +229,7 @@ const sidebars = {
               label: "Database",
               link: {
                 type: "doc",
-                id: "sdkstools/golang/database/documents",
+                id: "sdkstools/golang/database/index",
               },
               collapsed: false,
               items: [
