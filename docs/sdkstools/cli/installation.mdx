@@ -7,26 +7,26 @@ import TabItem from "@theme/TabItem";
 <TabItem value="macOS" label="macOS">
 
 ```shell
-curl -sSL https://tigris.dev/cli-macos | sudo tar -xz -C /usr/local/bin
+brew install tigrisdata/tigris/tigris-cli
 ```
 
-alternatively install from Homebrew tap:
+Alternatively install via curl:
 
 ```shell
-brew install tigrisdata/tigris/tigris-cli
+curl -sSL https://tigris.dev/cli-macos | sudo tar -xz -C /usr/local/bin
 ```
 
 </TabItem>
 <TabItem value="macOS arm64" label="macOS (arm64)">
 
 ```shell
-curl -sSL https://tigris.dev/cli-macos-arm64 | sudo tar -xz -C /usr/local/bin
+brew install tigrisdata/tigris/tigris-cli
 ```
 
-alternatively install from Homebrew tap:
+Alternatively install via curl:
 
 ```shell
-brew install tigrisdata/tigris/tigris-cli
+curl -sSL https://tigris.dev/cli-macos-arm64 | sudo tar -xz -C /usr/local/bin
 ```
 
 </TabItem>
@@ -45,11 +45,6 @@ curl -sSL https://tigris.dev/cli-linux-arm64 | sudo tar -xz -C /usr/local/bin
 
 </TabItem>
 </Tabs>
-
-:::note
-You need to have [docker](https://docs.docker.com/get-docker/)
-installed already.
-:::
 
 You can check that utility is installed and works by running:
 

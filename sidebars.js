@@ -330,6 +330,7 @@ const sidebars = {
                 "sdkstools/cli/commands/delete-project",
                 "sdkstools/cli/commands/generate-sample-schema",
                 "sdkstools/cli/commands/insert",
+                "sdkstools/cli/commands/import",
                 "sdkstools/cli/commands/list-applications",
                 "sdkstools/cli/commands/list-collections",
                 "sdkstools/cli/commands/list-projects",

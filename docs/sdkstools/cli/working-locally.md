@@ -2,6 +2,11 @@
 
 Getting started working with Tigris locally requires one easy step.
 
+:::note
+You need to have [docker](https://docs.docker.com/get-docker/)
+installed already.
+:::
+
 ## Starting up Tigris on your local machine
 
 Open your terminal, and:
