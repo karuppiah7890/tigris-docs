@@ -205,6 +205,10 @@ const config = {
             title: "Product",
             items: [
               {
+                label: "Documentation",
+                href: "/docs/",
+              },
+              {
                 label: "Cloud Console",
                 href: tigrisConfig.consoleUrl,
               },
@@ -244,10 +248,6 @@ const config = {
             title: "Resources",
             items: [
               {
-                label: "Documentation",
-                href: "/docs/",
-              },
-              {
                 label: "Blog",
                 href: tigrisConfig.blogUrl,
                 target: "_self",
@@ -255,12 +255,20 @@ const config = {
                 className: "footer__link-item disable-external-icon",
               },
               {
-                label: "Videos",
-                href: "https://www.youtube.com/channel/UCsCQ5Nl3JOh71UNCCNZ3q2g",
+                label: "Community",
+                to: "/community",
               },
               {
-                label: "Community",
+                label: "GitHub",
+                href: tigrisConfig.gitHubUrl,
+              },
+              {
+                label: "Discord",
                 href: tigrisConfig.discordUrl,
+              },
+              {
+                label: "YouTube",
+                href: "https://www.youtube.com/channel/UCsCQ5Nl3JOh71UNCCNZ3q2g",
               },
             ],
           },
