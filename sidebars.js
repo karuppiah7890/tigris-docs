@@ -378,6 +378,11 @@ const sidebars = {
           type: "doc",
           id: "references/http-code",
         },
+        {
+          label: "HTTP types reference",
+          type: "doc",
+          id: "references/http-types",
+        },
       ], // end of reference items
     },
   ],
