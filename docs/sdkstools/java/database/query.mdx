@@ -20,6 +20,8 @@ import rangeReadSource from "!!raw-loader!../_snippets/query/_rangeRead";
 import metaFilterSource from "!!raw-loader!../_snippets/query/_metadataFilter";
 import logicalFiltersSource from "!!raw-loader!../_snippets/query/_logicalFilters";
 import nestedFieldsSources from "!!raw-loader!../_snippets/query/_nestedFields";
+import readUsingCollationSource from "!!raw-loader!../_snippets/query/_readUsingCollation";
+import sortResultsSource from "!!raw-loader!../_snippets/query/_sortResults";
 
 export const filterSyntax = {
   eq: "Filters.eq",
@@ -54,6 +56,9 @@ export const sortDirectionSyntax = {
   metadataFilter={metaFilterSource}
   logicalFilters={logicalFiltersSource}
   nestedFields={nestedFieldsSources}
+  readUsingCollation={readUsingCollationSource}
+  sortDirection={sortDirectionSyntax}
+  sortResults={sortResultsSource}
 />
 
 export const toc = [...queryToc];
