@@ -27,6 +27,14 @@ accept requests.
 tigris ping
 ```
 
+## Login to the local Tigris container
+
+Run the following to point all subsequent commands to locally running Tigris container.
+
+```shell
+tigris login dev
+```
+
 ## Start building
 
 That's it, you are ready to build with Tigris!
