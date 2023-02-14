@@ -17,6 +17,11 @@
       "permanent": true
     },
     {
+      "source": "/docs/documents/documents/",
+      "destination": "/docs/concepts/database/documents/",
+      "permanent": true
+    },
+    {
       "source": "/docs/quickstart/",
       "destination": "/docs/quickstarts/",
       "permanent": true
