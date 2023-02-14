@@ -30,6 +30,13 @@ For multiple conditions, there are two logical operators supported.
 - <b>{props.filters["and"]}</b>: Combines multiple filter operators and returns
   documents when all the conditions are met.
 
+## Sort
+
+You can also [apply a sort](#sorting) to the query results by specifying the field to sort and the sort order:
+
+- <b>{props.sortDirection.ASC}</b>: Sort ascending
+- <b>{props.sortDirection.DESC}</b>: Sort decending
+
 ## Example Collection
 
 The first step is to create the collection object.
@@ -150,3 +157,9 @@ query for `brand` "Adidas"
 <CodeBlock language={props.codeLang}>{props.readUsingCollation}</CodeBlock>
 
 Above query will match terms `["adidas", "aDiDas", "Adidas", "adiDas"]` etc.
+
+## Sorting query results {#sorting}
+
+Results are order by X by default. However, you can specify the field the results are to be sorted on and the order in which they are sorted.
+
+<CodeBlock language={props.codeLang}>{props.sortResults}</CodeBlock>

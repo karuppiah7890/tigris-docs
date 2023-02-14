@@ -1,0 +1,15 @@
+const byPopularityDescCursor = catalog.findMany({
+  sort: { field: "popularity", order: Order.DESC },
+});
+
+for await (const product of byPopularityDescCursor) {
+  console.log(product);
+}
+
+const byPriceAsc = catalog.findMany({
+  sort: { field: "price", order: Order.ASC },
+});
+
+for await (const product of byPriceAsc) {
+  console.log(product);
+}
