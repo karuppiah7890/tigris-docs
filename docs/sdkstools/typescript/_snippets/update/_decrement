@@ -1,0 +1,4 @@
+const updateResponse = await catalog.updateOne({
+  filter: { id: 1 },
+  fields: { $decrement: { popularity: 1 } }, // decrement the value of the field popularity by 1
+});

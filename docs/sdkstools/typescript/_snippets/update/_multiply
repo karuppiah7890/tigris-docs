@@ -1,0 +1,4 @@
+const updateResponse = await catalog.updateOne({
+  filter: { id: 1 },
+  fields: { $multiply: { popularity: 2 } }, // multiply the value of the field popularity by 2
+});
